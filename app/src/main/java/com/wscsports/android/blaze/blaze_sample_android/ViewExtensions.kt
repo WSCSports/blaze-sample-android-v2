@@ -1,4 +1,4 @@
-package com.wscsports.android.blaze.blaze_sample_android.ui
+package com.wscsports.android.blaze.blaze_sample_android
 
 import android.view.LayoutInflater
 import androidx.appcompat.app.AppCompatActivity

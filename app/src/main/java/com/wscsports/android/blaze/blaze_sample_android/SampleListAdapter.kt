@@ -1,4 +1,4 @@
-package com.wscsports.android.blaze.blaze_sample_android.ui
+package com.wscsports.android.blaze.blaze_sample_android
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -6,7 +6,6 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.blaze_sample_android.databinding.SampleListItemBinding
-import com.wscsports.android.blaze.blaze_sample_android.model.SampleItem
 
 class SampleListAdapter(
     private val onItemClicked: (SampleItem) -> Unit

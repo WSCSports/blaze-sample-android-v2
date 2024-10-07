@@ -1,7 +1,7 @@
-package com.wscsports.android.blaze.blaze_sample_android.ui
+package com.wscsports.android.blaze.blaze_sample_android
 
+import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -9,7 +9,6 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.blaze_sample_android.R
 import com.example.blaze_sample_android.databinding.ActivityMainBinding
-import com.wscsports.android.blaze.blaze_sample_android.model.SampleItem
 
 class MainActivity : AppCompatActivity() {
 
@@ -30,12 +29,11 @@ class MainActivity : AppCompatActivity() {
 
     private fun initRecyclerView() {
         samplesAdapter = SampleListAdapter { item ->
-            Log.d("appDebug", "MainActivity: initRecyclerView: item: $item")
+            item.activityClass?.let { cls ->
+                startActivity(Intent(this, cls))
+            }
         }
-        with(binding.sampleRecyclerView) {
-            layoutManager = LinearLayoutManager(context)
-            adapter = samplesAdapter
-        }
+        binding.sampleRecyclerView.adapter = samplesAdapter
         samplesAdapter?.submitList(SampleItem.entries)
     }
 

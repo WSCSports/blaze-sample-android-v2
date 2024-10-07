@@ -1,13 +1,16 @@
-package com.wscsports.android.blaze.blaze_sample_android.model
+package com.wscsports.android.blaze.blaze_sample_android
 
 import com.example.blaze_sample_android.R
+import com.wscsports.android.blaze.blaze_sample_android.samples.GlobalOperationsActivity
+
 
 enum class SampleItem(
     val title: String,
     val subTitle: String,
-    val imageResourceId: Int
+    val imageResourceId: Int,
+    val activityClass: Class<*>? = null
 )   {
-    GLOBAL_CONFIGURATIONS("Global configurations", "Global SDK properties setup", imageResourceId = R.drawable.ic_list_widgets),
+    GLOBAL_OPERATIONS("Global operations", "Global SDK properties setup", imageResourceId = R.drawable.ic_list_widgets, GlobalOperationsActivity::class.java),
     WIDGETS("Widgets", "Integrate all type of widgets", imageResourceId = R.drawable.ic_list_widgets),
     ENTRY_POINT("Entry point", "Deeplink handling", imageResourceId = R.drawable.ic_list_widgets),
     MOMENT_CONTAINER("Moment container", "Embedding and managing moments in your app", imageResourceId = R.drawable.ic_list_moment_container),

@@ -20,6 +20,7 @@ import com.blaze.blazesdk.style.players.moments.BlazeMomentsPlayerStyle
 import com.blaze.blazesdk.style.players.stories.BlazeStoryPlayerStyle
 import com.example.blaze_sample_android.R
 import com.example.blaze_sample_android.databinding.ActivityGlobalConfigurationBinding
+import com.wscsports.android.blaze.blaze_sample_android.SampleItem
 import com.wscsports.android.blaze.blaze_sample_android.viewBinding
 
 class GlobalOperationsActivity : AppCompatActivity() {
@@ -35,37 +36,18 @@ class GlobalOperationsActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-        // TODO: remove to custom view
-        setSupportAppbar()
+        setupAppbar()
         setClickListeners()
         initLabelExpressionStringInputs()
         preparePlayers()
         setDefaultPlayersStyle()
-
         setPlayerState()
-
     }
 
-    // TODO: extract to custom appbar view
-    private fun setSupportAppbar() {
-        setSupportActionBar(binding.toolbar)
-        supportActionBar?.title = "Global Operations"
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_back_button)  // Optional custom icon
-        // Set up a listener for the back button
-        onBackPressedDispatcher.addCallback(this) {
-            finish()  // Closes the current activity
-        }
-    }
-
-    // Handle the back button press
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId) {
-            android.R.id.home -> {
-                onBackPressedDispatcher.onBackPressed()  // Handle back button
-                true
-            }
-            else -> super.onOptionsItemSelected(item)
+    private fun setupAppbar() {
+        onBackPressedDispatcher.addCallback(this) { finish() }
+        binding.appbar.setupView(SampleItem.GLOBAL_OPERATIONS.title) {
+            onBackPressedDispatcher.onBackPressed()
         }
     }
 

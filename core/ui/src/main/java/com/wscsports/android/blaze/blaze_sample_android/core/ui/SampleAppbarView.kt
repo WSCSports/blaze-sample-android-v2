@@ -1,9 +1,9 @@
-package com.wscsports.android.blaze.blaze_sample_android
+package com.wscsports.android.blaze.blaze_sample_android.core.ui
 
 import android.content.Context
 import android.util.AttributeSet
 import androidx.constraintlayout.widget.ConstraintLayout
-import com.example.blaze_sample_android.databinding.SampleAppbarBinding
+import com.wscsports.android.blaze.blaze_sample_android.core.ui.databinding.SampleAppbarBinding
 
 class SampleAppbarView @JvmOverloads constructor(
     context: Context,
@@ -25,5 +25,9 @@ class SampleAppbarView @JvmOverloads constructor(
                 onBackPressed.invoke()
             }
         }
+    }
+
+    fun setTitles(title: String) {
+        binding.textTitle.text = title
     }
 }

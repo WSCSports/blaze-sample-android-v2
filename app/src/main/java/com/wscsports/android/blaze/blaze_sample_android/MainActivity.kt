@@ -6,9 +6,9 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.blaze_sample_android.R
 import com.example.blaze_sample_android.databinding.ActivityMainBinding
+import com.wscsports.android.blaze.blaze_sample_android.core.ui.viewBinding
 
 class MainActivity : AppCompatActivity() {
 
@@ -31,6 +31,14 @@ class MainActivity : AppCompatActivity() {
         samplesAdapter = SampleListAdapter { item ->
             item.activityClass?.let { cls ->
                 startActivity(Intent(this, cls))
+            }
+            when (item) {
+                SampleItem.WIDGETS -> {
+                    val intent = Intent()
+                    intent.setClassName(this, "com.wscsports.android.blaze.blaze_sample_android.samples.widgets.WidgetsActivity")
+                    startActivity(intent)
+                }
+                else -> Unit
             }
         }
         binding.sampleRecyclerView.adapter = samplesAdapter

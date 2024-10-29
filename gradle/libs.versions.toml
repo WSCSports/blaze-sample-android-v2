@@ -9,7 +9,10 @@ appcompat = "1.7.0"
 material = "1.12.0"
 activity = "1.9.2"
 constraintlayout = "2.1.4"
-blazeSDK = "1.2.1"
+lifecycleViewmodelKtx = "2.8.6"
+navigationFragmentKtx = "2.8.2"
+navigationUiKtx = "2.8.2"
+blazeSDK = "1.2.7"
 fragmentviewbindingdelegateKt = "1.0.2"
 secretsGradlePlugin = "2.0.1"
 
@@ -22,6 +25,9 @@ androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 androidx-activity = { group = "androidx.activity", name = "activity", version.ref = "activity" }
 androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
+androidx-lifecycle-viewmodel-ktx = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-ktx", version.ref = "lifecycleViewmodelKtx" }
+androidx-navigation-fragment-ktx = { group = "androidx.navigation", name = "navigation-fragment-ktx", version.ref = "navigationFragmentKtx" }
+androidx-navigation-ui-ktx = { group = "androidx.navigation", name = "navigation-ui-ktx", version.ref = "navigationUiKtx" }
 blazesdk = { group = "com.blaze", name = "blazesdk", version.ref = "blazeSDK" }
 fragmentviewbindingdelegate-kt = { module = "com.github.Zhuinden:fragmentviewbindingdelegate-kt", version.ref = "fragmentviewbindingdelegateKt" }
 secrets-gradle-plugin = { module = "com.google.android.libraries.mapsplatform.secrets-gradle-plugin:secrets-gradle-plugin", version.ref = "secretsGradlePlugin" }
@@ -29,4 +35,5 @@ secrets-gradle-plugin = { module = "com.google.android.libraries.mapsplatform.se
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+android-library = { id = "com.android.library", version.ref = "agp" }
 

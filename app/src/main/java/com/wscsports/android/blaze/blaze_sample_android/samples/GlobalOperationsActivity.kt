@@ -1,12 +1,9 @@
 package com.wscsports.android.blaze.blaze_sample_android.samples
 
-import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
-import android.view.MenuItem
 import androidx.activity.addCallback
 import androidx.activity.enableEdgeToEdge
-import androidx.annotation.ColorInt
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -15,13 +12,12 @@ import com.blaze.blazesdk.data_source.BlazeWidgetLabel
 import com.blaze.blazesdk.shared.BlazeSDK
 import com.blaze.blazesdk.shared.results.doOnFailure
 import com.blaze.blazesdk.shared.results.doOnSuccess
-import com.blaze.blazesdk.style.players.BlazeTextCase
 import com.blaze.blazesdk.style.players.moments.BlazeMomentsPlayerStyle
 import com.blaze.blazesdk.style.players.stories.BlazeStoryPlayerStyle
 import com.example.blaze_sample_android.R
 import com.example.blaze_sample_android.databinding.ActivityGlobalConfigurationBinding
 import com.wscsports.android.blaze.blaze_sample_android.SampleItem
-import com.wscsports.android.blaze.blaze_sample_android.viewBinding
+import com.wscsports.android.blaze.blaze_sample_android.core.ui.viewBinding
 
 class GlobalOperationsActivity : AppCompatActivity() {
 
@@ -45,7 +41,6 @@ class GlobalOperationsActivity : AppCompatActivity() {
     }
 
     private fun setupAppbar() {
-        onBackPressedDispatcher.addCallback(this) { finish() }
         binding.appbar.setupView(SampleItem.GLOBAL_OPERATIONS.title) {
             onBackPressedDispatcher.onBackPressed()
         }

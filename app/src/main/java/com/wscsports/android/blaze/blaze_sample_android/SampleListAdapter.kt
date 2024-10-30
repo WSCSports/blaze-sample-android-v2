@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.blaze_sample_android.databinding.SampleListItemBinding
+import com.wscsports.android.blaze.blaze_sample_android.databinding.SampleListItemBinding
 
 class SampleListAdapter(
     private val onItemClicked: (SampleItem) -> Unit

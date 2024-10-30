@@ -36,6 +36,25 @@
         app:layout_constraintBottom_toTopOf="@+id/edit_style_fab"
         app:layout_constraintEnd_toEndOf="parent"/>
 
+    <androidx.cardview.widget.CardView
+        android:id="@+id/edit_data_text_card"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:visibility="invisible"
+        app:cardCornerRadius="10dp"
+        app:layout_constraintEnd_toStartOf="@+id/edit_data_fab"
+        app:layout_constraintTop_toTopOf="@+id/edit_data_fab"
+        app:layout_constraintBottom_toBottomOf="@+id/edit_data_fab">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:text="Edit data source"/>
+
+    </androidx.cardview.widget.CardView>
+
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/edit_style_fab"
         android:layout_width="wrap_content"
@@ -48,6 +67,25 @@
         app:fabSize="mini"
         app:layout_constraintBottom_toTopOf="@+id/edit_widget_fab"
         app:layout_constraintEnd_toEndOf="parent"/>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/edit_style_text_card"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:visibility="invisible"
+        app:cardCornerRadius="10dp"
+        app:layout_constraintEnd_toStartOf="@+id/edit_style_fab"
+        app:layout_constraintTop_toTopOf="@+id/edit_style_fab"
+        app:layout_constraintBottom_toBottomOf="@+id/edit_style_fab">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:text="Edit layout style"/>
+
+    </androidx.cardview.widget.CardView>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/edit_widget_fab"

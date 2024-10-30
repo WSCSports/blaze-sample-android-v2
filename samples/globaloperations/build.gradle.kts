@@ -1,22 +1,17 @@
 plugins {
-    alias(libs.plugins.android.application)
+    alias(libs.plugins.android.library)
     alias(libs.plugins.jetbrains.kotlin.android)
-    id("kotlin-parcelize")
-    id("com.google.android.libraries.mapsplatform.secrets-gradle-plugin")
 }
 
 android {
-    namespace = "com.wscsports.android.blaze.blaze_sample_android"
+    namespace = "com.wscsports.android.blaze.blaze_sample_android.samples.globaloperations"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.wscsports.android.blaze.blaze_sample_android"
         minSdk = 24
-        targetSdk = 34
-        versionCode = 1
-        versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles("consumer-rules.pro")
     }
 
     buildTypes {
@@ -37,14 +32,12 @@ android {
     }
     buildFeatures {
         viewBinding = true
-        buildConfig = true
     }
 }
 
 dependencies {
+
     implementation(project(":core:ui"))
-    implementation(project(":samples:widgets"))
-    implementation(project(":samples:globaloperations"))
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
@@ -59,5 +52,4 @@ dependencies {
     implementation(libs.blazesdk)
     // fragments view binding delegate
     implementation(libs.fragmentviewbindingdelegate.kt)
-
 }

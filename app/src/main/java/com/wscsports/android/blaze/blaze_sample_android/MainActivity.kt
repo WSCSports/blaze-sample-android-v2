@@ -6,9 +6,8 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import com.example.blaze_sample_android.R
-import com.example.blaze_sample_android.databinding.ActivityMainBinding
 import com.wscsports.android.blaze.blaze_sample_android.core.ui.viewBinding
+import com.wscsports.android.blaze.blaze_sample_android.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
@@ -29,20 +28,18 @@ class MainActivity : AppCompatActivity() {
 
     private fun initRecyclerView() {
         samplesAdapter = SampleListAdapter { item ->
-            item.activityClass?.let { cls ->
-                startActivity(Intent(this, cls))
-            }
-            when (item) {
-                SampleItem.WIDGETS -> {
-                    val intent = Intent()
-                    intent.setClassName(this, "com.wscsports.android.blaze.blaze_sample_android.samples.widgets.WidgetsActivity")
-                    startActivity(intent)
-                }
-                else -> Unit
+            item.className?.let { className ->
+                val intent = Intent()
+                intent.setClassName(this, "${ROOT_SAMPLE_PKG_NAME}${className}")
+                startActivity(intent)
             }
         }
         binding.sampleRecyclerView.adapter = samplesAdapter
         samplesAdapter?.submitList(SampleItem.entries)
+    }
+
+    companion object {
+        const val ROOT_SAMPLE_PKG_NAME = "com.wscsports.android.blaze.blaze_sample_android.samples."
     }
 
 }

@@ -4,7 +4,6 @@ import android.app.Application
 import android.util.Log
 import com.blaze.blazesdk.prefetch.models.BlazeCachingLevel
 import com.blaze.blazesdk.shared.BlazeSDK
-import com.example.blaze_sample_android.BuildConfig
 
 /** Use the [Application] class to initialize the BlazeSDK.
  * Note - you won't be able to use BlazeSDK before calling BlazeSDK.init

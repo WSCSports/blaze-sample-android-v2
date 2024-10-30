@@ -16,6 +16,7 @@ import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.shareIn
 import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
 class WidgetsViewModel: ViewModel() {
@@ -46,31 +47,24 @@ class WidgetsViewModel: ViewModel() {
     fun getCurrWidgetDataState(): WidgetDataState = _widgetDataState.value ?: WidgetDataState()
 
     fun setWidgetLayoutStyleState(state: WidgetLayoutStyleState) {
-        viewModelScope.launch {
-            _widgetStyleState.emit(state)
-        }
+        _widgetStyleState.update { state }
     }
 
     fun setWidgetDataState(state: WidgetDataState) {
-        viewModelScope.launch {
-            _widgetDataState.emit(state)
-        }
+        _widgetDataState.update { state }
     }
 
-    fun setCurrWidgetTypeAndInitLabelIfNeeded(widgetType: WidgetType?) {
-        viewModelScope.launch {
-            _currWidgetType.emit(widgetType)
-            if (_widgetDataState.value == null) {
-                _widgetDataState.emit(
-                    WidgetDataState(
-                        labelName = getInitialWidgetDataSourceLabel()
-                    )
+    fun setCurrWidgetTypeAndInitLabelIfNeeded(widgetType: WidgetType) {
+        _currWidgetType.update { widgetType }
+        _widgetDataState.update { prevState ->
+            prevState
+                ?: WidgetDataState(
+                    labelName = widgetType.initDataSourceLabel()
                 )
-            }
         }
     }
 
-    private fun getInitialWidgetDataSourceLabel(): String {
+    private fun WidgetType.initDataSourceLabel(): String {
         return when (_currWidgetType.value) {
             WidgetType.STORIES_ROW -> "live-stories"
             WidgetType.STORIES_GRID -> "live-stories"

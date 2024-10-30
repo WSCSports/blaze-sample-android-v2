@@ -5,13 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.wscsports.android.blaze.blaze_sample_android.samples.GlobalOperationsActivity">
+    tools:context="com.wscsports.android.blaze.blaze_sample_android.samples.globaloperations.GlobalOperationsActivity">
 
     <com.wscsports.android.blaze.blaze_sample_android.core.ui.SampleAppbarView
         android:id="@+id/appbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/blaze_transparent"/>
+        android:background="@android:color/transparent"/>
 
     <ScrollView
         android:layout_width="match_parent"

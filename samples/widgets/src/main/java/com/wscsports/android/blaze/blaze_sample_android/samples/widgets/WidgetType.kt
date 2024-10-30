@@ -1,14 +1,10 @@
 package com.wscsports.android.blaze.blaze_sample_android.samples.widgets
 
-import android.os.Parcelable
-import kotlinx.parcelize.Parcelize
-
-@Parcelize
 enum class WidgetType(
     val title: String,
     val description: String,
     val navDestinationId: Int
-) : Parcelable {
+) {
     STORIES_ROW(
         title = "Stories-row",
         description = "This represents a Blaze widget view for stories with a row layout on a horizontal axis",

@@ -1,23 +1,19 @@
-package com.wscsports.android.blaze.blaze_sample_android.samples
+package com.wscsports.android.blaze.blaze_sample_android.samples.globaloperations
 
 import android.os.Bundle
 import android.util.Log
-import androidx.activity.addCallback
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.blaze.blazesdk.data_source.BlazeDataSourceType
 import com.blaze.blazesdk.data_source.BlazeWidgetLabel
-import com.blaze.blazesdk.shared.BlazeSDK
 import com.blaze.blazesdk.shared.results.doOnFailure
 import com.blaze.blazesdk.shared.results.doOnSuccess
-import com.blaze.blazesdk.style.players.moments.BlazeMomentsPlayerStyle
 import com.blaze.blazesdk.style.players.stories.BlazeStoryPlayerStyle
-import com.example.blaze_sample_android.R
-import com.example.blaze_sample_android.databinding.ActivityGlobalConfigurationBinding
-import com.wscsports.android.blaze.blaze_sample_android.SampleItem
+import com.wscsports.android.blaze.blaze_sample_android.core.ui.R.*
 import com.wscsports.android.blaze.blaze_sample_android.core.ui.viewBinding
+import com.wscsports.android.blaze.blaze_sample_android.samples.globaloperations.databinding.ActivityGlobalConfigurationBinding
 
 class GlobalOperationsActivity : AppCompatActivity() {
 
@@ -41,7 +37,7 @@ class GlobalOperationsActivity : AppCompatActivity() {
     }
 
     private fun setupAppbar() {
-        binding.appbar.setupView(SampleItem.GLOBAL_OPERATIONS.title) {
+        binding.appbar.setupView("Global Operations") {
             onBackPressedDispatcher.onBackPressed()
         }
     }
@@ -53,19 +49,21 @@ class GlobalOperationsActivity : AppCompatActivity() {
      * https://dev.wsc-sports.com/docs/android-blaze-story-player-style
      */
     private fun setDefaultPlayersStyle() {
-        val storyPlayerStyle = BlazeStoryPlayerStyle.base().apply {
-            backgroundColor = getColor(R.color.black)
-            title.textColor = getColor(R.color.wsc_accent)
+        val storyPlayerStyle = BlazeStoryPlayerStyle.Companion.base()
+            .apply {
+            backgroundColor = getColor(color.black)
+            title.textColor = getColor(color.wsc_accent)
             title.textSize = 16f
         }
-        val momentPlayerStyle = BlazeMomentsPlayerStyle.base().apply {
-            backgroundColor = getColor(R.color.black)
+        val momentPlayerStyle = com.blaze.blazesdk.style.players.moments.BlazeMomentsPlayerStyle.Companion.base()
+            .apply {
+            backgroundColor = getColor(color.black)
             headingText.textSize = 22f
             bodyText.textSize = 18f
         }
 
-        BlazeSDK.setDefaultStoryPlayerStyle(storyPlayerStyle)
-        BlazeSDK.setDefaultMomentsPlayerStyle(momentPlayerStyle)
+        com.blaze.blazesdk.shared.BlazeSDK.setDefaultStoryPlayerStyle(storyPlayerStyle)
+        com.blaze.blazesdk.shared.BlazeSDK.setDefaultMomentsPlayerStyle(momentPlayerStyle)
     }
 
     private fun initLabelExpressionStringInputs() {
@@ -78,14 +76,18 @@ class GlobalOperationsActivity : AppCompatActivity() {
 
     // TODO: add documentation for this use case
     private fun preparePlayers() {
-        val storiesDataSource =  BlazeDataSourceType.Labels(
-            blazeWidgetLabel = BlazeWidgetLabel.singleLabel(INIT_STORIES_LABEL_EXPRESSION)
+        val storiesDataSource = BlazeDataSourceType.Labels(
+            blazeWidgetLabel = BlazeWidgetLabel.Companion.singleLabel(
+                INIT_STORIES_LABEL_EXPRESSION
+            )
         )
         val momentsDataSource = BlazeDataSourceType.Labels(
-            blazeWidgetLabel = BlazeWidgetLabel.singleLabel(INIT_MOMENTS_LABEL_EXPRESSION)
+            blazeWidgetLabel = BlazeWidgetLabel.singleLabel(
+                INIT_MOMENTS_LABEL_EXPRESSION
+            )
         )
-        BlazeSDK.prepareStories(storiesDataSource)
-        BlazeSDK.prepareMoments(momentsDataSource)
+        com.blaze.blazesdk.shared.BlazeSDK.prepareStories(storiesDataSource)
+        com.blaze.blazesdk.shared.BlazeSDK.prepareMoments(momentsDataSource)
     }
 
     private fun setClickListeners() {
@@ -103,43 +105,50 @@ class GlobalOperationsActivity : AppCompatActivity() {
                 playMomentsByInputLabelExpression()
             }
             playStoryButton.setOnClickListener {
-                BlazeSDK.playStory("your-story-id")
+                com.blaze.blazesdk.shared.BlazeSDK.playStory("your-story-id")
             }
             playMomentButton.setOnClickListener {
-                BlazeSDK.playMoment("your-moment-id")
+                com.blaze.blazesdk.shared.BlazeSDK.playMoment("your-moment-id")
             }
             switchDoNotTrackUser.setOnCheckedChangeListener { _, isChecked ->
-                BlazeSDK.setDoNotTrack(isChecked)
+                com.blaze.blazesdk.shared.BlazeSDK.setDoNotTrack(isChecked)
             }
         }
     }
 
     private fun playStoriesByInputLabelExpression() {
         binding.storiesLabelExpressionEditText.text?.toString()?.let { labelExpressionStr ->
-            val storiesDataSource =  BlazeDataSourceType.Labels(
-                blazeWidgetLabel = BlazeWidgetLabel.singleLabel(labelExpressionStr)
+            val storiesDataSource = BlazeDataSourceType.Labels(
+                blazeWidgetLabel = BlazeWidgetLabel.singleLabel(
+                    labelExpressionStr
+                )
             )
-            BlazeSDK.playStories(storiesDataSource)
+            com.blaze.blazesdk.shared.BlazeSDK.playStories(storiesDataSource)
         }
     }
 
     private fun playMomentsByInputLabelExpression() {
         binding.momentsLabelExpressionEditText.text?.toString()?.let { labelExpressionStr ->
-            val momentsDataSource =  BlazeDataSourceType.Labels(
-                blazeWidgetLabel = BlazeWidgetLabel.singleLabel(labelExpressionStr)
+            val momentsDataSource = BlazeDataSourceType.Labels(
+                blazeWidgetLabel = BlazeWidgetLabel.singleLabel(
+                    labelExpressionStr
+                )
             )
-            BlazeSDK.playMoments(momentsDataSource)
+            com.blaze.blazesdk.shared.BlazeSDK.playMoments(momentsDataSource)
         }
     }
 
     private fun setExternalUserIdFromInput() {
         binding.externalUserIdEditText.text?.toString()?.let { externalUserId ->
-            BlazeSDK.setExternalUserId(externalUserId) { result ->
+            com.blaze.blazesdk.shared.BlazeSDK.setExternalUserId(externalUserId) { result ->
                 result.doOnSuccess {
                     Log.d("GlobalConfigurationActivity", "setExternalUserId: doOnSuccess")
                 }
                 result.doOnFailure { message, cause ->
-                    Log.e("GlobalConfigurationActivity", "setExternalUserId: doOnFailure: message = $message, cause = $cause")
+                    Log.e(
+                        "GlobalConfigurationActivity",
+                        "setExternalUserId: doOnFailure: message = $message, cause = $cause"
+                    )
                 }
             }
         }
@@ -147,12 +156,15 @@ class GlobalOperationsActivity : AppCompatActivity() {
 
     private fun setGeoLocationFromInput() {
         binding.geoLocationEditText.text?.toString()?.let { geoLocation ->
-            BlazeSDK.updateGeoRestriction(geoLocation) { result ->
+            com.blaze.blazesdk.shared.BlazeSDK.updateGeoRestriction(geoLocation) { result ->
                 result.doOnSuccess {
                     Log.d("GlobalConfigurationActivity", "setGeoLocation: doOnSuccess")
                 }
                 result.doOnFailure { message, cause ->
-                    Log.e("GlobalConfigurationActivity", "setGeoLocation: doOnFailure: message = $message, cause = $cause")
+                    Log.e(
+                        "GlobalConfigurationActivity",
+                        "setGeoLocation: doOnFailure: message = $message, cause = $cause"
+                    )
                 }
             }
         }

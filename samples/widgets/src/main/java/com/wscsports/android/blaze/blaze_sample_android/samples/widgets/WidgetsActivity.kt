@@ -1,14 +1,17 @@
 package com.wscsports.android.blaze.blaze_sample_android.samples.widgets
 
 import android.os.Bundle
+import android.view.View
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
+import com.wscsports.android.blaze.blaze_sample_android.core.ui.showView
 import com.wscsports.android.blaze.blaze_sample_android.core.ui.viewBinding
 import com.wscsports.android.blaze.blaze_sample_android.samples.widgets.databinding.ActivityWidgetsBinding
 import com.wscsports.android.blaze.blaze_sample_android.samples.widgets.widget_screens.state.ChooseDataStateBottomSheetFragment
@@ -54,13 +57,7 @@ class WidgetsActivity : AppCompatActivity() {
     private fun setFabClickListener() {
         with(binding) {
             editWidgetFab.setOnClickListener {
-                if (editStyleFab.isShown) {
-                    editStyleFab.hide()
-                    editDataFab.hide()
-                } else {
-                    editStyleFab.show()
-                    editDataFab.show()
-                }
+                onEditWidgetFabClicked()
             }
             editStyleFab.setOnClickListener {
                 showLayoutStyleBottomSheet()
@@ -68,6 +65,30 @@ class WidgetsActivity : AppCompatActivity() {
             editDataFab.setOnClickListener {
                 showDataBottomSheet()
             }
+        }
+    }
+
+    private fun ActivityWidgetsBinding.onEditWidgetFabClicked() {
+        editDataTextCard.showView(!editStyleFab.isShown)
+        editStyleTextCard.showView(!editStyleFab.isShown)
+        if (editStyleFab.isShown) {
+            editStyleFab.hide()
+            editDataFab.hide()
+            editWidgetFab.setImageDrawable(
+                ContextCompat.getDrawable(
+                    this@WidgetsActivity,
+                    R.drawable.ic_edit_24
+                )
+            )
+        } else {
+            editStyleFab.show()
+            editDataFab.show()
+            editWidgetFab.setImageDrawable(
+                ContextCompat.getDrawable(
+                    this@WidgetsActivity,
+                    R.drawable.ic_close_24
+                )
+            )
         }
     }
 
@@ -99,10 +120,18 @@ class WidgetsActivity : AppCompatActivity() {
         with(binding) {
             editStyleFab.hide()
             editDataFab.hide()
+            editDataTextCard.showView(false)
+            editStyleTextCard.showView(false)
             if (showFab) {
-                binding.editWidgetFab.show()
+                editWidgetFab.show()
+                editWidgetFab.setImageDrawable(
+                    ContextCompat.getDrawable(
+                        this@WidgetsActivity,
+                        R.drawable.ic_edit_24
+                    )
+                )
             } else {
-                binding.editWidgetFab.hide()
+                editWidgetFab.hide()
             }
         }
     }

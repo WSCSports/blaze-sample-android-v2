@@ -7,7 +7,7 @@ android {
     val compileSdkVersion = rootProject.extra["compileSdkVersion"] as Int
     val minSdkVersion = rootProject.extra["minSdkVersion"] as Int
 
-    namespace = "com.wscsports.blaze_sample_android.samples.widgets"
+    namespace = "com.wscsports.blaze_sample_android.samples.momentscontainer"
     compileSdk = compileSdkVersion
 
     defaultConfig {
@@ -47,14 +47,15 @@ dependencies {
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
-
-    implementation(libs.androidx.lifecycle.viewmodel.ktx)
-    // navigation
-    implementation(libs.androidx.navigation.fragment.ktx)
-    implementation(libs.androidx.navigation.ui.ktx)
+    implementation(libs.navigation.fragment.ktx)
+    implementation(libs.navigation.ui.ktx)
 
     //BlazeSDK
     implementation(libs.blazesdk)
+
+    // navigation
+    implementation(libs.androidx.navigation.fragment.ktx)
+    implementation(libs.androidx.navigation.ui.ktx)
 
     // fragments view binding delegate
     implementation(libs.fragmentviewbindingdelegate.kt)

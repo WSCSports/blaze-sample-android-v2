@@ -6,6 +6,9 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.blaze.blazesdk.data_source.BlazeDataSourceType
+import com.blaze.blazesdk.data_source.BlazeWidgetLabel
+import com.blaze.blazesdk.shared.BlazeSDK
 import com.wscsports.android.blaze.blaze_sample_android.core.ui.viewBinding
 import com.wscsports.android.blaze.blaze_sample_android.databinding.ActivityMainBinding
 
@@ -16,14 +19,9 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         setContentView(binding.root)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
-        }
         initRecyclerView()
+        BlazeSDK.prepareMoments(BlazeDataSourceType.Labels(BlazeWidgetLabel.singleLabel("moments")))
     }
 
     private fun initRecyclerView() {
@@ -39,7 +37,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     companion object {
-        const val ROOT_SAMPLE_PKG_NAME = "com.wscsports.android.blaze.blaze_sample_android.samples."
+        const val ROOT_SAMPLE_PKG_NAME = "com.wscsports.blaze_sample_android.samples."
     }
 
 }

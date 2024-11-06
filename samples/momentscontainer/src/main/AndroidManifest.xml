@@ -3,7 +3,7 @@
 
     <application>
         <activity
-            android:name="com.wscsports.blaze_sample_android.samples.widgets.WidgetsActivity"
+            android:name=".MomentsContainerActivity"
             android:exported="false" />
     </application>
 

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.wscsports.android.blaze.blaze_sample_android.samples.globaloperations.GlobalOperationsActivity">
+    tools:context="com.wscsports.android.blaze.blaze_sample_android.samples.globaloperations.com.wscsports.blaze_sample_android.samples.globaloperations.GlobalOperationsActivity">
 
     <com.wscsports.android.blaze.blaze_sample_android.core.ui.SampleAppbarView
         android:id="@+id/appbar"

@@ -3,7 +3,7 @@
 
     <application>
         <activity
-            android:name=".GlobalOperationsActivity"
+            android:name="com.wscsports.blaze_sample_android.samples.globaloperations.GlobalOperationsActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustPan"/>
     </application>

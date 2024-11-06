@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/navigation_widget_list"
-        android:name="com.wscsports.android.blaze.blaze_sample_android.samples.widgets.WidgetListFragment"
+        android:name="com.wscsports.blaze_sample_android.samples.widgets.WidgetListFragment"
         android:label="widgets module"
         tools:layout="@layout/fragment_widget_list" >
         <action
@@ -42,21 +42,21 @@
 
     <fragment
         android:id="@+id/storiesRowFragment"
-        android:name="com.wscsports.android.blaze.blaze_sample_android.samples.widgets.widget_screens.StoriesRowFragment"
+        android:name="com.wscsports.blaze_sample_android.samples.widgets.widget_screens.StoriesRowFragment"
         android:label="Stories row" />
     <fragment
         android:id="@+id/storiesGridFragment"
-        android:name="com.wscsports.android.blaze.blaze_sample_android.samples.widgets.widget_screens.StoriesGridFragment"
+        android:name="com.wscsports.blaze_sample_android.samples.widgets.widget_screens.StoriesGridFragment"
         android:label="fragment_stories_grid"
         tools:layout="@layout/fragment_stories_grid" />
     <fragment
         android:id="@+id/momentsRowFragment"
-        android:name="com.wscsports.android.blaze.blaze_sample_android.samples.widgets.widget_screens.MomentsRowFragment"
+        android:name="com.wscsports.blaze_sample_android.samples.widgets.widget_screens.MomentsRowFragment"
         android:label="fragment_moments_row"
         tools:layout="@layout/fragment_moments_row" />
     <fragment
         android:id="@+id/momentsGridFragment"
-        android:name="com.wscsports.android.blaze.blaze_sample_android.samples.widgets.widget_screens.MomentsGridFragment"
+        android:name="com.wscsports.blaze_sample_android.samples.widgets.widget_screens.MomentsGridFragment"
         android:label="fragment_moments_grid"
         tools:layout="@layout/fragment_moments_grid" />
 </navigation>

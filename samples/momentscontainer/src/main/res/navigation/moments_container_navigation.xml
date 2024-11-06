@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/moments_container_navigation"
+    app:startDestination="@id/lazyStartMomentsFragment">
+
+    <fragment
+        android:id="@+id/lazyStartMomentsFragment"
+        android:name="com.wscsports.blaze_sample_android.samples.momentscontainer.LazyStartMomentsFragment"
+        android:label="fragment_lazy_start_moments"
+        tools:layout="@layout/fragment_lazy_start_moments" />
+    <fragment
+        android:id="@+id/momentsFragment"
+        android:name="com.wscsports.blaze_sample_android.samples.momentscontainer.InstantMomentsFragment"
+        android:label="MomentsFragment"
+        tools:layout="@layout/fragment_instants_moments"/>
+</navigation>

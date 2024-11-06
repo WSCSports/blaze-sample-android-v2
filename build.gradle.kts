@@ -10,3 +10,10 @@ buildscript {
         classpath(libs.secrets.gradle.plugin)
     }
 }
+
+// Shared variables between all modules
+extra.apply {
+    set("compileSdkVersion", 35)
+    set("targetSdkVersion", 35)
+    set("minSdkVersion", 24)
+}

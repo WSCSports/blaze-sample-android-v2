@@ -4,11 +4,14 @@ plugins {
 }
 
 android {
+    val compileSdkVersion = rootProject.extra["compileSdkVersion"] as Int
+    val minSdkVersion = rootProject.extra["minSdkVersion"] as Int
+
     namespace = "com.wscsports.android.blaze.blaze_sample_android.samples.globaloperations"
-    compileSdk = 34
+    compileSdk = compileSdkVersion
 
     defaultConfig {
-        minSdk = 24
+        minSdk = minSdkVersion
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
@@ -44,9 +47,6 @@ dependencies {
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
 
     //BlazeSDK
     implementation(libs.blazesdk)

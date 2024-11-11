@@ -17,6 +17,8 @@ fragmentviewbindingdelegateKt = "1.0.2"
 secretsGradlePlugin = "2.0.1"
 navigationFragmentKtxVersion = "2.8.3"
 navigationUiKtxVersion = "2.8.3"
+firebase-bom = "33.5.1"
+firebase-messaging-ktx = "24.0.3"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -35,6 +37,8 @@ fragmentviewbindingdelegate-kt = { module = "com.github.Zhuinden:fragmentviewbin
 secrets-gradle-plugin = { module = "com.google.android.libraries.mapsplatform.secrets-gradle-plugin:secrets-gradle-plugin", version.ref = "secretsGradlePlugin" }
 navigation-fragment-ktx = { group = "androidx.navigation", name = "navigation-fragment-ktx", version.ref = "navigationFragmentKtxVersion" }
 navigation-ui-ktx = { group = "androidx.navigation", name = "navigation-ui-ktx", version.ref = "navigationUiKtxVersion" }
+firebase-bom = { module = "com.google.firebase:firebase-bom", version.ref = "firebase-bom" }
+firebase-messaging-ktx = { module = "com.google.firebase:firebase-messaging-ktx", version.ref = "firebase-messaging-ktx" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

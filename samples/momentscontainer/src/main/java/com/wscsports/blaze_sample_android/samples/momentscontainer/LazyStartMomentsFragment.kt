@@ -1,8 +1,12 @@
 package com.wscsports.blaze_sample_android.samples.momentscontainer
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.flowWithLifecycle
+import androidx.lifecycle.lifecycleScope
 import com.blaze.blazesdk.data_source.BlazeDataSourceType
 import com.blaze.blazesdk.data_source.BlazeWidgetLabel
 import com.blaze.blazesdk.delegates.BlazePlayerInContainerDelegate
@@ -13,18 +17,22 @@ import com.blaze.blazesdk.style.shared.models.blazeDp
 import com.wscsports.blaze_sample_android.samples.momentscontainer.MomentsContainerActivity.Companion.MOMENTS_LABEL
 import com.wscsports.blaze_sample_android.samples.momentscontainer.databinding.FragmentLazyStartMomentsBinding
 import com.zhuinden.fragmentviewbindingdelegatekt.viewBinding
+import kotlinx.coroutines.launch
 
 
 class LazyStartMomentsFragment : Fragment(R.layout.fragment_lazy_start_moments),
     BlazePlayerInContainerDelegate by MomentsContainerDelegateImp() {
 
     private val binding by viewBinding(FragmentLazyStartMomentsBinding::bind)
-    private lateinit var momentsPlayerContainer: BlazeMomentsPlayerContainer
+    private val viewModel: MomentsContainerViewModel by activityViewModels()
+    private var momentsPlayerContainer: BlazeMomentsPlayerContainer? = null
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setClickListeners()
         initMomentsInContainer()
+        subscribeObservers()
     }
 
     private fun setClickListeners() {
@@ -34,7 +42,7 @@ class LazyStartMomentsFragment : Fragment(R.layout.fragment_lazy_start_moments),
     }
 
     private fun startPlayingMoments() {
-        momentsPlayerContainer.startPlaying(
+        momentsPlayerContainer?.startPlaying(
             childFragmentManager,
             binding.momentsContainer,
         )
@@ -44,7 +52,7 @@ class LazyStartMomentsFragment : Fragment(R.layout.fragment_lazy_start_moments),
         val momentsPlayerStyle = getMomentsPlayerStyle()
         momentsPlayerContainer = BlazeMomentsPlayerContainer(
             dataSource = BlazeDataSourceType.Labels(BlazeWidgetLabel.singleLabel(MOMENTS_LABEL)),
-            containerId = "lazy-moments-container-unique-id",
+            containerId = MomentsContainerActivity.LAZY_MOMENTS_CONTAINER_ID,
             momentsPlayerStyle = momentsPlayerStyle,
             playerInContainerDelegate = this,
             shouldOrderMomentsByReadStatus = true
@@ -64,6 +72,14 @@ class LazyStartMomentsFragment : Fragment(R.layout.fragment_lazy_start_moments),
             seekBar.horizontalMargin = 0.blazeDp
             // cta customization
             cta.layoutPositioning = BlazeMomentsPlayerCtaStyle.BlazeCTAPositioning.CTA_NEXT_TO_BOTTOM_BUTTONS_BOX
+        }
+    }
+
+    private fun subscribeObservers() {
+        lifecycleScope.launch {
+            viewModel.onVolumeChangedEvent.flowWithLifecycle(viewLifecycleOwner.lifecycle).collect {
+                momentsPlayerContainer?.onVolumeChanged()
+            }
         }
     }
 

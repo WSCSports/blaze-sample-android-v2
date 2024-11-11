@@ -49,6 +49,7 @@ dependencies {
     implementation(project(":samples:widgets"))
     implementation(project(":samples:globaloperations"))
     implementation(project(":samples:momentscontainer"))
+    implementation(project(":samples:entrypoint"))
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)

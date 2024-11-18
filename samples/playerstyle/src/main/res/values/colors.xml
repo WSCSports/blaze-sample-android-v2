@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--  First Time Slide  -->
+    <color name="first_time_slide_background_color">#FFFFFF</color>
+    <color name="first_time_slide_main_title_color">#FF131313</color>
+    <color name="first_time_slide_sub_title_color">#FF131313</color>
+    <color name="first_time_slide_header_color">#FF131313</color>
+    <color name="first_time_slide_description_color">#FF131313</color>
+    <color name="first_time_slide_cta_button_color">#FF0239FC</color>
+    <color name="first_time_slide_cta_button_text_color">#FFFFFF</color>
+</resources>

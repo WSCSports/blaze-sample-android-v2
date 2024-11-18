@@ -1,0 +1,79 @@
+package com.wscsports.blaze_sample_android.samples.playerstyle
+
+import android.os.Bundle
+import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
+import com.blaze.blazesdk.data_source.BlazeDataSourceType
+import com.blaze.blazesdk.data_source.BlazeWidgetLabel
+import com.blaze.blazesdk.delegates.BlazeWidgetDelegate
+import com.wscsports.blaze_sample_android.samples.playerstyle.databinding.ActivityPlayerStyleBinding
+import com.wscsports.android.blaze.blaze_sample_android.core.ui.viewBinding
+
+class PlayerStyleActivity : AppCompatActivity(),
+    BlazeWidgetDelegate by PlayerStyleWidgetsDelegate() {
+
+    private val binding by viewBinding(ActivityPlayerStyleBinding::inflate)
+    private val viewModel: PlayerStyleViewModel by viewModels()
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(binding.root)
+        setupAppbar()
+        initWidgets()
+    }
+
+    private fun setupAppbar() {
+        binding.appbar.setupView("Player Style") {
+            onBackPressedDispatcher.onBackPressed()
+        }
+    }
+
+    private fun initWidgets() {
+        initDefaultStoriesRowWidget()
+        initCustomStoriesRowWidget()
+        initDefaultMomentsRowWidget()
+        initCustomMomentsRowWidget()
+    }
+
+    private fun initDefaultStoriesRowWidget() {
+        binding.defaultStoriesRowWidgetView.initWidget(
+            widgetLayout = viewModel.storiesWidgetLayout,
+            playerStyle = viewModel.defaultStoryPlayerStyle,
+            dataSource = viewModel.storiesDataSource,
+            widgetId = "default-stories-row-id",
+            widgetDelegate = this
+        )
+    }
+
+    private fun initCustomStoriesRowWidget() {
+        binding.customStoriesRowWidgetView.initWidget(
+            widgetLayout = viewModel.storiesWidgetLayout,
+            playerStyle = viewModel.customStoryPlayerStyle,
+            dataSource = viewModel.storiesDataSource,
+            widgetId = "custom-stories-row-id",
+            widgetDelegate = this
+        )
+    }
+
+    private fun initDefaultMomentsRowWidget() {
+        binding.defaultMomentsRowWidgetView.initWidget(
+            widgetLayout = viewModel.momentsWidgetLayout,
+            playerStyle = viewModel.defaultMomentPlayerStyle,
+            dataSource = viewModel.momentsDataSource,
+            widgetId = "default-moments-row-id",
+            widgetDelegate = this
+        )
+    }
+
+    private fun initCustomMomentsRowWidget() {
+        binding.customMomentsRowWidgetView.initWidget(
+            widgetLayout =  viewModel.momentsWidgetLayout,
+            playerStyle = viewModel.customMomentPlayerStyle,
+            dataSource = viewModel.momentsDataSource,
+            widgetId = "custom-moments-row-id",
+            widgetDelegate = this
+        )
+    }
+
+
+}

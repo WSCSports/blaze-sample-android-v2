@@ -38,6 +38,13 @@
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right"/>
+        <action
+            android:id="@+id/action_navigation_widget_list_to_mixedWidgetsFragment"
+            app:destination="@id/mixedWidgetsFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
     </fragment>
 
     <fragment
@@ -59,4 +66,8 @@
         android:name="com.wscsports.blaze_sample_android.samples.widgets.widget_screens.MomentsGridFragment"
         android:label="fragment_moments_grid"
         tools:layout="@layout/fragment_moments_grid" />
+    <fragment
+        android:id="@+id/mixedWidgetsFragment"
+        android:name="com.wscsports.blaze_sample_android.samples.widgets.widget_screens.MixedWidgetsFragment"
+        android:label="MixedWidgetsFragment" />
 </navigation>

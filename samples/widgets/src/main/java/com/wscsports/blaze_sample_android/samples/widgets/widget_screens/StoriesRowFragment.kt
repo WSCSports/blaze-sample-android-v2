@@ -14,7 +14,7 @@ import com.blaze.blazesdk.style.widgets.BlazeWidgetItemImageStyle.BlazeThumbnail
 import com.blaze.blazesdk.style.widgets.BlazeWidgetItemStatusIndicatorStyle
 import com.blaze.blazesdk.style.widgets.BlazeWidgetItemTitleStyle
 import com.wscsports.blaze_sample_android.samples.widgets.R
-import com.wscsports.blaze_sample_android.samples.widgets.WidgetType
+import com.wscsports.blaze_sample_android.samples.widgets.WidgetScreenType
 import com.wscsports.blaze_sample_android.samples.widgets.databinding.FragmentStoriesRowBinding
 import com.wscsports.blaze_sample_android.samples.widgets.widget_screens.state.WidgetDataState
 import com.wscsports.blaze_sample_android.samples.widgets.widget_screens.state.WidgetLayoutStyleState
@@ -23,7 +23,7 @@ import com.zhuinden.fragmentviewbindingdelegatekt.viewBinding
 class StoriesRowFragment: BaseWidgetFragment(R.layout.fragment_stories_row) {
 
     private val binding by viewBinding(FragmentStoriesRowBinding::bind)
-    override val widgetType = WidgetType.STORIES_ROW
+    override val widgetType = WidgetScreenType.STORIES_ROW
 
     override fun initWidgetView() {
         val dataState = viewModel.getCurrWidgetDataState()

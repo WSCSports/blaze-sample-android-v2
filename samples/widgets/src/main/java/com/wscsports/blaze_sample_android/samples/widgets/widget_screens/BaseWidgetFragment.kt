@@ -9,7 +9,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import com.blaze.blazesdk.delegates.BlazeWidgetDelegate
 import com.wscsports.android.blaze.blaze_sample_android.core.WidgetDelegateImpl
-import com.wscsports.blaze_sample_android.samples.widgets.WidgetType
+import com.wscsports.blaze_sample_android.samples.widgets.WidgetScreenType
 import com.wscsports.blaze_sample_android.samples.widgets.widget_screens.state.WidgetDataState
 import com.wscsports.blaze_sample_android.samples.widgets.widget_screens.state.WidgetLayoutStyleState
 import kotlinx.coroutines.flow.collectLatest
@@ -43,7 +43,7 @@ abstract class BaseWidgetFragment(@LayoutRes layoutRes: Int) : Fragment(layoutRe
         }
     }
 
-    abstract val widgetType: WidgetType
+    abstract val widgetType: WidgetScreenType
     abstract fun initWidgetView()
     abstract fun onNewWidgetLayoutState(styleState: WidgetLayoutStyleState)
     abstract fun onNewDatasourceState(dataState: WidgetDataState)

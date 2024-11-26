@@ -3,7 +3,6 @@ package com.wscsports.blaze_sample_android.samples.widgets.widget_screens
 import android.graphics.Color
 import com.blaze.blazesdk.data_source.BlazeDataSourceType
 import com.blaze.blazesdk.data_source.BlazeWidgetLabel
-import com.blaze.blazesdk.delegates.BlazeWidgetDelegate
 import com.blaze.blazesdk.style.shared.models.BlazeObjectXPosition
 import com.blaze.blazesdk.style.shared.models.BlazeObjectYPosition
 import com.blaze.blazesdk.style.shared.models.blazeDp
@@ -14,9 +13,8 @@ import com.blaze.blazesdk.style.widgets.BlazeWidgetItemImageStyle.BlazeImagePosi
 import com.blaze.blazesdk.style.widgets.BlazeWidgetItemImageStyle.BlazeThumbnailType
 import com.blaze.blazesdk.style.widgets.BlazeWidgetItemStatusIndicatorStyle
 import com.blaze.blazesdk.style.widgets.BlazeWidgetItemTitleStyle
-import com.wscsports.android.blaze.blaze_sample_android.core.WidgetDelegateImpl
 import com.wscsports.blaze_sample_android.samples.widgets.R
-import com.wscsports.blaze_sample_android.samples.widgets.WidgetType
+import com.wscsports.blaze_sample_android.samples.widgets.WidgetScreenType
 import com.wscsports.blaze_sample_android.samples.widgets.databinding.FragmentMomentsGridBinding
 import com.wscsports.blaze_sample_android.samples.widgets.widget_screens.state.WidgetDataState
 import com.wscsports.blaze_sample_android.samples.widgets.widget_screens.state.WidgetLayoutStyleState
@@ -25,7 +23,7 @@ import com.zhuinden.fragmentviewbindingdelegatekt.viewBinding
 class MomentsGridFragment : BaseWidgetFragment(R.layout.fragment_moments_grid) {
 
     private val binding by viewBinding(FragmentMomentsGridBinding::bind)
-    override val widgetType = WidgetType.MOMENTS_GRID
+    override val widgetType = WidgetScreenType.MOMENTS_GRID
 
     override fun initWidgetView() {
         val widgetLayout = viewModel.getWidgetLayoutPreset()

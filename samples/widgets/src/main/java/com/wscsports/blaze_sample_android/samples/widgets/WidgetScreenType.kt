@@ -1,7 +1,7 @@
 package com.wscsports.blaze_sample_android.samples.widgets
 
 
-enum class WidgetType(
+enum class WidgetScreenType(
     val title: String,
     val description: String,
     val navDestinationId: Int
@@ -25,5 +25,10 @@ enum class WidgetType(
         title = "Moments-grid",
         description = "This represents a Blaze widget view for moments with a grid layout on a vertical axis",
         navDestinationId = R.id.action_navigation_widget_list_to_momentsGridFragment
+    ),
+    MIXED_WIDGETS(
+        title = "Mixed-widgets",
+        description = "This represents a Blaze widget view with multiple widgets on the same screen",
+        navDestinationId = R.id.action_navigation_widget_list_to_mixedWidgetsFragment
     );
 }

@@ -14,5 +14,4 @@ enum class SampleItem(
     PLAYER_STYLE("Player style", "Custom media player", imageResourceId = R.drawable.ic_list_story_player, "playerstyle.PlayerStyleActivity"),
     ADS("Ads", "SDK integration of banners, custom native and IMA ads", imageResourceId = R.drawable.ic_list_ads, "ads.AdsSampleActivity"),
     COMPOSE("Compose", "Jetpack Compose widgets implementation", imageResourceId = R.drawable.ic_list_widgets),
-    INTRODUCTION_SCREEN("Introduction screen", "Style configuration for the first-time slide", imageResourceId = R.drawable.ic_list_introduction_screen),
 }

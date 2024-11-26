@@ -25,7 +25,7 @@ class WidgetListFragment : Fragment(R.layout.fragment_widget_list) {
             findNavController().navigate(widget.navDestinationId)
         }
         binding.recyclerView.adapter = widgetsAdapter
-        widgetsAdapter?.submitList(WidgetType.entries)
+        widgetsAdapter?.submitList(WidgetScreenType.entries)
     }
 
 }

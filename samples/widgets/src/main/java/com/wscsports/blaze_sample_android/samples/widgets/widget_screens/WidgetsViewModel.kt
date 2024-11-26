@@ -3,7 +3,7 @@ package com.wscsports.blaze_sample_android.samples.widgets.widget_screens
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.blaze.blazesdk.style.widgets.BlazeWidgetLayout
-import com.wscsports.blaze_sample_android.samples.widgets.WidgetType
+import com.wscsports.blaze_sample_android.samples.widgets.WidgetScreenType
 import com.wscsports.blaze_sample_android.samples.widgets.widget_screens.state.WidgetDataState
 import com.wscsports.blaze_sample_android.samples.widgets.widget_screens.state.WidgetLayoutStyleState
 import kotlinx.coroutines.delay
@@ -21,7 +21,19 @@ import kotlinx.coroutines.launch
 
 class WidgetsViewModel: ViewModel() {
 
-    private val _currWidgetType = MutableStateFlow<WidgetType?>(null)
+    val storiesRowBaseLayout: BlazeWidgetLayout
+        get() = BlazeWidgetLayout.Presets.StoriesWidget.Row.circles
+
+    val storiesGridBaseLayout: BlazeWidgetLayout
+        get() = BlazeWidgetLayout.Presets.StoriesWidget.Grid.twoColumnsVerticalRectangles
+
+    val momentsRowBaseLayout: BlazeWidgetLayout
+        get() = BlazeWidgetLayout.Presets.MomentsWidget.Row.verticalAnimatedThumbnailsRectangles
+
+    val momentsGridBaseLayout: BlazeWidgetLayout
+        get() = BlazeWidgetLayout.Presets.MomentsWidget.Grid.twoColumnsVerticalRectangles
+
+    private val _currWidgetType = MutableStateFlow<WidgetScreenType?>(null)
     val currWidgetType = _currWidgetType.asStateFlow()
 
     val showEditWidgetFab: StateFlow<Boolean> = _currWidgetType
@@ -54,7 +66,7 @@ class WidgetsViewModel: ViewModel() {
         _widgetDataState.update { state }
     }
 
-    fun setCurrWidgetTypeAndInitLabelIfNeeded(widgetType: WidgetType) {
+    fun setCurrWidgetTypeAndInitLabelIfNeeded(widgetType: WidgetScreenType) {
         _currWidgetType.update { widgetType }
         _widgetDataState.update { prevState ->
             prevState
@@ -64,22 +76,22 @@ class WidgetsViewModel: ViewModel() {
         }
     }
 
-    private fun WidgetType.initDataSourceLabel(): String {
-        return when (_currWidgetType.value) {
-            WidgetType.STORIES_ROW -> "live-stories"
-            WidgetType.STORIES_GRID -> "live-stories"
-            WidgetType.MOMENTS_GRID -> "moments"
-            WidgetType.MOMENTS_ROW -> "moments"
-            else -> ""
+    private fun WidgetScreenType.initDataSourceLabel(): String {
+        return when (this) {
+            WidgetScreenType.STORIES_ROW -> "live-stories"
+            WidgetScreenType.STORIES_GRID -> "top-stories"
+            WidgetScreenType.MOMENTS_GRID -> "moments"
+            WidgetScreenType.MOMENTS_ROW -> "moments"
+            WidgetScreenType.MIXED_WIDGETS -> "" // Not needed for mixed widgets
         }
     }
 
     fun getWidgetLayoutPreset(): BlazeWidgetLayout = when (_currWidgetType.value) {
-        WidgetType.STORIES_ROW -> BlazeWidgetLayout.Presets.StoriesWidget.Row.circles
-        WidgetType.STORIES_GRID -> BlazeWidgetLayout.Presets.StoriesWidget.Grid.twoColumnsVerticalRectangles
-        WidgetType.MOMENTS_ROW -> BlazeWidgetLayout.Presets.MomentsWidget.Row.verticalAnimatedThumbnailsRectangles
-        WidgetType.MOMENTS_GRID -> BlazeWidgetLayout.Presets.MomentsWidget.Grid.twoColumnsVerticalRectangles
-        else -> BlazeWidgetLayout.Presets.StoriesWidget.Row.circles
+        WidgetScreenType.STORIES_ROW -> storiesRowBaseLayout
+        WidgetScreenType.STORIES_GRID -> storiesGridBaseLayout
+        WidgetScreenType.MOMENTS_ROW -> momentsRowBaseLayout
+        WidgetScreenType.MOMENTS_GRID -> momentsGridBaseLayout
+        else -> throw IllegalStateException("Widget type is not set")
     }
 
     // when the user navigates back to the widget screen, we reset the widget state

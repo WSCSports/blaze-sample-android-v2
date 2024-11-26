@@ -14,7 +14,7 @@ import com.blaze.blazesdk.style.widgets.BlazeWidgetItemImageStyle.BlazeThumbnail
 import com.blaze.blazesdk.style.widgets.BlazeWidgetItemStatusIndicatorStyle
 import com.blaze.blazesdk.style.widgets.BlazeWidgetItemTitleStyle
 import com.wscsports.blaze_sample_android.samples.widgets.R
-import com.wscsports.blaze_sample_android.samples.widgets.WidgetType
+import com.wscsports.blaze_sample_android.samples.widgets.WidgetScreenType
 import com.wscsports.blaze_sample_android.samples.widgets.databinding.FragmentMomentsRowBinding
 import com.wscsports.blaze_sample_android.samples.widgets.widget_screens.state.WidgetDataState
 import com.wscsports.blaze_sample_android.samples.widgets.widget_screens.state.WidgetLayoutStyleState
@@ -23,7 +23,7 @@ import com.zhuinden.fragmentviewbindingdelegatekt.viewBinding
 class MomentsRowFragment : BaseWidgetFragment(R.layout.fragment_moments_row) {
 
     private val binding by viewBinding(FragmentMomentsRowBinding::bind)
-    override val widgetType = WidgetType.MOMENTS_ROW
+    override val widgetType = WidgetScreenType.MOMENTS_ROW
 
     override fun initWidgetView() {
         // TODO:  for animated thumbnails we should configure the CMS as well

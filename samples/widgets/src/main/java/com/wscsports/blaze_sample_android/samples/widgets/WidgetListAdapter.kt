@@ -8,8 +8,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.wscsports.blaze_sample_android.samples.widgets.databinding.WidgetListItemBinding
 
 class WidgetListAdapter(
-    private val onItemClicked: (WidgetType) -> Unit
-) : ListAdapter<WidgetType, WidgetListAdapter.WidgetItemViewHolder>(WidgetsComparator()) {
+    private val onItemClicked: (WidgetScreenType) -> Unit
+) : ListAdapter<WidgetScreenType, WidgetListAdapter.WidgetItemViewHolder>(WidgetsComparator()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WidgetItemViewHolder {
         val binding = WidgetListItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -25,7 +25,7 @@ class WidgetListAdapter(
         private val binding: WidgetListItemBinding
     ) : RecyclerView.ViewHolder(binding.root) {
 
-        private var widgetItem: WidgetType? = null
+        private var widgetItem: WidgetScreenType? = null
 
         init {
             binding.containerView.setOnClickListener {
@@ -33,7 +33,7 @@ class WidgetListAdapter(
             }
         }
 
-        fun bind(widget: WidgetType?) {
+        fun bind(widget: WidgetScreenType?) {
             this.widgetItem = widget
             with(binding) {
                 textViewName.text = widget?.title
@@ -43,13 +43,13 @@ class WidgetListAdapter(
     }
 }
 
-class WidgetsComparator : DiffUtil.ItemCallback<WidgetType>() {
-    override fun areItemsTheSame(oldItem: WidgetType, newItem: WidgetType): Boolean {
+class WidgetsComparator : DiffUtil.ItemCallback<WidgetScreenType>() {
+    override fun areItemsTheSame(oldItem: WidgetScreenType, newItem: WidgetScreenType): Boolean {
         // Replace with your own logic
         return oldItem == newItem
     }
 
-    override fun areContentsTheSame(oldItem: WidgetType, newItem: WidgetType): Boolean {
+    override fun areContentsTheSame(oldItem: WidgetScreenType, newItem: WidgetScreenType): Boolean {
         // Replace with your own logic
         return oldItem.name == newItem.name
     }

@@ -93,13 +93,26 @@ class AdsSampleActivity : AppCompatActivity(),
         val dataSource = BlazeDataSourceType.Labels(
             blazeWidgetLabel = BlazeWidgetLabel.singleLabel("top-stories")
         )
-        binding.storiesRowWidgetView.updateAdsConfigType(BlazeStoriesAdsConfigType.FIRST_AVAILABLE_ADS_CONFIG)
-        binding.storiesRowWidgetView.initWidget(
+        binding.storiesGridWidgetView.updateAdsConfigType(BlazeStoriesAdsConfigType.FIRST_AVAILABLE_ADS_CONFIG)
+        binding.storiesGridWidgetView.initWidget(
             widgetLayout = BlazeWidgetLayout.Presets.StoriesWidget.Grid.twoColumnsVerticalRectangles,
             dataSource = dataSource,
             widgetId = "ads-stories-grid-id",
             widgetDelegate = this
         )
+    }
+
+
+    override fun onDestroy() {
+        super.onDestroy()
+        disableBlazeSDKAds()
+    }
+
+    // In every given moment we can disable the ads. Doesn't have to be in onDestroy
+    private fun disableBlazeSDKAds() {
+        BlazeIMA.disableAds()
+        BlazeGAM.disableCustomNativeAds()
+        BlazeGAM.disableBannerAds()
     }
 
 }

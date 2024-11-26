@@ -14,7 +14,7 @@ import com.blaze.blazesdk.style.widgets.BlazeWidgetItemImageStyle.BlazeThumbnail
 import com.blaze.blazesdk.style.widgets.BlazeWidgetItemStatusIndicatorStyle
 import com.blaze.blazesdk.style.widgets.BlazeWidgetItemTitleStyle
 import com.wscsports.blaze_sample_android.samples.widgets.R
-import com.wscsports.blaze_sample_android.samples.widgets.WidgetType
+import com.wscsports.blaze_sample_android.samples.widgets.WidgetScreenType
 import com.wscsports.blaze_sample_android.samples.widgets.databinding.FragmentStoriesGridBinding
 import com.wscsports.blaze_sample_android.samples.widgets.widget_screens.state.WidgetDataState
 import com.wscsports.blaze_sample_android.samples.widgets.widget_screens.state.WidgetLayoutStyleState
@@ -24,7 +24,7 @@ import com.zhuinden.fragmentviewbindingdelegatekt.viewBinding
 class StoriesGridFragment : BaseWidgetFragment(R.layout.fragment_stories_grid) {
 
     private val binding by viewBinding(FragmentStoriesGridBinding::bind)
-    override val widgetType = WidgetType.STORIES_GRID
+    override val widgetType = WidgetScreenType.STORIES_GRID
 
     override fun initWidgetView() {
         val widgetLayout = viewModel.getWidgetLayoutPreset()

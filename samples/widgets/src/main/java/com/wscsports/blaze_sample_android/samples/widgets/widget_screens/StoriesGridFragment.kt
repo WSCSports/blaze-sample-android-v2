@@ -13,7 +13,6 @@ import com.blaze.blazesdk.style.widgets.BlazeWidgetItemImageStyle.BlazeImagePosi
 import com.blaze.blazesdk.style.widgets.BlazeWidgetItemImageStyle.BlazeThumbnailType
 import com.blaze.blazesdk.style.widgets.BlazeWidgetItemStatusIndicatorStyle
 import com.blaze.blazesdk.style.widgets.BlazeWidgetItemTitleStyle
-import com.wscsports.blaze_sample_android.samples.widgets.Delegates
 import com.wscsports.blaze_sample_android.samples.widgets.R
 import com.wscsports.blaze_sample_android.samples.widgets.WidgetType
 import com.wscsports.blaze_sample_android.samples.widgets.databinding.FragmentStoriesGridBinding
@@ -38,7 +37,7 @@ class StoriesGridFragment : BaseWidgetFragment(R.layout.fragment_stories_grid) {
             widgetLayout = widgetLayout,
             dataSource = dataSource,
             widgetId = "stories-grid",
-            widgetDelegate = Delegates.widgetDelegate,
+            widgetDelegate = this,
             shouldOrderWidgetByReadStatus = true,
         )
     }

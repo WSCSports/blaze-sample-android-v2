@@ -2,16 +2,14 @@ package com.wscsports.blaze_sample_android.samples.globaloperations
 
 import android.os.Bundle
 import android.util.Log
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import com.blaze.blazesdk.data_source.BlazeDataSourceType
 import com.blaze.blazesdk.data_source.BlazeWidgetLabel
+import com.blaze.blazesdk.shared.BlazeSDK
 import com.blaze.blazesdk.shared.results.doOnFailure
 import com.blaze.blazesdk.shared.results.doOnSuccess
 import com.blaze.blazesdk.style.players.stories.BlazeStoryPlayerStyle
-import com.wscsports.android.blaze.blaze_sample_android.core.ui.R.*
+import com.wscsports.android.blaze.blaze_sample_android.core.ui.R.color
 import com.wscsports.android.blaze.blaze_sample_android.core.ui.viewBinding
 import com.wscsports.android.blaze.blaze_sample_android.samples.globaloperations.databinding.ActivityGlobalConfigurationBinding
 
@@ -56,8 +54,8 @@ class GlobalOperationsActivity : AppCompatActivity() {
             bodyText.textSize = 18f
         }
 
-        com.blaze.blazesdk.shared.BlazeSDK.setDefaultStoryPlayerStyle(storyPlayerStyle)
-        com.blaze.blazesdk.shared.BlazeSDK.setDefaultMomentsPlayerStyle(momentPlayerStyle)
+        BlazeSDK.setDefaultStoryPlayerStyle(storyPlayerStyle)
+        BlazeSDK.setDefaultMomentsPlayerStyle(momentPlayerStyle)
     }
 
     private fun initLabelExpressionStringInputs() {
@@ -80,8 +78,8 @@ class GlobalOperationsActivity : AppCompatActivity() {
                 INIT_MOMENTS_LABEL_EXPRESSION
             )
         )
-        com.blaze.blazesdk.shared.BlazeSDK.prepareStories(storiesDataSource)
-        com.blaze.blazesdk.shared.BlazeSDK.prepareMoments(momentsDataSource)
+        BlazeSDK.prepareStories(storiesDataSource)
+        BlazeSDK.prepareMoments(momentsDataSource)
     }
 
     private fun setClickListeners() {

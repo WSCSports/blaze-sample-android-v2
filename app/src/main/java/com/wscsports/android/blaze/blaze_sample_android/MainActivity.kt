@@ -21,7 +21,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         initRecyclerView()
-        BlazeSDK.prepareMoments(BlazeDataSourceType.Labels(BlazeWidgetLabel.singleLabel("moments")))
     }
 
     private fun initRecyclerView() {

@@ -5,9 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".PlayerStyleActivity">
+    tools:context=".AdsSampleActivity">
 
-    <!-- Appbar at the top -->
     <com.wscsports.android.blaze.blaze_sample_android.core.ui.SampleAppbarView
         android:id="@+id/appbar"
         android:layout_width="match_parent"
@@ -16,41 +15,25 @@
     <!-- ScrollView containing the rest of the content -->
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <!-- Default Story Player -->
+            <!-- Stories row Widget -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
-                android:text="Default Story Player"
+                android:text="Stories Row Widget"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 android:layout_marginBottom="8dp" />
 
             <com.blaze.blazesdk.features.stories.widgets.row.BlazeStoriesWidgetRowView
-                android:id="@+id/default_stories_row_widget_view"
-                android:layout_width="match_parent"
-                android:layout_height="160dp"
-                android:layout_marginBottom="16dp" />
-
-            <!-- Custom Story Player -->
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="16dp"
-                android:text="Custom Story Player"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                android:layout_marginBottom="8dp" />
-
-            <com.blaze.blazesdk.features.stories.widgets.row.BlazeStoriesWidgetRowView
-                android:id="@+id/custom_stories_row_widget_view"
+                android:id="@+id/stories_row_widget_view"
                 android:layout_width="match_parent"
                 android:layout_height="160dp"
                 android:layout_marginBottom="16dp" />
@@ -60,18 +43,18 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
-                android:text="Default Moment Player"
+                android:text="Moment Row Widget"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 android:layout_marginBottom="8dp" />
 
             <com.blaze.blazesdk.features.moments.widgets.row.BlazeMomentsWidgetRowView
-                android:id="@+id/default_moments_row_widget_view"
+                android:id="@+id/moments_row_widget_view"
                 android:layout_width="match_parent"
                 android:layout_height="300dp"
                 android:layout_marginBottom="16dp" />
 
-            <!-- Custom Moment Player -->
+            <!-- Stories Grid Widget -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -81,10 +64,10 @@
                 android:textStyle="bold"
                 android:layout_marginBottom="8dp" />
 
-            <com.blaze.blazesdk.features.moments.widgets.row.BlazeMomentsWidgetRowView
-                android:id="@+id/custom_moments_row_widget_view"
+            <com.blaze.blazesdk.features.stories.widgets.grid.BlazeStoriesWidgetGridView
+                android:id="@+id/stories_grid_widget_view"
                 android:layout_width="match_parent"
-                android:layout_height="300dp"
+                android:layout_height="match_parent"
                 android:layout_marginBottom="16dp" />
 
         </LinearLayout>

@@ -3,14 +3,13 @@ package com.wscsports.blaze_sample_android.samples.playerstyle
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import com.blaze.blazesdk.data_source.BlazeDataSourceType
-import com.blaze.blazesdk.data_source.BlazeWidgetLabel
 import com.blaze.blazesdk.delegates.BlazeWidgetDelegate
-import com.wscsports.blaze_sample_android.samples.playerstyle.databinding.ActivityPlayerStyleBinding
+import com.wscsports.android.blaze.blaze_sample_android.core.WidgetDelegateImpl
 import com.wscsports.android.blaze.blaze_sample_android.core.ui.viewBinding
+import com.wscsports.blaze_sample_android.samples.playerstyle.databinding.ActivityPlayerStyleBinding
 
 class PlayerStyleActivity : AppCompatActivity(),
-    BlazeWidgetDelegate by PlayerStyleWidgetsDelegate() {
+    BlazeWidgetDelegate by WidgetDelegateImpl() {
 
     private val binding by viewBinding(ActivityPlayerStyleBinding::inflate)
     private val viewModel: PlayerStyleViewModel by viewModels()

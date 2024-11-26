@@ -51,6 +51,7 @@ dependencies {
     implementation(project(":samples:momentscontainer"))
     implementation(project(":samples:entrypoint"))
     implementation(project(":samples:playerstyle"))
+    implementation(project(":samples:ads"))
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)

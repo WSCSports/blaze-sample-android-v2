@@ -3,9 +3,8 @@ package com.wscsports.android.blaze.blaze_sample_android
 import android.util.Log
 import com.blaze.blazesdk.analytics.models.BlazeAnalyticsEvent
 import com.blaze.blazesdk.delegates.BlazePlayerEntryPointDelegate
-import com.blaze.blazesdk.delegates.BlazePlayerInContainerDelegate
 import com.blaze.blazesdk.delegates.BlazeSDKDelegate
-import com.blaze.blazesdk.delegates.BlazeWidgetDelegate
+import com.blaze.blazesdk.delegates.models.BlazeCTAActionType
 import com.blaze.blazesdk.delegates.models.BlazePlayerType
 import com.blaze.blazesdk.features.shared.models.ui_shared.BlazeLinkActionHandleType
 import com.blaze.blazesdk.shared.results.BlazeResult
@@ -63,7 +62,7 @@ object Delegates {
         override fun onTriggerCTA(
             playerType: BlazePlayerType,
             sourceId: String?,
-            actionType: String,
+            actionType: BlazeCTAActionType,
             actionParam: String
         ): Boolean {
             Log.d("BlazePlayerEntryPointDelegate", "onTriggerCTA - playerType - $playerType, sourceId - $sourceId, actionType - $actionType, actionParam - $actionParam")
@@ -76,103 +75,6 @@ object Delegates {
             actionParam: String
         ): BlazeLinkActionHandleType {
             Log.d("BlazePlayerEntryPointDelegate", "onTriggerPlayerBodyTextLink - playerType - $playerType, sourceId - $sourceId, actionParam - $actionParam")
-            return BlazeLinkActionHandleType.DEEPLINK
-        }
-
-    }
-
-    // Widget Delegates sample implementation
-    val widgetDelegate = object : BlazeWidgetDelegate {
-
-        override fun onDataLoadStarted(playerType: BlazePlayerType, sourceId: String?) {
-            Log.d("BlazeWidgetDelegate", "onDataLoadStarted - playerType - $playerType, sourceId - $sourceId")
-        }
-
-        override fun onDataLoadComplete(
-            playerType: BlazePlayerType,
-            sourceId: String?,
-            itemsCount: Int,
-            result: BlazeResult<Unit>
-        ) {
-            Log.d("BlazeWidgetDelegate", "onDataLoadComplete - playerType - $playerType, sourceId - $sourceId, itemsCount - $itemsCount, result - $result")
-        }
-
-        override fun onPlayerDidAppear(playerType: BlazePlayerType, sourceId: String?) {
-            Log.d("BlazeWidgetDelegate", "onPlayerDidAppear - playerType - $playerType, sourceId - $sourceId")
-        }
-
-        override fun onPlayerDidDismiss(playerType: BlazePlayerType, sourceId: String?) {
-            Log.d("BlazeWidgetDelegate", "onPlayerDidDismiss - playerType - $playerType, sourceId - $sourceId")
-        }
-
-        override fun onTriggerCTA(
-            playerType: BlazePlayerType,
-            sourceId: String?,
-            actionType: String,
-            actionParam: String
-        ): Boolean {
-            Log.d("BlazeWidgetDelegate", "onTriggerCTA - playerType - $playerType, sourceId - $sourceId, actionType - $actionType, actionParam - $actionParam")
-            return false
-        }
-
-        override fun onTriggerPlayerBodyTextLink(
-            playerType: BlazePlayerType,
-            sourceId: String?,
-            actionParam: String
-        ): BlazeLinkActionHandleType {
-            Log.d("BlazeWidgetDelegate", "onTriggerPlayerBodyTextLink - playerType - $playerType, sourceId - $sourceId, actionParam - $actionParam")
-            return BlazeLinkActionHandleType.DEEPLINK
-        }
-
-        override fun onItemClicked(
-            sourceId: String?,
-            itemId: String,
-            itemTitle: String) {
-            Log.d("BlazeWidgetDelegate", "sourceId - $sourceId, itemId - $itemId, itemTitle - $itemTitle")
-        }
-
-    }
-
-    // Container Delegates sample implementation
-    val playerInContainerDelegate = object : BlazePlayerInContainerDelegate {
-
-        override fun onDataLoadStarted(playerType: BlazePlayerType, sourceId: String?) {
-            Log.d("BlazePlayerInContainerDelegate", "onDataLoadStarted - playerType - $playerType, sourceId - $sourceId")
-        }
-
-        override fun onDataLoadComplete(
-            playerType: BlazePlayerType,
-            sourceId: String?,
-            itemsCount: Int,
-            result: BlazeResult<Unit>
-        ) {
-            Log.d("BlazePlayerInContainerDelegate", "onDataLoadComplete - playerType - $playerType, sourceId - $sourceId, itemsCount - $itemsCount, result - $result")
-        }
-
-        override fun onPlayerDidAppear(playerType: BlazePlayerType, sourceId: String?) {
-            Log.d("BlazePlayerInContainerDelegate", "onPlayerDidAppear - playerType - $playerType, sourceId - $sourceId")
-        }
-
-        override fun onPlayerDidDismiss(playerType: BlazePlayerType, sourceId: String?) {
-            Log.d("BlazePlayerInContainerDelegate", "onPlayerDidDismiss - playerType - $playerType, sourceId - $sourceId")
-        }
-
-        override fun onTriggerCTA(
-            playerType: BlazePlayerType,
-            sourceId: String?,
-            actionType: String,
-            actionParam: String
-        ): Boolean {
-            Log.d("BlazePlayerInContainerDelegate", "onTriggerCTA - playerType - $playerType, sourceId - $sourceId, actionType - $actionType, actionParam - $actionParam")
-            return false
-        }
-
-        override fun onTriggerPlayerBodyTextLink(
-            playerType: BlazePlayerType,
-            sourceId: String?,
-            actionParam: String
-        ): BlazeLinkActionHandleType {
-            Log.d("BlazePlayerInContainerDelegate", "onTriggerPlayerBodyTextLink - playerType - $playerType, sourceId - $sourceId, actionParam - $actionParam")
             return BlazeLinkActionHandleType.DEEPLINK
         }
 

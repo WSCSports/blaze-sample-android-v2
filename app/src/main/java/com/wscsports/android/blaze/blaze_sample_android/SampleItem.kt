@@ -12,7 +12,7 @@ enum class SampleItem(
     MOMENT_CONTAINER("Moment container", "Embedding and managing moments in your app", imageResourceId = R.drawable.ic_list_moment_container, "momentscontainer.MomentsContainerActivity"),
     ENTRY_POINT("Entry point", "Deeplink handling", imageResourceId = R.drawable.ic_list_widgets, "entrypoint.EntryPointActivity"),
     PLAYER_STYLE("Player style", "Custom media player", imageResourceId = R.drawable.ic_list_story_player, "playerstyle.PlayerStyleActivity"),
-    ADS("Ads", "SDK integration of banners, custom native and IMA ads", imageResourceId = R.drawable.ic_list_ads),
+    ADS("Ads", "SDK integration of banners, custom native and IMA ads", imageResourceId = R.drawable.ic_list_ads, "ads.AdsSampleActivity"),
     COMPOSE("Compose", "Jetpack Compose widgets implementation", imageResourceId = R.drawable.ic_list_widgets),
     INTRODUCTION_SCREEN("Introduction screen", "Style configuration for the first-time slide", imageResourceId = R.drawable.ic_list_introduction_screen),
 }

@@ -7,13 +7,16 @@ import androidx.annotation.LayoutRes
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
+import com.blaze.blazesdk.delegates.BlazeWidgetDelegate
+import com.wscsports.android.blaze.blaze_sample_android.core.WidgetDelegateImpl
 import com.wscsports.blaze_sample_android.samples.widgets.WidgetType
 import com.wscsports.blaze_sample_android.samples.widgets.widget_screens.state.WidgetDataState
 import com.wscsports.blaze_sample_android.samples.widgets.widget_screens.state.WidgetLayoutStyleState
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
-abstract class BaseWidgetFragment(@LayoutRes layoutRes: Int) : Fragment(layoutRes) {
+abstract class BaseWidgetFragment(@LayoutRes layoutRes: Int) : Fragment(layoutRes),
+    BlazeWidgetDelegate by WidgetDelegateImpl() {
 
     protected val viewModel: WidgetsViewModel by activityViewModels()
 

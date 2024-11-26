@@ -2,6 +2,7 @@ package com.wscsports.blaze_sample_android.samples.momentscontainer
 
 import android.util.Log
 import com.blaze.blazesdk.delegates.BlazePlayerInContainerDelegate
+import com.blaze.blazesdk.delegates.models.BlazeCTAActionType
 import com.blaze.blazesdk.delegates.models.BlazePlayerEvent
 import com.blaze.blazesdk.delegates.models.BlazePlayerType
 import com.blaze.blazesdk.features.shared.models.ui_shared.BlazeLinkActionHandleType
@@ -46,7 +47,7 @@ class MomentsContainerDelegateImp : BlazePlayerInContainerDelegate {
     override fun onTriggerCTA(
         playerType: BlazePlayerType,
         sourceId: String?,
-        actionType: String,
+        actionType: BlazeCTAActionType,
         actionParam: String
     ): Boolean {
         Log.d(TAG, "onTriggerCTA: playerType=$playerType, sourceId=$sourceId, actionType=$actionType, actionParam=$actionParam")

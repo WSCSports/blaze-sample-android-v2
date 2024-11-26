@@ -4,7 +4,6 @@ import android.util.Log
 import com.blaze.blazesdk.ads.ima.BlazeIMAHandlerEventType
 import com.blaze.blazesdk.ads.ima.models.BlazeImaAdInfo
 import com.blaze.ima.BlazeIMADelegate
-import com.google.ads.interactivemedia.v3.api.ImaSdkSettings
 
 /**
  * Implementation of the [BlazeIMADelegate] interface.
@@ -24,7 +23,6 @@ class BlazeIMADelegateImpl: BlazeIMADelegate {
         return emptyMap()
     }
 
-    // TODO: uncomment when sdk version is above 1.3.0
 //    override fun customIMASettings(): ImaSdkSettings? {
 //        return null
 //    }

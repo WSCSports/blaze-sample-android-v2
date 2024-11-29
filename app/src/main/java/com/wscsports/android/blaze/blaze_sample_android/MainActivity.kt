@@ -2,13 +2,7 @@ package com.wscsports.android.blaze.blaze_sample_android
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import com.blaze.blazesdk.data_source.BlazeDataSourceType
-import com.blaze.blazesdk.data_source.BlazeWidgetLabel
-import com.blaze.blazesdk.shared.BlazeSDK
 import com.wscsports.android.blaze.blaze_sample_android.core.ui.viewBinding
 import com.wscsports.android.blaze.blaze_sample_android.databinding.ActivityMainBinding
 
@@ -25,7 +19,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun initRecyclerView() {
         samplesAdapter = SampleListAdapter { item ->
-            item.className?.let { className ->
+            item.classPathSuffix?.let { className ->
                 val intent = Intent()
                 intent.setClassName(this, "${ROOT_SAMPLE_PKG_NAME}${className}")
                 startActivity(intent)

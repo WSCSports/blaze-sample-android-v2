@@ -52,6 +52,7 @@ dependencies {
     implementation(project(":samples:entrypoint"))
     implementation(project(":samples:playerstyle"))
     implementation(project(":samples:ads"))
+    implementation(project(":samples:compose"))
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)

@@ -5,7 +5,7 @@ enum class SampleItem(
     val title: String,
     val subTitle: String,
     val imageResourceId: Int,
-    val className: String? = null
+    val classPathSuffix: String? = null
 )   {
     GLOBAL_OPERATIONS("Global operations", "Global SDK properties setup", imageResourceId = R.drawable.ic_list_widgets, "globaloperations.GlobalOperationsActivity"),
     WIDGETS("Widgets", "Integrate all type of widgets", imageResourceId = R.drawable.ic_list_widgets, "widgets.WidgetsActivity"),
@@ -13,5 +13,5 @@ enum class SampleItem(
     ENTRY_POINT("Entry point", "Deeplink handling", imageResourceId = R.drawable.ic_list_widgets, "entrypoint.EntryPointActivity"),
     PLAYER_STYLE("Player style", "Custom media player", imageResourceId = R.drawable.ic_list_story_player, "playerstyle.PlayerStyleActivity"),
     ADS("Ads", "SDK integration of banners, custom native and IMA ads", imageResourceId = R.drawable.ic_list_ads, "ads.AdsSampleActivity"),
-    COMPOSE("Compose", "Jetpack Compose widgets implementation", imageResourceId = R.drawable.ic_list_widgets),
+    COMPOSE("Compose", "Jetpack Compose widgets implementation", imageResourceId = R.drawable.ic_list_widgets, "compose.ComposeActivity");
 }

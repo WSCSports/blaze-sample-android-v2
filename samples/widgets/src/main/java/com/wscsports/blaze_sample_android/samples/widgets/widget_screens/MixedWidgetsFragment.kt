@@ -20,6 +20,7 @@ class MixedWidgetsFragment: Fragment(R.layout.fragment_mixed_widgets),
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         initWidgets()
+        setRefreshListener()
     }
 
     private fun initWidgets() {
@@ -62,6 +63,21 @@ class MixedWidgetsFragment: Fragment(R.layout.fragment_mixed_widgets),
             widgetId = "mixed-widgets-stories-grid-id",
             widgetDelegate = this
         )
+    }
+
+    private fun setRefreshListener() {
+        binding.mixedWidgetsPullToRefresh.setOnRefreshListener {
+            updateDataSource()
+            binding.mixedWidgetsPullToRefresh.isRefreshing = false
+        }
+    }
+
+    private fun updateDataSource() {
+        with(binding) {
+            storiesRowWidgetView.reloadData(isSilentRefresh = false)
+            momentsRowWidgetView.reloadData(isSilentRefresh = false)
+            storiesGridWidgetView.reloadData(isSilentRefresh = false)
+        }
     }
 
 }

@@ -28,7 +28,7 @@ enum class WidgetScreenType(
     ),
     MIXED_WIDGETS(
         title = "Mixed-widgets",
-        description = "This represents a Blaze widget view with multiple widgets on the same screen",
+        description = "This represents a feed with multiple widgets on the same screen with refresh functionality",
         navDestinationId = R.id.action_navigation_widget_list_to_mixedWidgetsFragment
     );
 }

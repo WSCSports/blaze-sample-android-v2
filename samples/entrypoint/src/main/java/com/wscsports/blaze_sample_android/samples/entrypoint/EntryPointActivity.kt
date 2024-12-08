@@ -18,7 +18,7 @@ class EntryPointActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         setupAppbar()
-        handleDeepLinkIfNeeded()
+        handleUniversalLinkIfNeeded()
         handlePushNotificationIfNeeded()
         setClickListeners()
     }
@@ -30,12 +30,12 @@ class EntryPointActivity : AppCompatActivity() {
     }
 
     /**
-     * Process deep link data if the app was opened through a deep link.
+     * Process universal link data if the app was opened through a universal link.
      */
-    private fun handleDeepLinkIfNeeded() {
+    private fun handleUniversalLinkIfNeeded() {
         intent?.data?.let { data ->
             if (intent.action == Intent.ACTION_VIEW) {
-                handleDeepLink(data.toString())
+                handleUniversalLink(data.toString())
                 // Clearing intent's data -> so universalLink handling won't be triggered again on Activity's recreation
                 intent.data = null
             }
@@ -60,19 +60,19 @@ class EntryPointActivity : AppCompatActivity() {
     }
 
     private fun setClickListeners() {
-        binding.simulateDeepLinkButton.setOnClickListener {
-            // Mock deep link URI received from intent.data
-            val deepLinkUri = "https://prime.mvp.fan/moments/64ee1f9f1396e4277f059613"
-            handleDeepLink(deepLinkUri)
+        binding.simulateUniversalLinkButton.setOnClickListener {
+            // Mock universal link URI received from intent.data
+            val universalLinkUri = "https://prime.mvp.fan/moments/64ee1f9f1396e4277f059613"
+            handleUniversalLink(universalLinkUri)
         }
     }
 
-    private fun handleDeepLink(deepLinkStr: String) {
-        BlazeSDK.handleUniversalLink(deepLinkStr) {
+    private fun handleUniversalLink(universalLinkStr: String) {
+        BlazeSDK.handleUniversalLink(universalLinkStr) {
             it.doOnSuccess {
-                Log.d("appDebug", "EntryPointActivity: simulateDeepLinkButton: handleUniversalLink completed Successfully")
+                Log.d("appDebug", "EntryPointActivity: handleUniversalLink: Completed Successfully")
             }.doOnFailure { message, cause ->
-                Log.e("appDebug", "EntryPointActivity: simulateDeepLinkButton: Unable to open Link: $message", cause)
+                Log.e("appDebug", "EntryPointActivity: handleUniversalLink: Unable to open Link: $message", cause)
             }
         }
     }

@@ -1,4 +1,4 @@
-package com.wscsports.blaze_sample_android.samples.momentscontainer
+package com.wscsports.android.blaze.blaze_sample_android.core
 
 import android.util.Log
 import com.blaze.blazesdk.delegates.BlazePlayerInContainerDelegate
@@ -8,7 +8,7 @@ import com.blaze.blazesdk.delegates.models.BlazePlayerType
 import com.blaze.blazesdk.features.shared.models.ui_shared.BlazeLinkActionHandleType
 import com.blaze.blazesdk.shared.results.BlazeResult
 
-class MomentsContainerDelegateImp : BlazePlayerInContainerDelegate {
+class MomentsContainerDelegateImpl : BlazePlayerInContainerDelegate {
 
     override fun onDataLoadComplete(
         playerType: BlazePlayerType,

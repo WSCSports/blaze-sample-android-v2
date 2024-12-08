@@ -10,6 +10,7 @@ import com.blaze.blazesdk.data_source.BlazeDataSourceType
 import com.blaze.blazesdk.data_source.BlazeWidgetLabel
 import com.blaze.blazesdk.delegates.BlazePlayerInContainerDelegate
 import com.blaze.blazesdk.features.moments.container.BlazeMomentsPlayerContainer
+import com.wscsports.android.blaze.blaze_sample_android.core.MomentsContainerDelegateImpl
 import com.wscsports.blaze_sample_android.samples.momentscontainer.MomentsContainerActivity.Companion.MOMENTS_LABEL
 import com.wscsports.blaze_sample_android.samples.momentscontainer.databinding.FragmentInstantsMomentsBinding
 import com.zhuinden.fragmentviewbindingdelegatekt.viewBinding
@@ -17,7 +18,7 @@ import kotlinx.coroutines.launch
 
 
 class InstantMomentsFragment : Fragment(R.layout.fragment_instants_moments),
-    BlazePlayerInContainerDelegate by MomentsContainerDelegateImp() {
+    BlazePlayerInContainerDelegate by MomentsContainerDelegateImpl() {
 
     private val binding by viewBinding(FragmentInstantsMomentsBinding::bind)
     private val viewModel: MomentsContainerViewModel by activityViewModels()

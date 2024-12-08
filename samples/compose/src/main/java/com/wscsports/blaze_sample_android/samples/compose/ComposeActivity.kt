@@ -1,40 +1,19 @@
 package com.wscsports.blaze_sample_android.samples.compose
 
 import android.os.Bundle
-import androidx.activity.ComponentActivity
+import android.view.KeyEvent
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.CenterAlignedTopAppBar
-import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBar
-import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.unit.dp
-import com.blaze.blazesdk.features.moments.widgets.compose.row.BlazeComposeMomentsWidgetRowView
-import com.blaze.blazesdk.features.stories.widgets.compose.grid.BlazeComposeStoriesWidgetGridView
-import com.blaze.blazesdk.features.stories.widgets.compose.row.BlazeComposeStoriesWidgetRowView
-import com.wscsports.android.blaze.blaze_sample_android.core.ui.R
+import androidx.navigation.compose.rememberNavController
 import com.wscsports.blaze_sample_android.samples.compose.ui.theme.BlazeSampleTheme
 
-class ComposeActivity : ComponentActivity() {
+class ComposeActivity : AppCompatActivity() {
 
     private val viewModel: ComposeViewModel by viewModels()
 
@@ -43,79 +22,27 @@ class ComposeActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             BlazeSampleTheme {
+                val navController = rememberNavController()
                 Scaffold(
-                    topBar = {
-                        SampleAppBar(
-                            title = "Compose",
-                            onBackPressed = { onBackPressedDispatcher.onBackPressed() }
-                        )
-                    },
+                    bottomBar = { ComposeBottomBar(navController = navController) },
                     modifier = Modifier.fillMaxSize()
                 ) { innerPadding ->
-                    MainScreen(
+                    ComposeNavHost(
+                        navController = navController,
                         viewModel = viewModel,
-                        modifier = Modifier.padding(innerPadding)
-                    )
+                        onTopBarBackPressed = { onBackPressedDispatcher.onBackPressed() },
+                        modifier = Modifier.padding(bottom = innerPadding.calculateBottomPadding()))
                 }
             }
         }
     }
-}
 
-@Composable
-fun MainScreen(
-    viewModel: ComposeViewModel,
-    modifier: Modifier = Modifier,
-) {
-    val scrollState = rememberScrollState()
-    Column(modifier = modifier.verticalScroll(scrollState)) {
-        Text(text = "Compose Stories Row ", modifier = Modifier.padding(16.dp))
-        BlazeComposeStoriesWidgetRowView(
-            modifier = Modifier
-                .height(140.dp)
-                .fillMaxWidth(),
-            widgetStoriesStateHandler = viewModel.storiesRowStateHandler
-        )
-        Spacer(modifier = Modifier.height(16.dp))
-        Text(text = "Compose Moments Row", modifier = Modifier.padding(16.dp))
-        BlazeComposeMomentsWidgetRowView(
-            modifier = Modifier
-                .height(300.dp)
-                .fillMaxWidth(),
-            widgetMomentsStateHandler = viewModel.momentsRowStateHandler
-        )
-        Spacer(modifier = Modifier.height(16.dp))
-        Text(text = "Compose Stories Grid ", modifier = Modifier.padding(16.dp))
-        BlazeComposeStoriesWidgetGridView(
-            modifier = Modifier
-                .fillMaxHeight()
-                .fillMaxWidth(),
-            widgetStoriesStateHandler = viewModel.storiesGridStateHandler
-        )
+    override fun onKeyUp(keyCode: Int, event: KeyEvent?): Boolean {
+        return if (keyCode == KeyEvent.KEYCODE_VOLUME_DOWN || keyCode == KeyEvent.KEYCODE_VOLUME_UP) {
+            viewModel.onVolumeChanged()
+            true
+        } else {
+            super.onKeyUp(keyCode, event)
+        }
     }
-}
-
-@OptIn(ExperimentalMaterial3Api::class)
-@Composable
-fun SampleAppBar(
-    title: String,
-    onBackPressed: () -> Unit
-) {
-    CenterAlignedTopAppBar(
-        title = {
-            Text(
-                text = title,
-                fontWeight = FontWeight.Bold,
-                style = MaterialTheme.typography.titleLarge,
-            )
-        },
-        navigationIcon = {
-            IconButton(onClick = onBackPressed) {
-                Icon(
-                    painter = painterResource(id = R.drawable.ic_back_button),
-                    contentDescription = "Back"
-                )
-            }
-        },
-    )
 }

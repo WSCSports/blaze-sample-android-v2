@@ -13,7 +13,7 @@
         app:layout_constraintTop_toTopOf="parent"/>
 
     <Button
-        android:id="@+id/simulate_deep_link_button"
+        android:id="@+id/simulate_universal_link_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Simulate Deep Link"

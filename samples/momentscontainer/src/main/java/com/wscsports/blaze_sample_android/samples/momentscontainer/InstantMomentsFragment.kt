@@ -50,4 +50,5 @@ class InstantMomentsFragment : Fragment(R.layout.fragment_instants_moments),
             }
         }
     }
+
 }

@@ -1,7 +1,6 @@
 package com.wscsports.blaze_sample_android.samples.momentscontainer
 
 import android.os.Bundle
-import android.util.Log
 import android.view.KeyEvent
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -21,15 +20,8 @@ class MomentsContainerActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-        setupAppbar()
         setupBottomNavigation()
         prepareMomentsContainer()
-    }
-
-    private fun setupAppbar() {
-        binding.appbar.setupView("Moments Container") {
-            onBackPressedDispatcher.onBackPressed()
-        }
     }
 
     private fun setupBottomNavigation() {

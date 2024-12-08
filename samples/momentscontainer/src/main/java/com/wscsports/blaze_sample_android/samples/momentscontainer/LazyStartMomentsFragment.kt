@@ -35,8 +35,15 @@ class LazyStartMomentsFragment : Fragment(R.layout.fragment_lazy_start_moments),
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setupAppbar()
         setClickListeners()
         subscribeObservers()
+    }
+
+    private fun setupAppbar() {
+        binding.appbar.setupView("Moments Container") {
+            activity?.onBackPressedDispatcher?.onBackPressed()
+        }
     }
 
     private fun setClickListeners() {

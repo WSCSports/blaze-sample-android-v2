@@ -26,6 +26,7 @@ class MomentsGridFragment : BaseWidgetFragment(R.layout.fragment_moments_grid) {
     override val widgetType = WidgetScreenType.MOMENTS_GRID
 
     override fun initWidgetView() {
+        // Custom layout could be set in the initiation. Here we set the layout to default.
         val widgetLayout = viewModel.getWidgetLayoutPreset()
         val dataState = viewModel.getCurrWidgetDataState()
         val dataSource = BlazeDataSourceType.Labels(

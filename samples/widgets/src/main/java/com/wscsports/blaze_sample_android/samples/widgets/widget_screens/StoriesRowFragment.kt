@@ -26,13 +26,15 @@ class StoriesRowFragment: BaseWidgetFragment(R.layout.fragment_stories_row) {
     override val widgetType = WidgetScreenType.STORIES_ROW
 
     override fun initWidgetView() {
+        // Custom layout could be set in the initiation. Here we set the layout to default.
+        val widgetLayout = viewModel.getWidgetLayoutPreset()
         val dataState = viewModel.getCurrWidgetDataState()
         val dataSource = BlazeDataSourceType.Labels(
             blazeWidgetLabel = BlazeWidgetLabel.singleLabel(dataState.labelName),
             orderType = dataState.orderType,
         )
         binding.storiesRowWidgetView.initWidget(
-            widgetLayout = viewModel.getWidgetLayoutPreset(),
+            widgetLayout = widgetLayout,
             dataSource = dataSource,
             widgetId = "stories-row",
             widgetDelegate = this,

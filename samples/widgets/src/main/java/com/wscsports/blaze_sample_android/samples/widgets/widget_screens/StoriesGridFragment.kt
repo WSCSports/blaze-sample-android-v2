@@ -27,6 +27,7 @@ class StoriesGridFragment : BaseWidgetFragment(R.layout.fragment_stories_grid) {
     override val widgetType = WidgetScreenType.STORIES_GRID
 
     override fun initWidgetView() {
+        // Custom layout could be set in the initiation. Here we set the layout to default.
         val widgetLayout = viewModel.getWidgetLayoutPreset()
         val dataState = viewModel.getCurrWidgetDataState()
         val dataSource = BlazeDataSourceType.Labels(

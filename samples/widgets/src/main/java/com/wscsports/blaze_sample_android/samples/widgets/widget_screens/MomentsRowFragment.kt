@@ -27,6 +27,7 @@ class MomentsRowFragment : BaseWidgetFragment(R.layout.fragment_moments_row) {
 
     override fun initWidgetView() {
         // TODO:  for animated thumbnails we should configure the CMS as well
+        // Custom layout could be set in the initiation. Here we set the layout to default.
         val widgetLayout = viewModel.getWidgetLayoutPreset()
         val dataState = viewModel.getCurrWidgetDataState()
         val dataSource = BlazeDataSourceType.Labels(

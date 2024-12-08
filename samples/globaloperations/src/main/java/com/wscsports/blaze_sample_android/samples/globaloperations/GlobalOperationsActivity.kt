@@ -3,8 +3,6 @@ package com.wscsports.blaze_sample_android.samples.globaloperations
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
-import com.blaze.blazesdk.data_source.BlazeDataSourceType
-import com.blaze.blazesdk.data_source.BlazeWidgetLabel
 import com.blaze.blazesdk.shared.BlazeSDK
 import com.blaze.blazesdk.shared.results.doOnFailure
 import com.blaze.blazesdk.shared.results.doOnSuccess
@@ -22,10 +20,7 @@ class GlobalOperationsActivity : AppCompatActivity() {
         setContentView(binding.root)
         setupAppbar()
         setClickListeners()
-        initLabelExpressionStringInputs()
-        preparePlayers()
         setDefaultPlayersStyle()
-        setPlayerState()
     }
 
     private fun setupAppbar() {
@@ -58,30 +53,6 @@ class GlobalOperationsActivity : AppCompatActivity() {
         BlazeSDK.setDefaultMomentsPlayerStyle(momentPlayerStyle)
     }
 
-    private fun initLabelExpressionStringInputs() {
-        with(binding) {
-            storiesLabelExpressionEditText.setText(INIT_STORIES_LABEL_EXPRESSION)
-            momentsLabelExpressionEditText.setText(INIT_MOMENTS_LABEL_EXPRESSION)
-        }
-    }
-
-
-    // TODO: add documentation for this use case
-    private fun preparePlayers() {
-        val storiesDataSource = BlazeDataSourceType.Labels(
-            blazeWidgetLabel = BlazeWidgetLabel.Companion.singleLabel(
-                INIT_STORIES_LABEL_EXPRESSION
-            )
-        )
-        val momentsDataSource = BlazeDataSourceType.Labels(
-            blazeWidgetLabel = BlazeWidgetLabel.singleLabel(
-                INIT_MOMENTS_LABEL_EXPRESSION
-            )
-        )
-        BlazeSDK.prepareStories(storiesDataSource)
-        BlazeSDK.prepareMoments(momentsDataSource)
-    }
-
     private fun setClickListeners() {
         with(binding) {
             externalUserIdButton.setOnClickListener {
@@ -90,49 +61,15 @@ class GlobalOperationsActivity : AppCompatActivity() {
             geoLocationButton.setOnClickListener {
                 setGeoLocationFromInput()
             }
-            playStoriesButton.setOnClickListener {
-                playStoriesByInputLabelExpression()
-            }
-            playMomentsButton.setOnClickListener {
-                playMomentsByInputLabelExpression()
-            }
-            playStoryButton.setOnClickListener {
-                com.blaze.blazesdk.shared.BlazeSDK.playStory("your-story-id")
-            }
-            playMomentButton.setOnClickListener {
-                com.blaze.blazesdk.shared.BlazeSDK.playMoment("your-moment-id")
-            }
             switchDoNotTrackUser.setOnCheckedChangeListener { _, isChecked ->
-                com.blaze.blazesdk.shared.BlazeSDK.setDoNotTrack(isChecked)
+                BlazeSDK.setDoNotTrack(isChecked)
             }
-        }
-    }
-
-    private fun playStoriesByInputLabelExpression() {
-        binding.storiesLabelExpressionEditText.text?.toString()?.let { labelExpressionStr ->
-            val storiesDataSource = BlazeDataSourceType.Labels(
-                blazeWidgetLabel = BlazeWidgetLabel.singleLabel(
-                    labelExpressionStr
-                )
-            )
-            com.blaze.blazesdk.shared.BlazeSDK.playStories(storiesDataSource)
-        }
-    }
-
-    private fun playMomentsByInputLabelExpression() {
-        binding.momentsLabelExpressionEditText.text?.toString()?.let { labelExpressionStr ->
-            val momentsDataSource = BlazeDataSourceType.Labels(
-                blazeWidgetLabel = BlazeWidgetLabel.singleLabel(
-                    labelExpressionStr
-                )
-            )
-            com.blaze.blazesdk.shared.BlazeSDK.playMoments(momentsDataSource)
         }
     }
 
     private fun setExternalUserIdFromInput() {
         binding.externalUserIdEditText.text?.toString()?.let { externalUserId ->
-            com.blaze.blazesdk.shared.BlazeSDK.setExternalUserId(externalUserId) { result ->
+            BlazeSDK.setExternalUserId(externalUserId) { result ->
                 result.doOnSuccess {
                     Log.d("GlobalConfigurationActivity", "setExternalUserId: doOnSuccess")
                 }
@@ -148,7 +85,7 @@ class GlobalOperationsActivity : AppCompatActivity() {
 
     private fun setGeoLocationFromInput() {
         binding.geoLocationEditText.text?.toString()?.let { geoLocation ->
-            com.blaze.blazesdk.shared.BlazeSDK.updateGeoRestriction(geoLocation) { result ->
+            BlazeSDK.updateGeoRestriction(geoLocation) { result ->
                 result.doOnSuccess {
                     Log.d("GlobalConfigurationActivity", "setGeoLocation: doOnSuccess")
                 }
@@ -162,16 +99,4 @@ class GlobalOperationsActivity : AppCompatActivity() {
         }
     }
 
-    // TODO: description for use cases
-    private fun setPlayerState() {
-//        BlazeSDK.pauseCurrentPlayer()
-//        BlazeSDK.resumeCurrentPlayer()
-//        BlazeSDK.dismissCurrentPlayer()
-    }
-
-
-    companion object {
-        const val INIT_STORIES_LABEL_EXPRESSION = "top-stories"
-        const val INIT_MOMENTS_LABEL_EXPRESSION = "moments"
-    }
 }

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.wscsports.android.blaze.blaze_sample_android.samples.globaloperations.com.wscsports.blaze_sample_android.samples.globaloperations.GlobalOperationsActivity">
+    tools:context="com.wscsports.blaze_sample_android.samples.globaloperations.GlobalOperationsActivity">
 
     <com.wscsports.android.blaze.blaze_sample_android.core.ui.SampleAppbarView
         android:id="@+id/appbar"
@@ -133,119 +133,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="16dp"/>
 
-            <!-- Stories -->
-            <TextView
-                android:id="@+id/stories_title_text_view"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="Stories"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                app:layout_constraintTop_toBottomOf="@+id/geo_location_button"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginTop="32dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"/>
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/stories_label_expression_input_layout"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@id/stories_title_text_view"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginTop="16dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/stories_label_expression_edit_text"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Stories label expression"/>
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <Button
-                android:id="@+id/play_stories_button"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="Play stories"
-                app:layout_constraintTop_toBottomOf="@id/stories_label_expression_input_layout"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginTop="16dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"/>
-
-            <Button
-                android:id="@+id/play_story_button"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="Play story"
-                app:layout_constraintTop_toBottomOf="@id/play_stories_button"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginTop="16dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"/>
-
-            <!-- Moments -->
-            <TextView
-                android:id="@+id/moments_title_text_view"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="Moments"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                app:layout_constraintTop_toBottomOf="@+id/play_story_button"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginTop="32dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"/>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/moments_label_expression_input_layout"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@id/moments_title_text_view"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginTop="16dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/moments_label_expression_edit_text"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Moments label expression"/>
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <Button
-                android:id="@+id/play_moments_button"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="Play moments"
-                app:layout_constraintTop_toBottomOf="@id/moments_label_expression_input_layout"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginTop="16dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"/>
-
-            <Button
-                android:id="@+id/play_moment_button"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="Play moment"
-                app:layout_constraintTop_toBottomOf="@id/play_moments_button"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginTop="16dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 </LinearLayout>

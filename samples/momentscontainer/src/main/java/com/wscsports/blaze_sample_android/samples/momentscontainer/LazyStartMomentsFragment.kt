@@ -16,7 +16,11 @@ import com.wscsports.blaze_sample_android.samples.momentscontainer.databinding.F
 import com.zhuinden.fragmentviewbindingdelegatekt.viewBinding
 import kotlinx.coroutines.launch
 
-
+/**
+ * This fragment demonstrates how to use BlazeMomentsPlayerContainer.
+ * It contains a BlazeMomentsPlayerContainer instance that starts playing moments lazily by a button press.
+ * For more information, see https://dev.wsc-sports.com/docs/android-moments-player#/..
+ */
 class LazyStartMomentsFragment : Fragment(R.layout.fragment_lazy_start_moments),
     BlazePlayerInContainerDelegate by MomentsContainerDelegateImpl() {
 
@@ -59,6 +63,7 @@ class LazyStartMomentsFragment : Fragment(R.layout.fragment_lazy_start_moments),
         )
     }
 
+    // Observing user increasing/decreasing volume from the activity, and updating the SDK
     private fun subscribeObservers() {
         lifecycleScope.launch {
             viewModel.onVolumeChangedEvent.flowWithLifecycle(viewLifecycleOwner.lifecycle).collect {

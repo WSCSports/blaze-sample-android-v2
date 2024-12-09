@@ -12,6 +12,11 @@ import com.blaze.blazesdk.shared.results.doOnSuccess
 import com.wscsports.android.blaze.blaze_sample_android.core.ui.viewBinding
 import com.wscsports.blaze_sample_android.samples.entrypoint.databinding.ActivityEntryPointBinding
 
+/**
+ * Entry point activity for the Blaze SDK.
+ * This activity demonstrates how to handle universal links and push notifications,
+ * and how to play stories and moments without widgets.
+ */
 class EntryPointActivity : AppCompatActivity() {
 
     private val binding by viewBinding(ActivityEntryPointBinding::inflate)
@@ -68,6 +73,7 @@ class EntryPointActivity : AppCompatActivity() {
         with(binding) {
             simulateUniversalLinkButton.setOnClickListener {
                 // Mock universal link URI received from intent.data
+                // Also, set your own scheme and host in the manifest file
                 val universalLinkUri = "https://prime.mvp.fan/moments/64ee1f9f1396e4277f059613"
                 handleUniversalLink(universalLinkUri)
             }
@@ -86,6 +92,10 @@ class EntryPointActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * Handles the universal link by calling BlazeSDK.handleUniversalLink.
+     * For more information, refer to https://dev.wsc-sports.com/docs/android-methods-and-parameters#/universal-links.
+     */
     private fun handleUniversalLink(universalLinkStr: String) {
         BlazeSDK.handleUniversalLink(universalLinkStr) {
             it.doOnSuccess {
@@ -117,6 +127,10 @@ class EntryPointActivity : AppCompatActivity() {
         BlazeSDK.prepareMoments(momentsDataSource)
     }
 
+    /**
+     * Plays stories by the input label expression.
+     * For more information, refer to https://dev.wsc-sports.com/docs/android-methods-and-parameters#/stories.
+     */
     private fun playStoriesByInputLabelExpression() {
         binding.storiesLabelExpressionEditText.text?.toString()?.let { labelExpressionStr ->
             val storiesDataSource = BlazeDataSourceType.Labels(
@@ -126,6 +140,10 @@ class EntryPointActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * Plays moments by the input label expression.
+     * For more information, refer to https://dev.wsc-sports.com/docs/android-methods-and-parameters#/moments.
+     */
     private fun playMomentsByInputLabelExpression() {
         binding.momentsLabelExpressionEditText.text?.toString()?.let { labelExpressionStr ->
             val momentsDataSource = BlazeDataSourceType.Labels(
@@ -135,7 +153,10 @@ class EntryPointActivity : AppCompatActivity() {
         }
     }
 
-    // TODO: description for use cases
+    /**
+     * Sets the player state.
+     * You can pause, resume, or dismiss the player.
+     */
     private fun setPlayerState() {
 //        BlazeSDK.pauseCurrentPlayer()
 //        BlazeSDK.resumeCurrentPlayer()

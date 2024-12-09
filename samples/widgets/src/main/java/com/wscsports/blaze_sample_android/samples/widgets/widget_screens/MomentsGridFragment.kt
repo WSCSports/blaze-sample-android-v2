@@ -20,13 +20,19 @@ import com.wscsports.blaze_sample_android.samples.widgets.widget_screens.state.W
 import com.wscsports.blaze_sample_android.samples.widgets.widget_screens.state.WidgetLayoutStyleState
 import com.zhuinden.fragmentviewbindingdelegatekt.viewBinding
 
+/**
+ * MomentsGridFragment is a Fragment that displays a grid of moments.
+ * It manages widget initialization, style customization, and data source updates.
+ * For more information on [BlazeMomentsWidgetGridView], see https://dev.wsc-sports.com/docs/android-widgets#/moments-grid
+ */
 class MomentsGridFragment : BaseWidgetFragment(R.layout.fragment_moments_grid) {
 
     private val binding by viewBinding(FragmentMomentsGridBinding::bind)
     override val widgetType = WidgetScreenType.MOMENTS_GRID
 
     override fun initWidgetView() {
-        // Custom layout could be set in the initiation. Here we set the layout to default.
+        // The custom layout can also be set during initialization, rather than using updateWidgetLayout.
+        // In this case, we are setting the layout to some default preset.
         val widgetLayout = viewModel.getWidgetLayoutPreset()
         val dataState = viewModel.getCurrWidgetDataState()
         val dataSource = BlazeDataSourceType.Labels(
@@ -60,6 +66,7 @@ class MomentsGridFragment : BaseWidgetFragment(R.layout.fragment_moments_grid) {
         binding.momentsGridWidgetView.updateDataSource(dataSource, false)
     }
 
+    // for more information see https://dev.wsc-sports.com/docs/android-blaze-widget-item-image-style
     private fun BlazeWidgetItemImageStyle.setMyCustomImageStyle() {
         height = 150.blazeDp
         position = BlazeImagePosition.TopCenter
@@ -131,7 +138,6 @@ class MomentsGridFragment : BaseWidgetFragment(R.layout.fragment_moments_grid) {
     private fun BlazeWidgetItemTitleStyle.setMyCustomTitleStyle() {
         isVisible = true
         readState.apply {
-            // TODO: bug on readState.textColor? it's not working
             textColor =  context?.getColor(R.color.dimgray) ?: Color.BLACK
             textSize = 14f
             maxLines = 2
@@ -149,7 +155,6 @@ class MomentsGridFragment : BaseWidgetFragment(R.layout.fragment_moments_grid) {
 
     // for more information see https://dev.wsc-sports.com/docs/android-blaze-widget-item-badge-style
     private fun BlazeWidgetItemBadgeStyle.setMyCustomBadgeStyle() {
-        // TODO: no height and width in BlazeWidgetItemBadgeStyle like in docs
         isVisible = true
         position.xPosition = BlazeObjectXPosition.END_TO_END
         position.yPosition = BlazeObjectYPosition.TOP_TO_TOP

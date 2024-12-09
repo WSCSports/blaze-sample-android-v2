@@ -18,6 +18,10 @@ import com.wscsports.android.blaze.blaze_sample_android.core.WidgetDelegateImpl
 import com.wscsports.android.blaze.blaze_sample_android.core.ui.viewBinding
 import com.wscsports.blaze_sample_android.samples.ads.databinding.ActivityAdsSampleBinding
 
+/**
+ * This activity demonstrates how to enable Blaze SDK ads in your app.
+ * For more information on the ads configuration, refer to https://dev.wsc-sports.com/docs/android-ads#/
+ */
 class AdsSampleActivity : AppCompatActivity(),
     BlazeIMADelegate by BlazeIMADelegateImpl(),
     BlazeGAMCustomNativeAdsDelegate by BlazeGAMCustomNativeAdsDelegateImpl(),
@@ -40,7 +44,11 @@ class AdsSampleActivity : AppCompatActivity(),
         }
     }
 
-    // Note: Enable ads could be done in the SDK.init() completion block
+    /**
+     * Enable Blaze SDK ads.
+     * Note: Ads can also be enabled in the SDK.init() completion block.
+     * Once enabled, they remain active for the entire app lifecycle.
+     */
     private fun enableBlazeSDKAds() {
         BlazeIMA.enableAds(this)
         BlazeGAM.enableCustomNativeAds(
@@ -59,9 +67,10 @@ class AdsSampleActivity : AppCompatActivity(),
         initStoriesGridWidget()
     }
 
-    /*
-     * For more information about BlazeAdsConfigType, please visit:
-     * https://dev.wsc-sports.com/docs/android-blaze-ads-config-type#/
+    /**
+     * Initialize the stories row widget.
+     * For more information on the ads configuration, refer to
+     * https://dev.wsc-sports.com/docs/android-blaze-ads-config-type#/blazestoriesadsconfigtype
      */
     private fun initStoriesRowWidget() {
         val dataSource = BlazeDataSourceType.Labels(
@@ -76,6 +85,11 @@ class AdsSampleActivity : AppCompatActivity(),
         )
     }
 
+    /**
+     * Initialize the moments row widget.
+     * For more information on the ads configuration, refer to
+     * https://dev.wsc-sports.com/docs/android-blaze-ads-config-type#/blazemomentsadsconfigtype
+     */
     private fun initMomentsRowWidget() {
         val dataSource = BlazeDataSourceType.Labels(
             blazeWidgetLabel = BlazeWidgetLabel.singleLabel("moments")
@@ -102,17 +116,19 @@ class AdsSampleActivity : AppCompatActivity(),
         )
     }
 
-
-    override fun onDestroy() {
-        super.onDestroy()
-        disableBlazeSDKAds()
-    }
-
-    // In every given moment we can disable the ads. Doesn't have to be in onDestroy
+    /**
+     * Optional - Disable Blaze SDK ads.
+     * Ads can be disabled at any time, not necessarily in onDestroy.
+     * To re-enable the ads, simply call the enableBlazeSDKAds() method.
+     */
     private fun disableBlazeSDKAds() {
         BlazeIMA.disableAds()
         BlazeGAM.disableCustomNativeAds()
         BlazeGAM.disableBannerAds()
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        disableBlazeSDKAds()
+    }
 }

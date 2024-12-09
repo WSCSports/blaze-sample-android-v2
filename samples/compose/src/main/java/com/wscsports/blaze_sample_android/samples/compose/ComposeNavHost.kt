@@ -9,7 +9,8 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import com.wscsports.android.blaze.blaze_sample_android.core.ui.R.drawable
+import com.wscsports.blaze_sample_android.samples.compose.screens.MomentsContainerScreen
+import com.wscsports.blaze_sample_android.samples.compose.screens.WidgetsFeedScreen
 import kotlinx.serialization.Serializable
 
 @Composable
@@ -31,12 +32,14 @@ fun ComposeNavHost(
 
 @Serializable
 sealed class NavHostScreens(val labelName: String) {
+
     @Serializable
     data object WidgetsFeed : NavHostScreens(labelName = "Widgets Feed")
+
     @Serializable
     data object MomentsContainer : NavHostScreens(labelName = "Moments Container")
 
-    fun getIconImageVector(): ImageVector {
+    fun getBottomNavIconImage(): ImageVector {
         return when (this) {
             is WidgetsFeed -> Icons.Default.Home
             is MomentsContainer -> Icons.Default.PlayArrow

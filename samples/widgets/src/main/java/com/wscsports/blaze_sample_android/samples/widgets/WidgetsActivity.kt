@@ -15,7 +15,11 @@ import com.wscsports.blaze_sample_android.samples.widgets.widget_screens.state.C
 import com.wscsports.blaze_sample_android.samples.widgets.widget_screens.state.ChooseLayoutStyleBottomSheetFragment
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
-
+/**
+ * WidgetsActivity is the main activity for handling widget-related operations.
+ * It sets up the app bar, navigation controller, and floating action buttons (FABs).
+ * It also subscribes to ViewModel observers to update the UI based on the widget state.
+ */
 class WidgetsActivity : AppCompatActivity() {
 
     private val binding by viewBinding(ActivityWidgetsBinding::inflate)

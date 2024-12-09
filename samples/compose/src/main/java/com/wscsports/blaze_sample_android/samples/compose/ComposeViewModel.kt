@@ -13,7 +13,10 @@ import com.blaze.blazesdk.style.players.stories.BlazeStoryPlayerStyle
 import com.blaze.blazesdk.style.widgets.BlazeWidgetLayout
 import com.wscsports.android.blaze.blaze_sample_android.core.MomentsContainerDelegateImpl
 import com.wscsports.android.blaze.blaze_sample_android.core.WidgetDelegateImpl
-
+/**
+ * ViewModel for the Compose screen.
+ * Note: To manage live state changes, the handler should be wrapped as a stateful object for the recomposition to happen.
+ */
 class ComposeViewModel: ViewModel() {
 
     private val composeWidgetDelegate = WidgetDelegateImpl()

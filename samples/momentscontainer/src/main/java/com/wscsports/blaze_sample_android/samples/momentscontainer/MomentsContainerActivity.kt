@@ -12,6 +12,11 @@ import com.blaze.blazesdk.features.moments.container.BlazeMomentsPlayerContainer
 import com.wscsports.android.blaze.blaze_sample_android.core.ui.viewBinding
 import com.wscsports.blaze_sample_android.samples.momentscontainer.databinding.ActivityMomentsContainerBinding
 
+/**
+ * This activity demonstrates how to use BlazeMomentsPlayerContainer.
+ * It contains two BlazeMomentsPlayerContainer instances.
+ * For more information, see https://dev.wsc-sports.com/docs/android-moments-player#/.
+ */
 class MomentsContainerActivity : AppCompatActivity() {
 
     private val binding by viewBinding(ActivityMomentsContainerBinding::inflate)
@@ -41,6 +46,9 @@ class MomentsContainerActivity : AppCompatActivity() {
         )
     }
 
+    /**
+     * Observing user increasing/decreasing volume, and updating the SDK
+     */
     override fun onKeyUp(keyCode: Int, event: KeyEvent?): Boolean {
         return when (keyCode) {
             KeyEvent.KEYCODE_VOLUME_DOWN, KeyEvent.KEYCODE_VOLUME_UP -> {

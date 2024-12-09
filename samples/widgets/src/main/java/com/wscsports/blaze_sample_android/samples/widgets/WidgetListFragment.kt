@@ -9,6 +9,10 @@ import com.wscsports.blaze_sample_android.samples.widgets.databinding.FragmentWi
 import com.wscsports.blaze_sample_android.samples.widgets.widget_screens.WidgetsViewModel
 import com.zhuinden.fragmentviewbindingdelegatekt.viewBinding
 
+/**
+ * WidgetListFragment is a Fragment that displays a list of widget samples.
+ * It uses a RecyclerView to display a list of widgets, each of which can be clicked to navigate to a different screen.
+ */
 class WidgetListFragment : Fragment(R.layout.fragment_widget_list) {
 
     private val binding by viewBinding(FragmentWidgetListBinding::bind)

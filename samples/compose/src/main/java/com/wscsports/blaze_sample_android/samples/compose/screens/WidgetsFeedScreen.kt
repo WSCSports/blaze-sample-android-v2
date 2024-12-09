@@ -1,4 +1,4 @@
-package com.wscsports.blaze_sample_android.samples.compose
+package com.wscsports.blaze_sample_android.samples.compose.screens
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -15,6 +15,8 @@ import androidx.compose.ui.unit.dp
 import com.blaze.blazesdk.features.moments.widgets.compose.row.BlazeComposeMomentsWidgetRowView
 import com.blaze.blazesdk.features.stories.widgets.compose.grid.BlazeComposeStoriesWidgetGridView
 import com.blaze.blazesdk.features.stories.widgets.compose.row.BlazeComposeStoriesWidgetRowView
+import com.wscsports.blaze_sample_android.samples.compose.ComposeTopBar
+import com.wscsports.blaze_sample_android.samples.compose.ComposeViewModel
 
 @Composable
 fun WidgetsFeedScreen(

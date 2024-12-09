@@ -20,14 +20,19 @@ import com.wscsports.blaze_sample_android.samples.widgets.widget_screens.state.W
 import com.wscsports.blaze_sample_android.samples.widgets.widget_screens.state.WidgetLayoutStyleState
 import com.zhuinden.fragmentviewbindingdelegatekt.viewBinding
 
-
+/**
+ * StoriesGridFragment is a Fragment that displays a grid of stories.
+ * It manages widget initialization, style customization, and data source updates.
+ * For more information on [BlazeStoriesWidgetGridView], see https://dev.wsc-sports.com/docs/android-widgets#/stories-grid
+ */
 class StoriesGridFragment : BaseWidgetFragment(R.layout.fragment_stories_grid) {
 
     private val binding by viewBinding(FragmentStoriesGridBinding::bind)
     override val widgetType = WidgetScreenType.STORIES_GRID
 
     override fun initWidgetView() {
-        // Custom layout could be set in the initiation. Here we set the layout to default.
+        // The custom layout can also be set during initialization, rather than using updateWidgetLayout.
+        // In this case, we are setting the layout to some default preset.
         val widgetLayout = viewModel.getWidgetLayoutPreset()
         val dataState = viewModel.getCurrWidgetDataState()
         val dataSource = BlazeDataSourceType.Labels(
@@ -61,6 +66,7 @@ class StoriesGridFragment : BaseWidgetFragment(R.layout.fragment_stories_grid) {
         binding.storiesGridWidgetView.updateWidgetLayout(newWidgetLayout)
     }
 
+    // for more information see https://dev.wsc-sports.com/docs/android-blaze-widget-item-image-style
     private fun BlazeWidgetItemImageStyle.setMyCustomImageStyle() {
         height = 150.blazeDp
         position = BlazeImagePosition.TopCenter
@@ -129,10 +135,10 @@ class StoriesGridFragment : BaseWidgetFragment(R.layout.fragment_stories_grid) {
         }
     }
 
+    // for more information see https://dev.wsc-sports.com/docs/android-blaze-widget-item-title-style
     private fun BlazeWidgetItemTitleStyle.setMyCustomTitleStyle() {
         isVisible = true
         readState.apply {
-            // TODO: bug on readState.textColor? it's not working
             textColor =  context?.getColor(R.color.dimgray) ?: Color.BLACK
             textSize = 14f
             maxLines = 2
@@ -150,7 +156,6 @@ class StoriesGridFragment : BaseWidgetFragment(R.layout.fragment_stories_grid) {
 
     // for more information see https://dev.wsc-sports.com/docs/android-blaze-widget-item-badge-style
     private fun BlazeWidgetItemBadgeStyle.setMyCustomBadgeStyle() {
-        // TODO: no height and width in BlazeWidgetItemBadgeStyle like in docs
         isVisible = true
         position.xPosition = BlazeObjectXPosition.END_TO_END
         position.yPosition = BlazeObjectYPosition.TOP_TO_TOP

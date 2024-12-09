@@ -8,6 +8,13 @@ import com.wscsports.android.blaze.blaze_sample_android.core.WidgetDelegateImpl
 import com.wscsports.android.blaze.blaze_sample_android.core.ui.viewBinding
 import com.wscsports.blaze_sample_android.samples.playerstyle.databinding.ActivityPlayerStyleBinding
 
+/**
+ * This activity demonstrates how to use Blaze widgets to display stories and moments with
+ * different player styles, default style and custom style.
+ * For more information, see:
+ * https://dev.wsc-sports.com/docs/android-story-player-customizations#/
+ * https://dev.wsc-sports.com/docs/android-moments-player-customizations#/.
+ */
 class PlayerStyleActivity : AppCompatActivity(),
     BlazeWidgetDelegate by WidgetDelegateImpl() {
 

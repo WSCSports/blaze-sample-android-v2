@@ -19,6 +19,11 @@ import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
+/**
+ * WidgetsViewModel is a ViewModel that manages the widget state.
+ * It provides the base layout for each widget type and initializes the widget data and style states.
+ * Note: every call to a base layout triggers a new instance of the layout in order to get a fresh copy without our previous changes.
+ */
 class WidgetsViewModel: ViewModel() {
 
     val storiesRowBaseLayout: BlazeWidgetLayout
@@ -98,7 +103,7 @@ class WidgetsViewModel: ViewModel() {
     fun resetAllWidgetStates(delayMillis: Long = 500) {
         viewModelScope.launch {
             _currWidgetType.emit(null)
-            delay(delayMillis) // Optional - to remain unchanged during back navigation with animation
+            delay(delayMillis) // only to wait during back navigation until animation is finished
             _widgetStyleState.emit(WidgetLayoutStyleState())
             _widgetDataState.emit(null)
         }

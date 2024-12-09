@@ -1,14 +1,11 @@
 package com.wscsports.blaze_sample_android.samples.compose
 
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.rounded.Home
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.ui.res.painterResource
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
@@ -34,7 +31,7 @@ fun ComposeBottomBar(navController: NavHostController) {
                 },
                 icon = {
                     Icon(
-                        imageVector = item.getIconImageVector(),
+                        imageVector = item.getBottomNavIconImage(),
                         contentDescription = item.labelName
                     )
                 },

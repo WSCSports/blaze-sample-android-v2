@@ -15,6 +15,11 @@ import com.wscsports.blaze_sample_android.samples.widgets.widget_screens.state.W
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
+/**
+ * BaseWidgetFragment is a Fragment that serves as the base class for all widget screens.
+ * It implements the BlazeWidgetDelegate and provides a base implementation for common widget screen operations,
+ * including initializing the widget and updating the style and data source states.
+ */
 abstract class BaseWidgetFragment(@LayoutRes layoutRes: Int) : Fragment(layoutRes),
     BlazeWidgetDelegate by WidgetDelegateImpl() {
 

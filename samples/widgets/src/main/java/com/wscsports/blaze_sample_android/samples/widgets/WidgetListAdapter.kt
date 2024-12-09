@@ -7,6 +7,10 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.wscsports.blaze_sample_android.samples.widgets.databinding.WidgetListItemBinding
 
+/**
+ * WidgetListAdapter is a RecyclerView adapter that displays a list of widget screen samples.
+ * Each widget can be clicked to navigate to a different screen.
+ */
 class WidgetListAdapter(
     private val onItemClicked: (WidgetScreenType) -> Unit
 ) : ListAdapter<WidgetScreenType, WidgetListAdapter.WidgetItemViewHolder>(WidgetsComparator()) {

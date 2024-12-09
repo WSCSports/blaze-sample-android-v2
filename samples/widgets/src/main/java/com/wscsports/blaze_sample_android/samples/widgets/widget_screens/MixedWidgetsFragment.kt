@@ -12,6 +12,11 @@ import com.wscsports.blaze_sample_android.samples.widgets.R
 import com.wscsports.blaze_sample_android.samples.widgets.databinding.FragmentMixedWidgetsBinding
 import com.zhuinden.fragmentviewbindingdelegatekt.viewBinding
 
+/**
+ * MixedWidgetsFragment is a Fragment that displays a mix feed of Blaze widgets:
+ * Stories-row, Moments-row, and Stories-grid.
+ * It manages reload widgets data with pull-to-refresh [SwipeRefreshLayout].
+ */
 class MixedWidgetsFragment: Fragment(R.layout.fragment_mixed_widgets),
     BlazeWidgetDelegate by WidgetDelegateImpl() {
 
@@ -72,6 +77,7 @@ class MixedWidgetsFragment: Fragment(R.layout.fragment_mixed_widgets),
         }
     }
 
+    // For more information refer to https://dev.wsc-sports.com/docs/android-widgets#/reloaddata
     private fun updateDataSource() {
         with(binding) {
             storiesRowWidgetView.reloadData(isSilentRefresh = false)

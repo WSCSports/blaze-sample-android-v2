@@ -9,6 +9,11 @@ import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.launch
 
+/**
+ * This ViewModel is used to demonstrate how to use BlazeMomentsPlayerContainer.
+ * It contains two BlazeMomentsPlayerStyle instances.
+ * For more information and player container customizations, see https://dev.wsc-sports.com/docs/android-moments-player-customizations#/.
+ */
 class MomentsContainerViewModel: ViewModel() {
 
     private val _onVolumeChangedEvent = MutableSharedFlow<Unit>()
@@ -29,6 +34,7 @@ class MomentsContainerViewModel: ViewModel() {
             cta.layoutPositioning = BlazeMomentsPlayerCtaStyle.BlazeCTAPositioning.CTA_NEXT_TO_BOTTOM_BUTTONS_BOX
         }
 
+    // In the instant moments player, we hide the exit button since we want to keep the player open
     val instantMomentsPlayerStyle: BlazeMomentsPlayerStyle
         get() = BlazeMomentsPlayerStyle.base().apply {
             // buttons customization

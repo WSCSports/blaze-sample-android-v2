@@ -3,6 +3,7 @@ package com.wscsports.android.blaze.blaze_sample_android
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.wscsports.android.blaze.blaze_sample_android.core.ui.applySafeAreaPadding
 import com.wscsports.android.blaze.blaze_sample_android.core.ui.viewBinding
 import com.wscsports.android.blaze.blaze_sample_android.databinding.ActivityMainBinding
 
@@ -14,6 +15,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+        binding.root.applySafeAreaPadding()
         initRecyclerView()
     }
 

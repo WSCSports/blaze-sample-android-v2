@@ -47,3 +47,8 @@ dependencies {
     // BlazeSDK
     implementation(libs.blazesdk)
 }
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}

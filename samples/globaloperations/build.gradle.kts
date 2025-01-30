@@ -53,3 +53,8 @@ dependencies {
     // fragments view binding delegate
     implementation(libs.fragmentviewbindingdelegate.kt)
 }
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}

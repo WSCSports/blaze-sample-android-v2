@@ -7,6 +7,7 @@ import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
+import com.wscsports.android.blaze.blaze_sample_android.core.ui.applySafeAreaPadding
 import com.wscsports.android.blaze.blaze_sample_android.core.ui.showView
 import com.wscsports.android.blaze.blaze_sample_android.core.ui.viewBinding
 import com.wscsports.blaze_sample_android.samples.widgets.databinding.ActivityWidgetsBinding
@@ -29,6 +30,7 @@ class WidgetsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+        binding.root.applySafeAreaPadding()
         setupAppbar()
         setupNavController()
         setFabClickListener()

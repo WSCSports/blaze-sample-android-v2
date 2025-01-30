@@ -9,6 +9,7 @@ import com.blaze.blazesdk.shared.results.doOnSuccess
 import com.blaze.blazesdk.style.players.moments.BlazeMomentsPlayerStyle
 import com.blaze.blazesdk.style.players.stories.BlazeStoryPlayerStyle
 import com.wscsports.android.blaze.blaze_sample_android.core.ui.R.color
+import com.wscsports.android.blaze.blaze_sample_android.core.ui.applySafeAreaPadding
 import com.wscsports.android.blaze.blaze_sample_android.core.ui.viewBinding
 import com.wscsports.android.blaze.blaze_sample_android.samples.globaloperations.databinding.ActivityGlobalConfigurationBinding
 
@@ -23,6 +24,7 @@ class GlobalOperationsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+        binding.root.applySafeAreaPadding()
         setupAppbar()
         setClickListeners()
         setDefaultPlayersStyle()

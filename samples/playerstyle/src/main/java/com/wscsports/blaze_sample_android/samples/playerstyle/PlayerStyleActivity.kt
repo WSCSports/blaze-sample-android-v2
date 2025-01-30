@@ -5,6 +5,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.blaze.blazesdk.delegates.BlazeWidgetDelegate
 import com.wscsports.android.blaze.blaze_sample_android.core.WidgetDelegateImpl
+import com.wscsports.android.blaze.blaze_sample_android.core.ui.applySafeAreaPadding
 import com.wscsports.android.blaze.blaze_sample_android.core.ui.viewBinding
 import com.wscsports.blaze_sample_android.samples.playerstyle.databinding.ActivityPlayerStyleBinding
 
@@ -24,6 +25,7 @@ class PlayerStyleActivity : AppCompatActivity(),
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+        binding.root.applySafeAreaPadding()
         setupAppbar()
         initWidgets()
     }

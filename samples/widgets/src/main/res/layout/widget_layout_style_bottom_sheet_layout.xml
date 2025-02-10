@@ -64,7 +64,14 @@
                 app:layout_constraintTop_toBottomOf="@id/is_custom_title_check_box"
                 />
 
-            <!-- Add more views inside the ScrollView as needed -->
+            <CheckBox
+                android:id="@+id/is_custom_item_style_overrides_check_box"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Set custom item style overrides"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/is_custom_badge_check_box"
+                />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

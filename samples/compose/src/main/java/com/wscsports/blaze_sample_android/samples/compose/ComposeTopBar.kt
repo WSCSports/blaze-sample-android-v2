@@ -9,7 +9,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
-import com.wscsports.android.blaze.blaze_sample_android.core.ui.R
+import com.wscsports.blaze_sample_android.core.ui.R.drawable
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -28,7 +28,7 @@ fun ComposeTopBar(
         navigationIcon = {
             IconButton(onClick = onBackPressed) {
                 Icon(
-                    painter = painterResource(id = R.drawable.ic_back_button),
+                    painter = painterResource(id = drawable.ic_back_button),
                     contentDescription = "Back"
                 )
             }

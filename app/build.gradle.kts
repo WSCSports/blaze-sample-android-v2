@@ -9,7 +9,7 @@ android {
     val minSdkVersion = rootProject.extra["minSdkVersion"] as Int
     val targetSdkVersion = rootProject.extra["targetSdkVersion"] as Int
 
-    namespace = "com.wscsports.android.blaze.blaze_sample_android"
+    namespace = "com.wscsports.blaze_sample_android"
     compileSdk = compileSdkVersion
 
     defaultConfig {

@@ -9,8 +9,8 @@ import com.blaze.blazesdk.data_source.BlazeWidgetLabel
 import com.blaze.blazesdk.shared.BlazeSDK
 import com.blaze.blazesdk.shared.results.doOnFailure
 import com.blaze.blazesdk.shared.results.doOnSuccess
-import com.wscsports.android.blaze.blaze_sample_android.core.ui.applySafeAreaPadding
-import com.wscsports.android.blaze.blaze_sample_android.core.ui.viewBinding
+import com.wscsports.blaze_sample_android.core.ui.applySafeAreaPadding
+import com.wscsports.blaze_sample_android.core.ui.viewBinding
 import com.wscsports.blaze_sample_android.samples.entrypoint.databinding.ActivityEntryPointBinding
 
 /**

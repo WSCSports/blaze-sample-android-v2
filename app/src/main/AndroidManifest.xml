@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <application
-        android:name="com.wscsports.android.blaze.blaze_sample_android.Application"
+        android:name="com.wscsports.blaze_sample_android.Application"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -12,9 +12,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Blazesampleandroid"
-        tools:targetApi="31">
+        tools:targetApi="35">
         <activity
-            android:name="com.wscsports.android.blaze.blaze_sample_android.MainActivity"
+            android:name="com.wscsports.blaze_sample_android.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

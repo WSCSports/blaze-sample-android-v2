@@ -3,16 +3,20 @@ package com.wscsports.blaze_sample_android.samples.widgets.widget_screens
 import android.graphics.Color
 import com.blaze.blazesdk.data_source.BlazeDataSourceType
 import com.blaze.blazesdk.data_source.BlazeWidgetLabel
+import com.blaze.blazesdk.extentions.blazeDeepCopy
 import com.blaze.blazesdk.style.shared.models.BlazeObjectXPosition
 import com.blaze.blazesdk.style.shared.models.BlazeObjectYPosition
 import com.blaze.blazesdk.style.shared.models.blazeDp
 import com.blaze.blazesdk.style.widgets.BlazeWidgetItemBadgeStyle
+import com.blaze.blazesdk.style.widgets.BlazeWidgetItemCustomMapping
 import com.blaze.blazesdk.style.widgets.BlazeWidgetItemImageGradientOverlayStyle.BlazeGradientPosition
 import com.blaze.blazesdk.style.widgets.BlazeWidgetItemImageStyle
 import com.blaze.blazesdk.style.widgets.BlazeWidgetItemImageStyle.BlazeImagePosition
 import com.blaze.blazesdk.style.widgets.BlazeWidgetItemImageStyle.BlazeThumbnailType
 import com.blaze.blazesdk.style.widgets.BlazeWidgetItemStatusIndicatorStyle
+import com.blaze.blazesdk.style.widgets.BlazeWidgetItemStyleOverrides
 import com.blaze.blazesdk.style.widgets.BlazeWidgetItemTitleStyle
+import com.blaze.blazesdk.style.widgets.BlazeWidgetLayout
 import com.wscsports.blaze_sample_android.samples.widgets.R
 import com.wscsports.blaze_sample_android.samples.widgets.WidgetScreenType
 import com.wscsports.blaze_sample_android.samples.widgets.databinding.FragmentMomentsRowBinding
@@ -57,6 +61,11 @@ class MomentsRowFragment : BaseWidgetFragment(R.layout.fragment_moments_row) {
             if (styleState.isCustomBadge) widgetItemStyle.badge.setMyCustomBadgeStyle()
         }
         binding.momentsRowWidgetView.updateWidgetLayout(newWidgetLayout)
+        if (styleState.isCustomItemStyleOverrides) {
+            setOverrideStylesByTeamId(newWidgetLayout)
+        } else {
+            binding.momentsRowWidgetView.resetOverriddenStyles()
+        }
     }
 
     override fun onNewDatasourceState(dataState: WidgetDataState) {
@@ -168,5 +177,60 @@ class MomentsRowFragment : BaseWidgetFragment(R.layout.fragment_moments_row) {
         liveUnreadState.cornerRadiusRatio = 0.5f
     }
 
+    // Example of setting custom styles for a specific widget item by it team ID
+    // We get the mapping key and value from the BE, inside the item object entities field.
+    // For more information see https://dev.wsc-sports.com/docs/android-blaze-widget-item-custom-mapping#/
+    private fun setOverrideStylesByTeamId(widgetLayout: BlazeWidgetLayout) {
+        val layoutDeepCopy = widgetLayout.blazeDeepCopy()
+        val mappingKey =  BlazeWidgetItemCustomMapping.BlazeKeysPresets.TEAM_ID
+        val mappingValue = "1610612755"
+        binding.momentsRowWidgetView.updateOverrideStyles(
+            perItemStyleOverrides = mapOf(
+                BlazeWidgetItemCustomMapping(mappingKey, mappingValue) to getBlazeWidgetItemStyleOverrides(layoutDeepCopy)
+            ),
+            shouldUpdateUi = true
+        )
+    }
 
+    // For more information see https://dev.wsc-sports.com/docs/android-blaze-widget-item-style-overrides#/
+    private fun getBlazeWidgetItemStyleOverrides(newWidgetLayout: BlazeWidgetLayout) =
+        BlazeWidgetItemStyleOverrides(
+            badge = newWidgetLayout.widgetItemStyle.badge.apply {
+                isVisible = true
+                position.apply {
+                    xPosition = BlazeObjectXPosition.END_TO_END
+                    yPosition = BlazeObjectYPosition.TOP_TO_TOP
+                }
+                unreadState.apply {
+                    cornerRadiusRatio = 0.5f
+                    borderColor = Color.CYAN
+                    borderWidth = 4.blazeDp
+                }
+                readState.apply {
+                    backgroundColor = Color.MAGENTA
+                    cornerRadiusRatio = 0.5f
+                    borderColor = Color.GRAY
+                    borderWidth = 2.blazeDp
+                }
+                liveUnreadState.apply {
+                    backgroundColor = Color.YELLOW
+                    cornerRadiusRatio = 0.5f
+                    isVisible = true
+                }
+                liveReadState.apply {
+                    backgroundColor = Color.GREEN
+                    cornerRadiusRatio = 0.5f
+                    isVisible = true
+                }
+            },
+            statusIndicator = newWidgetLayout.widgetItemStyle.statusIndicator.apply {
+                liveReadState.apply {
+                    backgroundColor = Color.MAGENTA
+                    text = "Live-customized"
+                    cornerRadius = 5.blazeDp
+                    borderColor = Color.DKGRAY
+                    borderWidth = 2.blazeDp
+                }
+            }
+        )
 }

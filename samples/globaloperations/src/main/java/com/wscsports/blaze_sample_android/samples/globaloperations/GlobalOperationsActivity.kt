@@ -8,10 +8,10 @@ import com.blaze.blazesdk.shared.results.doOnFailure
 import com.blaze.blazesdk.shared.results.doOnSuccess
 import com.blaze.blazesdk.style.players.moments.BlazeMomentsPlayerStyle
 import com.blaze.blazesdk.style.players.stories.BlazeStoryPlayerStyle
-import com.wscsports.android.blaze.blaze_sample_android.core.ui.R.color
-import com.wscsports.android.blaze.blaze_sample_android.core.ui.applySafeAreaPadding
-import com.wscsports.android.blaze.blaze_sample_android.core.ui.viewBinding
-import com.wscsports.android.blaze.blaze_sample_android.samples.globaloperations.databinding.ActivityGlobalConfigurationBinding
+import com.wscsports.blaze_sample_android.core.ui.R.color
+import com.wscsports.blaze_sample_android.core.ui.applySafeAreaPadding
+import com.wscsports.blaze_sample_android.core.ui.viewBinding
+import com.wscsports.blaze_sample_android.samples.globaloperations.databinding.ActivityGlobalConfigurationBinding
 
 /**
  * Activity for handling global BlazeSDK operations.

@@ -7,9 +7,9 @@ import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
-import com.wscsports.android.blaze.blaze_sample_android.core.ui.applySafeAreaPadding
-import com.wscsports.android.blaze.blaze_sample_android.core.ui.showView
-import com.wscsports.android.blaze.blaze_sample_android.core.ui.viewBinding
+import com.wscsports.blaze_sample_android.core.ui.applySafeAreaPadding
+import com.wscsports.blaze_sample_android.core.ui.showView
+import com.wscsports.blaze_sample_android.core.ui.viewBinding
 import com.wscsports.blaze_sample_android.samples.widgets.databinding.ActivityWidgetsBinding
 import com.wscsports.blaze_sample_android.samples.widgets.widget_screens.WidgetsViewModel
 import com.wscsports.blaze_sample_android.samples.widgets.widget_screens.state.ChooseDataStateBottomSheetFragment

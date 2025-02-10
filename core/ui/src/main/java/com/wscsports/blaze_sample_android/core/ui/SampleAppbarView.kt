@@ -1,9 +1,9 @@
-package com.wscsports.android.blaze.blaze_sample_android.core.ui
+package com.wscsports.blaze_sample_android.core.ui
 
 import android.content.Context
 import android.util.AttributeSet
 import androidx.constraintlayout.widget.ConstraintLayout
-import com.wscsports.android.blaze.blaze_sample_android.core.ui.databinding.SampleAppbarBinding
+import com.wscsports.blaze_sample_android.core.ui.databinding.SampleAppbarBinding
 
 class SampleAppbarView @JvmOverloads constructor(
     context: Context,

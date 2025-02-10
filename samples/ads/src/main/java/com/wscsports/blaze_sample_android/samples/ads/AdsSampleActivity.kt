@@ -2,8 +2,8 @@ package com.wscsports.blaze_sample_android.samples.ads
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.blaze.blazesdk.ads.custom_native.models.BlazeMomentsAdsConfigType
-import com.blaze.blazesdk.ads.custom_native.models.BlazeStoriesAdsConfigType
+import com.blaze.blazesdk.ads.models.ui.BlazeMomentsAdsConfigType
+import com.blaze.blazesdk.ads.models.ui.BlazeStoriesAdsConfigType
 import com.blaze.blazesdk.data_source.BlazeDataSourceType
 import com.blaze.blazesdk.data_source.BlazeWidgetLabel
 import com.blaze.blazesdk.delegates.BlazeWidgetDelegate
@@ -14,9 +14,9 @@ import com.blaze.gam.custom_native.BlazeGAMCustomNativeAdsDefaultConfig
 import com.blaze.gam.custom_native.BlazeGAMCustomNativeAdsDelegate
 import com.blaze.ima.BlazeIMA
 import com.blaze.ima.BlazeIMADelegate
-import com.wscsports.android.blaze.blaze_sample_android.core.WidgetDelegateImpl
-import com.wscsports.android.blaze.blaze_sample_android.core.ui.applySafeAreaPadding
-import com.wscsports.android.blaze.blaze_sample_android.core.ui.viewBinding
+import com.wscsports.blaze_sample_android.core.WidgetDelegateImpl
+import com.wscsports.blaze_sample_android.core.ui.applySafeAreaPadding
+import com.wscsports.blaze_sample_android.core.ui.viewBinding
 import com.wscsports.blaze_sample_android.samples.ads.databinding.ActivityAdsSampleBinding
 
 /**

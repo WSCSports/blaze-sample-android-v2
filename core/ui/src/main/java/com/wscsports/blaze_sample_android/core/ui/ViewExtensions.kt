@@ -1,4 +1,4 @@
-package com.wscsports.android.blaze.blaze_sample_android.core.ui
+package com.wscsports.blaze_sample_android.core.ui
 
 import android.view.LayoutInflater
 import android.view.View

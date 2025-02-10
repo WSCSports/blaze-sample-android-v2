@@ -9,8 +9,8 @@ import androidx.navigation.ui.setupWithNavController
 import com.blaze.blazesdk.data_source.BlazeDataSourceType
 import com.blaze.blazesdk.data_source.BlazeWidgetLabel
 import com.blaze.blazesdk.features.moments.container.BlazeMomentsPlayerContainer
-import com.wscsports.android.blaze.blaze_sample_android.core.ui.applySafeAreaPadding
-import com.wscsports.android.blaze.blaze_sample_android.core.ui.viewBinding
+import com.wscsports.blaze_sample_android.core.ui.applySafeAreaPadding
+import com.wscsports.blaze_sample_android.core.ui.viewBinding
 import com.wscsports.blaze_sample_android.samples.momentscontainer.databinding.ActivityMomentsContainerBinding
 
 /**

@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import com.blaze.blazesdk.delegates.BlazeWidgetDelegate
-import com.wscsports.android.blaze.blaze_sample_android.core.WidgetDelegateImpl
+import com.wscsports.blaze_sample_android.core.WidgetDelegateImpl
 import com.wscsports.blaze_sample_android.samples.widgets.WidgetScreenType
 import com.wscsports.blaze_sample_android.samples.widgets.widget_screens.state.WidgetDataState
 import com.wscsports.blaze_sample_android.samples.widgets.widget_screens.state.WidgetLayoutStyleState

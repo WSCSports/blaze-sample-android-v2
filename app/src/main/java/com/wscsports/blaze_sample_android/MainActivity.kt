@@ -1,11 +1,11 @@
-package com.wscsports.android.blaze.blaze_sample_android
+package com.wscsports.blaze_sample_android
 
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.wscsports.android.blaze.blaze_sample_android.core.ui.applySafeAreaPadding
-import com.wscsports.android.blaze.blaze_sample_android.core.ui.viewBinding
-import com.wscsports.android.blaze.blaze_sample_android.databinding.ActivityMainBinding
+import com.wscsports.blaze_sample_android.core.ui.applySafeAreaPadding
+import com.wscsports.blaze_sample_android.core.ui.viewBinding
+import com.wscsports.blaze_sample_android.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
@@ -23,7 +23,7 @@ class MainActivity : AppCompatActivity() {
         samplesAdapter = SampleListAdapter { item ->
             item.classPathSuffix?.let { className ->
                 val intent = Intent()
-                intent.setClassName(this, "${ROOT_SAMPLE_PKG_NAME}${className}")
+                intent.setClassName(this, "$ROOT_SAMPLE_PKG_NAME${className}")
                 startActivity(intent)
             }
         }

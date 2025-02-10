@@ -7,7 +7,7 @@ import androidx.fragment.app.activityViewModels
 import com.blaze.blazesdk.data_source.BlazeDataSourceType
 import com.blaze.blazesdk.data_source.BlazeWidgetLabel
 import com.blaze.blazesdk.delegates.BlazeWidgetDelegate
-import com.wscsports.android.blaze.blaze_sample_android.core.WidgetDelegateImpl
+import com.wscsports.blaze_sample_android.core.WidgetDelegateImpl
 import com.wscsports.blaze_sample_android.samples.widgets.R
 import com.wscsports.blaze_sample_android.samples.widgets.databinding.FragmentMixedWidgetsBinding
 import com.zhuinden.fragmentviewbindingdelegatekt.viewBinding

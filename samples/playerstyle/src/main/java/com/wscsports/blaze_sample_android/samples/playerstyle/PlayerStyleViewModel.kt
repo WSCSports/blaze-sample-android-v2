@@ -16,7 +16,7 @@ import com.blaze.blazesdk.style.players.moments.BlazeMomentsPlayerStyle
 import com.blaze.blazesdk.style.players.stories.BlazeStoryPlayerStyle
 import com.blaze.blazesdk.style.shared.models.blazeDp
 import com.blaze.blazesdk.style.widgets.BlazeWidgetLayout
-import com.wscsports.android.blaze.blaze_sample_android.core.ui.R.drawable
+import com.wscsports.blaze_sample_android.core.ui.R.drawable
 
 class PlayerStyleViewModel: ViewModel() {
 

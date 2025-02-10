@@ -1,4 +1,4 @@
-package com.wscsports.android.blaze.blaze_sample_android
+package com.wscsports.blaze_sample_android
 
 import android.app.Application
 import android.util.Log

@@ -31,6 +31,7 @@ class LazyStartMomentsFragment : Fragment(R.layout.fragment_lazy_start_moments),
         BlazeMomentsPlayerContainer(
             dataSource = BlazeDataSourceType.Labels(BlazeWidgetLabel.singleLabel(MOMENTS_LABEL)),
             containerId = MomentsContainerActivity.LAZY_MOMENTS_CONTAINER_ID,
+            containerView = binding.momentsContainer,
             momentsPlayerStyle = viewModel.lazyMomentsPlayerStyle,
             playerInContainerDelegate = this,
             shouldOrderMomentsByReadStatus = true
@@ -57,10 +58,7 @@ class LazyStartMomentsFragment : Fragment(R.layout.fragment_lazy_start_moments),
     }
 
     private fun startPlayingMoments() {
-        momentsPlayerContainer.startPlaying(
-            childFragmentManager,
-            binding.momentsContainer,
-        )
+        momentsPlayerContainer.startPlaying()
     }
 
     // Observing user increasing/decreasing volume from the activity, and updating the SDK

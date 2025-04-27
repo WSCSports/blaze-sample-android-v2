@@ -3,6 +3,7 @@ package com.wscsports.blaze_sample_android.samples.ads
 import android.util.Log
 import com.blaze.blazesdk.ads.ima.BlazeIMAHandlerEventType
 import com.blaze.blazesdk.ads.ima.models.BlazeImaAdInfo
+import com.blaze.ima.BlazeIMAAdRequestInformation
 import com.blaze.ima.BlazeIMADelegate
 import com.google.ads.interactivemedia.v3.api.ImaSdkSettings
 
@@ -20,15 +21,15 @@ class BlazeIMADelegateImpl: BlazeIMADelegate {
         Log.e(TAG, "onImaAdError: $errMsg")
     }
 
-    override fun additionalIMATagQueryParams(): Map<String, String> {
+    override fun additionalIMATagQueryParams(requestData: BlazeIMAAdRequestInformation): Map<String, String> {
         return emptyMap()
     }
 
-    override fun customIMASettings(): ImaSdkSettings? {
+    override fun customIMASettings(requestData: BlazeIMAAdRequestInformation): ImaSdkSettings? {
         return null
     }
 
-    override fun overrideAdTagUrl(): String? {
+    override fun overrideAdTagUrl(requestData: BlazeIMAAdRequestInformation): String? {
         return null
     }
 

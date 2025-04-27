@@ -31,6 +31,7 @@ class InstantMomentsFragment : Fragment(R.layout.fragment_instants_moments),
         BlazeMomentsPlayerContainer(
             dataSource = BlazeDataSourceType.Labels(BlazeWidgetLabel.singleLabel(MOMENTS_LABEL)),
             containerId = MomentsContainerActivity.INSTANT_MOMENTS_CONTAINER_ID,
+            containerView = binding.momentsContainer,
             momentsPlayerStyle = viewModel.instantMomentsPlayerStyle,
             playerInContainerDelegate = this,
             shouldOrderMomentsByReadStatus = true
@@ -44,7 +45,7 @@ class InstantMomentsFragment : Fragment(R.layout.fragment_instants_moments),
     }
 
     private fun startMomentsInContainer() {
-        momentsPlayerContainer.startPlaying(childFragmentManager, binding.momentsContainer)
+        momentsPlayerContainer.startPlaying()
     }
 
     // Observing user increasing/decreasing volume from the activity, and updating the SDK

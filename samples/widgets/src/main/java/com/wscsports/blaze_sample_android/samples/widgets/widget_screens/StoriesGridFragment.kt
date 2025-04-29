@@ -46,7 +46,7 @@ class StoriesGridFragment : BaseWidgetFragment(R.layout.fragment_stories_grid) {
         binding.storiesGridWidgetView.initWidget(
             widgetLayout = widgetLayout,
             dataSource = dataSource,
-            widgetId = "stories-grid",
+            widgetId = widgetType.name, // Or any unique identifier for the widget
             widgetDelegate = this,
             shouldOrderWidgetByReadStatus = true,
         )

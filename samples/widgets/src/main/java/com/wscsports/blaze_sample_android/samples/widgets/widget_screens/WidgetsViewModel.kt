@@ -12,6 +12,7 @@ import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.shareIn
@@ -38,6 +39,12 @@ class WidgetsViewModel: ViewModel() {
     val momentsGridBaseLayout: BlazeWidgetLayout
         get() = BlazeWidgetLayout.Presets.MomentsWidget.Grid.twoColumnsVerticalRectangles
 
+    val videosRowBaseLayout: BlazeWidgetLayout
+        get() = BlazeWidgetLayout.Presets.VideosWidget.Row.horizontalRectangles
+
+    val videosGridBaseLayout: BlazeWidgetLayout
+        get() = BlazeWidgetLayout.Presets.VideosWidget.Grid.twoColumnsHorizontalRectangles
+
     private val _currWidgetType = MutableStateFlow<WidgetScreenType?>(null)
     val currWidgetType = _currWidgetType.asStateFlow()
 
@@ -56,9 +63,8 @@ class WidgetsViewModel: ViewModel() {
     val updateWidgetDataStateEvent: SharedFlow<WidgetDataState> = _widgetDataState
         .filterNotNull()
         .shareIn(
-        viewModelScope,
-        started = SharingStarted.Eagerly,
-        replay = 0
+            scope = viewModelScope,
+            started = SharingStarted.Eagerly
     )
 
     fun getCurrWidgetDataState(): WidgetDataState = _widgetDataState.value ?: WidgetDataState()
@@ -87,6 +93,8 @@ class WidgetsViewModel: ViewModel() {
             WidgetScreenType.STORIES_GRID -> "top-stories"
             WidgetScreenType.MOMENTS_GRID -> "moments"
             WidgetScreenType.MOMENTS_ROW -> "moments"
+            WidgetScreenType.VIDEOS_ROW -> "videos"
+            WidgetScreenType.VIDEOS_GRID -> "videos"
             WidgetScreenType.MIXED_WIDGETS -> "" // Not needed for mixed widgets
         }
     }
@@ -96,6 +104,8 @@ class WidgetsViewModel: ViewModel() {
         WidgetScreenType.STORIES_GRID -> storiesGridBaseLayout
         WidgetScreenType.MOMENTS_ROW -> momentsRowBaseLayout
         WidgetScreenType.MOMENTS_GRID -> momentsGridBaseLayout
+        WidgetScreenType.VIDEOS_ROW -> videosRowBaseLayout
+        WidgetScreenType.VIDEOS_GRID -> videosGridBaseLayout
         else -> throw IllegalStateException("Widget type is not set")
     }
 

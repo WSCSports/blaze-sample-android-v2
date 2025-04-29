@@ -46,7 +46,7 @@ class MomentsGridFragment : BaseWidgetFragment(R.layout.fragment_moments_grid) {
         binding.momentsGridWidgetView.initWidget(
             widgetLayout = widgetLayout,
             dataSource = dataSource,
-            widgetId = "moments-grid",
+            widgetId = widgetType.name, // Or any unique identifier for the widget
             widgetDelegate = this,
             shouldOrderWidgetByReadStatus = true,
         )

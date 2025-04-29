@@ -46,7 +46,7 @@ class StoriesRowFragment: BaseWidgetFragment(R.layout.fragment_stories_row) {
         binding.storiesRowWidgetView.initWidget(
             widgetLayout = widgetLayout,
             dataSource = dataSource,
-            widgetId = "stories-row",
+            widgetId = widgetType.name, // Or any unique identifier for the widget
             widgetDelegate = this,
             shouldOrderWidgetByReadStatus = true,
         )

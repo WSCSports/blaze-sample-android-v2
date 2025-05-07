@@ -6,6 +6,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <FrameLayout
+        android:id="@+id/homeFragmentHeaderBackground"
+        android:layout_width="0dp"
+        android:layout_height="600dp"
+        android:background="@drawable/wsc_background_gradient"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
     <ImageView
         android:id="@+id/wsc_logo_image_view"
         android:layout_width="wrap_content"
@@ -24,6 +33,7 @@
         android:layout_marginTop="32dp"
         android:paddingBottom="16dp"
         android:clipToPadding="false"
+        android:overScrollMode="ifContentScrolls"
         app:layoutManager="LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/wsc_logo_image_view"

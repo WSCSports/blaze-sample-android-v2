@@ -2,6 +2,7 @@ package com.wscsports.blaze_sample_android
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.content.res.ResourcesCompat
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -35,9 +36,9 @@ class SampleListAdapter(
 
         fun bind(item: SampleItem) {
             currItem = item
-            with(binding) {
-                textViewTitle.text = item.title
-                textViewSubtitle.text = item.subTitle
+            binding.apply {
+                textViewTitle.text = root.context.getString(item.title)
+                textViewSubtitle.text = root.context.getString(item.subTitle)
                 imageSampleIcon.setImageResource(item.imageResourceId)
             }
         }

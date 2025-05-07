@@ -5,34 +5,36 @@
     android:id="@+id/containerView"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="8dp"
     android:background="@color/white"
-    app:cardCornerRadius="10dp">
+    android:foreground="?attr/selectableItemBackground"
+    app:cardCornerRadius="10dp"
+    app:cardElevation="2dp"
+    app:cardUseCompatPadding="true">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="16dp">
+        android:paddingVertical="16dp"
+        android:paddingHorizontal="8dp">
 
         <ImageView
             android:id="@+id/imageSampleIcon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_list_widgets"
+            android:src="@drawable/ic_widgets"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            app:layout_constraintTop_toTopOf="@+id/text_view_title"/>
 
         <TextView
             android:id="@+id/text_view_title"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
+            android:layout_marginStart="8dp"
             android:layout_marginEnd="32dp"
             android:textSize="16sp"
             android:textStyle="bold"
-            android:textColor="#181818"
+            android:textColor="@color/text_color_primary"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toEndOf="@+id/imageSampleIcon"
             app:layout_constraintEnd_toStartOf="@+id/imageArrowRight"
@@ -44,7 +46,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
             android:textSize="12sp"
-            android:textColor="#616161"
+            android:textColor="@color/text_color_description"
             app:layout_constraintTop_toBottomOf="@+id/text_view_title"
             app:layout_constraintStart_toStartOf="@+id/text_view_title"
             app:layout_constraintEnd_toEndOf="@+id/text_view_title"
@@ -54,6 +56,7 @@
             android:id="@+id/imageArrowRight"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
             android:src="@drawable/ic_arrow_right_24"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"

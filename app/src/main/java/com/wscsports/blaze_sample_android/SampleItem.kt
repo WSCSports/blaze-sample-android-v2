@@ -1,16 +1,18 @@
 package com.wscsports.blaze_sample_android
 
+import com.wscsports.blaze_sample_android.core.ui.R.*
+
 enum class SampleItem(
-    val title: String,
-    val subTitle: String,
+    val title: Int,
+    val subTitle: Int,
     val imageResourceId: Int,
     val classPathSuffix: String? = null
 )   {
-    GLOBAL_OPERATIONS("Global operations", "Global SDK properties setup", imageResourceId = R.drawable.ic_list_widgets, "globaloperations.GlobalOperationsActivity"),
-    WIDGETS("Widgets", "Integrate all type of widgets", imageResourceId = R.drawable.ic_list_widgets, "widgets.WidgetsActivity"),
-    MOMENT_CONTAINER("Moment container", "Embedding and managing moments in your app", imageResourceId = R.drawable.ic_list_moment_container, "momentscontainer.MomentsContainerActivity"),
-    ENTRY_POINT("Entry point", "Deeplink handling", imageResourceId = R.drawable.ic_list_widgets, "entrypoint.EntryPointActivity"),
-    PLAYER_STYLE("Player style", "Custom media player", imageResourceId = R.drawable.ic_list_story_player, "playerstyle.PlayerStyleActivity"),
-    ADS("Ads", "SDK integration of banners, custom native and IMA ads", imageResourceId = R.drawable.ic_list_ads, "ads.AdsSampleActivity"),
-    COMPOSE("Compose", "Jetpack Compose widgets implementation", imageResourceId = R.drawable.ic_list_widgets, "compose.ComposeActivity");
+    GLOBAL_SETTINGS(string.global_settings_title, string.global_settings_subtitle, drawable.ic_settings, "globaloperations.GlobalOperationsActivity"),
+    WIDGETS(string.widgets_title, string.widgets_subtitle, drawable.ic_widgets, "widgets.WidgetsActivity"),
+    MOMENT_CONTAINER(string.moment_container_title, string.moment_container_subtitle, drawable.ic_moments_container, "momentscontainer.MomentsContainerActivity"),
+    ENTRY_POINT(string.entry_point_title, string.entry_point_subtitle, drawable.ic_entry_point, "entrypoint.EntryPointActivity"),
+    PLAYER_STYLE(string.player_style_title, string.player_style_subtitle, drawable.ic_player_style, "playerstyle.PlayerStyleActivity"),
+    ADS(string.ads_title, string.ads_subtitle, drawable.ic_ads, "ads.AdsSampleActivity"),
+    COMPOSE(string.compose_title, string.compose_subtitle, drawable.ic_compose, "compose.ComposeActivity");
 }

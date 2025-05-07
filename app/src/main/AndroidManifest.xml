@@ -15,6 +15,7 @@
         tools:targetApi="35">
         <activity
             android:name="com.wscsports.blaze_sample_android.MainActivity"
+            android:theme="@style/Theme.MainActivityTheme"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

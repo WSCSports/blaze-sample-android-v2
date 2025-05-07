@@ -26,7 +26,7 @@ class ChooseDataStateBottomSheetFragment : BottomSheetDialogFragment(R.layout.wi
 
     private fun initializeUI() {
         val dataState = viewModel.getCurrWidgetDataState()
-        with(binding) {
+        binding.apply {
             labelTextInputLayout.editText?.setText(dataState.labelName)
             orderTypeSpinner.setSelection(BlazeOrderType.entries.indexOf(dataState.orderType))
         }
@@ -47,9 +47,6 @@ class ChooseDataStateBottomSheetFragment : BottomSheetDialogFragment(R.layout.wi
                 dismiss()
             }
         }
-        binding.closeButton.setOnClickListener {
-            dismiss()
-        }
     }
 
     private fun isLabelExpressionBlank(): Boolean {
@@ -59,7 +56,7 @@ class ChooseDataStateBottomSheetFragment : BottomSheetDialogFragment(R.layout.wi
     }
 
     private fun updateDataState() {
-        with(binding) {
+        binding.apply {
             val state = WidgetDataState(
                 labelName = labelTextInputLayout.editText?.text.toString(),
                 orderType = BlazeOrderType.entries[orderTypeSpinner.selectedItemPosition],

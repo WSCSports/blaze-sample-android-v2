@@ -19,7 +19,7 @@ class SampleAppbarView @JvmOverloads constructor(
     }
 
     fun setupView(title: String, onBackPressed: () -> Unit) {
-        with(binding) {
+        binding.apply {
             textTitle.text = title
             buttonBack.setOnClickListener {
                 onBackPressed.invoke()

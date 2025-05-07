@@ -8,7 +8,7 @@ import com.blaze.blazesdk.shared.results.doOnFailure
 import com.blaze.blazesdk.shared.results.doOnSuccess
 import com.blaze.blazesdk.style.players.moments.BlazeMomentsPlayerStyle
 import com.blaze.blazesdk.style.players.stories.BlazeStoryPlayerStyle
-import com.wscsports.blaze_sample_android.core.ui.R.color
+import com.wscsports.blaze_sample_android.core.ui.R.*
 import com.wscsports.blaze_sample_android.core.ui.applySafeAreaPadding
 import com.wscsports.blaze_sample_android.core.ui.viewBinding
 import com.wscsports.blaze_sample_android.samples.globaloperations.databinding.ActivityGlobalConfigurationBinding
@@ -31,7 +31,7 @@ class GlobalOperationsActivity : AppCompatActivity() {
     }
 
     private fun setupAppbar() {
-        binding.appbar.setupView("Global Operations") {
+        binding.appbar.setupView(getString(string.global_settings_title)) {
             onBackPressedDispatcher.onBackPressed()
         }
     }

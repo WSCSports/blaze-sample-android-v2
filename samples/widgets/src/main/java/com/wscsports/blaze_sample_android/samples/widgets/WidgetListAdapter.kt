@@ -39,7 +39,7 @@ class WidgetListAdapter(
 
         fun bind(widget: WidgetScreenType?) {
             this.widgetItem = widget
-            with(binding) {
+            binding.apply {
                 textViewName.text = widget?.title
                 textViewDescription.text = widget?.description
             }

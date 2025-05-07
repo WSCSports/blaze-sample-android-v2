@@ -1,1 +1,16 @@
-<resources></resources>
+<resources>
+    <string name="global_settings_title">Global Settings</string>
+    <string name="global_settings_subtitle">Set global SDK properties</string>
+    <string name="widgets_title">Widgets</string>
+    <string name="widgets_subtitle">Browse widgets and customization examples</string>
+    <string name="moment_container_title">Moment container</string>
+    <string name="moment_container_subtitle">Embed and manage moments in your app</string>
+    <string name="entry_point_title">Entry point</string>
+    <string name="entry_point_subtitle">Deeplink handling</string>
+    <string name="player_style_title">Player style</string>
+    <string name="player_style_subtitle">Explore options and customizations</string>
+    <string name="ads_title">Ads</string>
+    <string name="ads_subtitle">SDK integration of banners, custom native and IMA ads</string>
+    <string name="compose_title">Compose</string>
+    <string name="compose_subtitle">Jetpack Compose widgets implementation</string>
+</resources>

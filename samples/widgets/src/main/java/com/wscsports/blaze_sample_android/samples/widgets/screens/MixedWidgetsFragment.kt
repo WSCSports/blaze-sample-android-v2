@@ -1,4 +1,4 @@
-package com.wscsports.blaze_sample_android.samples.widgets.widget_screens
+package com.wscsports.blaze_sample_android.samples.widgets.screens
 
 import android.os.Bundle
 import android.view.View

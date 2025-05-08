@@ -1,4 +1,4 @@
-package com.wscsports.blaze_sample_android.samples.widgets.widget_screens
+package com.wscsports.blaze_sample_android.samples.widgets.screens
 
 import android.graphics.Color
 import com.blaze.blazesdk.data_source.BlazeDataSourceType
@@ -19,20 +19,20 @@ import com.blaze.blazesdk.style.widgets.BlazeWidgetItemTitleStyle
 import com.blaze.blazesdk.style.widgets.BlazeWidgetLayout
 import com.wscsports.blaze_sample_android.samples.widgets.R
 import com.wscsports.blaze_sample_android.samples.widgets.WidgetScreenType
-import com.wscsports.blaze_sample_android.samples.widgets.databinding.FragmentMomentsGridBinding
-import com.wscsports.blaze_sample_android.samples.widgets.widget_screens.state.WidgetDataState
-import com.wscsports.blaze_sample_android.samples.widgets.widget_screens.state.WidgetLayoutStyleState
+import com.wscsports.blaze_sample_android.samples.widgets.databinding.FragmentStoriesRowBinding
+import com.wscsports.blaze_sample_android.samples.widgets.edit.WidgetDataState
+import com.wscsports.blaze_sample_android.samples.widgets.edit.WidgetLayoutStyleState
 import com.zhuinden.fragmentviewbindingdelegatekt.viewBinding
 
 /**
- * MomentsGridFragment is a Fragment that displays a grid of moments.
+ * StoriesRowFragment is a Fragment that displays a row of stories.
  * It manages widget initialization, style customization, and data source updates.
- * For more information on [BlazeMomentsWidgetGridView], see https://dev.wsc-sports.com/docs/android-widgets#/moments-grid
+ * For more information on [BlazeStoriesWidgetRowView], see https://dev.wsc-sports.com/docs/android-widgets#/stories-row
  */
-class MomentsGridFragment : BaseWidgetFragment(R.layout.fragment_moments_grid) {
+class StoriesRowFragment: BaseWidgetFragment(R.layout.fragment_stories_row) {
 
-    private val binding by viewBinding(FragmentMomentsGridBinding::bind)
-    override val widgetType = WidgetScreenType.MOMENTS_GRID
+    private val binding by viewBinding(FragmentStoriesRowBinding::bind)
+    override val widgetType = WidgetScreenType.STORIES_ROW
 
     override fun initWidgetView() {
         // The custom layout can also be set during initialization, rather than using updateWidgetLayout.
@@ -43,7 +43,7 @@ class MomentsGridFragment : BaseWidgetFragment(R.layout.fragment_moments_grid) {
             blazeWidgetLabel = BlazeWidgetLabel.singleLabel(dataState.labelName),
             orderType = dataState.orderType,
         )
-        binding.momentsGridWidgetView.initWidget(
+        binding.storiesRowWidgetView.initWidget(
             widgetLayout = widgetLayout,
             dataSource = dataSource,
             widgetId = widgetType.name, // Or any unique identifier for the widget
@@ -53,17 +53,18 @@ class MomentsGridFragment : BaseWidgetFragment(R.layout.fragment_moments_grid) {
     }
 
     override fun onNewWidgetLayoutState(styleState: WidgetLayoutStyleState) {
+        // viewModel.getWidgetLayoutPreset() will reset the layout to default and then apply the custom styles if needed
         val newWidgetLayout = viewModel.getWidgetLayoutPreset().apply {
             if (styleState.isCustomImage) widgetItemStyle.image.setMyCustomImageStyle()
             if (styleState.isCustomStatusIndicator) widgetItemStyle.statusIndicator.setMyCustomIndicatorStyle()
             if (styleState.isCustomTitle) widgetItemStyle.title.setMyCustomTitleStyle()
             if (styleState.isCustomBadge) widgetItemStyle.badge.setMyCustomBadgeStyle()
         }
-        binding.momentsGridWidgetView.updateWidgetLayout(newWidgetLayout)
+        binding.storiesRowWidgetView.updateWidgetLayout(newWidgetLayout)
         if (styleState.isCustomItemStyleOverrides) {
-            setOverrideStylesByPlayerId(newWidgetLayout)
+            setOverrideStylesByGameId(newWidgetLayout)
         } else {
-            binding.momentsGridWidgetView.resetOverriddenStyles()
+            binding.storiesRowWidgetView.resetOverriddenStyles()
         }
     }
 
@@ -72,7 +73,7 @@ class MomentsGridFragment : BaseWidgetFragment(R.layout.fragment_moments_grid) {
             blazeWidgetLabel = BlazeWidgetLabel.singleLabel(dataState.labelName),
             orderType = dataState.orderType,
         )
-        binding.momentsGridWidgetView.updateDataSource(dataSource, false)
+        binding.storiesRowWidgetView.updateDataSource(dataSource, false)
     }
 
     // for more information see https://dev.wsc-sports.com/docs/android-blaze-widget-item-image-style
@@ -144,6 +145,7 @@ class MomentsGridFragment : BaseWidgetFragment(R.layout.fragment_moments_grid) {
         }
     }
 
+    // for more information see https://dev.wsc-sports.com/docs/android-blaze-widget-item-title-style
     private fun BlazeWidgetItemTitleStyle.setMyCustomTitleStyle() {
         isVisible = true
         readState.apply {
@@ -175,14 +177,14 @@ class MomentsGridFragment : BaseWidgetFragment(R.layout.fragment_moments_grid) {
         liveUnreadState.cornerRadiusRatio = 0.5f
     }
 
-    // Example of setting custom styles for a specific widget item by it player ID.
+    // Example of setting custom styles for a specific widget item by it game ID.
     // We get the mapping key and value from the BE, inside the item object entities field.
     // For more information see https://dev.wsc-sports.com/docs/android-blaze-widget-item-custom-mapping#/
-    private fun setOverrideStylesByPlayerId(widgetLayout: BlazeWidgetLayout) {
+    private fun setOverrideStylesByGameId(widgetLayout: BlazeWidgetLayout) {
         val layoutDeepCopy = widgetLayout.blazeDeepCopy()
-        val mappingKey =  BlazeWidgetItemCustomMapping.BlazeKeysPresets.PLAYER_ID
-        val mappingValue = "1630178"
-        binding.momentsGridWidgetView.updateOverrideStyles(
+        val mappingKey =  BlazeWidgetItemCustomMapping.BlazeKeysPresets.GAME_ID
+        val mappingValue = "0022300858"
+        binding.storiesRowWidgetView.updateOverrideStyles(
             perItemStyleOverrides = mapOf(
                 BlazeWidgetItemCustomMapping(mappingKey, mappingValue) to getBlazeWidgetItemStyleOverrides(layoutDeepCopy)
             ),
@@ -200,18 +202,15 @@ class MomentsGridFragment : BaseWidgetFragment(R.layout.fragment_moments_grid) {
                     yPosition = BlazeObjectYPosition.TOP_TO_TOP
                 }
                 unreadState.apply {
-                    cornerRadiusRatio = 0.1f
-                    backgroundColor = requireContext().getColor(R.color.gold)
-                    borderColor = requireContext().getColor(R.color.coral)
+                    cornerRadiusRatio = 0.5f
+                    borderColor = Color.CYAN
                     borderWidth = 4.blazeDp
-                    isVisible = true
                 }
                 readState.apply {
-                    cornerRadiusRatio = 0.1f
-                    backgroundColor = requireContext().getColor(R.color.aquamarine)
-                    borderColor = requireContext().getColor(R.color.rosybrown)
-                    borderWidth = 4.blazeDp
-                    isVisible = true
+                    backgroundColor = Color.MAGENTA
+                    cornerRadiusRatio = 0.5f
+                    borderColor = Color.GRAY
+                    borderWidth = 2.blazeDp
                 }
                 liveUnreadState.apply {
                     backgroundColor = Color.YELLOW
@@ -234,5 +233,6 @@ class MomentsGridFragment : BaseWidgetFragment(R.layout.fragment_moments_grid) {
                 }
             }
         )
-
 }
+
+

@@ -17,84 +17,27 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:defaultNavHost="true"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/editOptionsContainer"
         app:layout_constraintTop_toBottomOf="@+id/appbar"
         app:navGraph="@navigation/widgets_navigation" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/edit_data_fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:layout_marginEnd="24dp"
-        android:importantForAccessibility="no"
-        android:src="@drawable/ic_edit_data_24"
-        android:visibility="invisible"
-        app:fabSize="mini"
-        app:layout_constraintBottom_toTopOf="@+id/edit_style_fab"
-        app:layout_constraintEnd_toEndOf="parent"/>
+    <FrameLayout
+        android:id="@+id/editOptionsContainer"
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        android:background="@color/white"
+        android:elevation="8dp"
+        app:layout_constraintBottom_toBottomOf="parent" >
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/edit_data_text_card"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:visibility="invisible"
-        app:cardCornerRadius="10dp"
-        app:layout_constraintEnd_toStartOf="@+id/edit_data_fab"
-        app:layout_constraintTop_toTopOf="@+id/edit_data_fab"
-        app:layout_constraintBottom_toBottomOf="@+id/edit_data_fab">
-
-        <TextView
-            android:layout_width="wrap_content"
+        <com.google.android.material.button.MaterialButton
+            style="@style/BlazeSampleButtonStyle"
+            android:id="@+id/btnEditOptions"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="8dp"
-            android:text="Edit data source"/>
+            android:layout_margin="16dp"
+            android:layout_gravity="center"
+            android:text="View edit options"/>
 
-    </androidx.cardview.widget.CardView>
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/edit_style_fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:layout_marginEnd="24dp"
-        android:importantForAccessibility="no"
-        android:src="@drawable/ic_edit_style_24"
-        android:visibility="invisible"
-        app:fabSize="mini"
-        app:layout_constraintBottom_toTopOf="@+id/edit_widget_fab"
-        app:layout_constraintEnd_toEndOf="parent"/>
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/edit_style_text_card"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:visibility="invisible"
-        app:cardCornerRadius="10dp"
-        app:layout_constraintEnd_toStartOf="@+id/edit_style_fab"
-        app:layout_constraintTop_toTopOf="@+id/edit_style_fab"
-        app:layout_constraintBottom_toBottomOf="@+id/edit_style_fab">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="8dp"
-            android:text="Edit layout style"/>
-
-    </androidx.cardview.widget.CardView>
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/edit_widget_fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="32dp"
-        android:layout_marginEnd="24dp"
-        android:importantForAccessibility="no"
-        android:src="@drawable/ic_edit_24"
-        app:fabSize="normal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+    </FrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,4 +1,4 @@
-package com.wscsports.blaze_sample_android.samples.widgets.widget_screens.state
+package com.wscsports.blaze_sample_android.samples.widgets.edit
 
 import android.os.Bundle
 import android.view.View
@@ -9,7 +9,7 @@ import com.blaze.blazesdk.data_source.BlazeOrderType
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.wscsports.blaze_sample_android.samples.widgets.R
 import com.wscsports.blaze_sample_android.samples.widgets.databinding.WidgetDataStateBottomSheetLayoutBinding
-import com.wscsports.blaze_sample_android.samples.widgets.widget_screens.WidgetsViewModel
+import com.wscsports.blaze_sample_android.samples.widgets.screens.WidgetsViewModel
 import com.zhuinden.fragmentviewbindingdelegatekt.viewBinding
 
 class ChooseDataStateBottomSheetFragment : BottomSheetDialogFragment(R.layout.widget_data_state_bottom_sheet_layout) {

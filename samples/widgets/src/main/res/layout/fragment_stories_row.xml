@@ -7,7 +7,7 @@
     <com.blaze.blazesdk.features.stories.widgets.row.BlazeStoriesWidgetRowView
         android:id="@+id/stories_row_widget_view"
         android:layout_width="0dp"
-        android:layout_height="160dp"
+        android:layout_height="140dp"
         android:layout_marginTop="32dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

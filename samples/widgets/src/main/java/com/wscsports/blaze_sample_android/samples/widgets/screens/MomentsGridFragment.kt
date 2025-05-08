@@ -1,4 +1,4 @@
-package com.wscsports.blaze_sample_android.samples.widgets.widget_screens
+package com.wscsports.blaze_sample_android.samples.widgets.screens
 
 import android.graphics.Color
 import com.blaze.blazesdk.data_source.BlazeDataSourceType
@@ -19,20 +19,20 @@ import com.blaze.blazesdk.style.widgets.BlazeWidgetItemTitleStyle
 import com.blaze.blazesdk.style.widgets.BlazeWidgetLayout
 import com.wscsports.blaze_sample_android.samples.widgets.R
 import com.wscsports.blaze_sample_android.samples.widgets.WidgetScreenType
-import com.wscsports.blaze_sample_android.samples.widgets.databinding.FragmentVideosRowBinding
-import com.wscsports.blaze_sample_android.samples.widgets.widget_screens.state.WidgetDataState
-import com.wscsports.blaze_sample_android.samples.widgets.widget_screens.state.WidgetLayoutStyleState
+import com.wscsports.blaze_sample_android.samples.widgets.databinding.FragmentMomentsGridBinding
+import com.wscsports.blaze_sample_android.samples.widgets.edit.WidgetDataState
+import com.wscsports.blaze_sample_android.samples.widgets.edit.WidgetLayoutStyleState
 import com.zhuinden.fragmentviewbindingdelegatekt.viewBinding
 
 /**
- * [VideosRowFragment] is a Fragment that displays a row of Videos.
+ * MomentsGridFragment is a Fragment that displays a grid of moments.
  * It manages widget initialization, style customization, and data source updates.
- * For more information on [BlazeVideosWidgetRowView], see https://dev.wsc-sports.com/docs/android-widgets#videos-row
+ * For more information on [BlazeMomentsWidgetGridView], see https://dev.wsc-sports.com/docs/android-widgets#/moments-grid
  */
-class VideosRowFragment : BaseWidgetFragment(R.layout.fragment_videos_row) {
+class MomentsGridFragment : BaseWidgetFragment(R.layout.fragment_moments_grid) {
 
-    private val binding by viewBinding(FragmentVideosRowBinding::bind)
-    override val widgetType = WidgetScreenType.VIDEOS_ROW
+    private val binding by viewBinding(FragmentMomentsGridBinding::bind)
+    override val widgetType = WidgetScreenType.MOMENTS_GRID
 
     override fun initWidgetView() {
         // The custom layout can also be set during initialization, rather than using updateWidgetLayout.
@@ -43,7 +43,7 @@ class VideosRowFragment : BaseWidgetFragment(R.layout.fragment_videos_row) {
             blazeWidgetLabel = BlazeWidgetLabel.singleLabel(dataState.labelName),
             orderType = dataState.orderType,
         )
-        binding.videosRowWidgetView.initWidget(
+        binding.momentsGridWidgetView.initWidget(
             widgetLayout = widgetLayout,
             dataSource = dataSource,
             widgetId = widgetType.name, // Or any unique identifier for the widget
@@ -59,11 +59,11 @@ class VideosRowFragment : BaseWidgetFragment(R.layout.fragment_videos_row) {
             if (styleState.isCustomTitle) widgetItemStyle.title.setMyCustomTitleStyle()
             if (styleState.isCustomBadge) widgetItemStyle.badge.setMyCustomBadgeStyle()
         }
-        binding.videosRowWidgetView.updateWidgetLayout(newWidgetLayout)
+        binding.momentsGridWidgetView.updateWidgetLayout(newWidgetLayout)
         if (styleState.isCustomItemStyleOverrides) {
-            setOverrideStylesByTeamId(newWidgetLayout)
+            setOverrideStylesByPlayerId(newWidgetLayout)
         } else {
-            binding.videosRowWidgetView.resetOverriddenStyles()
+            binding.momentsGridWidgetView.resetOverriddenStyles()
         }
     }
 
@@ -72,7 +72,7 @@ class VideosRowFragment : BaseWidgetFragment(R.layout.fragment_videos_row) {
             blazeWidgetLabel = BlazeWidgetLabel.singleLabel(dataState.labelName),
             orderType = dataState.orderType,
         )
-        binding.videosRowWidgetView.updateDataSource(dataSource, false)
+        binding.momentsGridWidgetView.updateDataSource(dataSource, false)
     }
 
     // for more information see https://dev.wsc-sports.com/docs/android-blaze-widget-item-image-style
@@ -144,7 +144,6 @@ class VideosRowFragment : BaseWidgetFragment(R.layout.fragment_videos_row) {
         }
     }
 
-    // for more information see https://dev.wsc-sports.com/docs/android-blaze-widget-item-title-style
     private fun BlazeWidgetItemTitleStyle.setMyCustomTitleStyle() {
         isVisible = true
         readState.apply {
@@ -176,14 +175,14 @@ class VideosRowFragment : BaseWidgetFragment(R.layout.fragment_videos_row) {
         liveUnreadState.cornerRadiusRatio = 0.5f
     }
 
-    // Example of setting custom styles for a specific widget item by it team ID
+    // Example of setting custom styles for a specific widget item by it player ID.
     // We get the mapping key and value from the BE, inside the item object entities field.
     // For more information see https://dev.wsc-sports.com/docs/android-blaze-widget-item-custom-mapping#/
-    private fun setOverrideStylesByTeamId(widgetLayout: BlazeWidgetLayout) {
+    private fun setOverrideStylesByPlayerId(widgetLayout: BlazeWidgetLayout) {
         val layoutDeepCopy = widgetLayout.blazeDeepCopy()
-        val mappingKey =  BlazeWidgetItemCustomMapping.BlazeKeysPresets.TEAM_ID
-        val mappingValue = "1610612755"
-        binding.videosRowWidgetView.updateOverrideStyles(
+        val mappingKey =  BlazeWidgetItemCustomMapping.BlazeKeysPresets.PLAYER_ID
+        val mappingValue = "1630178"
+        binding.momentsGridWidgetView.updateOverrideStyles(
             perItemStyleOverrides = mapOf(
                 BlazeWidgetItemCustomMapping(mappingKey, mappingValue) to getBlazeWidgetItemStyleOverrides(layoutDeepCopy)
             ),
@@ -201,15 +200,18 @@ class VideosRowFragment : BaseWidgetFragment(R.layout.fragment_videos_row) {
                     yPosition = BlazeObjectYPosition.TOP_TO_TOP
                 }
                 unreadState.apply {
-                    cornerRadiusRatio = 0.5f
-                    borderColor = Color.CYAN
+                    cornerRadiusRatio = 0.1f
+                    backgroundColor = requireContext().getColor(R.color.gold)
+                    borderColor = requireContext().getColor(R.color.coral)
                     borderWidth = 4.blazeDp
+                    isVisible = true
                 }
                 readState.apply {
-                    backgroundColor = Color.MAGENTA
-                    cornerRadiusRatio = 0.5f
-                    borderColor = Color.GRAY
-                    borderWidth = 2.blazeDp
+                    cornerRadiusRatio = 0.1f
+                    backgroundColor = requireContext().getColor(R.color.aquamarine)
+                    borderColor = requireContext().getColor(R.color.rosybrown)
+                    borderWidth = 4.blazeDp
+                    isVisible = true
                 }
                 liveUnreadState.apply {
                     backgroundColor = Color.YELLOW
@@ -232,4 +234,5 @@ class VideosRowFragment : BaseWidgetFragment(R.layout.fragment_videos_row) {
                 }
             }
         )
+
 }

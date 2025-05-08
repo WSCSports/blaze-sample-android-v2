@@ -1,4 +1,4 @@
-package com.wscsports.blaze_sample_android.samples.widgets.widget_screens.state
+package com.wscsports.blaze_sample_android.samples.widgets.edit
 
 data class WidgetLayoutStyleState(
     val isCustomImage: Boolean = false,

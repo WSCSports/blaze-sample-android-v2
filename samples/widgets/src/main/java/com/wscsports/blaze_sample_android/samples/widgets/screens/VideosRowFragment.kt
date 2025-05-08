@@ -1,4 +1,4 @@
-package com.wscsports.blaze_sample_android.samples.widgets.widget_screens
+package com.wscsports.blaze_sample_android.samples.widgets.screens
 
 import android.graphics.Color
 import com.blaze.blazesdk.data_source.BlazeDataSourceType
@@ -19,21 +19,20 @@ import com.blaze.blazesdk.style.widgets.BlazeWidgetItemTitleStyle
 import com.blaze.blazesdk.style.widgets.BlazeWidgetLayout
 import com.wscsports.blaze_sample_android.samples.widgets.R
 import com.wscsports.blaze_sample_android.samples.widgets.WidgetScreenType
-import com.wscsports.blaze_sample_android.samples.widgets.databinding.FragmentVideosGridBinding
 import com.wscsports.blaze_sample_android.samples.widgets.databinding.FragmentVideosRowBinding
-import com.wscsports.blaze_sample_android.samples.widgets.widget_screens.state.WidgetDataState
-import com.wscsports.blaze_sample_android.samples.widgets.widget_screens.state.WidgetLayoutStyleState
+import com.wscsports.blaze_sample_android.samples.widgets.edit.WidgetDataState
+import com.wscsports.blaze_sample_android.samples.widgets.edit.WidgetLayoutStyleState
 import com.zhuinden.fragmentviewbindingdelegatekt.viewBinding
 
 /**
- * [VideosGridFragment] is a Fragment that displays a row of Videos.
+ * [VideosRowFragment] is a Fragment that displays a row of Videos.
  * It manages widget initialization, style customization, and data source updates.
- * For more information on [BlazeVideosWidgetGridView], see https://dev.wsc-sports.com/docs/android-widgets#videos-grid
+ * For more information on [BlazeVideosWidgetRowView], see https://dev.wsc-sports.com/docs/android-widgets#videos-row
  */
-class VideosGridFragment : BaseWidgetFragment(R.layout.fragment_videos_grid) {
+class VideosRowFragment : BaseWidgetFragment(R.layout.fragment_videos_row) {
 
-    private val binding by viewBinding(FragmentVideosGridBinding::bind)
-    override val widgetType = WidgetScreenType.VIDEOS_GRID
+    private val binding by viewBinding(FragmentVideosRowBinding::bind)
+    override val widgetType = WidgetScreenType.VIDEOS_ROW
 
     override fun initWidgetView() {
         // The custom layout can also be set during initialization, rather than using updateWidgetLayout.
@@ -44,7 +43,7 @@ class VideosGridFragment : BaseWidgetFragment(R.layout.fragment_videos_grid) {
             blazeWidgetLabel = BlazeWidgetLabel.singleLabel(dataState.labelName),
             orderType = dataState.orderType,
         )
-        binding.videosGridWidgetView.initWidget(
+        binding.videosRowWidgetView.initWidget(
             widgetLayout = widgetLayout,
             dataSource = dataSource,
             widgetId = widgetType.name, // Or any unique identifier for the widget
@@ -60,11 +59,11 @@ class VideosGridFragment : BaseWidgetFragment(R.layout.fragment_videos_grid) {
             if (styleState.isCustomTitle) widgetItemStyle.title.setMyCustomTitleStyle()
             if (styleState.isCustomBadge) widgetItemStyle.badge.setMyCustomBadgeStyle()
         }
-        binding.videosGridWidgetView.updateWidgetLayout(newWidgetLayout)
+        binding.videosRowWidgetView.updateWidgetLayout(newWidgetLayout)
         if (styleState.isCustomItemStyleOverrides) {
             setOverrideStylesByTeamId(newWidgetLayout)
         } else {
-            binding.videosGridWidgetView.resetOverriddenStyles()
+            binding.videosRowWidgetView.resetOverriddenStyles()
         }
     }
 
@@ -73,7 +72,7 @@ class VideosGridFragment : BaseWidgetFragment(R.layout.fragment_videos_grid) {
             blazeWidgetLabel = BlazeWidgetLabel.singleLabel(dataState.labelName),
             orderType = dataState.orderType,
         )
-        binding.videosGridWidgetView.updateDataSource(dataSource, false)
+        binding.videosRowWidgetView.updateDataSource(dataSource, false)
     }
 
     // for more information see https://dev.wsc-sports.com/docs/android-blaze-widget-item-image-style
@@ -184,7 +183,7 @@ class VideosGridFragment : BaseWidgetFragment(R.layout.fragment_videos_grid) {
         val layoutDeepCopy = widgetLayout.blazeDeepCopy()
         val mappingKey =  BlazeWidgetItemCustomMapping.BlazeKeysPresets.TEAM_ID
         val mappingValue = "1610612755"
-        binding.videosGridWidgetView.updateOverrideStyles(
+        binding.videosRowWidgetView.updateOverrideStyles(
             perItemStyleOverrides = mapOf(
                 BlazeWidgetItemCustomMapping(mappingKey, mappingValue) to getBlazeWidgetItemStyleOverrides(layoutDeepCopy)
             ),

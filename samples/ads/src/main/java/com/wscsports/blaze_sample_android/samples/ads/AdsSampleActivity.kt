@@ -15,6 +15,7 @@ import com.blaze.gam.custom_native.BlazeGAMCustomNativeAdsDelegate
 import com.blaze.ima.BlazeIMA
 import com.blaze.ima.BlazeIMADelegate
 import com.wscsports.blaze_sample_android.core.WidgetDelegateImpl
+import com.wscsports.blaze_sample_android.core.ui.R.string
 import com.wscsports.blaze_sample_android.core.ui.applySafeAreaPadding
 import com.wscsports.blaze_sample_android.core.ui.viewBinding
 import com.wscsports.blaze_sample_android.samples.ads.databinding.ActivityAdsSampleBinding
@@ -41,7 +42,7 @@ class AdsSampleActivity : AppCompatActivity(),
     }
 
     private fun setupAppbar() {
-        binding.appbar.setupView("Ads") {
+        binding.appbar.setupView(getString(string.ads_title)) {
             onBackPressedDispatcher.onBackPressed()
         }
     }

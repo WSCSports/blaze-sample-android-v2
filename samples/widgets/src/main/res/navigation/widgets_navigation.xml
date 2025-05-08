@@ -63,33 +63,33 @@
 
     <fragment
         android:id="@+id/storiesRowFragment"
-        android:name="com.wscsports.blaze_sample_android.samples.widgets.widget_screens.StoriesRowFragment"
+        android:name="com.wscsports.blaze_sample_android.samples.widgets.screens.StoriesRowFragment"
         android:label="Stories row" />
     <fragment
         android:id="@+id/storiesGridFragment"
-        android:name="com.wscsports.blaze_sample_android.samples.widgets.widget_screens.StoriesGridFragment"
+        android:name="com.wscsports.blaze_sample_android.samples.widgets.screens.StoriesGridFragment"
         android:label="fragment_stories_grid"
         tools:layout="@layout/fragment_stories_grid" />
     <fragment
         android:id="@+id/momentsRowFragment"
-        android:name="com.wscsports.blaze_sample_android.samples.widgets.widget_screens.MomentsRowFragment"
+        android:name="com.wscsports.blaze_sample_android.samples.widgets.screens.MomentsRowFragment"
         android:label="fragment_moments_row"
         tools:layout="@layout/fragment_moments_row" />
     <fragment
         android:id="@+id/momentsGridFragment"
-        android:name="com.wscsports.blaze_sample_android.samples.widgets.widget_screens.MomentsGridFragment"
+        android:name="com.wscsports.blaze_sample_android.samples.widgets.screens.MomentsGridFragment"
         android:label="fragment_moments_grid"
         tools:layout="@layout/fragment_moments_grid" />
     <fragment
         android:id="@+id/mixedWidgetsFragment"
-        android:name="com.wscsports.blaze_sample_android.samples.widgets.widget_screens.MixedWidgetsFragment"
+        android:name="com.wscsports.blaze_sample_android.samples.widgets.screens.MixedWidgetsFragment"
         android:label="MixedWidgetsFragment" />
     <fragment
         android:id="@+id/videosRowFragment"
-        android:name="com.wscsports.blaze_sample_android.samples.widgets.widget_screens.VideosRowFragment"
+        android:name="com.wscsports.blaze_sample_android.samples.widgets.screens.VideosRowFragment"
         android:label="VideosRowFragment" />
     <fragment
         android:id="@+id/videosGridFragment"
-        android:name="com.wscsports.blaze_sample_android.samples.widgets.widget_screens.VideosGridFragment"
+        android:name="com.wscsports.blaze_sample_android.samples.widgets.screens.VideosGridFragment"
         android:label="VideosGridFragment" />
 </navigation>

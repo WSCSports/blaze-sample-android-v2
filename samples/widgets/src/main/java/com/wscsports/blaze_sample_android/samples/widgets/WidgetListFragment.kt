@@ -6,7 +6,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.wscsports.blaze_sample_android.samples.widgets.databinding.FragmentWidgetListBinding
-import com.wscsports.blaze_sample_android.samples.widgets.widget_screens.WidgetsViewModel
+import com.wscsports.blaze_sample_android.samples.widgets.screens.WidgetsViewModel
 import com.zhuinden.fragmentviewbindingdelegatekt.viewBinding
 
 /**

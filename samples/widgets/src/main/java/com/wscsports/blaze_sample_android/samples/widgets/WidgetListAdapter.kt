@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.wscsports.blaze_sample_android.samples.widgets.databinding.WidgetListItemBinding
 
 /**
- * WidgetListAdapter is a RecyclerView adapter that displays a list of widget screen samples.
+ * [WidgetListAdapter] is a RecyclerView adapter that displays a list of widget screen samples.
  * Each widget can be clicked to navigate to a different screen.
  */
 class WidgetListAdapter(
@@ -49,12 +49,10 @@ class WidgetListAdapter(
 
 class WidgetsComparator : DiffUtil.ItemCallback<WidgetScreenType>() {
     override fun areItemsTheSame(oldItem: WidgetScreenType, newItem: WidgetScreenType): Boolean {
-        // Replace with your own logic
         return oldItem == newItem
     }
 
     override fun areContentsTheSame(oldItem: WidgetScreenType, newItem: WidgetScreenType): Boolean {
-        // Replace with your own logic
         return oldItem.name == newItem.name
     }
 }

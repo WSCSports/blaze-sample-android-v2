@@ -1,4 +1,4 @@
-package com.wscsports.blaze_sample_android.samples.widgets.widget_screens
+package com.wscsports.blaze_sample_android.samples.widgets.screens
 
 import android.os.Bundle
 import android.util.Log
@@ -10,8 +10,8 @@ import androidx.lifecycle.lifecycleScope
 import com.blaze.blazesdk.delegates.BlazeWidgetDelegate
 import com.wscsports.blaze_sample_android.core.WidgetDelegateImpl
 import com.wscsports.blaze_sample_android.samples.widgets.WidgetScreenType
-import com.wscsports.blaze_sample_android.samples.widgets.widget_screens.state.WidgetDataState
-import com.wscsports.blaze_sample_android.samples.widgets.widget_screens.state.WidgetLayoutStyleState
+import com.wscsports.blaze_sample_android.samples.widgets.edit.WidgetDataState
+import com.wscsports.blaze_sample_android.samples.widgets.edit.WidgetLayoutStyleState
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 

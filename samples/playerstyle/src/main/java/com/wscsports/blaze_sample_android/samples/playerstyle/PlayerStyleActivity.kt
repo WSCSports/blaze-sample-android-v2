@@ -5,6 +5,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.blaze.blazesdk.delegates.BlazeWidgetDelegate
 import com.wscsports.blaze_sample_android.core.WidgetDelegateImpl
+import com.wscsports.blaze_sample_android.core.ui.R.string
 import com.wscsports.blaze_sample_android.core.ui.applySafeAreaPadding
 import com.wscsports.blaze_sample_android.core.ui.viewBinding
 import com.wscsports.blaze_sample_android.samples.playerstyle.databinding.ActivityPlayerStyleBinding
@@ -31,7 +32,7 @@ class PlayerStyleActivity : AppCompatActivity(),
     }
 
     private fun setupAppbar() {
-        binding.appbar.setupView("Player Style") {
+        binding.appbar.setupView(getString(string.player_style_title)) {
             onBackPressedDispatcher.onBackPressed()
         }
     }

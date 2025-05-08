@@ -1,18 +1,20 @@
-package com.wscsports.blaze_sample_android.samples.widgets.widget_screens
+package com.wscsports.blaze_sample_android.samples.widgets.screens
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.blaze.blazesdk.style.widgets.BlazeWidgetLayout
 import com.wscsports.blaze_sample_android.samples.widgets.WidgetScreenType
-import com.wscsports.blaze_sample_android.samples.widgets.widget_screens.state.WidgetDataState
-import com.wscsports.blaze_sample_android.samples.widgets.widget_screens.state.WidgetLayoutStyleState
+import com.wscsports.blaze_sample_android.samples.widgets.edit.EditMenuItem
+import com.wscsports.blaze_sample_android.samples.widgets.edit.WidgetDataState
+import com.wscsports.blaze_sample_android.samples.widgets.edit.WidgetLayoutStyleState
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.shareIn
@@ -48,7 +50,10 @@ class WidgetsViewModel: ViewModel() {
     private val _currWidgetType = MutableStateFlow<WidgetScreenType?>(null)
     val currWidgetType = _currWidgetType.asStateFlow()
 
-    val showEditWidgetFab: StateFlow<Boolean> = _currWidgetType
+    private val _editWidgetMenuItemEvent = MutableSharedFlow<EditMenuItem>()
+    val editWidgetMenuItemEvent = _editWidgetMenuItemEvent.asSharedFlow()
+
+    val showEditWidgetMenuButton: StateFlow<Boolean> = _currWidgetType
         .map { it != null }
         .stateIn(
             viewModelScope,
@@ -116,6 +121,12 @@ class WidgetsViewModel: ViewModel() {
             delay(delayMillis) // only to wait during back navigation until animation is finished
             _widgetStyleState.emit(WidgetLayoutStyleState())
             _widgetDataState.emit(null)
+        }
+    }
+
+    fun onEditMenuOptionClicked(item: EditMenuItem) {
+        viewModelScope.launch {
+            _editWidgetMenuItemEvent.emit(item)
         }
     }
 }

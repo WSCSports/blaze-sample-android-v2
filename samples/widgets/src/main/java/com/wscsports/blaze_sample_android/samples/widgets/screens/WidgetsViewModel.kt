@@ -2,6 +2,8 @@ package com.wscsports.blaze_sample_android.samples.widgets.screens
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.blaze.blazesdk.style.shared.models.blazeDp
+import com.blaze.blazesdk.style.widgets.BlazeWidgetItemImageStyle.BlazeImagePosition
 import com.blaze.blazesdk.style.widgets.BlazeWidgetLayout
 import com.wscsports.blaze_sample_android.samples.widgets.WidgetScreenType
 import com.wscsports.blaze_sample_android.samples.widgets.edit.EditMenuItem
@@ -15,6 +17,7 @@ import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.shareIn
@@ -36,10 +39,26 @@ class WidgetsViewModel: ViewModel() {
         get() = BlazeWidgetLayout.Presets.StoriesWidget.Grid.twoColumnsVerticalRectangles
 
     val momentsRowBaseLayout: BlazeWidgetLayout
-        get() = BlazeWidgetLayout.Presets.MomentsWidget.Row.verticalAnimatedThumbnailsRectangles
+        get() = BlazeWidgetLayout.Presets.MomentsWidget.Row.verticalAnimatedThumbnailsRectangles.apply {
+            horizontalItemsSpacing = 0.blazeDp
+            widgetItemStyle.image.apply {
+                width = 188.blazeDp
+                height = 300.blazeDp
+                margins.top = 16.blazeDp
+                margins.end = 8.blazeDp
+            }
+        }
 
     val momentsGridBaseLayout: BlazeWidgetLayout
-        get() = BlazeWidgetLayout.Presets.MomentsWidget.Grid.twoColumnsVerticalRectangles
+        get() = BlazeWidgetLayout.Presets.MomentsWidget.Grid.twoColumnsVerticalRectangles.apply {
+            horizontalItemsSpacing = 0.blazeDp
+            verticalItemsSpacing = 0.blazeDp
+            widgetItemStyle.image.apply {
+                width = 156.blazeDp
+                height = 230.blazeDp
+                margins.top = 16.blazeDp
+            }
+        }
 
     val videosRowBaseLayout: BlazeWidgetLayout
         get() = BlazeWidgetLayout.Presets.VideosWidget.Row.horizontalRectangles
@@ -53,6 +72,7 @@ class WidgetsViewModel: ViewModel() {
     private val _editWidgetMenuItemEvent = MutableSharedFlow<EditMenuItem>()
     val editWidgetMenuItemEvent = _editWidgetMenuItemEvent.asSharedFlow()
 
+    // WidgetScreenType is null means we are in the main widgets list fragment. Should be visible only for the widget fragments.
     val showEditWidgetMenuButton: StateFlow<Boolean> = _currWidgetType
         .map { it != null }
         .stateIn(
@@ -70,6 +90,15 @@ class WidgetsViewModel: ViewModel() {
         .shareIn(
             scope = viewModelScope,
             started = SharingStarted.Eagerly
+    )
+
+    // Should be visible only for the widget fragments and the style state is not empty.
+    val showSelectedStyleChipsContainer: StateFlow<Boolean> = _currWidgetType.combine(_widgetStyleState) { widgetType, styleState ->
+        widgetType != null && styleState.isNotEmpty()
+    }.stateIn(
+        viewModelScope,
+        started = SharingStarted.WhileSubscribed(),
+        initialValue = false
     )
 
     fun getCurrWidgetDataState(): WidgetDataState = _widgetDataState.value ?: WidgetDataState()
@@ -104,7 +133,7 @@ class WidgetsViewModel: ViewModel() {
         }
     }
 
-    fun getWidgetLayoutPreset(): BlazeWidgetLayout = when (_currWidgetType.value) {
+    fun getWidgetLayoutBasePreset(): BlazeWidgetLayout = when (_currWidgetType.value) {
         WidgetScreenType.STORIES_ROW -> storiesRowBaseLayout
         WidgetScreenType.STORIES_GRID -> storiesGridBaseLayout
         WidgetScreenType.MOMENTS_ROW -> momentsRowBaseLayout

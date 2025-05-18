@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/bottom_sheet_background"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <View
@@ -64,7 +65,7 @@
                 android:id="@+id/is_custom_image_check_box"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Set custom Image"
+                android:text="Custom thumbnail appearance"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/divider_header_title"
                 />
@@ -73,7 +74,7 @@
                 android:id="@+id/is_custom_indicator_check_box"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Set custom status indicator"
+                android:text="Custom status indicator"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/is_custom_image_check_box"
                 />
@@ -82,7 +83,7 @@
                 android:id="@+id/is_custom_title_check_box"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Set custom title"
+                android:text="Custom title"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/is_custom_indicator_check_box"
                 />
@@ -91,19 +92,41 @@
                 android:id="@+id/is_custom_badge_check_box"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Set custom badge"
+                android:text="Custom badge"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/is_custom_title_check_box"
                 />
+
+            <View
+                android:id="@+id/divider_customizations"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginTop="8dp"
+                android:background="@color/divider_color"
+                app:layout_constraintTop_toBottomOf="@+id/is_custom_badge_check_box"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
 
             <CheckBox
                 android:id="@+id/is_custom_item_style_overrides_check_box"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Set custom item style overrides"
+                android:layout_marginTop="4dp"
+                android:text="Custom override for a single item"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/is_custom_badge_check_box"
+                app:layout_constraintTop_toBottomOf="@id/divider_customizations"
+                app:layout_constraintBottom_toTopOf="@+id/divider_item_style_overrides"
                 />
+
+            <View
+                android:id="@+id/divider_item_style_overrides"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginTop="4dp"
+                android:background="@color/divider_color"
+                app:layout_constraintTop_toBottomOf="@+id/is_custom_item_style_overrides_check_box"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

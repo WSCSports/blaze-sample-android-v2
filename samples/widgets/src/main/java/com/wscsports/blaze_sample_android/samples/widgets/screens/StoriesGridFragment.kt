@@ -1,6 +1,7 @@
 package com.wscsports.blaze_sample_android.samples.widgets.screens
 
 import android.graphics.Color
+import androidx.core.graphics.toColorInt
 import com.blaze.blazesdk.data_source.BlazeDataSourceType
 import com.blaze.blazesdk.data_source.BlazeWidgetLabel
 import com.blaze.blazesdk.extentions.blazeDeepCopy
@@ -9,10 +10,8 @@ import com.blaze.blazesdk.style.shared.models.BlazeObjectYPosition
 import com.blaze.blazesdk.style.shared.models.blazeDp
 import com.blaze.blazesdk.style.widgets.BlazeWidgetItemBadgeStyle
 import com.blaze.blazesdk.style.widgets.BlazeWidgetItemCustomMapping
-import com.blaze.blazesdk.style.widgets.BlazeWidgetItemImageGradientOverlayStyle.BlazeGradientPosition
 import com.blaze.blazesdk.style.widgets.BlazeWidgetItemImageStyle
 import com.blaze.blazesdk.style.widgets.BlazeWidgetItemImageStyle.BlazeImagePosition
-import com.blaze.blazesdk.style.widgets.BlazeWidgetItemImageStyle.BlazeThumbnailType
 import com.blaze.blazesdk.style.widgets.BlazeWidgetItemStatusIndicatorStyle
 import com.blaze.blazesdk.style.widgets.BlazeWidgetItemStyleOverrides
 import com.blaze.blazesdk.style.widgets.BlazeWidgetItemTitleStyle
@@ -37,7 +36,7 @@ class StoriesGridFragment : BaseWidgetFragment(R.layout.fragment_stories_grid) {
     override fun initWidgetView() {
         // The custom layout can also be set during initialization, rather than using updateWidgetLayout.
         // In this case, we are setting the layout to some default preset.
-        val widgetLayout = viewModel.getWidgetLayoutPreset()
+        val widgetLayout = viewModel.getWidgetLayoutBasePreset()
         val dataState = viewModel.getCurrWidgetDataState()
         val dataSource = BlazeDataSourceType.Labels(
             blazeWidgetLabel = BlazeWidgetLabel.singleLabel(dataState.labelName),
@@ -61,9 +60,9 @@ class StoriesGridFragment : BaseWidgetFragment(R.layout.fragment_stories_grid) {
     }
 
     override fun onNewWidgetLayoutState(styleState: WidgetLayoutStyleState) {
-        val newWidgetLayout = viewModel.getWidgetLayoutPreset().apply {
-            if (styleState.isCustomImage) widgetItemStyle.image.setMyCustomImageStyle()
-            if (styleState.isCustomStatusIndicator) widgetItemStyle.statusIndicator.setMyCustomIndicatorStyle()
+        val newWidgetLayout = viewModel.getWidgetLayoutBasePreset().apply {
+            if (styleState.isCustomAppearance) widgetItemStyle.image.setMyCustomImageStyle()
+            if (styleState.isCustomStatusIndicator) widgetItemStyle.statusIndicator.setMyCustomStatusIndicatorStyle()
             if (styleState.isCustomTitle) widgetItemStyle.title.setMyCustomTitleStyle()
             if (styleState.isCustomBadge) widgetItemStyle.badge.setMyCustomBadgeStyle()
         }
@@ -77,89 +76,131 @@ class StoriesGridFragment : BaseWidgetFragment(R.layout.fragment_stories_grid) {
 
     // for more information see https://dev.wsc-sports.com/docs/android-blaze-widget-item-image-style
     private fun BlazeWidgetItemImageStyle.setMyCustomImageStyle() {
-        height = 150.blazeDp
-        position = BlazeImagePosition.TopCenter
-        cornerRadiusRatio = 0.25f
-        ratio = 4f/5f
-        context?.let { context ->
-            border.apply {
-                isVisible = true
-                liveUnreadState.color = context.getColor(R.color.mediumspringgreen)
-                liveReadState.color = context.getColor(R.color.darkslategray)
-                unreadState.color = context.getColor(R.color.coral)
-                readState.color = context.getColor(R.color.gray)
+        position = BlazeImagePosition.Center
+        cornerRadius = 20.blazeDp
+        cornerRadiusRatio = null
+        border.apply {
+            isVisible = true
+            val borderColor = "#282828".toColorInt()
+            val borderWidth = 3.blazeDp
+            liveUnreadState.apply {
+                width = borderWidth
+                color = borderColor
+                margin = 0.blazeDp
+            }
+            liveReadState.apply {
+                width = borderWidth
+                color = borderColor
+                margin = 0.blazeDp
+            }
+            unreadState.apply {
+                width = borderWidth
+                color = borderColor
+                margin = 0.blazeDp
+            }
+            readState.apply {
+                width = borderWidth
+                color = borderColor
+                margin = 0.blazeDp
             }
         }
+        val sideMargin = 10.blazeDp
         margins.apply {
-            top = 2.blazeDp
-            bottom = 2.blazeDp
-            start = 2.blazeDp
-            end = 2.blazeDp
-        }
-        thumbnailType = BlazeThumbnailType.VERTICAL_TWO_BY_THREE
-        gradientOverlay.apply {
-            isVisible = true
-            startColor = Color.BLACK
-            endColor = Color.TRANSPARENT
-            position = BlazeGradientPosition.BOTTOM
-        }
-        animatedThumbnail.apply {
-            isEnabled = false
-            horizontalAnimationTriggerPercentage = 0.3f
+            top = sideMargin
+            bottom = sideMargin
+            start = sideMargin
+            end = sideMargin
         }
     }
 
     // for more information see https://dev.wsc-sports.com/docs/android-blaze-widget-item-status-indicator-style
-    private fun BlazeWidgetItemStatusIndicatorStyle.setMyCustomIndicatorStyle() {
+    private fun BlazeWidgetItemStatusIndicatorStyle.setMyCustomStatusIndicatorStyle() {
         isVisible = true
-        position.xPosition = BlazeObjectXPosition.START_TO_START
-        position.yPosition = BlazeObjectYPosition.BOTTOM_TO_BOTTOM
+        position.xPosition = BlazeObjectXPosition.CENTER_X
+        position.yPosition = BlazeObjectYPosition.TOP_TO_TOP
+        val customText = "94:85"
+        val customBackgroundColor = "#00B27C".toColorInt()
+        val customBorderColor = "#CFFFC2".toColorInt()
+        // Set cornerRadiusRatio to null when using cornerRadius,
+        // cornerRadiusRatio overrides cornerRadius if both are set.
+        val customBorderWidth = 1.blazeDp
+        val customCornerRadius = 20.blazeDp
+        val customTextSize = 11f
+        margins.apply {
+            top = 8.blazeDp
+            bottom = 0.blazeDp
+            start = 0.blazeDp
+            end = 0.blazeDp
+        }
+        padding.apply {
+            start = 12.blazeDp
+            end = 12.blazeDp
+        }
         liveUnreadState.apply {
-            backgroundColor = Color.RED
-            text = "Live-New"
-            cornerRadius = 5.blazeDp
-            borderColor = Color.YELLOW
-            borderWidth = 2.blazeDp
+            isVisible = true
+            backgroundColor = customBackgroundColor
+            text = customText
+            textStyle.textSize = customTextSize
+            cornerRadius = customCornerRadius
+            cornerRadiusRatio = null
+            borderColor = customBorderColor
+            borderWidth = customBorderWidth
         }
         liveReadState.apply {
-            backgroundColor = Color.LTGRAY
-            text = "Live-Read"
-            cornerRadius = 5.blazeDp
-            borderColor = Color.DKGRAY
-            borderWidth = 2.blazeDp
+            isVisible = true
+            backgroundColor = customBackgroundColor
+            text = customText
+            textStyle.textSize = customTextSize
+            cornerRadius = customCornerRadius
+            cornerRadiusRatio = null
+            borderColor = customBorderColor
+            borderWidth = customBorderWidth
         }
         unreadState.apply {
-            backgroundColor = Color.GREEN
-            text = "New"
-            cornerRadius = 5.blazeDp
-            borderColor = Color.WHITE
-            borderWidth = 2.blazeDp
+            isVisible = true
+            backgroundColor = customBackgroundColor
+            text = customText
+            textStyle.textSize = customTextSize
+            cornerRadius = customCornerRadius
+            cornerRadiusRatio = null
+            borderColor = customBorderColor
+            borderWidth = customBorderWidth
         }
         readState.apply {
-            backgroundColor = Color.DKGRAY
-            text = "Read"
-            cornerRadius = 5.blazeDp
-            borderColor = Color.BLACK
-            borderWidth = 2.blazeDp
+            isVisible = true
+            backgroundColor = customBackgroundColor
+            text = customText
+            textStyle.textSize = customTextSize
+            cornerRadius = customCornerRadius
+            cornerRadiusRatio = null
+            borderColor = customBorderColor
+            borderWidth = customBorderWidth
         }
     }
 
     // for more information see https://dev.wsc-sports.com/docs/android-blaze-widget-item-title-style
     private fun BlazeWidgetItemTitleStyle.setMyCustomTitleStyle() {
         isVisible = true
+        position.apply {
+            xPosition = BlazeObjectXPosition.START_TO_START
+            yPosition = BlazeObjectYPosition.BOTTOM_TO_BOTTOM
+        }
+        val customTextColor = "#A7C7FF".toColorInt()
+        val customFontResId = R.font.fira_sans_extra_condensed_medium_italic
         readState.apply {
-            textColor =  context?.getColor(R.color.dimgray) ?: Color.BLACK
+            fontResId = customFontResId
+            textColor = customTextColor
             textSize = 14f
             maxLines = 2
-            position.xPosition = BlazeObjectXPosition.CENTER_X
-            position.yPosition = BlazeObjectYPosition.BOTTOM_TO_BOTTOM
         }
         unreadState.apply {
-            textColor = context?.getColor(R.color.darkmagenta) ?: Color.BLACK
+            fontResId = customFontResId
+            textColor = customTextColor
             textSize = 14f
             maxLines = 2
-            position.xPosition = BlazeObjectXPosition.CENTER_X
-            position.yPosition = BlazeObjectYPosition.TOP_TO_BOTTOM
+        }
+        margins.apply {
+            top = 4.blazeDp
         }
     }
 
@@ -168,19 +209,53 @@ class StoriesGridFragment : BaseWidgetFragment(R.layout.fragment_stories_grid) {
         isVisible = true
         position.xPosition = BlazeObjectXPosition.END_TO_END
         position.yPosition = BlazeObjectYPosition.TOP_TO_TOP
-        unreadState.backgroundColor = Color.BLUE
-        unreadState.cornerRadiusRatio = 0.5f
-        unreadState.borderColor = Color.WHITE
-        unreadState.borderWidth = 2.blazeDp
-        liveUnreadState.backgroundColor = Color.YELLOW
-        liveUnreadState.cornerRadiusRatio = 0.5f
+        val customImageResId = R.drawable.image_flag_us
+        val customBorderColor = Color.WHITE
+        val customBorderWidth = 1.blazeDp
+        val customWidth = 30.blazeDp
+        val customHeight = 30.blazeDp
+        // Inorder to see the border we need to set the padding to the same value as the border width.
+        padding.apply {
+            top = customBorderWidth
+            bottom = customBorderWidth
+            start = customBorderWidth
+            end = customBorderWidth
+        }
+        unreadState.apply {
+            backgroundImageResId = customImageResId
+            width = customWidth
+            height = customHeight
+            borderColor = customBorderColor
+            borderWidth = customBorderWidth
+        }
+        readState.apply {
+            backgroundImageResId = customImageResId
+            width = customWidth
+            height = customHeight
+            borderColor = customBorderColor
+            borderWidth = customBorderWidth
+        }
+        liveUnreadState.apply {
+            backgroundImageResId = customImageResId
+            width = customWidth
+            height = customHeight
+            borderColor = customBorderColor
+            borderWidth = customBorderWidth
+        }
+        liveReadState.apply {
+            backgroundImageResId = customImageResId
+            width = customWidth
+            height = customHeight
+            borderColor = customBorderColor
+            borderWidth = customBorderWidth
+        }
     }
 
     // Example of setting custom styles for a specific widget item by it game ID.
     // We get the mapping key and value from the BE, inside the item object entities field.
     // For more information see https://dev.wsc-sports.com/docs/android-blaze-widget-item-custom-mapping#/
     private fun setOverrideStylesByGameId(widgetLayout: BlazeWidgetLayout) {
-        val layoutDeepCopy = widgetLayout.blazeDeepCopy()
+        val layoutDeepCopy = widgetLayout.blazeDeepCopy() // we create a deep copy of the layout to avoid modifying the original layout
         val mappingKey =  BlazeWidgetItemCustomMapping.BlazeKeysPresets.GAME_ID
         val mappingValue = "0022300858"
         binding.storiesGridWidgetView.updateOverrideStyles(
@@ -194,43 +269,115 @@ class StoriesGridFragment : BaseWidgetFragment(R.layout.fragment_stories_grid) {
     // For more information see https://dev.wsc-sports.com/docs/android-blaze-widget-item-style-overrides#/
     private fun getBlazeWidgetItemStyleOverrides(newWidgetLayout: BlazeWidgetLayout) =
         BlazeWidgetItemStyleOverrides(
+            imageBorder = newWidgetLayout.widgetItemStyle.image.border.apply {
+                isVisible = true
+                val borderColor = "#8E1616".toColorInt()
+                unreadState.color = borderColor
+                readState.color = borderColor
+                liveUnreadState.color = borderColor
+                liveReadState.color = borderColor
+            },
             badge = newWidgetLayout.widgetItemStyle.badge.apply {
                 isVisible = true
                 position.apply {
                     xPosition = BlazeObjectXPosition.END_TO_END
                     yPosition = BlazeObjectYPosition.TOP_TO_TOP
                 }
+                val badgeImageResId = R.drawable.image_flag_es
+                val badgeBorderColor = Color.WHITE
+                val badgeBorderWidth = 1.blazeDp
+                val badgeWidth = 30.blazeDp
+                val badgeHeight = 30.blazeDp
+                val sidePadding = 1.blazeDp
+                padding.apply {
+                    top = sidePadding
+                    bottom = sidePadding
+                    start = sidePadding
+                    end = sidePadding
+                }
                 unreadState.apply {
-                    cornerRadiusRatio = 0.5f
-                    borderColor = Color.CYAN
-                    borderWidth = 4.blazeDp
+                    width = badgeWidth
+                    height = badgeHeight
+                    backgroundImageResId = badgeImageResId
+                    borderColor = badgeBorderColor
+                    borderWidth = badgeBorderWidth
                 }
                 readState.apply {
-                    backgroundColor = Color.MAGENTA
-                    cornerRadiusRatio = 0.5f
-                    borderColor = Color.GRAY
-                    borderWidth = 2.blazeDp
+                    width = badgeWidth
+                    height = badgeHeight
+                    backgroundImageResId = badgeImageResId
+                    borderColor = badgeBorderColor
+                    borderWidth = badgeBorderWidth
                 }
                 liveUnreadState.apply {
-                    backgroundColor = Color.YELLOW
-                    cornerRadiusRatio = 0.5f
-                    isVisible = true
+                    width = badgeWidth
+                    height = badgeHeight
+                    backgroundImageResId = badgeImageResId
+                    borderColor = badgeBorderColor
+                    borderWidth = badgeBorderWidth
                 }
                 liveReadState.apply {
-                    backgroundColor = Color.GREEN
-                    cornerRadiusRatio = 0.5f
-                    isVisible = true
+                    width = badgeWidth
+                    height = badgeHeight
+                    backgroundImageResId = badgeImageResId
+                    borderColor = badgeBorderColor
+                    borderWidth = badgeBorderWidth
                 }
             },
             statusIndicator = newWidgetLayout.widgetItemStyle.statusIndicator.apply {
+                val statusBackgroundColor = "#8E1616".toColorInt()
+                val statusBorderColor = "#FF6161".toColorInt()
+                // Set cornerRadiusRatio to null when using cornerRadius,
+                // cornerRadiusRatio overrides cornerRadius if both are set.
+                val statusCornerRadius = 4.blazeDp
+                val statusBorderWidth = 1.blazeDp
+                position.apply {
+                    xPosition = BlazeObjectXPosition.START_TO_START
+                    yPosition = BlazeObjectYPosition.CENTER_TO_BOTTOM
+                }
+                margins.apply {
+                    top = 0.blazeDp
+                    bottom = 0.blazeDp
+                    start = 0.blazeDp
+                    end = 0.blazeDp
+                }
+                padding.apply {
+                    start = 12.blazeDp
+                    end = 12.blazeDp
+                }
                 liveReadState.apply {
-                    backgroundColor = Color.MAGENTA
-                    text = "Live-customized"
-                    cornerRadius = 5.blazeDp
-                    borderColor = Color.DKGRAY
-                    borderWidth = 2.blazeDp
+                    backgroundColor = statusBackgroundColor
+                    text = "Breaking"
+                    cornerRadius = statusCornerRadius
+                    cornerRadiusRatio = null
+                    borderColor = statusBorderColor
+                    borderWidth = statusBorderWidth
+                }
+                liveUnreadState.apply {
+                    backgroundColor = statusBackgroundColor
+                    text = "Breaking"
+                    cornerRadiusRatio = 0f
+                    cornerRadius = statusCornerRadius
+                    cornerRadiusRatio = null
+                    borderColor = statusBorderColor
+                    borderWidth = statusBorderWidth
+                }
+                readState.apply {
+                    backgroundColor = statusBackgroundColor
+                    text = "Breaking"
+                    cornerRadius = statusCornerRadius
+                    cornerRadiusRatio = null
+                    borderColor = statusBorderColor
+                    borderWidth = statusBorderWidth
+                }
+                unreadState.apply {
+                    backgroundColor = statusBackgroundColor
+                    text = "Breaking"
+                    cornerRadius = statusCornerRadius
+                    cornerRadiusRatio = null
+                    borderColor = statusBorderColor
+                    borderWidth = statusBorderWidth
                 }
             }
         )
-
 }

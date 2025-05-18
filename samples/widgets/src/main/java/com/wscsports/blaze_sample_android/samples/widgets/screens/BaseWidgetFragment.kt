@@ -35,13 +35,11 @@ abstract class BaseWidgetFragment(@LayoutRes layoutRes: Int) : Fragment(layoutRe
         lifecycleScope.launch {
             launch {
                 viewModel.widgetStyleState.collectLatest { layoutStyleState ->
-                    Log.d("appDebug", "StoriesRowFragment: updateLayoutStyleStateFlow: new layoutStyleState = $layoutStyleState")
                     onNewWidgetLayoutState(layoutStyleState)
                 }
             }
             launch {
                 viewModel.updateWidgetDataStateEvent.collectLatest { dataState ->
-                    Log.d("appDebug", "StoriesRowFragment: updateDataStateFlow: new dataState = $dataState")
                     onNewDatasourceState(dataState)
                 }
             }

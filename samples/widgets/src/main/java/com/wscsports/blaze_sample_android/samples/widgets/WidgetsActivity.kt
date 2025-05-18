@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
+import com.google.android.material.chip.Chip
 import com.wscsports.blaze_sample_android.core.ui.R.*
 import com.wscsports.blaze_sample_android.core.ui.applySafeAreaPadding
 import com.wscsports.blaze_sample_android.core.ui.showView
@@ -15,6 +16,7 @@ import com.wscsports.blaze_sample_android.samples.widgets.edit.ChooseDataStateBo
 import com.wscsports.blaze_sample_android.samples.widgets.edit.ChooseLayoutStyleBottomSheetFragment
 import com.wscsports.blaze_sample_android.samples.widgets.edit.EditMenuItem
 import com.wscsports.blaze_sample_android.samples.widgets.edit.EditWidgetMenuBottomSheetFragment
+import com.wscsports.blaze_sample_android.samples.widgets.edit.WidgetLayoutStyleState
 import com.wscsports.blaze_sample_android.samples.widgets.screens.WidgetsViewModel
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -72,6 +74,12 @@ class WidgetsActivity : AppCompatActivity() {
             }
 
             launch {
+                viewModel.showSelectedStyleChipsContainer.collectLatest { shouldShow ->
+                    binding.chipsContainerLayout.showView(shouldShow)
+                }
+            }
+
+            launch {
                 viewModel.editWidgetMenuItemEvent.collectLatest { menuItem ->
                     when (menuItem) {
                         EditMenuItem.DATA_SOURCE -> displayEditDataSourceBottomSheet()
@@ -80,7 +88,45 @@ class WidgetsActivity : AppCompatActivity() {
                     editMenuBottomSheet?.dismiss()
                 }
             }
+            launch {
+                viewModel.widgetStyleState.collectLatest { styleState ->
+                    updateChipsWidgetStyleState(styleState)
+                }
+            }
         }
+    }
+
+    private fun updateChipsWidgetStyleState(styleState: WidgetLayoutStyleState) {
+        binding.chipGroup.removeAllViews()
+        if (styleState.isCustomAppearance) addCustomizationAppliedChip("Appearance")
+        if (styleState.isCustomStatusIndicator) addCustomizationAppliedChip("Indicator")
+        if (styleState.isCustomTitle) addCustomizationAppliedChip("Title")
+        if (styleState.isCustomBadge) addCustomizationAppliedChip("Badge")
+        if (styleState.isCustomItemStyleOverrides) addCustomizationAppliedChip("Item Override")
+    }
+
+    private fun addCustomizationAppliedChip(text: String) {
+        val chip = Chip(this@WidgetsActivity).apply {
+            this.text = text
+            textSize = 12f
+            isCheckable = false
+
+            setChipBackgroundColorResource(color.chip_background_color)
+            chipStrokeColor = resources.getColorStateList(color.chip_background_color, null)
+            setTextColor(resources.getColorStateList(color.text_color_primary, null))
+
+            chipCornerRadius = (4 * resources.displayMetrics.density).toFloat()
+
+            val paddingInDp = 4
+            val paddingInPx = (paddingInDp * resources.displayMetrics.density).toFloat()
+            textStartPadding = paddingInPx
+            textEndPadding = paddingInPx
+            chipEndPadding = paddingInPx
+            chipStartPadding = paddingInPx
+
+            chipMinHeight = (24 * resources.displayMetrics.density)
+        }
+        binding.chipGroup.addView(chip)
     }
 
     private fun displayEditDataSourceBottomSheet() {

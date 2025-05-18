@@ -23,7 +23,7 @@ class ChooseLayoutStyleBottomSheetFragment: BottomSheetDialogFragment(R.layout.w
     private fun initializeUI() {
         val styleState = viewModel.widgetStyleState.value
         binding.apply {
-            isCustomImageCheckBox.isChecked = styleState.isCustomImage
+            isCustomImageCheckBox.isChecked = styleState.isCustomAppearance
             isCustomIndicatorCheckBox.isChecked = styleState.isCustomStatusIndicator
             isCustomTitleCheckBox.isChecked = styleState.isCustomTitle
             isCustomBadgeCheckBox.isChecked = styleState.isCustomBadge
@@ -41,7 +41,7 @@ class ChooseLayoutStyleBottomSheetFragment: BottomSheetDialogFragment(R.layout.w
     private fun updateStyleState() {
         binding.apply {
             val state = WidgetLayoutStyleState(
-                isCustomImage = isCustomImageCheckBox.isChecked,
+                isCustomAppearance = isCustomImageCheckBox.isChecked,
                 isCustomStatusIndicator = isCustomIndicatorCheckBox.isChecked,
                 isCustomTitle = isCustomTitleCheckBox.isChecked,
                 isCustomBadge = isCustomBadgeCheckBox.isChecked,

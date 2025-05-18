@@ -37,7 +37,7 @@ class VideosGridFragment : BaseWidgetFragment(R.layout.fragment_videos_grid) {
     override fun initWidgetView() {
         // The custom layout can also be set during initialization, rather than using updateWidgetLayout.
         // In this case, we are setting the layout to some default preset.
-        val widgetLayout = viewModel.getWidgetLayoutPreset()
+        val widgetLayout = viewModel.getWidgetLayoutBasePreset()
         val dataState = viewModel.getCurrWidgetDataState()
         val dataSource = BlazeDataSourceType.Labels(
             blazeWidgetLabel = BlazeWidgetLabel.singleLabel(dataState.labelName),
@@ -53,8 +53,8 @@ class VideosGridFragment : BaseWidgetFragment(R.layout.fragment_videos_grid) {
     }
 
     override fun onNewWidgetLayoutState(styleState: WidgetLayoutStyleState) {
-        val newWidgetLayout = viewModel.getWidgetLayoutPreset().apply {
-            if (styleState.isCustomImage) widgetItemStyle.image.setMyCustomImageStyle()
+        val newWidgetLayout = viewModel.getWidgetLayoutBasePreset().apply {
+            if (styleState.isCustomAppearance) widgetItemStyle.image.setMyCustomImageStyle()
             if (styleState.isCustomStatusIndicator) widgetItemStyle.statusIndicator.setMyCustomIndicatorStyle()
             if (styleState.isCustomTitle) widgetItemStyle.title.setMyCustomTitleStyle()
             if (styleState.isCustomBadge) widgetItemStyle.badge.setMyCustomBadgeStyle()

@@ -9,7 +9,7 @@ import androidx.core.view.updatePadding
 import androidx.viewbinding.ViewBinding
 
 fun View.showView(show: Boolean) {
-    visibility = if (show) View.VISIBLE else View.INVISIBLE
+    visibility = if (show) View.VISIBLE else View.GONE
 }
 
 fun View.showOrGone(show: Boolean) {

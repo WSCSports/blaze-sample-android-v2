@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.view.KeyEvent
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.flowWithLifecycle
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.blaze.blazesdk.data_source.BlazeDataSourceType
@@ -12,6 +14,9 @@ import com.blaze.blazesdk.features.moments.container.BlazeMomentsPlayerContainer
 import com.wscsports.blaze_sample_android.core.ui.applySafeAreaPadding
 import com.wscsports.blaze_sample_android.core.ui.viewBinding
 import com.wscsports.blaze_sample_android.samples.momentscontainer.databinding.ActivityMomentsContainerBinding
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+import kotlin.time.Duration.Companion.seconds
 
 /**
  * This activity demonstrates how to use BlazeMomentsPlayerContainer.
@@ -29,6 +34,15 @@ class MomentsContainerActivity : AppCompatActivity() {
         binding.root.applySafeAreaPadding(shouldIncludeBottom = false)
         setupBottomNavigation()
         prepareMomentsContainer()
+        subscribeObservers()
+    }
+
+    private fun subscribeObservers() {
+        lifecycleScope.launch {
+            viewModel.onMomentsTabSelectedEvent.flowWithLifecycle(lifecycle).collect {
+                binding.bottomNavigation.selectedItemId = R.id.momentsFragment
+            }
+        }
     }
 
     private fun setupBottomNavigation() {

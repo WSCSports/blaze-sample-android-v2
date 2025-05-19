@@ -12,7 +12,7 @@ import com.blaze.blazesdk.delegates.BlazePlayerInContainerDelegate
 import com.blaze.blazesdk.features.moments.container.BlazeMomentsPlayerContainer
 import com.wscsports.blaze_sample_android.core.MomentsContainerDelegateImpl
 import com.wscsports.blaze_sample_android.samples.momentscontainer.MomentsContainerActivity.Companion.MOMENTS_LABEL
-import com.wscsports.blaze_sample_android.samples.momentscontainer.databinding.FragmentInstantsMomentsBinding
+import com.wscsports.blaze_sample_android.samples.momentscontainer.databinding.FragmentMomentsBinding
 import com.zhuinden.fragmentviewbindingdelegatekt.viewBinding
 import kotlinx.coroutines.launch
 
@@ -21,10 +21,10 @@ import kotlinx.coroutines.launch
  * It contains a BlazeMomentsPlayerContainer instance that starts playing moments instantly.
  * For more information, see https://dev.wsc-sports.com/docs/android-moments-player#/.
  */
-class InstantMomentsFragment : Fragment(R.layout.fragment_instants_moments),
+class MomentsFragment : Fragment(R.layout.fragment_moments),
     BlazePlayerInContainerDelegate by MomentsContainerDelegateImpl() {
 
-    private val binding by viewBinding(FragmentInstantsMomentsBinding::bind)
+    private val binding by viewBinding(FragmentMomentsBinding::bind)
     private val viewModel: MomentsContainerViewModel by activityViewModels()
 
     private val momentsPlayerContainer: BlazeMomentsPlayerContainer by lazy {
@@ -32,7 +32,7 @@ class InstantMomentsFragment : Fragment(R.layout.fragment_instants_moments),
             dataSource = BlazeDataSourceType.Labels(BlazeWidgetLabel.singleLabel(MOMENTS_LABEL)),
             containerId = MomentsContainerActivity.INSTANT_MOMENTS_CONTAINER_ID,
             containerView = binding.momentsContainer,
-            momentsPlayerStyle = viewModel.instantMomentsPlayerStyle,
+            momentsPlayerStyle = viewModel.momentsPlayerStyle,
             playerInContainerDelegate = this,
             shouldOrderMomentsByReadStatus = true
         )

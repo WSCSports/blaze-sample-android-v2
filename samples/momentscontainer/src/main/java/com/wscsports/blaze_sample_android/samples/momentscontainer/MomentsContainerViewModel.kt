@@ -19,28 +19,33 @@ class MomentsContainerViewModel: ViewModel() {
     private val _onVolumeChangedEvent = MutableSharedFlow<Unit>()
     val onVolumeChangedEvent = _onVolumeChangedEvent.asSharedFlow()
 
-    val lazyMomentsPlayerStyle: BlazeMomentsPlayerStyle
+    private val _onMomentsTabSelectedEvent = MutableSharedFlow<Unit>()
+    val onMomentsTabSelectedEvent = _onMomentsTabSelectedEvent.asSharedFlow()
+
+    val momentsPlayerStyle: BlazeMomentsPlayerStyle
         get() = BlazeMomentsPlayerStyle.base().apply {
             // buttons customization
-            buttons.mute.isVisible = true // true by default
-            buttons.exit.isVisible = true // true by default
+            buttons.apply {
+                mute.isVisible = true // true by default
+                exit.isVisible = false
+            }
             // Seek bar customization
-            seekBar.playingState.cornerRadius = 0.blazeDp
-            seekBar.pausedState.cornerRadius = 0.blazeDp
-            seekBar.pausedState.isThumbVisible = false
-            seekBar.bottomMargin = 0.blazeDp
-            seekBar.horizontalMargin = 0.blazeDp
+            seekBar.apply {
+                playingState.cornerRadius = 8.blazeDp
+                pausedState.cornerRadius = 8.blazeDp
+                pausedState.isThumbVisible = true // true by default
+                bottomMargin = 16.blazeDp
+                horizontalMargin = 16.blazeDp
+            }
             // cta customization
             cta.layoutPositioning = BlazeMomentsPlayerCtaStyle.BlazeCTAPositioning.CTA_NEXT_TO_BOTTOM_BUTTONS_BOX
         }
 
-    // In the instant moments player, we hide the exit button since we want to keep the player open
-    val instantMomentsPlayerStyle: BlazeMomentsPlayerStyle
-        get() = BlazeMomentsPlayerStyle.base().apply {
-            // buttons customization
-            buttons.exit.isVisible = false
+    fun setMomentsTabSelectedEvent() {
+        viewModelScope.launch {
+            _onMomentsTabSelectedEvent.emit(Unit)
         }
-
+    }
 
     fun setOnVolumeChangedEvent() {
         viewModelScope.launch {

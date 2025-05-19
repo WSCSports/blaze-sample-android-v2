@@ -6,6 +6,7 @@
         <item name="android:statusBarColor">@color/window_background</item>
         <item name="android:windowLightStatusBar">true</item> <!-- for light icons -->
         <item name="colorPrimary">@color/primary</item>
+        <item name="colorSecondaryContainer">@color/wsc_accent</item>
         <item name="materialButtonStyle">@style/BlazeSampleButtonStyle</item>
         <item name="textInputStyle">@style/CustomTextInputLayout</item>
         <item name="editTextStyle">@style/CustomTextInputEditText</item>

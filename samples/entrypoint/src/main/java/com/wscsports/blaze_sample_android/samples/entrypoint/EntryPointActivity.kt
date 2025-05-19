@@ -2,6 +2,8 @@ package com.wscsports.blaze_sample_android.samples.entrypoint
 
 import android.content.Intent
 import android.os.Bundle
+import android.text.SpannableString
+import android.text.style.UnderlineSpan
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.blaze.blazesdk.data_source.BlazeDataSourceType
@@ -73,12 +75,14 @@ class EntryPointActivity : AppCompatActivity() {
     }
 
     private fun setClickListeners() {
-        with(binding) {
+        binding.apply {
+            val spannable = SpannableString(UNIVERSAL_LINK_SPANNABLE_TEXT)
+            spannable.setSpan(UnderlineSpan(), 0, UNIVERSAL_LINK_SPANNABLE_TEXT.length, 0)
+            simulateUniversalLinkButton.text = spannable
             simulateUniversalLinkButton.setOnClickListener {
                 // Mock universal link URI received from intent.data
                 // Also, set your own scheme and host in the manifest file
-                val universalLinkUri = "https://prime.mvp.fan/moments/64ee1f9f1396e4277f059613"
-                handleUniversalLink(universalLinkUri)
+                handleUniversalLink(UNIVERSAL_LINK_URI)
             }
             playStoriesButton.setOnClickListener {
                 playStoriesByInputLabelExpression()
@@ -86,11 +90,20 @@ class EntryPointActivity : AppCompatActivity() {
             playMomentsButton.setOnClickListener {
                 playMomentsByInputLabelExpression()
             }
-            playStoryButton.setOnClickListener {
+            playVideosButton.setOnClickListener {
+                playMomentsByInputLabelExpression()
+            }
+            playStoryIdButton.setOnClickListener {
+                // TODO: add story id
                 BlazeSDK.playStory("your-story-id")
             }
-            playMomentButton.setOnClickListener {
+            playMomentIdButton.setOnClickListener {
+                // TODO: add story id
                 BlazeSDK.playMoment("your-moment-id")
+            }
+            playVideoIdButton.setOnClickListener {
+                // TODO: add story id
+                BlazeSDK.playVideo("your-video-id")
             }
         }
     }
@@ -113,6 +126,7 @@ class EntryPointActivity : AppCompatActivity() {
         with(binding) {
             storiesLabelExpressionEditText.setText(INIT_STORIES_LABEL_EXPRESSION)
             momentsLabelExpressionEditText.setText(INIT_MOMENTS_LABEL_EXPRESSION)
+            videosLabelExpressionEditText.setText(INIT_MOMENTS_LABEL_EXPRESSION)
         }
     }
 
@@ -157,6 +171,19 @@ class EntryPointActivity : AppCompatActivity() {
     }
 
     /**
+     * Plays videos by the input label expression.
+     * For more information, refer to https://dev.wsc-sports.com/docs/android-methods-and-parameters#/videos.
+     */
+    private fun playVideosByInputLabelExpression() {
+        binding.videosLabelExpressionEditText.text?.toString()?.let { labelExpressionStr ->
+            val videosDataSource = BlazeDataSourceType.Labels(
+                blazeWidgetLabel = BlazeWidgetLabel.singleLabel(labelExpressionStr)
+            )
+            BlazeSDK.playVideos(videosDataSource)
+        }
+    }
+
+    /**
      * Sets the player state.
      * You can pause, resume, or dismiss the player.
      */
@@ -170,6 +197,9 @@ class EntryPointActivity : AppCompatActivity() {
         private const val PUSH_INTENT_WSC_DATA_EXTRA_PARAM = "WscIasData"
         const val INIT_STORIES_LABEL_EXPRESSION = "top-stories"
         const val INIT_MOMENTS_LABEL_EXPRESSION = "moments"
+        const val INIT_VIDEOS_LABEL_EXPRESSION = "videos"
+        const val UNIVERSAL_LINK_SPANNABLE_TEXT = "https://your-link.com"
+        const val UNIVERSAL_LINK_URI = "https://prime.mvp.fan/moments/64ee1f9f1396e4277f059613"
     }
 
 }

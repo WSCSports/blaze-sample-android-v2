@@ -2,6 +2,7 @@ package com.wscsports.blaze_sample_android.samples.playerstyle
 
 import android.graphics.Color
 import android.widget.ImageView
+import androidx.core.graphics.toColorInt
 import com.blaze.blazesdk.style.players.BlazeFirstTimeSlideInstructionStyle
 import com.blaze.blazesdk.style.players.BlazeFirstTimeSlideTextStyle
 import com.blaze.blazesdk.style.players.BlazePlayerButtonCustomImageStates
@@ -20,7 +21,8 @@ import com.wscsports.blaze_sample_android.samples.playerstyle.PlayerStyleViewMod
 
 fun BlazeStoryPlayerStyle.applyCustomStoryPlayerParams(): BlazeStoryPlayerStyle {
     return this.apply {
-        backgroundColor = Color.BLACK
+        val bgColor = "#181820".toColorInt()
+        backgroundColor = bgColor
 
         /** Story title appearance */
         title.apply {
@@ -43,14 +45,14 @@ fun BlazeStoryPlayerStyle.applyCustomStoryPlayerParams(): BlazeStoryPlayerStyle 
 
         /** Cta button appearance */
         cta.apply {
-            cornerRadius = 0.blazeDp
-            textSize = 16f
+            cornerRadius = 20.blazeDp
+            textSize = 18f
             fontResId = null
         }
         /** Player header gradient appearance */
         headerGradient.apply {
             isVisible = true
-            startColor = Color.BLACK
+            startColor = bgColor
             endColor = Color.TRANSPARENT
         }
         /** Player progress bar appearance */
@@ -111,7 +113,6 @@ fun BlazeStoryPlayerButtonsStyle.applyButtonsStyle(): BlazeStoryPlayerButtonsSty
         captions.apply {
             isVisible = true
         }
-
         /** Custom action button appearance */
         val custom1 =  BlazeStoryPlayerCustomActionButton(
             customParams = BlazePlayerCustomActionButtonParams(
@@ -122,32 +123,21 @@ fun BlazeStoryPlayerButtonsStyle.applyButtonsStyle(): BlazeStoryPlayerButtonsSty
         ).apply {
             style.customImage = BlazePlayerButtonCustomImageStates(
                 imageSelectedPathResId = null,
-                imageUnselectedPathResId = com.blaze.blazesdk.R.drawable.blaze_drawable_ic_video_like_selected
+                imageUnselectedPathResId = R.drawable.ic_custom_player_button
             )
         }
-        val custom2 =  BlazeStoryPlayerCustomActionButton(
-            customParams = BlazePlayerCustomActionButtonParams(
-                id = "custom2", // Must be unique ID for the custom action button
-                name = "My custom 2",
-                appMetadata = emptyMap()
-            )
-        ).apply {
-            style.customImage = BlazePlayerButtonCustomImageStates(
-                imageSelectedPathResId = null,
-                imageUnselectedPathResId = com.blaze.blazesdk.R.drawable.blaze_drawable_ic_settings
-            )
-            style.isVisible = true
-            style.isVisibleForAds = true
-        }
-        setTopStackCustomActionButtons(listOf(custom2, custom1))
+        /** Custom buttons declaration */
+        setTopStackCustomActionButtons(listOf(custom1))
         /** Story top stack button ordering */
-        setTopStackOrder(listOf(
-            BlazeStoryPlayerButtonsStyle.TopStackButtons.Custom(custom1.customParams.id),
-            BlazeStoryPlayerButtonsStyle.TopStackButtons.Mute,
-            BlazeStoryPlayerButtonsStyle.TopStackButtons.Custom(custom2.customParams.id),
-            BlazeStoryPlayerButtonsStyle.TopStackButtons.Exit,
-            BlazeStoryPlayerButtonsStyle.TopStackButtons.Captions,
-        ))
+        setTopStackOrder(
+            listOf(
+                BlazeStoryPlayerButtonsStyle.TopStackButtons.Exit,
+                BlazeStoryPlayerButtonsStyle.TopStackButtons.Mute,
+                BlazeStoryPlayerButtonsStyle.TopStackButtons.Custom(custom1.customParams.id),
+                BlazeStoryPlayerButtonsStyle.TopStackButtons.Share,
+                BlazeStoryPlayerButtonsStyle.TopStackButtons.Captions,
+            )
+        )
     }
 }
 

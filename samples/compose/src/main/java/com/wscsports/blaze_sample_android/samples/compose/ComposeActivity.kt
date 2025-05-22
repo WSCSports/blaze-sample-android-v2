@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.navigation.compose.rememberNavController
 import com.wscsports.blaze_sample_android.samples.compose.ui.theme.BlazeSampleTheme
 
@@ -31,6 +32,7 @@ class ComposeActivity : AppCompatActivity() {
                 val navController = rememberNavController()
                 Scaffold(
                     bottomBar = { ComposeBottomBar(navController = navController) },
+                    containerColor = Color.White,
                     modifier = Modifier.fillMaxSize()
                 ) { innerPadding ->
                     ComposeNavHost(

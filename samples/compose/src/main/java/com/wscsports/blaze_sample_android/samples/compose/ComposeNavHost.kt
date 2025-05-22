@@ -1,11 +1,7 @@
 package com.wscsports.blaze_sample_android.samples.compose
 
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Home
-import androidx.compose.material.icons.filled.PlayArrow
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -38,11 +34,4 @@ sealed class NavHostScreens(val labelName: String) {
 
     @Serializable
     data object MomentsContainer : NavHostScreens(labelName = "Moments Container")
-
-    fun getBottomNavIconImage(): ImageVector {
-        return when (this) {
-            is WidgetsFeed -> Icons.Default.Home
-            is MomentsContainer -> Icons.Default.PlayArrow
-        }
-    }
 }

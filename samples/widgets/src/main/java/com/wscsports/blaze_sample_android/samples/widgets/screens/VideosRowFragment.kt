@@ -1,6 +1,7 @@
 package com.wscsports.blaze_sample_android.samples.widgets.screens
 
 import android.graphics.Color
+import androidx.core.graphics.toColorInt
 import com.blaze.blazesdk.data_source.BlazeDataSourceType
 import com.blaze.blazesdk.data_source.BlazeWidgetLabel
 import com.blaze.blazesdk.extentions.blazeDeepCopy
@@ -55,7 +56,7 @@ class VideosRowFragment : BaseWidgetFragment(R.layout.fragment_videos_row) {
     override fun onNewWidgetLayoutState(styleState: WidgetLayoutStyleState) {
         val newWidgetLayout = viewModel.getWidgetLayoutBasePreset().apply {
             if (styleState.isCustomAppearance) widgetItemStyle.image.setMyCustomImageStyle()
-            if (styleState.isCustomStatusIndicator) widgetItemStyle.statusIndicator.setMyCustomIndicatorStyle()
+            if (styleState.isCustomStatusIndicator) widgetItemStyle.statusIndicator.setMyCustomStatusIndicatorStyle()
             if (styleState.isCustomTitle) widgetItemStyle.title.setMyCustomTitleStyle()
             if (styleState.isCustomBadge) widgetItemStyle.badge.setMyCustomBadgeStyle()
         }
@@ -77,103 +78,131 @@ class VideosRowFragment : BaseWidgetFragment(R.layout.fragment_videos_row) {
 
     // for more information see https://dev.wsc-sports.com/docs/android-blaze-widget-item-image-style
     private fun BlazeWidgetItemImageStyle.setMyCustomImageStyle() {
-        height = 150.blazeDp
         position = BlazeImagePosition.TopCenter
-        cornerRadiusRatio = 0.25f
-        ratio = 4f/5f
-        context?.let { context ->
-            border.apply {
-                isVisible = true
-                liveUnreadState.color = context.getColor(R.color.mediumspringgreen)
-                liveReadState.color = context.getColor(R.color.darkslategray)
-                unreadState.color = context.getColor(R.color.coral)
-                readState.color = context.getColor(R.color.gray)
-            }
-        }
-        margins.apply {
-            top = 2.blazeDp
-            bottom = 2.blazeDp
-            start = 2.blazeDp
-            end = 2.blazeDp
-        }
-        thumbnailType = BlazeThumbnailType.VERTICAL_TWO_BY_THREE
-        gradientOverlay.apply {
+        cornerRadius = 0.blazeDp
+        cornerRadiusRatio = null
+        border.apply {
             isVisible = true
-            startColor = Color.BLACK
-            endColor = Color.TRANSPARENT
-            position = BlazeGradientPosition.BOTTOM
-        }
-        animatedThumbnail.apply {
-            isEnabled = false
-            horizontalAnimationTriggerPercentage = 0.3f
+            val borderColor = "#FF60C9".toColorInt()
+            val borderWidth = 3.blazeDp
+            liveUnreadState.apply {
+                width = borderWidth
+                color = borderColor
+                margin = 0.blazeDp
+            }
+            liveReadState.apply {
+                width = borderWidth
+                color = borderColor
+                margin = 0.blazeDp
+            }
+            unreadState.apply {
+                width = borderWidth
+                color = borderColor
+                margin = 0.blazeDp
+            }
+            readState.apply {
+                width = borderWidth
+                color = borderColor
+                margin = 0.blazeDp
+            }
         }
     }
 
     // for more information see https://dev.wsc-sports.com/docs/android-blaze-widget-item-status-indicator-style
-    private fun BlazeWidgetItemStatusIndicatorStyle.setMyCustomIndicatorStyle() {
+    private fun BlazeWidgetItemStatusIndicatorStyle.setMyCustomStatusIndicatorStyle() {
         isVisible = true
         position.xPosition = BlazeObjectXPosition.START_TO_START
-        position.yPosition = BlazeObjectYPosition.BOTTOM_TO_BOTTOM
-        liveUnreadState.apply {
-            backgroundColor = Color.RED
-            text = "Live-New"
-            cornerRadius = 5.blazeDp
-            borderColor = Color.YELLOW
-            borderWidth = 2.blazeDp
+        position.yPosition = BlazeObjectYPosition.TOP_TO_TOP
+        margins.apply {
+            start = 8.blazeDp
+            top = 8.blazeDp
         }
-        liveReadState.apply {
-            backgroundColor = Color.LTGRAY
-            text = "Live-Read"
-            cornerRadius = 5.blazeDp
-            borderColor = Color.DKGRAY
-            borderWidth = 2.blazeDp
+        padding.apply {
+            end = 12.blazeDp
+            start = 8.blazeDp
         }
         unreadState.apply {
-            backgroundColor = Color.GREEN
-            text = "New"
-            cornerRadius = 5.blazeDp
-            borderColor = Color.WHITE
-            borderWidth = 2.blazeDp
-        }
-        readState.apply {
-            backgroundColor = Color.DKGRAY
-            text = "Read"
-            cornerRadius = 5.blazeDp
-            borderColor = Color.BLACK
-            borderWidth = 2.blazeDp
+            backgroundColor = "#FFC7F2".toColorInt()
+            text = "NEW"
+            textStyle.apply {
+                textSize = 12f
+                textColor = "#333333".toColorInt()
+            }
+            cornerRadius = 8.blazeDp
         }
     }
 
     // for more information see https://dev.wsc-sports.com/docs/android-blaze-widget-item-title-style
     private fun BlazeWidgetItemTitleStyle.setMyCustomTitleStyle() {
         isVisible = true
+        position.apply {
+            xPosition = BlazeObjectXPosition.START_TO_START
+            yPosition = BlazeObjectYPosition.BOTTOM_TO_BOTTOM
+        }
+        val customTextColor = "#FFCE66".toColorInt()
+        val customFontResId = R.font.fira_sans_extra_condensed_medium_italic
         readState.apply {
-            textColor =  context?.getColor(R.color.dimgray) ?: Color.BLACK
-            textSize = 14f
-            maxLines = 2
-            position.xPosition = BlazeObjectXPosition.CENTER_X
-            position.yPosition = BlazeObjectYPosition.BOTTOM_TO_BOTTOM
+            fontResId = customFontResId
+            textColor = customTextColor
+            textSize = 17f
+            maxLines = 1
         }
         unreadState.apply {
-            textColor = context?.getColor(R.color.darkmagenta) ?: Color.BLACK
-            textSize = 14f
-            maxLines = 2
-            position.xPosition = BlazeObjectXPosition.CENTER_X
-            position.yPosition = BlazeObjectYPosition.TOP_TO_BOTTOM
+            fontResId = customFontResId
+            textColor = customTextColor
+            textSize = 17f
+            maxLines = 1
+        }
+        margins.apply {
+            bottom = 12.blazeDp
         }
     }
 
     // for more information see https://dev.wsc-sports.com/docs/android-blaze-widget-item-badge-style
     private fun BlazeWidgetItemBadgeStyle.setMyCustomBadgeStyle() {
         isVisible = true
-        position.xPosition = BlazeObjectXPosition.END_TO_END
-        position.yPosition = BlazeObjectYPosition.TOP_TO_TOP
-        unreadState.backgroundColor = Color.BLUE
-        unreadState.cornerRadiusRatio = 0.5f
-        unreadState.borderColor = Color.WHITE
-        unreadState.borderWidth = 2.blazeDp
-        liveUnreadState.backgroundColor = Color.YELLOW
-        liveUnreadState.cornerRadiusRatio = 0.5f
+        position.xPosition = BlazeObjectXPosition.CENTER_TO_END
+        position.yPosition = BlazeObjectYPosition.CENTER_TO_TOP
+        val customBackgroundColor = "#FF3131".toColorInt()
+        val customBorderColor = "#FF6161".toColorInt()
+        val customBorderWidth = 2.blazeDp
+        val customWidth = 24.blazeDp
+        val customHeight = 24.blazeDp
+        // Inorder to see the border we need to set the padding to the same value as the border width.
+        padding.apply {
+            top = customBorderWidth
+            bottom = customBorderWidth
+            start = customBorderWidth
+            end = customBorderWidth
+        }
+        unreadState.apply {
+            backgroundColor = customBackgroundColor
+            width = customWidth
+            height = customHeight
+            borderColor = customBorderColor
+            borderWidth = customBorderWidth
+        }
+        readState.apply {
+            backgroundColor = customBackgroundColor
+            width = customWidth
+            height = customHeight
+            borderColor = customBorderColor
+            borderWidth = customBorderWidth
+        }
+        liveUnreadState.apply {
+            backgroundColor = customBackgroundColor
+            width = customWidth
+            height = customHeight
+            borderColor = customBorderColor
+            borderWidth = customBorderWidth
+        }
+        liveReadState.apply {
+            backgroundColor = customBackgroundColor
+            width = customWidth
+            height = customHeight
+            borderColor = customBorderColor
+            borderWidth = customBorderWidth
+        }
     }
 
     // Example of setting custom styles for a specific widget item by it team ID
@@ -194,41 +223,97 @@ class VideosRowFragment : BaseWidgetFragment(R.layout.fragment_videos_row) {
     // For more information see https://dev.wsc-sports.com/docs/android-blaze-widget-item-style-overrides#/
     private fun getBlazeWidgetItemStyleOverrides(newWidgetLayout: BlazeWidgetLayout) =
         BlazeWidgetItemStyleOverrides(
-            badge = newWidgetLayout.widgetItemStyle.badge.apply {
+            imageBorder = newWidgetLayout.widgetItemStyle.image.border.apply {
                 isVisible = true
-                position.apply {
-                    xPosition = BlazeObjectXPosition.END_TO_END
-                    yPosition = BlazeObjectYPosition.TOP_TO_TOP
+                val borderColor = "#67FFF5".toColorInt()
+                val borderWidth = 1.blazeDp
+                liveUnreadState.apply {
+                    width = borderWidth
+                    color = borderColor
+                    margin = 0.blazeDp
+                }
+                liveReadState.apply {
+                    width = borderWidth
+                    color = borderColor
+                    margin = 0.blazeDp
                 }
                 unreadState.apply {
-                    cornerRadiusRatio = 0.5f
-                    borderColor = Color.CYAN
-                    borderWidth = 4.blazeDp
+                    width = borderWidth
+                    color = borderColor
+                    margin = 0.blazeDp
                 }
                 readState.apply {
-                    backgroundColor = Color.MAGENTA
-                    cornerRadiusRatio = 0.5f
-                    borderColor = Color.GRAY
-                    borderWidth = 2.blazeDp
-                }
-                liveUnreadState.apply {
-                    backgroundColor = Color.YELLOW
-                    cornerRadiusRatio = 0.5f
-                    isVisible = true
-                }
-                liveReadState.apply {
-                    backgroundColor = Color.GREEN
-                    cornerRadiusRatio = 0.5f
-                    isVisible = true
+                    width = borderWidth
+                    color = borderColor
+                    margin = 0.blazeDp
                 }
             },
-            statusIndicator = newWidgetLayout.widgetItemStyle.statusIndicator.apply {
+            badge = newWidgetLayout.widgetItemStyle.badge.apply {
+                isVisible = true
+                position.xPosition = BlazeObjectXPosition.CENTER_TO_END
+                position.yPosition = BlazeObjectYPosition.CENTER_TO_TOP
+                val customBackgroundColor = "#CAFFFA".toColorInt()
+                val customBorderColor = "#2FB2A5".toColorInt()
+                val customBorderWidth = 2.blazeDp
+                val customWidth = 24.blazeDp
+                val customHeight = 24.blazeDp
+                // Inorder to see the border we need to set the padding to the same value as the border width.
+                padding.apply {
+                    top = customBorderWidth
+                    bottom = customBorderWidth
+                    start = customBorderWidth
+                    end = customBorderWidth
+                }
+                unreadState.apply {
+                    backgroundColor = customBackgroundColor
+                    width = customWidth
+                    height = customHeight
+                    borderColor = customBorderColor
+                    borderWidth = customBorderWidth
+                }
+                readState.apply {
+                    backgroundColor = customBackgroundColor
+                    width = customWidth
+                    height = customHeight
+                    borderColor = customBorderColor
+                    borderWidth = customBorderWidth
+                }
+                liveUnreadState.apply {
+                    backgroundColor = customBackgroundColor
+                    width = customWidth
+                    height = customHeight
+                    borderColor = customBorderColor
+                    borderWidth = customBorderWidth
+                }
                 liveReadState.apply {
-                    backgroundColor = Color.MAGENTA
-                    text = "Live-customized"
-                    cornerRadius = 5.blazeDp
-                    borderColor = Color.DKGRAY
-                    borderWidth = 2.blazeDp
+                    backgroundColor = customBackgroundColor
+                    width = customWidth
+                    height = customHeight
+                    borderColor = customBorderColor
+                    borderWidth = customBorderWidth
+                }
+
+            },
+            statusIndicator = newWidgetLayout.widgetItemStyle.statusIndicator.apply {
+                isVisible = true
+                position.xPosition = BlazeObjectXPosition.START_TO_START
+                position.yPosition = BlazeObjectYPosition.TOP_TO_TOP
+                margins.apply {
+                    start = 8.blazeDp
+                    top = 8.blazeDp
+                }
+                padding.apply {
+                    end = 12.blazeDp
+                    start = 8.blazeDp
+                }
+                unreadState.apply {
+                    backgroundColor = "#CAFFFA".toColorInt()
+                    text = "NEW"
+                    textStyle.apply {
+                        textSize = 12f
+                        textColor = "#2FB2A5".toColorInt()
+                    }
+                    cornerRadius = 8.blazeDp
                 }
             }
         )

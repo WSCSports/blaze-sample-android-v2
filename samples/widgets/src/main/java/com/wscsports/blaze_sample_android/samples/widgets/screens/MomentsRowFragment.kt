@@ -10,6 +10,8 @@ import com.blaze.blazesdk.style.shared.models.BlazeObjectYPosition
 import com.blaze.blazesdk.style.shared.models.blazeDp
 import com.blaze.blazesdk.style.widgets.BlazeWidgetItemBadgeStyle
 import com.blaze.blazesdk.style.widgets.BlazeWidgetItemCustomMapping
+import com.blaze.blazesdk.style.widgets.BlazeWidgetItemImageGradientOverlayStyle
+import com.blaze.blazesdk.style.widgets.BlazeWidgetItemImageGradientOverlayStyle.BlazeGradientPosition
 import com.blaze.blazesdk.style.widgets.BlazeWidgetItemImageStyle
 import com.blaze.blazesdk.style.widgets.BlazeWidgetItemImageStyle.BlazeImagePosition
 import com.blaze.blazesdk.style.widgets.BlazeWidgetItemStatusIndicatorStyle
@@ -104,14 +106,22 @@ class MomentsRowFragment : BaseWidgetFragment(R.layout.fragment_moments_row) {
                 color = borderColor
                 margin = 0.blazeDp
             }
+            gradientOverlay.apply {
+                isVisible = true
+                startColor = "#AA000000".toColorInt()
+                endColor = "#00000000".toColorInt()
+                position = BlazeGradientPosition.BOTTOM
+            }
         }
     }
 
     // for more information see https://dev.wsc-sports.com/docs/android-blaze-widget-item-status-indicator-style
     private fun BlazeWidgetItemStatusIndicatorStyle.setMyCustomStatusIndicatorStyle() {
         isVisible = true
-        position.xPosition = BlazeObjectXPosition.CENTER_X
-        position.yPosition = BlazeObjectYPosition.CENTER_TO_BOTTOM
+        position.apply {
+            xPosition = BlazeObjectXPosition.END_TO_END
+            yPosition = BlazeObjectYPosition.BOTTOM_TO_BOTTOM
+        }
         margins.apply {
             end = 8.blazeDp
             bottom = 8.blazeDp
@@ -121,6 +131,17 @@ class MomentsRowFragment : BaseWidgetFragment(R.layout.fragment_moments_row) {
             end = 12.blazeDp
         }
         unreadState.apply {
+            isVisible = true
+            backgroundColor = "#E5FF00".toColorInt()
+            text = "NEW"
+            textStyle.apply {
+                textSize = 12f
+                textColor = "#3F3F2B".toColorInt()
+            }
+            cornerRadius = 8.blazeDp
+        }
+        readState.apply {
+            isVisible = true
             backgroundColor = "#E5FF00".toColorInt()
             text = "NEW"
             textStyle.apply {
@@ -348,30 +369,39 @@ class MomentsRowFragment : BaseWidgetFragment(R.layout.fragment_moments_row) {
                 val statusCornerRadius = 4.blazeDp
                 val statusBorderWidth = 1.blazeDp
                 position.apply {
-                    xPosition = BlazeObjectXPosition.CENTER_X
-                    yPosition = BlazeObjectYPosition.CENTER_TO_BOTTOM
+                    xPosition = BlazeObjectXPosition.END_TO_END
+                    yPosition = BlazeObjectYPosition.BOTTOM_TO_BOTTOM
                 }
                 margins.apply {
-                    top = 0.blazeDp
-                    bottom = 0.blazeDp
-                    start = 0.blazeDp
-                    end = 0.blazeDp
+                    end = 8.blazeDp
+                    bottom = 8.blazeDp
                 }
                 padding.apply {
                     start = 12.blazeDp
                     end = 12.blazeDp
                 }
                 liveUnreadState.apply {
+                    isVisible = true
                     backgroundColor = statusBackgroundColor
                     text = "New"
                     textStyle.textColor = statusTextColor
-                    cornerRadiusRatio = 0f
                     cornerRadius = statusCornerRadius
                     cornerRadiusRatio = null
                     borderColor = statusBorderColor
                     borderWidth = statusBorderWidth
                 }
                 unreadState.apply {
+                    isVisible = true
+                    backgroundColor = statusBackgroundColor
+                    text = "New"
+                    textStyle.textColor = statusTextColor
+                    cornerRadius = statusCornerRadius
+                    cornerRadiusRatio = null
+                    borderColor = statusBorderColor
+                    borderWidth = statusBorderWidth
+                }
+                readState.apply {
+                    isVisible = true
                     backgroundColor = statusBackgroundColor
                     text = "New"
                     textStyle.textColor = statusTextColor

@@ -6,7 +6,7 @@ import androidx.fragment.app.activityViewModels
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.wscsports.blaze_sample_android.samples.widgets.R
 import com.wscsports.blaze_sample_android.samples.widgets.databinding.WidgetLayoutStyleBottomSheetLayoutBinding
-import com.wscsports.blaze_sample_android.samples.widgets.screens.WidgetsViewModel
+import com.wscsports.blaze_sample_android.samples.widgets.WidgetsViewModel
 import com.zhuinden.fragmentviewbindingdelegatekt.viewBinding
 
 class ChooseLayoutStyleBottomSheetFragment: BottomSheetDialogFragment(R.layout.widget_layout_style_bottom_sheet_layout) {

@@ -8,7 +8,7 @@ enum class SampleItem(
     val imageResourceId: Int,
     val classPathSuffix: String? = null
 )   {
-    GLOBAL_SETTINGS(string.global_settings_title, string.global_settings_subtitle, drawable.ic_settings, "globaloperations.GlobalOperationsActivity"),
+    GLOBAL_SETTINGS(string.global_settings_title, string.global_settings_subtitle, drawable.ic_settings, "globalsettings.GlobalSettingsActivity"),
     WIDGETS(string.widgets_title, string.widgets_subtitle, drawable.ic_widgets, "widgets.WidgetsActivity"),
     MOMENT_CONTAINER(string.moment_container_title, string.moment_container_subtitle, drawable.ic_moments_container, "momentscontainer.MomentsContainerActivity"),
     ENTRY_POINT(string.entry_point_title, string.entry_point_subtitle, drawable.ic_entry_point, "entrypoint.EntryPointActivity"),

@@ -10,7 +10,7 @@ import com.wscsports.blaze_sample_android.samples.widgets.R
 import com.wscsports.blaze_sample_android.samples.widgets.WidgetListAdapter
 import com.wscsports.blaze_sample_android.samples.widgets.WidgetScreenType
 import com.wscsports.blaze_sample_android.samples.widgets.databinding.EditWidgetMenuBottomSheetLayoutBinding
-import com.wscsports.blaze_sample_android.samples.widgets.screens.WidgetsViewModel
+import com.wscsports.blaze_sample_android.samples.widgets.WidgetsViewModel
 import com.zhuinden.fragmentviewbindingdelegatekt.viewBinding
 
 class EditWidgetMenuBottomSheetFragment : BottomSheetDialogFragment(R.layout.edit_widget_menu_bottom_sheet_layout) {

@@ -10,6 +10,7 @@ import androidx.lifecycle.lifecycleScope
 import com.blaze.blazesdk.delegates.BlazeWidgetDelegate
 import com.wscsports.blaze_sample_android.core.WidgetDelegateImpl
 import com.wscsports.blaze_sample_android.samples.widgets.WidgetScreenType
+import com.wscsports.blaze_sample_android.samples.widgets.WidgetsViewModel
 import com.wscsports.blaze_sample_android.samples.widgets.edit.WidgetDataState
 import com.wscsports.blaze_sample_android.samples.widgets.edit.WidgetLayoutStyleState
 import kotlinx.coroutines.flow.collectLatest

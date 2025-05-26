@@ -1,11 +1,9 @@
-package com.wscsports.blaze_sample_android.samples.widgets.screens
+package com.wscsports.blaze_sample_android.samples.widgets
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.blaze.blazesdk.style.shared.models.blazeDp
-import com.blaze.blazesdk.style.widgets.BlazeWidgetItemImageStyle.BlazeImagePosition
 import com.blaze.blazesdk.style.widgets.BlazeWidgetLayout
-import com.wscsports.blaze_sample_android.samples.widgets.WidgetScreenType
 import com.wscsports.blaze_sample_android.samples.widgets.edit.EditMenuItem
 import com.wscsports.blaze_sample_android.samples.widgets.edit.WidgetDataState
 import com.wscsports.blaze_sample_android.samples.widgets.edit.WidgetLayoutStyleState
@@ -77,7 +75,7 @@ class WidgetsViewModel: ViewModel() {
         .map { it != null }
         .stateIn(
             viewModelScope,
-            started = SharingStarted.WhileSubscribed(),
+            started = SharingStarted.Companion.WhileSubscribed(),
             initialValue = false
         )
 
@@ -89,7 +87,7 @@ class WidgetsViewModel: ViewModel() {
         .filterNotNull()
         .shareIn(
             scope = viewModelScope,
-            started = SharingStarted.Eagerly
+            started = SharingStarted.Companion.Eagerly
     )
 
     // Should be visible only for the widget fragments and the style state is not empty.
@@ -97,7 +95,7 @@ class WidgetsViewModel: ViewModel() {
         widgetType != null && styleState.isNotEmpty()
     }.stateIn(
         viewModelScope,
-        started = SharingStarted.WhileSubscribed(),
+        started = SharingStarted.Companion.WhileSubscribed(),
         initialValue = false
     )
 

@@ -41,7 +41,7 @@ rootProject.name = "blaze-sample-android-new"
 include(":app")
 include(":core:ui")
 include(":samples:widgets")
-include(":samples:globaloperations")
+include(":samples:globalsettings")
 include(":samples:momentscontainer")
 include(":samples:entrypoint")
 include(":samples:playerstyle")

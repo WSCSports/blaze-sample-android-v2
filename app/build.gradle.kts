@@ -47,7 +47,7 @@ android {
 dependencies {
     implementation(project(":core:ui"))
     implementation(project(":samples:widgets"))
-    implementation(project(":samples:globaloperations"))
+    implementation(project(":samples:globalsettings"))
     implementation(project(":samples:momentscontainer"))
     implementation(project(":samples:entrypoint"))
     implementation(project(":samples:playerstyle"))

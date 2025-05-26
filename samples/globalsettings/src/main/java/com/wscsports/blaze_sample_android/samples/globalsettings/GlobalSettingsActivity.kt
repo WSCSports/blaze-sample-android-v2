@@ -1,4 +1,4 @@
-package com.wscsports.blaze_sample_android.samples.globaloperations
+package com.wscsports.blaze_sample_android.samples.globalsettings
 
 import android.os.Bundle
 import android.util.Log
@@ -11,15 +11,15 @@ import com.blaze.blazesdk.style.players.stories.BlazeStoryPlayerStyle
 import com.wscsports.blaze_sample_android.core.ui.R.*
 import com.wscsports.blaze_sample_android.core.ui.applySafeAreaPadding
 import com.wscsports.blaze_sample_android.core.ui.viewBinding
-import com.wscsports.blaze_sample_android.samples.globaloperations.databinding.ActivityGlobalConfigurationBinding
+import com.wscsports.blaze_sample_android.samples.globalsettings.databinding.ActivityGlobalSettingsBinding
 
 /**
- * Activity for handling global BlazeSDK operations.
- * Note: BlazeSDK operations are global and will affect all BlazeSDK instances in the app.
+ * Activity for handling global BlazeSDK settings.
+ * Note: BlazeSDK settings are global and will affect all BlazeSDK instances in the app.
  */
-class GlobalOperationsActivity : AppCompatActivity() {
+class GlobalSettingsActivity : AppCompatActivity() {
 
-    private val binding by viewBinding(ActivityGlobalConfigurationBinding::inflate)
+    private val binding by viewBinding(ActivityGlobalSettingsBinding::inflate)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,14 +43,12 @@ class GlobalOperationsActivity : AppCompatActivity() {
      * https://dev.wsc-sports.com/docs/android-blaze-story-player-style
      */
     private fun setDefaultPlayersStyle() {
-        val storyPlayerStyle = BlazeStoryPlayerStyle.Companion.base()
-            .apply {
+        val storyPlayerStyle = BlazeStoryPlayerStyle.Companion.base().apply {
             backgroundColor = getColor(color.black)
             title.textColor = getColor(color.wsc_accent)
             title.textSize = 16f
         }
-        val momentPlayerStyle = BlazeMomentsPlayerStyle.Companion.base()
-            .apply {
+        val momentPlayerStyle = BlazeMomentsPlayerStyle.Companion.base().apply {
             backgroundColor = getColor(color.black)
             headingText.textSize = 22f
             bodyText.textSize = 18f
@@ -61,7 +59,7 @@ class GlobalOperationsActivity : AppCompatActivity() {
     }
 
     private fun setClickListeners() {
-        with(binding) {
+        binding.apply {
             externalUserIdButton.setOnClickListener {
                 setExternalUserIdFromInput()
             }
@@ -83,10 +81,10 @@ class GlobalOperationsActivity : AppCompatActivity() {
         binding.externalUserIdEditText.text?.toString()?.let { externalUserId ->
             BlazeSDK.setExternalUserId(externalUserId) { result ->
                 result.doOnSuccess {
-                    Log.d("GlobalConfigurationActivity", "setExternalUserIdFromInput: doOnSuccess")
+                    Log.d("GlobalSettingsActivity", "setExternalUserIdFromInput: doOnSuccess")
                 }
                 result.doOnFailure { message, cause ->
-                    Log.e("GlobalConfigurationActivity", "setExternalUserIdFromInput: doOnFailure: message = $message, cause = $cause")
+                    Log.e("GlobalSettingsActivity", "setExternalUserIdFromInput: doOnFailure: message = $message, cause = $cause")
                 }
             }
         }
@@ -101,11 +99,11 @@ class GlobalOperationsActivity : AppCompatActivity() {
         binding.geoLocationEditText.text?.toString()?.let { geoLocation ->
             BlazeSDK.updateGeoRestriction(geoLocation) { result ->
                 result.doOnSuccess {
-                    Log.d("GlobalConfigurationActivity", "setGeoRestrictionFromInput: doOnSuccess")
+                    Log.d("GlobalSettingsActivity", "setGeoRestrictionFromInput: doOnSuccess")
                 }
                 result.doOnFailure { message, cause ->
                     Log.e(
-                        "GlobalConfigurationActivity",
+                        "GlobalSettingsActivity",
                         "setGeoRestrictionFromInput: doOnFailure: message = $message, cause = $cause"
                     )
                 }

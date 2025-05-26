@@ -9,6 +9,7 @@ import com.blaze.blazesdk.data_source.BlazeWidgetLabel
 import com.blaze.blazesdk.delegates.BlazeWidgetDelegate
 import com.wscsports.blaze_sample_android.core.WidgetDelegateImpl
 import com.wscsports.blaze_sample_android.samples.widgets.R
+import com.wscsports.blaze_sample_android.samples.widgets.WidgetsViewModel
 import com.wscsports.blaze_sample_android.samples.widgets.databinding.FragmentMixedWidgetsBinding
 import com.zhuinden.fragmentviewbindingdelegatekt.viewBinding
 

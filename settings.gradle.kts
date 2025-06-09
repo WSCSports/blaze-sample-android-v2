@@ -37,7 +37,7 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "blaze-sample-android-new"
+rootProject.name = "blaze-sample-android-v2"
 include(":app")
 include(":core:ui")
 include(":samples:widgets")

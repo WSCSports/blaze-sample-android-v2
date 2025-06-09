@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".PlayerStyleActivity">
+
+    <!-- Appbar at the top -->
+    <com.wscsports.blaze_sample_android.core.ui.SampleAppbarView
+        android:id="@+id/appbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <!-- ScrollView containing the rest of the content -->
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginHorizontal="16dp"
+                android:text="Explore different video player styles—each row shows a default setup or a customized version."
+                android:textSize="14sp"
+                android:textColor="@color/text_color_primary"/>
+
+            <!-- Default Story Player -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:layout_marginHorizontal="16dp"
+                android:text="Default Story Player"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:textColor="@color/text_color_header"/>
+
+            <com.blaze.blazesdk.features.stories.widgets.row.BlazeStoriesWidgetRowView
+                android:id="@+id/default_stories_row_widget_view"
+                android:layout_width="match_parent"
+                android:layout_marginTop="16dp"
+                android:layout_height="160dp"
+                android:clipToPadding="false"/>
+
+            <!-- Custom Story Player -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginHorizontal="16dp"
+                android:text="Custom Story Player"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:textColor="@color/text_color_header" />
+
+            <com.blaze.blazesdk.features.stories.widgets.row.BlazeStoriesWidgetRowView
+                android:id="@+id/custom_stories_row_widget_view"
+                android:layout_width="match_parent"
+                android:layout_height="160dp"
+                android:layout_marginTop="16dp" />
+
+            <!-- Default Moment Player -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginHorizontal="16dp"
+                android:text="Default Moment Player"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:textColor="@color/text_color_header" />
+
+            <com.blaze.blazesdk.features.moments.widgets.row.BlazeMomentsWidgetRowView
+                android:id="@+id/default_moments_row_widget_view"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:layout_marginTop="16dp" />
+
+            <!-- Custom Moment Player -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginHorizontal="16dp"
+                android:text="Custom Moment Player"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:textColor="@color/text_color_header" />
+
+            <com.blaze.blazesdk.features.moments.widgets.row.BlazeMomentsWidgetRowView
+                android:id="@+id/custom_moments_row_widget_view"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:layout_marginTop="16dp" />
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</LinearLayout>

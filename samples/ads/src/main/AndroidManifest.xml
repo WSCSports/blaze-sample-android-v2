@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <application>
+        <activity
+            android:name=".AdsSampleActivity"
+            android:exported="false" />
+
+        <!-- IMPORTANT - the following app id is a TEST id. You should use your own app id! -->
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-3940256099942544~3347511713" />
+
+
+    </application>
+
+</manifest>

@@ -31,21 +31,12 @@ BLAZE_API_KEY="your_api_key_here"
 
 **Note**: The `local.properties` file is ignored by git for security reasons. Never commit your API keys to version control.
 
-### 3. Add Firebase Configuration (Optional)
-
-If you plan to use the **Entry Point** sample with push notifications:
-
-1. Add your `google-services.json` file to the `app/` directory
-2. This enables Firebase Cloud Messaging (FCM) for push notification handling
-
-**Note**: The Firebase integration in this sample app is for **demonstration purposes only** and is not fully functional. It shows the implementation pattern but requires additional setup and configuration for production use.
-
-### 4. Sync and Build
+### 3. Sync and Build
 
 1. Open the project in Android Studio
 2. Click "Sync Project with Gradle Files"
 
-### 5. Run the Application
+### 4. Run the Application
 
 1. Connect an Android device or start an emulator
 2. Run the app using the play button

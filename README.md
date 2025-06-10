@@ -1,7 +1,5 @@
 # Blaze SDK Android Sample App
 
-A comprehensive sample application demonstrating the integration and implementation of the **BlazeSDK** for Android. This project showcases various features including widgets, moments containers, player styles, advertisements, Jetpack Compose integration, and more.
-
 ## Overview
 
 The Blaze SDK Android Sample App provides practical examples of how to integrate WSC Sports' BlazeSDK into your Android application. It includes multiple sample modules that demonstrate different aspects of the SDK, from basic widget implementation to advanced features like universal links, push notifications, and custom styling.

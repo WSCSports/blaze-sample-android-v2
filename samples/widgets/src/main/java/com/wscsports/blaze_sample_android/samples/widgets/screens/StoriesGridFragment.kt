@@ -256,8 +256,8 @@ class StoriesGridFragment : BaseWidgetFragment(R.layout.fragment_stories_grid) {
     // For more information see https://dev.wsc-sports.com/docs/android-blaze-widget-item-custom-mapping#/
     private fun setOverrideStylesByGameId(widgetLayout: BlazeWidgetLayout) {
         val layoutDeepCopy = widgetLayout.blazeDeepCopy() // we create a deep copy of the layout to avoid modifying the original layout
-        val mappingKey =  BlazeWidgetItemCustomMapping.BlazeKeysPresets.GAME_ID
-        val mappingValue = "0022300858"
+        val mappingKey =  BlazeWidgetItemCustomMapping.BlazeKeysPresets.PLAYER_ID
+        val mappingValue = "593109"
         binding.storiesGridWidgetView.updateOverrideStyles(
             perItemStyleOverrides = mapOf(
                 BlazeWidgetItemCustomMapping(mappingKey, mappingValue) to getBlazeWidgetItemStyleOverrides(layoutDeepCopy)

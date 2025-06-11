@@ -11,6 +11,8 @@ import com.blaze.blazesdk.prefetch.models.BlazeCachingLevel
 import com.blaze.blazesdk.style.players.moments.BlazeMomentsPlayerStyle
 import com.blaze.blazesdk.style.players.stories.BlazeStoryPlayerStyle
 import com.blaze.blazesdk.style.widgets.BlazeWidgetLayout
+import com.wscsports.blaze_sample_android.core.Constants.MOMENTS_WIDGET_DEFAULT_LABEL
+import com.wscsports.blaze_sample_android.core.Constants.STORIES_WIDGET_DEFAULT_LABEL
 import com.wscsports.blaze_sample_android.core.MomentsContainerDelegateImpl
 import com.wscsports.blaze_sample_android.core.WidgetDelegateImpl
 /**
@@ -26,7 +28,7 @@ class ComposeViewModel: ViewModel() {
         widgetId = "compose-stories-row-widget-id",
         widgetLayout = BlazeWidgetLayout.Presets.StoriesWidget.Row.circles,
         playerStyle = BlazeStoryPlayerStyle.base(),
-        dataSourceType = BlazeDataSourceType.Labels(BlazeWidgetLabel.singleLabel("live-stories")),
+        dataSourceType = BlazeDataSourceType.Labels(BlazeWidgetLabel.singleLabel(STORIES_WIDGET_DEFAULT_LABEL)),
         widgetDelegate = composeWidgetDelegate
     )
 
@@ -34,7 +36,7 @@ class ComposeViewModel: ViewModel() {
         widgetId = "compose-moments-row-widget-id",
         widgetLayout = BlazeWidgetLayout.Presets.MomentsWidget.Row.verticalAnimatedThumbnailsRectangles,
         playerStyle = BlazeMomentsPlayerStyle.base(),
-        dataSourceType = BlazeDataSourceType.Labels(BlazeWidgetLabel.singleLabel("moments")),
+        dataSourceType = BlazeDataSourceType.Labels(BlazeWidgetLabel.singleLabel(MOMENTS_WIDGET_DEFAULT_LABEL)),
         widgetDelegate = composeWidgetDelegate
     )
 
@@ -42,12 +44,12 @@ class ComposeViewModel: ViewModel() {
         widgetId = "compose-stories-Grid-widget-id",
         widgetLayout = BlazeWidgetLayout.Presets.StoriesWidget.Grid.twoColumnsVerticalRectangles,
         playerStyle = BlazeStoryPlayerStyle.base(),
-        dataSourceType = BlazeDataSourceType.Labels(BlazeWidgetLabel.singleLabel("top-stories")),
+        dataSourceType = BlazeDataSourceType.Labels(BlazeWidgetLabel.singleLabel(STORIES_WIDGET_DEFAULT_LABEL)),
         widgetDelegate = composeWidgetDelegate
     )
 
     val momentsContainerStateHandler = BlazeMomentsPlayerContainerComposeStateHandler(
-        dataSource = BlazeDataSourceType.Labels(BlazeWidgetLabel.singleLabel("moments")),
+        dataSource = BlazeDataSourceType.Labels(BlazeWidgetLabel.singleLabel(MOMENTS_WIDGET_DEFAULT_LABEL)),
         playerInContainerDelegate = composeMomentsContainerDelegate,
         shouldOrderMomentsByReadStatus = true,
         cachePolicyLevel = BlazeCachingLevel.DEFAULT,

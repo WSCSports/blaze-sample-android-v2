@@ -11,6 +11,7 @@ import androidx.navigation.ui.setupWithNavController
 import com.blaze.blazesdk.data_source.BlazeDataSourceType
 import com.blaze.blazesdk.data_source.BlazeWidgetLabel
 import com.blaze.blazesdk.features.moments.container.BlazeMomentsPlayerContainer
+import com.wscsports.blaze_sample_android.core.Constants.MOMENTS_WIDGET_DEFAULT_LABEL
 import com.wscsports.blaze_sample_android.core.ui.applySafeAreaPadding
 import com.wscsports.blaze_sample_android.core.ui.viewBinding
 import com.wscsports.blaze_sample_android.samples.momentscontainer.databinding.ActivityMomentsContainerBinding
@@ -54,11 +55,11 @@ class MomentsContainerActivity : AppCompatActivity() {
     private fun prepareMomentsContainer() {
         BlazeMomentsPlayerContainer.prepareMoments(
             containerId = INSTANT_MOMENTS_CONTAINER_ID,
-            dataSource = BlazeDataSourceType.Labels(BlazeWidgetLabel.singleLabel(MOMENTS_LABEL))
+            dataSource = BlazeDataSourceType.Labels(BlazeWidgetLabel.singleLabel(MOMENTS_WIDGET_DEFAULT_LABEL))
         )
         BlazeMomentsPlayerContainer.prepareMoments(
             containerId = LAZY_MOMENTS_CONTAINER_ID,
-            dataSource = BlazeDataSourceType.Labels(BlazeWidgetLabel.singleLabel(MOMENTS_LABEL))
+            dataSource = BlazeDataSourceType.Labels(BlazeWidgetLabel.singleLabel(MOMENTS_WIDGET_DEFAULT_LABEL))
         )
     }
 
@@ -76,7 +77,6 @@ class MomentsContainerActivity : AppCompatActivity() {
     }
 
     companion object {
-        const val MOMENTS_LABEL = "moments"
         const val INSTANT_MOMENTS_CONTAINER_ID = "instant-moments-container-unique-id"
         const val LAZY_MOMENTS_CONTAINER_ID = "lazy-moments-container-unique-id"
     }

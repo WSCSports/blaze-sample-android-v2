@@ -254,7 +254,7 @@ class MomentsRowFragment : BaseWidgetFragment(R.layout.fragment_moments_row) {
     private fun setOverrideStylesByTeamId(widgetLayout: BlazeWidgetLayout) {
         val layoutDeepCopy = widgetLayout.blazeDeepCopy()
         val mappingKey =  BlazeWidgetItemCustomMapping.BlazeKeysPresets.TEAM_ID
-        val mappingValue = "1610612755"
+        val mappingValue = "185"
         binding.momentsRowWidgetView.updateOverrideStyles(
             perItemStyleOverrides = mapOf(
                 BlazeWidgetItemCustomMapping(mappingKey, mappingValue) to getBlazeWidgetItemStyleOverrides(layoutDeepCopy)

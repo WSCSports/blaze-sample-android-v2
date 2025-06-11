@@ -7,6 +7,8 @@ import androidx.fragment.app.activityViewModels
 import com.blaze.blazesdk.data_source.BlazeDataSourceType
 import com.blaze.blazesdk.data_source.BlazeWidgetLabel
 import com.blaze.blazesdk.delegates.BlazeWidgetDelegate
+import com.wscsports.blaze_sample_android.core.Constants.MOMENTS_WIDGET_DEFAULT_LABEL
+import com.wscsports.blaze_sample_android.core.Constants.STORIES_WIDGET_DEFAULT_LABEL
 import com.wscsports.blaze_sample_android.core.WidgetDelegateImpl
 import com.wscsports.blaze_sample_android.samples.widgets.R
 import com.wscsports.blaze_sample_android.samples.widgets.WidgetsViewModel
@@ -37,7 +39,7 @@ class MixedWidgetsFragment: Fragment(R.layout.fragment_mixed_widgets),
 
     private fun initStoriesRowWidget() {
         val dataSource = BlazeDataSourceType.Labels(
-            blazeWidgetLabel = BlazeWidgetLabel.singleLabel("live-stories")
+            blazeWidgetLabel = BlazeWidgetLabel.singleLabel(STORIES_WIDGET_DEFAULT_LABEL)
         )
         binding.storiesRowWidgetView.initWidget(
             widgetLayout = viewModel.storiesRowBaseLayout,
@@ -49,7 +51,7 @@ class MixedWidgetsFragment: Fragment(R.layout.fragment_mixed_widgets),
 
     private fun initMomentsRowWidget() {
         val dataSource = BlazeDataSourceType.Labels(
-            blazeWidgetLabel = BlazeWidgetLabel.singleLabel("moments")
+            blazeWidgetLabel = BlazeWidgetLabel.singleLabel(MOMENTS_WIDGET_DEFAULT_LABEL)
         )
         binding.momentsRowWidgetView.initWidget(
             widgetLayout = viewModel.momentsRowBaseLayout,
@@ -61,7 +63,7 @@ class MixedWidgetsFragment: Fragment(R.layout.fragment_mixed_widgets),
 
     private fun initStoriesGridWidget() {
         val dataSource = BlazeDataSourceType.Labels(
-            blazeWidgetLabel = BlazeWidgetLabel.singleLabel("top-stories")
+            blazeWidgetLabel = BlazeWidgetLabel.singleLabel(STORIES_WIDGET_DEFAULT_LABEL)
         )
         binding.storiesGridWidgetView.initWidget(
             widgetLayout = viewModel.storiesGridBaseLayout,

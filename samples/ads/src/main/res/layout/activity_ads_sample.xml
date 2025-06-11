@@ -27,7 +27,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
-                android:text="Stories Row Widget"
+                android:text="Custom native ads"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 android:layout_marginBottom="8dp" />
@@ -43,7 +43,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
-                android:text="Moments Row Widget"
+                android:text="IMA ads"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 android:layout_marginBottom="8dp" />
@@ -59,7 +59,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
-                android:text="Stories Grid Widget"
+                android:text="Banner ads"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 android:layout_marginBottom="8dp" />

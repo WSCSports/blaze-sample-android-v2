@@ -4,6 +4,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.blaze.blazesdk.style.shared.models.blazeDp
 import com.blaze.blazesdk.style.widgets.BlazeWidgetLayout
+import com.wscsports.blaze_sample_android.core.Constants.MOMENTS_WIDGET_DEFAULT_LABEL
+import com.wscsports.blaze_sample_android.core.Constants.STORIES_WIDGET_DEFAULT_LABEL
+import com.wscsports.blaze_sample_android.core.Constants.VIDEOS_WIDGET_DEFAULT_LABEL
 import com.wscsports.blaze_sample_android.samples.widgets.edit.EditMenuItem
 import com.wscsports.blaze_sample_android.samples.widgets.edit.WidgetDataState
 import com.wscsports.blaze_sample_android.samples.widgets.edit.WidgetLayoutStyleState
@@ -121,12 +124,12 @@ class WidgetsViewModel: ViewModel() {
 
     private fun WidgetScreenType.initDataSourceLabel(): String {
         return when (this) {
-            WidgetScreenType.STORIES_ROW -> "live-stories"
-            WidgetScreenType.STORIES_GRID -> "top-stories"
-            WidgetScreenType.MOMENTS_GRID -> "moments"
-            WidgetScreenType.MOMENTS_ROW -> "moments"
-            WidgetScreenType.VIDEOS_ROW -> "videos"
-            WidgetScreenType.VIDEOS_GRID -> "videos"
+            WidgetScreenType.STORIES_ROW -> STORIES_WIDGET_DEFAULT_LABEL
+            WidgetScreenType.STORIES_GRID -> STORIES_WIDGET_DEFAULT_LABEL
+            WidgetScreenType.MOMENTS_GRID -> MOMENTS_WIDGET_DEFAULT_LABEL
+            WidgetScreenType.MOMENTS_ROW -> MOMENTS_WIDGET_DEFAULT_LABEL
+            WidgetScreenType.VIDEOS_ROW -> VIDEOS_WIDGET_DEFAULT_LABEL
+            WidgetScreenType.VIDEOS_GRID -> VIDEOS_WIDGET_DEFAULT_LABEL
             WidgetScreenType.MIXED_WIDGETS -> "" // Not needed for mixed widgets
         }
     }

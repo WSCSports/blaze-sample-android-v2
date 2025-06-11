@@ -14,6 +14,8 @@ import com.blaze.gam.custom_native.BlazeGAMCustomNativeAdsDefaultConfig
 import com.blaze.gam.custom_native.BlazeGAMCustomNativeAdsDelegate
 import com.blaze.ima.BlazeIMA
 import com.blaze.ima.BlazeIMADelegate
+import com.wscsports.blaze_sample_android.core.Constants.MOMENTS_WIDGET_DEFAULT_LABEL
+import com.wscsports.blaze_sample_android.core.Constants.STORIES_WIDGET_DEFAULT_LABEL
 import com.wscsports.blaze_sample_android.core.WidgetDelegateImpl
 import com.wscsports.blaze_sample_android.core.ui.R.string
 import com.wscsports.blaze_sample_android.core.ui.applySafeAreaPadding
@@ -77,7 +79,7 @@ class AdsSampleActivity : AppCompatActivity(),
      */
     private fun initStoriesRowWidget() {
         val dataSource = BlazeDataSourceType.Labels(
-            blazeWidgetLabel = BlazeWidgetLabel.singleLabel("live-stories")
+            blazeWidgetLabel = BlazeWidgetLabel.singleLabel(STORIES_WIDGET_DEFAULT_LABEL)
         )
         binding.storiesRowWidgetView.updateAdsConfigType(BlazeStoriesAdsConfigType.EVERY_X_STORIES)
         binding.storiesRowWidgetView.initWidget(
@@ -95,7 +97,7 @@ class AdsSampleActivity : AppCompatActivity(),
      */
     private fun initMomentsRowWidget() {
         val dataSource = BlazeDataSourceType.Labels(
-            blazeWidgetLabel = BlazeWidgetLabel.singleLabel("moments")
+            blazeWidgetLabel = BlazeWidgetLabel.singleLabel(MOMENTS_WIDGET_DEFAULT_LABEL)
         )
         binding.momentsRowWidgetView.updateAdsConfigType(BlazeMomentsAdsConfigType.EVERY_X_MOMENTS)
         binding.momentsRowWidgetView.initWidget(
@@ -108,7 +110,7 @@ class AdsSampleActivity : AppCompatActivity(),
 
     private fun initStoriesGridWidget() {
         val dataSource = BlazeDataSourceType.Labels(
-            blazeWidgetLabel = BlazeWidgetLabel.singleLabel("top-stories")
+            blazeWidgetLabel = BlazeWidgetLabel.singleLabel(STORIES_WIDGET_DEFAULT_LABEL)
         )
         binding.storiesGridWidgetView.updateAdsConfigType(BlazeStoriesAdsConfigType.FIRST_AVAILABLE_ADS_CONFIG)
         binding.storiesGridWidgetView.initWidget(

@@ -245,7 +245,7 @@ class MomentsGridFragment : BaseWidgetFragment(R.layout.fragment_moments_grid) {
     private fun setOverrideStylesByPlayerId(widgetLayout: BlazeWidgetLayout) {
         val layoutDeepCopy = widgetLayout.blazeDeepCopy()
         val mappingKey =  BlazeWidgetItemCustomMapping.BlazeKeysPresets.PLAYER_ID
-        val mappingValue = "1630178"
+        val mappingValue = "441303"
         binding.momentsGridWidgetView.updateOverrideStyles(
             perItemStyleOverrides = mapOf(
                 BlazeWidgetItemCustomMapping(mappingKey, mappingValue) to getBlazeWidgetItemStyleOverrides(layoutDeepCopy)

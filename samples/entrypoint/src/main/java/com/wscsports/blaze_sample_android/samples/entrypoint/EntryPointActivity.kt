@@ -11,6 +11,9 @@ import com.blaze.blazesdk.data_source.BlazeWidgetLabel
 import com.blaze.blazesdk.shared.BlazeSDK
 import com.blaze.blazesdk.shared.results.doOnFailure
 import com.blaze.blazesdk.shared.results.doOnSuccess
+import com.wscsports.blaze_sample_android.core.Constants.MOMENTS_WIDGET_DEFAULT_LABEL
+import com.wscsports.blaze_sample_android.core.Constants.STORIES_WIDGET_DEFAULT_LABEL
+import com.wscsports.blaze_sample_android.core.Constants.VIDEOS_WIDGET_DEFAULT_LABEL
 import com.wscsports.blaze_sample_android.core.ui.R.string
 import com.wscsports.blaze_sample_android.core.ui.applySafeAreaPadding
 import com.wscsports.blaze_sample_android.core.ui.viewBinding
@@ -94,16 +97,13 @@ class EntryPointActivity : AppCompatActivity() {
                 playMomentsByInputLabelExpression()
             }
             playStoryIdButton.setOnClickListener {
-                // TODO: add story id
-                BlazeSDK.playStory("your-story-id")
+                BlazeSDK.playStory("6541a24b347bb42284ddf5a4") // id of the story to play
             }
             playMomentIdButton.setOnClickListener {
-                // TODO: add story id
-                BlazeSDK.playMoment("your-moment-id")
+                BlazeSDK.playMoment("684943a1a26bafd24a1f9ea9") // id of the moment to play
             }
             playVideoIdButton.setOnClickListener {
-                // TODO: add story id
-                BlazeSDK.playVideo("your-video-id")
+                BlazeSDK.playVideo("6801034b8c4c8e78a2e1d11b") // id of the video to play
             }
         }
     }
@@ -124,9 +124,9 @@ class EntryPointActivity : AppCompatActivity() {
 
     private fun initLabelExpressionStringInputs() {
         with(binding) {
-            storiesLabelExpressionEditText.setText(INIT_STORIES_LABEL_EXPRESSION)
-            momentsLabelExpressionEditText.setText(INIT_MOMENTS_LABEL_EXPRESSION)
-            videosLabelExpressionEditText.setText(INIT_MOMENTS_LABEL_EXPRESSION)
+            storiesLabelExpressionEditText.setText(STORIES_WIDGET_DEFAULT_LABEL)
+            momentsLabelExpressionEditText.setText(MOMENTS_WIDGET_DEFAULT_LABEL)
+            videosLabelExpressionEditText.setText(VIDEOS_WIDGET_DEFAULT_LABEL)
         }
     }
 
@@ -135,13 +135,17 @@ class EntryPointActivity : AppCompatActivity() {
      */
     private fun preparePlayers() {
         val storiesDataSource = BlazeDataSourceType.Labels(
-            blazeWidgetLabel = BlazeWidgetLabel.Companion.singleLabel(INIT_STORIES_LABEL_EXPRESSION)
+            blazeWidgetLabel = BlazeWidgetLabel.Companion.singleLabel(STORIES_WIDGET_DEFAULT_LABEL)
         )
         val momentsDataSource = BlazeDataSourceType.Labels(
-            blazeWidgetLabel = BlazeWidgetLabel.singleLabel(INIT_MOMENTS_LABEL_EXPRESSION)
+            blazeWidgetLabel = BlazeWidgetLabel.singleLabel(MOMENTS_WIDGET_DEFAULT_LABEL)
+        )
+        val videosDataSource = BlazeDataSourceType.Labels(
+            blazeWidgetLabel = BlazeWidgetLabel.singleLabel(VIDEOS_WIDGET_DEFAULT_LABEL)
         )
         BlazeSDK.prepareStories(storiesDataSource)
         BlazeSDK.prepareMoments(momentsDataSource)
+        BlazeSDK.prepareVideos(videosDataSource)
     }
 
     /**
@@ -195,11 +199,8 @@ class EntryPointActivity : AppCompatActivity() {
 
     companion object {
         private const val PUSH_INTENT_WSC_DATA_EXTRA_PARAM = "WscIasData"
-        const val INIT_STORIES_LABEL_EXPRESSION = "top-stories"
-        const val INIT_MOMENTS_LABEL_EXPRESSION = "moments"
-        const val INIT_VIDEOS_LABEL_EXPRESSION = "videos"
         const val UNIVERSAL_LINK_SPANNABLE_TEXT = "https://your-link.com"
-        const val UNIVERSAL_LINK_URI = "https://prime.mvp.fan/moments/64ee1f9f1396e4277f059613"
+        const val UNIVERSAL_LINK_URI = "https://balzesample.mvp.fan/moments/684943a1a26bafd24a1f9ea9"
     }
 
 }

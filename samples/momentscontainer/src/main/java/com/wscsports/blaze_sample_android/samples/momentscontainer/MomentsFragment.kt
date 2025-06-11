@@ -10,8 +10,8 @@ import com.blaze.blazesdk.data_source.BlazeDataSourceType
 import com.blaze.blazesdk.data_source.BlazeWidgetLabel
 import com.blaze.blazesdk.delegates.BlazePlayerInContainerDelegate
 import com.blaze.blazesdk.features.moments.container.BlazeMomentsPlayerContainer
+import com.wscsports.blaze_sample_android.core.Constants.MOMENTS_WIDGET_DEFAULT_LABEL
 import com.wscsports.blaze_sample_android.core.MomentsContainerDelegateImpl
-import com.wscsports.blaze_sample_android.samples.momentscontainer.MomentsContainerActivity.Companion.MOMENTS_LABEL
 import com.wscsports.blaze_sample_android.samples.momentscontainer.databinding.FragmentMomentsBinding
 import com.zhuinden.fragmentviewbindingdelegatekt.viewBinding
 import kotlinx.coroutines.launch
@@ -29,7 +29,7 @@ class MomentsFragment : Fragment(R.layout.fragment_moments),
 
     private val momentsPlayerContainer: BlazeMomentsPlayerContainer by lazy {
         BlazeMomentsPlayerContainer(
-            dataSource = BlazeDataSourceType.Labels(BlazeWidgetLabel.singleLabel(MOMENTS_LABEL)),
+            dataSource = BlazeDataSourceType.Labels(BlazeWidgetLabel.singleLabel(MOMENTS_WIDGET_DEFAULT_LABEL)),
             containerId = MomentsContainerActivity.INSTANT_MOMENTS_CONTAINER_ID,
             containerView = binding.momentsContainer,
             momentsPlayerStyle = viewModel.momentsPlayerStyle,

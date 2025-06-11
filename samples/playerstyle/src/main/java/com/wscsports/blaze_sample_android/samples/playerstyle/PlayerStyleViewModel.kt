@@ -7,14 +7,16 @@ import com.blaze.blazesdk.style.players.moments.BlazeMomentsPlayerStyle
 import com.blaze.blazesdk.style.players.stories.BlazeStoryPlayerStyle
 import com.blaze.blazesdk.style.widgets.BlazeWidgetLayout
 import androidx.core.graphics.toColorInt
+import com.wscsports.blaze_sample_android.core.Constants.MOMENTS_WIDGET_DEFAULT_LABEL
+import com.wscsports.blaze_sample_android.core.Constants.STORIES_WIDGET_DEFAULT_LABEL
 
 class PlayerStyleViewModel: ViewModel() {
 
     val storiesDataSource: BlazeDataSourceType
-        get() = BlazeDataSourceType.Labels(BlazeWidgetLabel.singleLabel("top-stories"))
+        get() = BlazeDataSourceType.Labels(BlazeWidgetLabel.singleLabel(STORIES_WIDGET_DEFAULT_LABEL))
 
     val momentsDataSource: BlazeDataSourceType
-        get() = BlazeDataSourceType.Labels(BlazeWidgetLabel.singleLabel("moments"))
+        get() = BlazeDataSourceType.Labels(BlazeWidgetLabel.singleLabel(MOMENTS_WIDGET_DEFAULT_LABEL))
 
     val storiesWidgetLayout: BlazeWidgetLayout
         get() = BlazeWidgetLayout.Presets.StoriesWidget.Row.circles

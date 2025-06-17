@@ -85,7 +85,7 @@ class EntryPointActivity : AppCompatActivity() {
             simulateUniversalLinkButton.setOnClickListener {
                 // Mock universal link URI received from intent.data
                 // Also, set your own scheme and host in the manifest file
-                handleUniversalLink(UNIVERSAL_LINK_URI)
+                handleUniversalLink(MOMENT_UNIVERSAL_LINK_URI)
             }
             playStoriesButton.setOnClickListener {
                 playStoriesByInputLabelExpression()
@@ -94,7 +94,7 @@ class EntryPointActivity : AppCompatActivity() {
                 playMomentsByInputLabelExpression()
             }
             playVideosButton.setOnClickListener {
-                playMomentsByInputLabelExpression()
+                playVideosByInputLabelExpression()
             }
             playStoryIdButton.setOnClickListener {
                 BlazeSDK.playStory("6541a24b347bb42284ddf5a4") // id of the story to play
@@ -200,7 +200,7 @@ class EntryPointActivity : AppCompatActivity() {
     companion object {
         private const val PUSH_INTENT_WSC_DATA_EXTRA_PARAM = "WscIasData"
         const val UNIVERSAL_LINK_SPANNABLE_TEXT = "https://your-link.com"
-        const val UNIVERSAL_LINK_URI = "https://balzesample.mvp.fan/moments/684943a1a26bafd24a1f9ea9"
+        const val MOMENT_UNIVERSAL_LINK_URI = "https://blazesample.clipro.tv/moments/684943a1a26bafd24a1f9ea9"
     }
 
 }

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Theme.Blazesampleandroid" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Customize your light theme here. -->
+        <item name="android:windowBackground">@color/window_background</item>
+        <item name="android:statusBarColor">@color/window_background</item>
+        <item name="android:windowLightStatusBar">true</item> <!-- for light icons -->
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorSecondaryContainer">@color/wsc_accent</item>
+        <item name="materialButtonStyle">@style/BlazeSampleButtonStyle</item>
+        <item name="textInputStyle">@style/CustomTextInputLayout</item>
+        <item name="editTextStyle">@style/CustomTextInputEditText</item>
+        <item name="android:navigationBarColor">@color/window_background</item>
+        <item name="android:windowLightNavigationBar">true</item>
+    </style>
+</resources>

@@ -161,8 +161,8 @@ class VideosRowFragment : BaseWidgetFragment(R.layout.fragment_videos_row) {
     // for more information see https://dev.wsc-sports.com/docs/android-blaze-widget-item-badge-style
     private fun BlazeWidgetItemBadgeStyle.setMyCustomBadgeStyle() {
         isVisible = true
-        position.xPosition = BlazeObjectXPosition.CENTER_TO_END
-        position.yPosition = BlazeObjectYPosition.CENTER_TO_TOP
+        position.xPosition = BlazeObjectXPosition.END_TO_END
+        position.yPosition = BlazeObjectYPosition.TOP_TO_TOP
         val customBackgroundColor = "#FF3131".toColorInt()
         val customBorderColor = "#FF6161".toColorInt()
         val customBorderWidth = 2.blazeDp
@@ -210,8 +210,8 @@ class VideosRowFragment : BaseWidgetFragment(R.layout.fragment_videos_row) {
     // For more information see https://dev.wsc-sports.com/docs/android-blaze-widget-item-custom-mapping#/
     private fun setOverrideStylesByTeamId(widgetLayout: BlazeWidgetLayout) {
         val layoutDeepCopy = widgetLayout.blazeDeepCopy()
-        val mappingKey =  BlazeWidgetItemCustomMapping.BlazeKeysPresets.TEAM_ID
-        val mappingValue = "1610612755"
+        val mappingKey =  BlazeWidgetItemCustomMapping.BlazeKeysPresets.GAME_ID
+        val mappingValue = "2445381"
         binding.videosRowWidgetView.updateOverrideStyles(
             perItemStyleOverrides = mapOf(
                 BlazeWidgetItemCustomMapping(mappingKey, mappingValue) to getBlazeWidgetItemStyleOverrides(layoutDeepCopy)
@@ -250,8 +250,8 @@ class VideosRowFragment : BaseWidgetFragment(R.layout.fragment_videos_row) {
             },
             badge = newWidgetLayout.widgetItemStyle.badge.apply {
                 isVisible = true
-                position.xPosition = BlazeObjectXPosition.CENTER_TO_END
-                position.yPosition = BlazeObjectYPosition.CENTER_TO_TOP
+                position.xPosition = BlazeObjectXPosition.END_TO_END
+                position.yPosition = BlazeObjectYPosition.TOP_TO_TOP
                 val customBackgroundColor = "#CAFFFA".toColorInt()
                 val customBorderColor = "#2FB2A5".toColorInt()
                 val customBorderWidth = 2.blazeDp

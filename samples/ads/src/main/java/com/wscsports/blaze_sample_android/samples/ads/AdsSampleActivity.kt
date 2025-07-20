@@ -14,6 +14,7 @@ import com.blaze.gam.custom_native.BlazeGAMCustomNativeAdsDefaultConfig
 import com.blaze.gam.custom_native.BlazeGAMCustomNativeAdsDelegate
 import com.blaze.ima.BlazeIMA
 import com.blaze.ima.BlazeIMADelegate
+import com.wscsports.blaze_sample_android.core.Constants
 import com.wscsports.blaze_sample_android.core.Constants.MOMENTS_WIDGET_DEFAULT_LABEL
 import com.wscsports.blaze_sample_android.core.Constants.STORIES_WIDGET_DEFAULT_LABEL
 import com.wscsports.blaze_sample_android.core.WidgetDelegateImpl
@@ -59,8 +60,8 @@ class AdsSampleActivity : AppCompatActivity(),
         BlazeGAM.enableCustomNativeAds(
             context = applicationContext,
             defaultAdsConfig =  BlazeGAMCustomNativeAdsDefaultConfig(
-                "/123456789/CustomNativeUnitTest",
-                "123456"
+                adUnit = "/4654/undefined/wsc",
+                templateId = "12382808"
             ),
             delegate = this)
         BlazeGAM.enableBannerAds(context = applicationContext, delegate = this)
@@ -79,9 +80,9 @@ class AdsSampleActivity : AppCompatActivity(),
      */
     private fun initStoriesRowWidget() {
         val dataSource = BlazeDataSourceType.Labels(
-            blazeWidgetLabel = BlazeWidgetLabel.singleLabel(STORIES_WIDGET_DEFAULT_LABEL)
+            blazeWidgetLabel = BlazeWidgetLabel.singleLabel("stories-ads-custom-native")
         )
-        binding.storiesRowWidgetView.updateAdsConfigType(BlazeStoriesAdsConfigType.EVERY_X_STORIES)
+        binding.storiesRowWidgetView.updateAdsConfigType(BlazeStoriesAdsConfigType.FIRST_AVAILABLE_ADS_CONFIG)
         binding.storiesRowWidgetView.initWidget(
             widgetLayout = BlazeWidgetLayout.Presets.StoriesWidget.Row.circles,
             dataSource = dataSource,
@@ -110,7 +111,7 @@ class AdsSampleActivity : AppCompatActivity(),
 
     private fun initStoriesGridWidget() {
         val dataSource = BlazeDataSourceType.Labels(
-            blazeWidgetLabel = BlazeWidgetLabel.singleLabel(STORIES_WIDGET_DEFAULT_LABEL)
+            blazeWidgetLabel = BlazeWidgetLabel.singleLabel("stories-ads-banner")
         )
         binding.storiesGridWidgetView.updateAdsConfigType(BlazeStoriesAdsConfigType.FIRST_AVAILABLE_ADS_CONFIG)
         binding.storiesGridWidgetView.initWidget(

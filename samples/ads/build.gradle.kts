@@ -4,11 +4,14 @@ plugins {
 }
 
 android {
+    val compileSdkVersion = rootProject.extra["compileSdkVersion"] as Int
+    val minSdkVersion = rootProject.extra["minSdkVersion"] as Int
+
     namespace = "com.wscsports.blaze_sample_android.samples.ads"
-    compileSdk = 34
+    compileSdk = compileSdkVersion
 
     defaultConfig {
-        minSdk = 24
+        minSdk = minSdkVersion
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")

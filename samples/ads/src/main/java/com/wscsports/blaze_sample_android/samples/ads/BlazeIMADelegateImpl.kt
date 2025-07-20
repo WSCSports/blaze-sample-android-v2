@@ -21,15 +21,15 @@ class BlazeIMADelegateImpl: BlazeIMADelegate {
         Log.e(TAG, "onImaAdError: $errMsg")
     }
 
-    override fun additionalIMATagQueryParams(requestData: BlazeIMAAdRequestInformation): Map<String, String> {
+    override suspend fun additionalIMATagQueryParams(requestData: BlazeIMAAdRequestInformation): Map<String, String> {
         return emptyMap()
     }
 
-    override fun customIMASettings(requestData: BlazeIMAAdRequestInformation): ImaSdkSettings? {
+    override suspend fun customIMASettings(requestData: BlazeIMAAdRequestInformation): ImaSdkSettings? {
         return null
     }
 
-    override fun overrideAdTagUrl(requestData: BlazeIMAAdRequestInformation): String? {
+    override suspend fun overrideAdTagUrl(requestData: BlazeIMAAdRequestInformation): String? {
         return null
     }
 

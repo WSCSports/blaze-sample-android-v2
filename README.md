@@ -43,7 +43,7 @@ BLAZE_API_KEY="your_api_key_here"
 
 ### Initialize the SDK
 
-The BlazeSDK needs to be initialized in your Application class or main activity. Here's example for initialization pattern:
+The BlazeSDK needs to be initialized in your Application class. Here's example for initialization pattern:
 
 ```kotlin
 // In your Application class onCreate() or Activity

@@ -21,7 +21,7 @@ composeBom = "2025.05.01"
 nav_version = "2.9.0"
 swiperefreshlayout = "1.2.0-alpha01"
 serializationJson = "1.7.3"
-blazeSDK = "1.10.3"
+blazeSDK = "1.11.6"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }

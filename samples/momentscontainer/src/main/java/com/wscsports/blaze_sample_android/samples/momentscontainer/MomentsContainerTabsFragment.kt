@@ -10,6 +10,7 @@ import com.blaze.blazesdk.data_source.BlazeDataSourceType
 import com.blaze.blazesdk.data_source.BlazeWidgetLabel
 import com.blaze.blazesdk.features.moments.container.tabs.BlazeMomentsPlayerContainerTabs
 import com.blaze.blazesdk.features.moments.container.tabs.models.BlazeMomentsContainerTabItem
+import com.blaze.blazesdk.style.players.BlazePlayerButtonCustomImageStates
 import com.blaze.blazesdk.style.players.tabs.BlazePlayerTabsStyle
 import com.wscsports.blaze_sample_android.core.Constants.MOMENTS_CONTAINER_TABS_1_DEFAULT_LABEL
 import com.wscsports.blaze_sample_android.core.Constants.MOMENTS_CONTAINER_TABS_2_DEFAULT_LABEL
@@ -38,13 +39,21 @@ class MomentsContainerTabsFragment : Fragment(R.layout.fragment_moments_containe
             tabs = listOf(
                 BlazeMomentsContainerTabItem(
                     containerId = MOMENTS_CONTAINER_TABS_ID_1,
-                    title = "For You",
+                    title = "Trending",
                     dataSource = BlazeDataSourceType.Labels(BlazeWidgetLabel.singleLabel(MOMENTS_CONTAINER_TABS_1_DEFAULT_LABEL)),
+                    icon = BlazePlayerButtonCustomImageStates(
+                        imageSelectedPathResId = com.wscsports.blaze_sample_android.core.ui.R.drawable.ic_tabs_trending,
+                        imageUnselectedPathResId = com.wscsports.blaze_sample_android.core.ui.R.drawable.ic_tabs_trending,
+                    )
                 ),
                 BlazeMomentsContainerTabItem(
                     containerId = MOMENTS_CONTAINER_TABS_ID_2,
-                    title = "Trending",
+                    title = "For You",
                     dataSource = BlazeDataSourceType.Labels(BlazeWidgetLabel.singleLabel(MOMENTS_CONTAINER_TABS_2_DEFAULT_LABEL)),
+                    icon = BlazePlayerButtonCustomImageStates(
+                        imageSelectedPathResId = com.wscsports.blaze_sample_android.core.ui.R.drawable.ic_tabs_for_you,
+                        imageUnselectedPathResId = com.wscsports.blaze_sample_android.core.ui.R.drawable.ic_tabs_for_you,
+                    )
                 ),
             ),
             containerTabsView = binding.momentsTabsContainer,

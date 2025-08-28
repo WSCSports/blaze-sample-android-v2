@@ -14,6 +14,7 @@ import com.blaze.blazesdk.data_source.BlazeWidgetLabel
 import com.blaze.blazesdk.features.moments.container.tabs.compose.BlazeMomentsPlayerContainerTabsCompose
 import com.blaze.blazesdk.features.moments.container.tabs.compose.BlazeMomentsPlayerContainerTabsComposeStateHandler
 import com.blaze.blazesdk.features.moments.container.tabs.models.BlazeMomentsContainerTabItem
+import com.blaze.blazesdk.style.players.BlazePlayerButtonCustomImageStates
 import com.blaze.blazesdk.style.players.moments.BlazeMomentsPlayerStyle
 import com.blaze.blazesdk.style.players.tabs.BlazePlayerTabsStyle
 import com.wscsports.blaze_sample_android.core.Constants.MOMENTS_CONTAINER_TABS_1_DEFAULT_LABEL
@@ -35,13 +36,21 @@ fun MomentsContainerTabsScreen(viewModel: ComposeViewModel) {
             tabs = listOf(
                 BlazeMomentsContainerTabItem(
                     containerId = MOMENTS_CONTAINER_TABS_COMPOSE_ID_1,
-                    title = "For You",
+                    title = "Trending",
                     dataSource = BlazeDataSourceType.Labels(BlazeWidgetLabel.singleLabel(MOMENTS_CONTAINER_TABS_1_DEFAULT_LABEL)),
+                    icon = BlazePlayerButtonCustomImageStates(
+                        imageSelectedPathResId = com.wscsports.blaze_sample_android.core.ui.R.drawable.ic_tabs_trending,
+                        imageUnselectedPathResId = com.wscsports.blaze_sample_android.core.ui.R.drawable.ic_tabs_trending,
+                    )
                 ),
                 BlazeMomentsContainerTabItem(
                     containerId = MOMENTS_CONTAINER_TABS_COMPOSE_ID_2,
-                    title = "Trending",
+                    title = "For You",
                     dataSource = BlazeDataSourceType.Labels(BlazeWidgetLabel.singleLabel(MOMENTS_CONTAINER_TABS_2_DEFAULT_LABEL)),
+                    icon = BlazePlayerButtonCustomImageStates(
+                        imageSelectedPathResId = com.wscsports.blaze_sample_android.core.ui.R.drawable.ic_tabs_for_you,
+                        imageUnselectedPathResId = com.wscsports.blaze_sample_android.core.ui.R.drawable.ic_tabs_for_you,
+                    )
                 ),
             ),
             playerStyle = BlazeMomentsPlayerStyle.base().apply { 

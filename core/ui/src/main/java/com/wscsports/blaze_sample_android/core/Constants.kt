@@ -5,6 +5,6 @@ object Constants {
     const val MOMENTS_WIDGET_DEFAULT_LABEL = "moments-main"
     const val MOMENTS_CONTAINER_DEFAULT_LABEL = "moments-main"
     const val MOMENTS_CONTAINER_TABS_1_DEFAULT_LABEL = "moments-main"
-    const val MOMENTS_CONTAINER_TABS_2_DEFAULT_LABEL = "moments-main"
+    const val MOMENTS_CONTAINER_TABS_2_DEFAULT_LABEL = "moments-main-2"
     const val VIDEOS_WIDGET_DEFAULT_LABEL = "video-long-form"
 }

@@ -5,7 +5,11 @@
         android:icon="@drawable/ic_home_tab"
         android:title="Home" />
     <item
-        android:id="@+id/momentsFragment"
-        android:icon="@drawable/ic_moments_tab"
-        android:title="Moments tab" />
+        android:id="@+id/momentsContainerFragment"
+        android:icon="@drawable/ic_tabs"
+        android:title="Container" />
+    <item
+        android:id="@+id/momentsContainerTabsFragment"
+        android:icon="@drawable/ic_tabs"
+        android:title="Tabs" />
 </menu>

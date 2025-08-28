@@ -15,9 +15,7 @@ import com.wscsports.blaze_sample_android.core.Constants.MOMENTS_WIDGET_DEFAULT_
 import com.wscsports.blaze_sample_android.core.ui.applySafeAreaPadding
 import com.wscsports.blaze_sample_android.core.ui.viewBinding
 import com.wscsports.blaze_sample_android.samples.momentscontainer.databinding.ActivityMomentsContainerBinding
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import kotlin.time.Duration.Companion.seconds
 
 /**
  * This activity demonstrates how to use BlazeMomentsPlayerContainer.
@@ -41,7 +39,7 @@ class MomentsContainerActivity : AppCompatActivity() {
     private fun subscribeObservers() {
         lifecycleScope.launch {
             viewModel.onMomentsTabSelectedEvent.flowWithLifecycle(lifecycle).collect {
-                binding.bottomNavigation.selectedItemId = R.id.momentsFragment
+                binding.bottomNavigation.selectedItemId = R.id.momentsContainerFragment
             }
         }
     }
@@ -79,6 +77,9 @@ class MomentsContainerActivity : AppCompatActivity() {
     companion object {
         const val INSTANT_MOMENTS_CONTAINER_ID = "instant-moments-container-unique-id"
         const val LAZY_MOMENTS_CONTAINER_ID = "lazy-moments-container-unique-id"
+        const val MOMENTS_CONTAINER_TABS_SOURCE_ID = "moments-container-tabs-unique-id"
+        const val MOMENTS_CONTAINER_TABS_ID_1 = "tab-1"
+        const val MOMENTS_CONTAINER_TABS_ID_2 = "tab-2"
     }
 
 }

@@ -6,6 +6,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.wscsports.blaze_sample_android.samples.compose.screens.MomentsContainerScreen
+import com.wscsports.blaze_sample_android.samples.compose.screens.MomentsContainerTabsScreen
 import com.wscsports.blaze_sample_android.samples.compose.screens.WidgetsFeedScreen
 import kotlinx.serialization.Serializable
 
@@ -18,10 +19,13 @@ fun ComposeNavHost(
 ) {
     NavHost(navController = navController, startDestination = NavHostScreens.WidgetsFeed, modifier = modifier) {
         composable<NavHostScreens.WidgetsFeed> {
-            WidgetsFeedScreen(viewModel = viewModel, onTopBarBackPressed = onTopBarBackPressed)
+            WidgetsFeedScreen(onTopBarBackPressed = onTopBarBackPressed)
         }
         composable<NavHostScreens.MomentsContainer> {
-            MomentsContainerScreen(viewModel)
+            MomentsContainerScreen(viewModel = viewModel)
+        }
+        composable<NavHostScreens.MomentsContainerTabs> {
+            MomentsContainerTabsScreen(viewModel = viewModel)
         }
     }
 }
@@ -34,4 +38,7 @@ sealed class NavHostScreens(val labelName: String) {
 
     @Serializable
     data object MomentsContainer : NavHostScreens(labelName = "Moments Container")
+
+    @Serializable
+    data object MomentsContainerTabs : NavHostScreens(labelName = "Moments Tabs")
 }

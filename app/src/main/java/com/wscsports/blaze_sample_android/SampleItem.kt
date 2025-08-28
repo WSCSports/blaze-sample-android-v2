@@ -14,5 +14,6 @@ enum class SampleItem(
     ENTRY_POINT(string.entry_point_title, string.entry_point_subtitle, drawable.ic_entry_point, "entrypoint.EntryPointActivity"),
     PLAYER_STYLE(string.player_style_title, string.player_style_subtitle, drawable.ic_player_style, "playerstyle.PlayerStyleActivity"),
     ADS(string.ads_title, string.ads_subtitle, drawable.ic_ads, "ads.AdsSampleActivity"),
-    COMPOSE(string.compose_title, string.compose_subtitle, drawable.ic_compose, "compose.ComposeActivity");
+    COMPOSE(string.compose_title, string.compose_subtitle, drawable.ic_compose, "compose.ComposeActivity"),
+    INLINE_VIDEOS(string.inline_videos_title, string.inline_videos_subtitle, drawable.ic_inline_videos, "inlinevideos.InlineVideosActivity");
 }

@@ -12,7 +12,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.navigation.compose.rememberNavController
-import com.wscsports.blaze_sample_android.samples.compose.ui.theme.BlazeSampleTheme
+import com.wscsports.blaze_sample_android.core.ui.theme.BlazeSampleTheme
 
 /**
  * The main activity for the Compose sample.

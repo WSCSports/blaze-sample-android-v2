@@ -10,9 +10,10 @@ import com.blaze.blazesdk.data_source.BlazeDataSourceType
 import com.blaze.blazesdk.data_source.BlazeWidgetLabel
 import com.blaze.blazesdk.delegates.BlazePlayerInContainerDelegate
 import com.blaze.blazesdk.features.moments.container.BlazeMomentsPlayerContainer
+import com.wscsports.blaze_sample_android.core.Constants.MOMENTS_CONTAINER_DEFAULT_LABEL
 import com.wscsports.blaze_sample_android.core.Constants.MOMENTS_WIDGET_DEFAULT_LABEL
 import com.wscsports.blaze_sample_android.core.MomentsContainerDelegateImpl
-import com.wscsports.blaze_sample_android.samples.momentscontainer.databinding.FragmentMomentsBinding
+import com.wscsports.blaze_sample_android.samples.momentscontainer.databinding.FragmentMomentsContainerBinding
 import com.zhuinden.fragmentviewbindingdelegatekt.viewBinding
 import kotlinx.coroutines.launch
 
@@ -21,15 +22,15 @@ import kotlinx.coroutines.launch
  * It contains a BlazeMomentsPlayerContainer instance that starts playing moments instantly.
  * For more information, see https://dev.wsc-sports.com/docs/android-moments-player#/.
  */
-class MomentsFragment : Fragment(R.layout.fragment_moments),
+class MomentsContainerFragment : Fragment(R.layout.fragment_moments_container),
     BlazePlayerInContainerDelegate by MomentsContainerDelegateImpl() {
 
-    private val binding by viewBinding(FragmentMomentsBinding::bind)
+    private val binding by viewBinding(FragmentMomentsContainerBinding::bind)
     private val viewModel: MomentsContainerViewModel by activityViewModels()
 
     private val momentsPlayerContainer: BlazeMomentsPlayerContainer by lazy {
         BlazeMomentsPlayerContainer(
-            dataSource = BlazeDataSourceType.Labels(BlazeWidgetLabel.singleLabel(MOMENTS_WIDGET_DEFAULT_LABEL)),
+            dataSource = BlazeDataSourceType.Labels(BlazeWidgetLabel.singleLabel(MOMENTS_CONTAINER_DEFAULT_LABEL)),
             containerId = MomentsContainerActivity.INSTANT_MOMENTS_CONTAINER_ID,
             containerView = binding.momentsContainer,
             momentsPlayerStyle = viewModel.momentsPlayerStyle,

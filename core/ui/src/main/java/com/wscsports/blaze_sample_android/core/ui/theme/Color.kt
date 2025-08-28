@@ -1,4 +1,4 @@
-package com.wscsports.blaze_sample_android.samples.compose.ui.theme
+package com.wscsports.blaze_sample_android.core.ui.theme
 
 import androidx.compose.ui.graphics.Color
 

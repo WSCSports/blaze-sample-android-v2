@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/inline_videos_navigation"
+    app:startDestination="@+id/navigation_inline_video_list">
+
+    <!-- Main list fragment showing inline video implementation options -->
+    <fragment
+        android:id="@+id/navigation_inline_video_list"
+        android:name="com.wscsports.blaze_sample_android.samples.inlinevideos.nativeview.InlineVideoListFragment"
+        android:label="Inline Videos - Native View"
+        tools:layout="@layout/fragment_inline_video_list">
+        
+        <action
+            android:id="@+id/action_navigation_inline_video_list_to_methodsShowcaseFragment"
+            app:destination="@id/methodsShowcaseFragment" />
+            
+        <action
+            android:id="@+id/action_navigation_inline_video_list_to_scrollViewFragment"
+            app:destination="@id/scrollViewFragment" />
+            
+        <action
+            android:id="@+id/action_navigation_inline_video_list_to_recyclerViewFragment"
+            app:destination="@id/recyclerViewFragment" />
+    </fragment>
+
+    <!-- Methods showcase fragment - video platform style demo with all SDK methods -->
+    <fragment
+        android:id="@+id/methodsShowcaseFragment"
+        android:name="com.wscsports.blaze_sample_android.samples.inlinevideos.nativeview.showcases.methods.MethodsShowcaseFragment"
+        android:label="Methods Showcase"
+        tools:layout="@layout/fragment_methods_showcase" />
+
+    <!-- ScrollView with single active player fragment -->
+    <fragment
+        android:id="@+id/scrollViewFragment"
+        android:name="com.wscsports.blaze_sample_android.samples.inlinevideos.nativeview.showcases.scrollview.ScrollViewShowcaseFragment"
+        android:label="ScrollView Showcase"
+        tools:layout="@layout/fragment_scrollview_showcase" />
+
+    <!-- RecyclerView with multiple players fragment -->
+    <fragment
+        android:id="@+id/recyclerViewFragment"
+        android:name="com.wscsports.blaze_sample_android.samples.inlinevideos.nativeview.showcases.recyclerview.RecyclerViewShowcaseFragment"
+        android:label="RecyclerView Showcase"
+        tools:layout="@layout/fragment_recyclerview_showcase" />
+
+</navigation>

@@ -18,6 +18,7 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import com.wscsports.blaze_sample_android.core.ui.R
 import com.wscsports.blaze_sample_android.samples.compose.NavHostScreens.MomentsContainer
 import com.wscsports.blaze_sample_android.samples.compose.NavHostScreens.WidgetsFeed
+import com.wscsports.blaze_sample_android.samples.compose.NavHostScreens.MomentsContainerTabs
 
 @Composable
 fun ComposeBottomBar(navController: NavHostController) {
@@ -58,7 +59,8 @@ private fun NavHostScreens.getBottomNavIconImage(): ImageVector {
     return when (this) {
         is WidgetsFeed -> ImageVector.vectorResource(R.drawable.ic_widgets)
         is MomentsContainer -> ImageVector.vectorResource(R.drawable.ic_moments_container)
+        is MomentsContainerTabs -> ImageVector.vectorResource(R.drawable.ic_tabs)
     }
 }
 
-val bottomNavigationItems = listOf(WidgetsFeed, MomentsContainer)
+val bottomNavigationItems = listOf(WidgetsFeed, MomentsContainer, MomentsContainerTabs)

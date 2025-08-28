@@ -13,4 +13,7 @@
     <string name="ads_subtitle">SDK integration of banners, custom native and IMA ads</string>
     <string name="compose_title">Compose</string>
     <string name="compose_subtitle">Jetpack Compose widgets implementation</string>
+    <string name="inline_videos_title">Inline Videos</string>
+    <string name="inline_videos_subtitle">Inline video player integration and examples</string>
+    <string name="compose_view_title">Inline Videos - Compose</string>
 </resources>

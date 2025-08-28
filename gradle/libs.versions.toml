@@ -21,7 +21,8 @@ composeBom = "2025.05.01"
 nav_version = "2.9.0"
 swiperefreshlayout = "1.2.0-alpha01"
 serializationJson = "1.7.3"
-blazeSDK = "1.11.6"
+pagingVersion = "3.3.5"
+blazeSDK = "1.12.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -48,6 +49,8 @@ androidx-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-toolin
 androidx-material3 = { group = "androidx.compose.material3", name = "material3" }
 swiperefreshlayout = { module = "androidx.swiperefreshlayout:swiperefreshlayout", version.ref = "swiperefreshlayout" }
 kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "serializationJson" }
+androidx-paging-runtime = { group = "androidx.paging", name = "paging-runtime", version.ref = "pagingVersion" }
+androidx-paging-compose = { group = "androidx.paging", name = "paging-compose", version.ref = "pagingVersion" }
 
 blazesdk = { group = "com.blaze", name = "blazesdk", version.ref = "blazeSDK" }
 blaze-gam = { group = "com.blaze", name = "gam", version.ref = "blazeSDK" }

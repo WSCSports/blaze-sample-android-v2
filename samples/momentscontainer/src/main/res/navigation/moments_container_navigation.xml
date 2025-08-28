@@ -12,11 +12,19 @@
         tools:layout="@layout/fragment_home" >
         <action
             android:id="@+id/action_lazyStartMomentsFragment_to_momentsFragment"
-            app:destination="@id/momentsFragment" />
+            app:destination="@id/momentsContainerFragment" />
     </fragment>
+
     <fragment
-        android:id="@+id/momentsFragment"
-        android:name="com.wscsports.blaze_sample_android.samples.momentscontainer.MomentsFragment"
+        android:id="@+id/momentsContainerFragment"
+        android:name="com.wscsports.blaze_sample_android.samples.momentscontainer.MomentsContainerFragment"
         android:label="MomentsFragment"
-        tools:layout="@layout/fragment_moments"/>
+        tools:layout="@layout/fragment_moments_container"/>
+
+    <fragment
+        android:id="@+id/momentsContainerTabsFragment"
+        android:name="com.wscsports.blaze_sample_android.samples.momentscontainer.MomentsContainerTabsFragment"
+        android:label="MomentsTabsFragment"
+        tools:layout="@layout/fragment_moments_container_tabs"/>
+
 </navigation>

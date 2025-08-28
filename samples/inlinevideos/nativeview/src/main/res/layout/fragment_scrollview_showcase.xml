@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/scroll_view"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingBottom="24dp">
+
+        <!-- Introductory text -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:text="ScrollView with multiple inline video players. Scroll to see automatic player switching - only one player is active at a time based on visibility."
+            android:textSize="14sp"
+            android:background="#F5F5F5"
+            android:padding="12dp" />
+
+        <!-- Player containers will be added programmatically -->
+
+    </LinearLayout>
+
+</androidx.core.widget.NestedScrollView>

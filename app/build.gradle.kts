@@ -32,11 +32,11 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "11"
     }
     buildFeatures {
         viewBinding = true
@@ -53,6 +53,9 @@ dependencies {
     implementation(project(":samples:playerstyle"))
     implementation(project(":samples:ads"))
     implementation(project(":samples:compose"))
+    implementation(project(":samples:inlinevideos"))
+    implementation(project(":samples:inlinevideos:nativeview"))
+    implementation(project(":samples:inlinevideos:composeview"))
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)

@@ -9,9 +9,10 @@ import androidx.lifecycle.lifecycleScope
 import com.blaze.blazesdk.data_source.BlazeDataSourceType
 import com.blaze.blazesdk.data_source.BlazeWidgetLabel
 import com.blaze.blazesdk.delegates.BlazePlayerInContainerDelegate
+import com.blaze.blazesdk.delegates.models.BlazePlayerEvent
+import com.blaze.blazesdk.delegates.models.BlazePlayerType
 import com.blaze.blazesdk.features.moments.container.BlazeMomentsPlayerContainer
 import com.wscsports.blaze_sample_android.core.Constants.MOMENTS_CONTAINER_DEFAULT_LABEL
-import com.wscsports.blaze_sample_android.core.Constants.MOMENTS_WIDGET_DEFAULT_LABEL
 import com.wscsports.blaze_sample_android.core.MomentsContainerDelegateImpl
 import com.wscsports.blaze_sample_android.samples.momentscontainer.databinding.FragmentMomentsContainerBinding
 import com.zhuinden.fragmentviewbindingdelegatekt.viewBinding
@@ -43,6 +44,15 @@ class MomentsContainerFragment : Fragment(R.layout.fragment_moments_container),
         super.onViewCreated(view, savedInstanceState)
         startMomentsInContainer()
         subscribeObservers()
+    }
+
+    override fun onPlayerEventTriggered(
+        playerType: BlazePlayerType,
+        sourceId: String?,
+        event: BlazePlayerEvent
+    ) {
+        super.onPlayerEventTriggered(playerType, sourceId, event)
+        viewModel.handlePlayerEvent(event, sourceId)
     }
 
     private fun startMomentsInContainer() {

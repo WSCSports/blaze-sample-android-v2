@@ -24,6 +24,12 @@
         android:src="@drawable/wsc_logo"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="sample button"
+        android:id="@+id/sample_button"
+        />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/sample_recycler_view"

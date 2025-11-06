@@ -3,6 +3,8 @@ package com.wscsports.blaze_sample_android
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.blaze.blazesdk.shared.BlazeSDK
+import com.blaze.blazesdk.style.players.moments.BlazeMomentsPlayerStyle
 import com.wscsports.blaze_sample_android.core.ui.applySafeAreaPadding
 import com.wscsports.blaze_sample_android.core.ui.viewBinding
 import com.wscsports.blaze_sample_android.databinding.ActivityMainBinding
@@ -17,6 +19,14 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         binding.root.applySafeAreaPadding()
         initRecyclerView()
+        binding.sampleButton.setOnClickListener{
+            BlazeSDK.playMoment(
+                "nbl",
+                BlazeMomentsPlayerStyle.base()
+            ){
+                BlazeSDK.dismissCurrentPlayer()
+            }
+        }
     }
 
     private fun initRecyclerView() {

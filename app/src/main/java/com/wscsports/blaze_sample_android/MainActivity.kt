@@ -23,9 +23,7 @@ class MainActivity : AppCompatActivity() {
             BlazeSDK.playMoment(
                 "nbl",
                 BlazeMomentsPlayerStyle.base()
-            ){
-                BlazeSDK.dismissCurrentPlayer()
-            }
+            )
         }
     }
 

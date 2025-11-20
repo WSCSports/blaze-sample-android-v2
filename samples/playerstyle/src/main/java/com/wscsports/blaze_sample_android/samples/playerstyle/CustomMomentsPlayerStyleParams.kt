@@ -3,6 +3,7 @@ package com.wscsports.blaze_sample_android.samples.playerstyle
 import android.graphics.Color
 import android.widget.ImageView
 import androidx.core.graphics.toColorInt
+import com.blaze.blazesdk.follow.models.BlazeFollowEntityType
 import com.blaze.blazesdk.style.players.BlazeFirstTimeSlideInstructionStyle
 import com.blaze.blazesdk.style.players.BlazeFirstTimeSlideTextStyle
 import com.blaze.blazesdk.style.players.BlazePlayerButtonCustomImageStates
@@ -14,6 +15,8 @@ import com.blaze.blazesdk.style.players.moments.BlazeMomentsPlayerCtaIconStyle
 import com.blaze.blazesdk.style.players.moments.BlazeMomentsPlayerCtaStyle
 import com.blaze.blazesdk.style.players.moments.BlazeMomentsPlayerCustomActionButton
 import com.blaze.blazesdk.style.players.moments.BlazeMomentsPlayerFirstTimeSlideStyle
+import com.blaze.blazesdk.style.players.moments.BlazeMomentsPlayerFollowEntityChipStyle
+import com.blaze.blazesdk.style.players.moments.BlazeMomentsPlayerFollowEntityStyle
 import com.blaze.blazesdk.style.players.moments.BlazeMomentsPlayerFooterGradientStyle
 import com.blaze.blazesdk.style.players.moments.BlazeMomentsPlayerHeadingTextStyle
 import com.blaze.blazesdk.style.players.moments.BlazeMomentsPlayerSeekBarStyle
@@ -96,6 +99,8 @@ fun BlazeMomentsPlayerStyle.applyCustomMomentsPlayerParams(): BlazeMomentsPlayer
 
         /** First time slide appearance */
         firstTimeSlide.applyFirstTimeSlideStyle()
+
+        followEntity.applyFollowEntityStyle()
     }
 }
 
@@ -379,6 +384,32 @@ fun BlazeMomentsPlayerFirstTimeSlideStyle.applyFirstTimeSlideStyle(): BlazeMomen
                     isVisible = true
                 )
             )
+        }
+    }
+}
+
+fun BlazeMomentsPlayerFollowEntityStyle.applyFollowEntityStyle(): BlazeMomentsPlayerFollowEntityStyle {
+    return this.apply {
+        isVisible = true
+
+        // First, try to find the player entity, then the team, and finally retrieve the first available entity.
+        entityType = BlazeFollowEntityType.Player(
+            fallbackType = BlazeFollowEntityType.Team(
+                fallbackType = BlazeFollowEntityType.FirstAvailable
+            )
+        )
+
+        followState.apply {
+            avatar.borderColor = "#00B27C".toColorInt()
+            chip.backgroundColor = "#00B27C".toColorInt()
+            chip.iconColor = "#000000".toColorInt()
+        }
+
+        unfollowState.apply {
+            avatar.borderColor = "#FFFFFF".toColorInt()
+            chip.backgroundColor = "#FFFFFF".toColorInt()
+            chip.iconColor = "#000000".toColorInt()
+            chip.contentSource = BlazeMomentsPlayerFollowEntityChipStyle.BlazeMomentsPlayerFollowEntityChipContentSource.TEXT
         }
     }
 }

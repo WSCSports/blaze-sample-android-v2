@@ -22,7 +22,6 @@ class Application : Application() {
             playerEntryPointDelegate = Delegates.playerEntryPointDelegate,
             completionBlock = {
                 Log.d("Application", "BlazeSDK.init success completionBlock..")
-                FollowEntitiesManager.initialize()
             },
             errorBlock = { error ->
                 Log.e("Application", "BlazeSDK.init errorBlock -> , Init Error = $error")

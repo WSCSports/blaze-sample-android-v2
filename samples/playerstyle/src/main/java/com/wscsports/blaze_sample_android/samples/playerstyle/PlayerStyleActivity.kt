@@ -1,9 +1,11 @@
 package com.wscsports.blaze_sample_android.samples.playerstyle
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.blaze.blazesdk.delegates.BlazeWidgetDelegate
+import com.blaze.blazesdk.shared.BlazeSDK
 import com.wscsports.blaze_sample_android.core.WidgetDelegateImpl
 import com.wscsports.blaze_sample_android.core.ui.R.string
 import com.wscsports.blaze_sample_android.core.ui.applySafeAreaPadding
@@ -18,7 +20,8 @@ import com.wscsports.blaze_sample_android.samples.playerstyle.databinding.Activi
  * https://dev.wsc-sports.com/docs/android-moments-player-customizations#/.
  */
 class PlayerStyleActivity : AppCompatActivity(),
-    BlazeWidgetDelegate by WidgetDelegateImpl() {
+    BlazeWidgetDelegate by WidgetDelegateImpl(),
+    BlazeFollowEntitiesDelegate {
 
     private val binding by viewBinding(ActivityPlayerStyleBinding::inflate)
     private val viewModel: PlayerStyleViewModel by viewModels()
@@ -27,6 +30,7 @@ class PlayerStyleActivity : AppCompatActivity(),
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         binding.root.applySafeAreaPadding()
+        initFollowEntities()
         setupAppbar()
         initWidgets()
     }
@@ -82,6 +86,27 @@ class PlayerStyleActivity : AppCompatActivity(),
             widgetId = "custom-moments-row-id",
             widgetDelegate = this
         )
+    }
+
+    private fun initFollowEntities() {
+        // Set this manager as the delegate for SDK callbacks
+        BlazeSDK.followEntitiesManager.delegate = this
+
+        // 1. Load existing follow entities from local/remote storage
+
+        // 2. Update the SDK with the followed entities:
+//        BlazeSDK.followEntitiesManager.insertFollowedEntities(followEntities)
+    }
+
+    override fun onFollowEntityClicked(followEntityParams: BlazeFollowEntityClickedParams) {
+        Log.d("FollowEntitiesManager", "onFollowEntityClicked - $followEntityParams")
+
+        if (followEntityParams.newFollowingState) {
+            // Update local/remote storage that this entity if followed
+        } else {
+            // Update local/remote storage that this entity if not followed
+        }
+
     }
 
 

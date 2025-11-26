@@ -4,7 +4,9 @@ import android.os.Bundle
 import android.util.Log
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import com.blaze.blazesdk.delegates.BlazeFollowEntitiesDelegate
 import com.blaze.blazesdk.delegates.BlazeWidgetDelegate
+import com.blaze.blazesdk.delegates.models.BlazeFollowEntityClickedParams
 import com.blaze.blazesdk.shared.BlazeSDK
 import com.wscsports.blaze_sample_android.core.WidgetDelegateImpl
 import com.wscsports.blaze_sample_android.core.ui.R.string

@@ -5,6 +5,7 @@ import androidx.core.graphics.toColorInt
 import com.blaze.blazesdk.data_source.BlazeDataSourceType
 import com.blaze.blazesdk.data_source.BlazeWidgetLabel
 import com.blaze.blazesdk.extentions.blazeDeepCopy
+import com.blaze.blazesdk.features.videos.models.configuration.BlazeVideosPlaybackConfiguration
 import com.blaze.blazesdk.style.shared.models.BlazeObjectXPosition
 import com.blaze.blazesdk.style.shared.models.BlazeObjectYPosition
 import com.blaze.blazesdk.style.shared.models.blazeDp
@@ -50,6 +51,9 @@ class VideosRowFragment : BaseWidgetFragment(R.layout.fragment_videos_row) {
             widgetId = widgetType.name, // Or any unique identifier for the widget
             widgetDelegate = this,
             shouldOrderWidgetByReadStatus = true,
+            playbackConfiguration = BlazeVideosPlaybackConfiguration.base().apply {
+                multiAspectRatio = true // Allow multi aspect ratio feature on this widget
+            }
         )
     }
 

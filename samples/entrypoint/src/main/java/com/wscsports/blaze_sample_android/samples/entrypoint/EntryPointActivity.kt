@@ -150,6 +150,7 @@ class EntryPointActivity : AppCompatActivity() {
 
     /**
      * Plays stories by the input label expression.
+     * This method also demonstrates how to use the `entryContentId` param.
      * For more information, refer to https://dev.wsc-sports.com/docs/android-methods-and-parameters#/stories.
      */
     private fun playStoriesByInputLabelExpression() {
@@ -157,7 +158,15 @@ class EntryPointActivity : AppCompatActivity() {
             val storiesDataSource = BlazeDataSourceType.Labels(
                 blazeWidgetLabel = BlazeWidgetLabel.singleLabel(labelExpressionStr)
             )
-            BlazeSDK.playStories(storiesDataSource)
+
+            // If this story id is part of the `storiesDataSource` response, it will be moved to the front of the list, otherwise
+            // it will be added to the front of the list.
+            val entryContentId = "684ac5d9755bfece433b8865"
+
+            BlazeSDK.playStories(
+                dataSource = storiesDataSource,
+                entryContentId = entryContentId
+            )
         }
     }
 

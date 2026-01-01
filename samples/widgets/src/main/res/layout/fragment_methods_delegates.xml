@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingBottom="24dp">
+
+        <!-- Stories Widget -->
+        <com.blaze.blazesdk.features.stories.widgets.row.BlazeStoriesWidgetRowView
+            android:id="@+id/stories_widget_view"
+            android:layout_width="match_parent"
+            android:layout_height="160dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="24dp" />
+
+        <!-- Play Methods Section -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginBottom="12dp"
+            android:text="Play Methods"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <!-- Play from first item (default) -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_play_default"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginBottom="8dp"
+            android:text="play()"
+            android:textAllCaps="false"
+            android:textColor="@android:color/white"
+            app:backgroundTint="@android:color/black"
+            app:cornerRadius="8dp" />
+
+        <!-- Play from specific index -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_play_from_index"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginBottom="8dp"
+            android:text="play(from: Index)"
+            android:textAllCaps="false"
+            android:textColor="@android:color/white"
+            app:backgroundTint="@android:color/black"
+            app:cornerRadius="8dp" />
+
+        <!-- Play from specific content ID -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_play_from_content_id"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:text="play(from: ContentId)"
+            android:textAllCaps="false"
+            android:textColor="@android:color/white"
+            app:backgroundTint="@android:color/black"
+            app:cornerRadius="8dp" />
+
+    </LinearLayout>
+</ScrollView>

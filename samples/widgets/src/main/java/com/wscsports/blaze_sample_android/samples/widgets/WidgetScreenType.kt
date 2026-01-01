@@ -40,5 +40,10 @@ enum class WidgetScreenType(
         title = "Widgets feed demo",
         description = "This represents a feed with multiple widgets on the same screen with refresh functionality",
         navDestinationId = R.id.action_navigation_widget_list_to_mixedWidgetsFragment
+    ),
+    METHODS_DELEGATES(
+        title = "Methods & Delegates",
+        description = "Demonstrates the different variations of the play() method for manually triggering widget playback",
+        navDestinationId = R.id.action_navigation_widget_list_to_methodsDelegatesFragment
     );
 }

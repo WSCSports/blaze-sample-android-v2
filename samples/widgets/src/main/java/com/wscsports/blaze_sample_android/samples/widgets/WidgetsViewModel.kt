@@ -131,6 +131,7 @@ class WidgetsViewModel: ViewModel() {
             WidgetScreenType.VIDEOS_ROW -> VIDEOS_WIDGET_DEFAULT_LABEL
             WidgetScreenType.VIDEOS_GRID -> VIDEOS_WIDGET_DEFAULT_LABEL
             WidgetScreenType.MIXED_WIDGETS -> "" // Not needed for mixed widgets
+            WidgetScreenType.METHODS_DELEGATES -> "" // Not needed, fragment handles its own data source
         }
     }
 

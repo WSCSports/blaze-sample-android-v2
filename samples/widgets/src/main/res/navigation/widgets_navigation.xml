@@ -59,6 +59,13 @@
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right"/>
+        <action
+            android:id="@+id/action_navigation_widget_list_to_methodsDelegatesFragment"
+            app:destination="@id/methodsDelegatesFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
     </fragment>
 
     <fragment
@@ -92,4 +99,9 @@
         android:id="@+id/videosGridFragment"
         android:name="com.wscsports.blaze_sample_android.samples.widgets.screens.VideosGridFragment"
         android:label="VideosGridFragment" />
+    <fragment
+        android:id="@+id/methodsDelegatesFragment"
+        android:name="com.wscsports.blaze_sample_android.samples.widgets.screens.MethodsDelegatesFragment"
+        android:label="Methods &amp; Delegates"
+        tools:layout="@layout/fragment_methods_delegates" />
 </navigation>

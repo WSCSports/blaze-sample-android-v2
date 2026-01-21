@@ -22,7 +22,7 @@ nav_version = "2.9.0"
 swiperefreshlayout = "1.2.0-alpha01"
 serializationJson = "1.7.3"
 pagingVersion = "3.3.5"
-blazeSDK = "1.16.1"
+blazeSDK = "1.16.3"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }

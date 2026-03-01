@@ -8,6 +8,7 @@ import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import com.wscsports.blaze_sample_android.core.ui.applySafeAreaPadding
 import com.wscsports.blaze_sample_android.core.ui.viewBinding
+import com.wscsports.blaze_sample_android.samples.inlinevideos.AppPiPManager
 import com.wscsports.blaze_sample_android.samples.inlinevideos.InlineVideosViewModel
 import com.wscsports.blaze_sample_android.samples.inlinevideos.nativeview.databinding.ActivityInlineVideosNativeBinding
 
@@ -48,6 +49,7 @@ class InlineVideosNativeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         binding.root.applySafeAreaPadding()
+        AppPiPManager.getInstance().initialize()
         setupAppbar()
         setupNavController()
     }

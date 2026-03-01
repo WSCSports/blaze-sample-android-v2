@@ -6,15 +6,18 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
-import kotlinx.coroutines.launch
+import com.blaze.blazesdk.delegates.BlazePipState
+import com.wscsports.blaze_sample_android.samples.inlinevideos.AppPiPManager
 import com.wscsports.blaze_sample_android.samples.inlinevideos.InlineVideoDataGenerator
 import com.wscsports.blaze_sample_android.samples.inlinevideos.InlineVideosViewModel
-import com.wscsports.blaze_sample_android.samples.inlinevideos.nativeview.showcases.recyclerview.RecyclerViewPlayerAdapter
 import com.wscsports.blaze_sample_android.samples.inlinevideos.nativeview.databinding.FragmentRecyclerviewShowcaseBinding
-import com.wscsports.blaze_sample_android.samples.inlinevideos.nativeview.showcases.recyclerview.RecyclerViewPlayerVisibilityManager
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 
 /**
  * Demonstrates inline video players within a RecyclerView with automatic player management.
@@ -62,6 +65,7 @@ class RecyclerViewShowcaseFragment : Fragment() {
         setupPlayerVisibilityManager()
         initializeVideoFeed()
         subscribeToVolumeChanges()
+        subscribeToPipState()
     }
     
     /**
@@ -102,8 +106,31 @@ class RecyclerViewShowcaseFragment : Fragment() {
     }
     
     /**
+     * Pauses all players when a PiP session starts, and re-activates the most
+     * centered player when PiP ends. Prevents simultaneous playback with the PiP window.
+     */
+    private fun subscribeToPipState() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.RESUMED) {
+                AppPiPManager.getInstance().pipState.collectLatest { state ->
+                    when (state) {
+                        BlazePipState.ON  -> {
+                            playerVisibilityManager?.isPipActive = true
+                            playerVisibilityManager?.pauseAllPlayers()
+                        }
+                        BlazePipState.OFF -> {
+                            playerVisibilityManager?.isPipActive = false
+                            playerVisibilityManager?.prepareInitialPlayer()
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    /**
      * Subscribes to volume change events from the shared ViewModel.
-     * 
+     *
      * When the user presses volume keys in the activity, all visible inline players
      * in this showcase will be notified of the volume change.
      */

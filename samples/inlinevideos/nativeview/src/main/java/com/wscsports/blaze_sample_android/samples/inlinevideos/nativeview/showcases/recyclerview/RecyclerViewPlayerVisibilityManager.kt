@@ -32,6 +32,8 @@ class RecyclerViewPlayerVisibilityManager(
          */
         fun getPlayer(): BlazeVideosInlinePlayer?
     }
+    var isPipActive: Boolean = false
+
     private var activePosition = -1
     private val scrollListener = object : RecyclerView.OnScrollListener() {
         override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
@@ -48,8 +50,11 @@ class RecyclerViewPlayerVisibilityManager(
     /**
      * Checks visibility and activates the most centered fully visible player.
      * Only fully visible items are considered for activation.
+     * Skipped while a PiP session is active to prevent simultaneous playback.
      */
     fun checkAndActivatePlayer() {
+        if (isPipActive) return
+
         var bestViewHolder: PlayerViewHolder? = null
         var bestCenteredness = 0f
         var newActivePosition = -1

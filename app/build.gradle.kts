@@ -56,6 +56,7 @@ dependencies {
     implementation(project(":samples:inlinevideos"))
     implementation(project(":samples:inlinevideos:nativeview"))
     implementation(project(":samples:inlinevideos:composeview"))
+    implementation(project(":samples:search"))
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)

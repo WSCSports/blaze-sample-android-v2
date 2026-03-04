@@ -7,6 +7,8 @@ import androidx.appcompat.app.AppCompatActivity
 import com.blaze.blazesdk.delegates.BlazeFollowEntitiesDelegate
 import com.blaze.blazesdk.delegates.BlazeWidgetDelegate
 import com.blaze.blazesdk.delegates.models.BlazeFollowEntityClickedParams
+import com.blaze.blazesdk.features.moments.models.configuration.BlazeMomentsLoopBehavior
+import com.blaze.blazesdk.features.moments.models.configuration.BlazeMomentsPlaybackConfiguration
 import com.blaze.blazesdk.shared.BlazeSDK
 import com.wscsports.blaze_sample_android.core.WidgetDelegateImpl
 import com.wscsports.blaze_sample_android.core.ui.R.string
@@ -86,7 +88,12 @@ class PlayerStyleActivity : AppCompatActivity(),
             playerStyle = viewModel.customMomentPlayerStyle,
             dataSource = viewModel.momentsDataSource,
             widgetId = "custom-moments-row-id",
-            widgetDelegate = this
+            widgetDelegate = this,
+            playbackConfiguration = BlazeMomentsPlaybackConfiguration.base().apply {
+                loopBehavior = BlazeMomentsLoopBehavior.LoopAndAdvance(
+                    numberOfPlays = 2
+                )
+            }
         )
     }
 

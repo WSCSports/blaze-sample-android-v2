@@ -1,4 +1,4 @@
-package com.wscsports.blaze_sample_android.core
+package com.wscsports.blaze_sample_android
 
 import android.util.Log
 import com.blaze.blazesdk.delegates.BlazeCastingDelegate

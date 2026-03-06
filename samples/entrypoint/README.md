@@ -11,8 +11,9 @@ This module serves as the main entry point for Blaze SDK integration in the Blaz
   - Simulating universal link handling.
   - Playing stories, moments, and videos by label expression.
   - Playing a single story, moment, or video by ID.
-- Prepares Blaze players for stories and moments on launch.
-- Demonstrates BlazeSDK methods for handling links, notifications, and direct playback.
+  - Opening the BlazeSDK built-in search screen.
+- Prepares Blaze players for stories, moments, and videos on launch.
+- Demonstrates BlazeSDK methods for handling links, notifications, direct playback, and search.
 
 ### SampleFirebaseMessagingService
 - Handles push notifications when the app is in the foreground.
@@ -30,10 +31,26 @@ This module serves as the main entry point for Blaze SDK integration in the Blaz
 - The intent filter includes the `VIEW` action, `DEFAULT` and `BROWSABLE` categories, and specifies the supported schemes (`http`, `https`) and host (e.g., `prime.mvp.fan`).
 - This allows the app to be opened directly from supported links and route users to the appropriate content via BlazeSDK.
 
+### Search Screen Integration
+
+The `EntryPointActivity` demonstrates how to launch the SDK's built-in search screen using `BlazeSDK.screens.showSearchScreen`. This provides a ready-made search experience powered by the BlazeSDK:
+
+```kotlin
+val suggestionsDataSource = BlazeDataSourceType.Labels(
+    blazeWidgetLabel = BlazeWidgetLabel.singleLabel(MOMENTS_WIDGET_DEFAULT_LABEL)
+)
+BlazeSDK.screens.showSearchScreen(
+    BlazeSearchScreenParams(suggestionsDataSource = suggestionsDataSource)
+)
+```
+
+The `suggestionsDataSource` parameter controls what content appears as suggestions before the user types a query. For a fully custom search UI built with Compose, see the [Search Sample module](../search/).
+
 ## UI Overview
 - Simulate a universal link to test deep linking.
 - Input fields and play buttons for stories, moments, and videos by label expression.
 - Play buttons for single story, moment, or video by ID.
+- Search button to open the BlazeSDK search screen.
 - All actions interact with the BlazeSDK directly.
 
 ## Usage
@@ -42,3 +59,4 @@ This module serves as the main entry point for Blaze SDK integration in the Blaz
 2. **Universal Links**: Open the app via a universal link or use the UI to simulate one that opens story/moment/video player directly.
 3. **Push Notifications**: Send a push notification with Blaze payload; the service and activity will handle it.
 4. **Direct Playback**: Use the UI to play stories, moments, or videos by label or ID.
+5. **Search**: Tap the search button to open the SDK's built-in search screen with moments suggestions.

@@ -105,12 +105,14 @@ dependencies {
 - Push notification integration
 - Direct content playback (stories, moments, videos)
 - Firebase Cloud Messaging integration
+- Opening the SDK's built-in search screen
 
 **Key Features**:
 - Universal link simulation
 - Play content by label expression
 - Play single items by ID
 - FCM service implementation
+- Launch the BlazeSDK search screen with moments suggestions
 
 ### 🎨 Compose Sample (`samples/compose/`)
 
@@ -141,6 +143,21 @@ dependencies {
 **What it demonstrates**:
 - Moments container implementation
 - Container-specific features and customization
+
+### 🔍 Search Sample (`samples/search/`)
+
+**What it demonstrates**:
+- Building a custom search experience on top of BlazeSDK widgets
+- Using `BlazeDataSourceType.Search` to query stories, moments, and videos
+- Jetpack Compose integration with SDK widget state handlers
+- Managing multi-widget loading states to determine final UI
+
+**Key Features**:
+- Search bar with keyboard "Search" action
+- Suggestions grid (moments) displayed when the search field is empty
+- Search results grouped into three sections: Stories, Quick Highlights (Moments), and Full Videos
+- Sections are automatically hidden when no content matches the query
+- Handles empty-results and error states gracefully
 
 ### ⚙️ Global Settings Sample (`samples/globalsettings/`)
 

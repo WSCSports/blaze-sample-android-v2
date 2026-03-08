@@ -16,4 +16,6 @@
     <string name="inline_videos_title">Inline Videos</string>
     <string name="inline_videos_subtitle">Inline video player integration and examples</string>
     <string name="compose_view_title">Inline Videos - Compose</string>
+    <string name="search_title">Search</string>
+    <string name="search_subtitle">Search screen with suggestions and results</string>
 </resources>

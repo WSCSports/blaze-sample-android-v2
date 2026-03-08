@@ -53,6 +53,9 @@ class VideosRowFragment : BaseWidgetFragment(R.layout.fragment_videos_row) {
             shouldOrderWidgetByReadStatus = true,
             playbackConfiguration = BlazeVideosPlaybackConfiguration.base().apply {
                 multiAspectRatio = true // Allow multi aspect ratio feature on this widget
+
+                // Enable PIP auto enter when app goes to background
+                pip.enterPipOnAppBackground = true
             }
         )
     }

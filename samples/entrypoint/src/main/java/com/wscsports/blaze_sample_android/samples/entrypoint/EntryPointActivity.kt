@@ -8,6 +8,7 @@ import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.blaze.blazesdk.data_source.BlazeDataSourceType
 import com.blaze.blazesdk.data_source.BlazeWidgetLabel
+import com.blaze.blazesdk.features.search.models.BlazeSearchScreenParams
 import com.blaze.blazesdk.shared.BlazeSDK
 import com.blaze.blazesdk.shared.results.doOnFailure
 import com.blaze.blazesdk.shared.results.doOnSuccess
@@ -105,6 +106,9 @@ class EntryPointActivity : AppCompatActivity() {
             playVideoIdButton.setOnClickListener {
                 BlazeSDK.playVideo("6801034b8c4c8e78a2e1d11b") // id of the video to play
             }
+            searchScreenButton.setOnClickListener {
+                showSearchScreen()
+            }
         }
     }
 
@@ -194,6 +198,18 @@ class EntryPointActivity : AppCompatActivity() {
             )
             BlazeSDK.playVideos(videosDataSource)
         }
+    }
+
+    /**
+     * Opens the SDK's built-in search screen with moments suggestions.
+     */
+    private fun showSearchScreen() {
+        val suggestionsDataSource = BlazeDataSourceType.Labels(
+            blazeWidgetLabel = BlazeWidgetLabel.singleLabel(MOMENTS_WIDGET_DEFAULT_LABEL)
+        )
+        BlazeSDK.screens.showSearchScreen(
+            BlazeSearchScreenParams(suggestionsDataSource = suggestionsDataSource)
+        )
     }
 
     /**

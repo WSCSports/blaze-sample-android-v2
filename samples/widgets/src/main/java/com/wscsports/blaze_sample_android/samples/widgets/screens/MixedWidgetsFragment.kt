@@ -1,14 +1,20 @@
 package com.wscsports.blaze_sample_android.samples.widgets.screens
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.blaze.blazesdk.data_source.BlazeDataSourceType
 import com.blaze.blazesdk.data_source.BlazeWidgetLabel
 import com.blaze.blazesdk.delegates.BlazeWidgetDelegate
-import com.wscsports.blaze_sample_android.core.Constants.MOMENTS_WIDGET_DEFAULT_LABEL
+import com.blaze.blazesdk.features.moments.container.tabs.models.BlazeMomentsContainerTabItem
+import com.blaze.blazesdk.features.moments.widgets.tabs.BlazeMomentsWidgetTabsConfiguration
+import com.blaze.blazesdk.features.moments.widgets.tabs.BlazeMomentsWidgetTabsController
+import com.wscsports.blaze_sample_android.core.Constants.MOMENTS_CONTAINER_TABS_1_DEFAULT_LABEL
+import com.wscsports.blaze_sample_android.core.Constants.MOMENTS_CONTAINER_TABS_2_DEFAULT_LABEL
 import com.wscsports.blaze_sample_android.core.Constants.STORIES_WIDGET_DEFAULT_LABEL
+import com.wscsports.blaze_sample_android.core.MomentsContainerTabsDelegateImpl
 import com.wscsports.blaze_sample_android.core.WidgetDelegateImpl
 import com.wscsports.blaze_sample_android.samples.widgets.R
 import com.wscsports.blaze_sample_android.samples.widgets.WidgetsViewModel
@@ -26,6 +32,9 @@ class MixedWidgetsFragment: Fragment(R.layout.fragment_mixed_widgets),
     private val binding by viewBinding(FragmentMixedWidgetsBinding::bind)
     private val viewModel: WidgetsViewModel by activityViewModels()
 
+    // Use this controller for any operations on the Moments Widget Tabs
+    private val momentsTabsController = BlazeMomentsWidgetTabsController()
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         initWidgets()
         setRefreshListener()
@@ -33,7 +42,7 @@ class MixedWidgetsFragment: Fragment(R.layout.fragment_mixed_widgets),
 
     private fun initWidgets() {
         initStoriesRowWidget()
-        initMomentsRowWidget()
+        initMomentsTabsRowWidget()
         initStoriesGridWidget()
     }
 
@@ -49,15 +58,29 @@ class MixedWidgetsFragment: Fragment(R.layout.fragment_mixed_widgets),
         )
     }
 
-    private fun initMomentsRowWidget() {
-        val dataSource = BlazeDataSourceType.Labels(
-            blazeWidgetLabel = BlazeWidgetLabel.singleLabel(MOMENTS_WIDGET_DEFAULT_LABEL)
+    private fun initMomentsTabsRowWidget() {
+        val tabsConfig = BlazeMomentsWidgetTabsConfiguration(
+            containerSourceId = "mixed-widgets-moments-tabs-id",
+            tabs = listOf(
+                BlazeMomentsContainerTabItem(
+                    containerId = "tab-1",
+                    title = "Trending",
+                    dataSource = BlazeDataSourceType.Labels(BlazeWidgetLabel.singleLabel(MOMENTS_CONTAINER_TABS_1_DEFAULT_LABEL)),
+                ),
+                BlazeMomentsContainerTabItem(
+                    containerId = "tab-2",
+                    title = "For You",
+                    dataSource = BlazeDataSourceType.Labels(BlazeWidgetLabel.singleLabel(MOMENTS_CONTAINER_TABS_2_DEFAULT_LABEL)),
+                ),
+            ),
+            containerTabsDelegate = MomentsContainerTabsDelegateImpl(),
+            controller = momentsTabsController,
         )
         binding.momentsRowWidgetView.initWidget(
             widgetLayout = viewModel.momentsRowBaseLayout,
-            dataSource = dataSource,
-            widgetId = "mixed-widgets-moments-row-id",
-            widgetDelegate = this
+            tabsConfiguration = tabsConfig,
+            widgetId = "mixed-widgets-moments-tabs-row-id",
+            widgetDelegate = this,
         )
     }
 
@@ -87,6 +110,10 @@ class MixedWidgetsFragment: Fragment(R.layout.fragment_mixed_widgets),
             momentsRowWidgetView.reloadData(isSilentRefresh = false)
             storiesGridWidgetView.reloadData(isSilentRefresh = false)
         }
+    }
+
+    companion object {
+        private const val TAG = "MixedWidgetsFragment"
     }
 
 }

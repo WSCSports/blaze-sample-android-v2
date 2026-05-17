@@ -29,12 +29,12 @@
                 android:layout_height="160dp"
                 android:layout_marginBottom="16dp" />
 
-            <!-- Moments Row Widget -->
+            <!-- Moments Tabs Row Widget -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
-                android:text="Moments Row Widget"
+                android:text="Moments Tabs Row Widget"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 android:layout_marginBottom="8dp" />

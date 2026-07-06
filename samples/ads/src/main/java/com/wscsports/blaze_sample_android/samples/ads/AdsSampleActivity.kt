@@ -8,10 +8,10 @@ import com.blaze.blazesdk.data_source.BlazeDataSourceType
 import com.blaze.blazesdk.data_source.BlazeWidgetLabel
 import com.blaze.blazesdk.delegates.BlazeWidgetDelegate
 import com.blaze.blazesdk.style.widgets.BlazeWidgetLayout
-import com.blaze.gam.BlazeGAM
-import com.blaze.gam.banner.BlazeGAMBannerAdsDelegate
-import com.blaze.gam.custom_native.BlazeGAMCustomNativeAdsDefaultConfig
-import com.blaze.gam.custom_native.BlazeGAMCustomNativeAdsDelegate
+import com.blaze.gam.nextgen.BlazeGAM
+import com.blaze.gam.nextgen.banner.BlazeGAMBannerAdsDelegate
+import com.blaze.gam.nextgen.custom_native.BlazeGAMCustomNativeAdsDefaultConfig
+import com.blaze.gam.nextgen.custom_native.BlazeGAMCustomNativeAdsDelegate
 import com.blaze.ima.BlazeIMA
 import com.blaze.ima.BlazeIMADelegate
 import com.wscsports.blaze_sample_android.core.Constants

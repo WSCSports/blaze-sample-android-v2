@@ -2,8 +2,8 @@ package com.wscsports.blaze_sample_android.samples.ads
 
 import android.util.Log
 import com.blaze.blazesdk.ads.banners.BlazeGAMBannerHandlerEventType
-import com.blaze.gam.banner.BlazeGAMBannerAdsAdData
-import com.blaze.gam.banner.BlazeGAMBannerAdsDelegate
+import com.blaze.gam.nextgen.banner.BlazeGAMBannerAdsAdData
+import com.blaze.gam.nextgen.banner.BlazeGAMBannerAdsDelegate
 
 /**
  * Implementation of the [BlazeGAMBannerAdsDelegate] interface.

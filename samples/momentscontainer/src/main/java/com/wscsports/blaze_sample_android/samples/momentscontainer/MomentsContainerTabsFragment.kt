@@ -7,6 +7,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import com.blaze.blazesdk.data_source.BlazeDataSourceType
+import com.blaze.blazesdk.data_source.BlazeRecommendationsType
 import com.blaze.blazesdk.data_source.BlazeWidgetLabel
 import com.blaze.blazesdk.features.moments.container.tabs.BlazeMomentsPlayerContainerTabs
 import com.blaze.blazesdk.features.moments.container.tabs.models.BlazeMomentsContainerTabItem
@@ -41,6 +42,12 @@ class MomentsContainerTabsFragment : Fragment(R.layout.fragment_moments_containe
                     containerId = MOMENTS_CONTAINER_TABS_ID_1,
                     title = "Trending",
                     dataSource = BlazeDataSourceType.Labels(BlazeWidgetLabel.singleLabel(MOMENTS_CONTAINER_TABS_1_DEFAULT_LABEL)),
+                    //  Please contact WSC support or your DM to activate the Recommendation feature
+//                    dataSource = BlazeDataSourceType.Recommendations(
+//                        BlazeRecommendationsType.Trending(
+//                            anyLabelFilter = listOf("<*Any Label Filter*>"),
+//                        )
+//                    ),
                     icon = BlazePlayerButtonCustomImageStates(
                         imageSelectedPathResId = com.wscsports.blaze_sample_android.core.ui.R.drawable.ic_tabs_trending,
                         imageUnselectedPathResId = com.wscsports.blaze_sample_android.core.ui.R.drawable.ic_tabs_trending,
@@ -50,6 +57,13 @@ class MomentsContainerTabsFragment : Fragment(R.layout.fragment_moments_containe
                     containerId = MOMENTS_CONTAINER_TABS_ID_2,
                     title = "For You",
                     dataSource = BlazeDataSourceType.Labels(BlazeWidgetLabel.singleLabel(MOMENTS_CONTAINER_TABS_2_DEFAULT_LABEL)),
+                    //  Please contact WSC support or your DM to activate the Recommendation feature
+//                    dataSource = BlazeDataSourceType.Recommendations(
+//                        BlazeRecommendationsType.ForYou(
+//                            anyLabelFilter = listOf("<*Any Label Filter*>"),
+//                            coldStartLabels = listOf("<*Cold Start Label*>")
+//                        )
+//                    ),
                     icon = BlazePlayerButtonCustomImageStates(
                         imageSelectedPathResId = com.wscsports.blaze_sample_android.core.ui.R.drawable.ic_tabs_for_you,
                         imageUnselectedPathResId = com.wscsports.blaze_sample_android.core.ui.R.drawable.ic_tabs_for_you,

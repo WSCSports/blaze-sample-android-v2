@@ -7,6 +7,7 @@ import com.blaze.blazesdk.ads.models.ui.BlazeStoriesAdsConfigType
 import com.blaze.blazesdk.data_source.BlazeDataSourceType
 import com.blaze.blazesdk.data_source.BlazeWidgetLabel
 import com.blaze.blazesdk.delegates.BlazeWidgetDelegate
+import com.blaze.blazesdk.features.stories.models.configuration.BlazeStoriesPlaybackConfiguration
 import com.blaze.blazesdk.style.widgets.BlazeWidgetLayout
 import com.blaze.gam.nextgen.BlazeGAM
 import com.blaze.gam.nextgen.banner.BlazeGAMBannerAdsDelegate
@@ -87,7 +88,13 @@ class AdsSampleActivity : AppCompatActivity(),
             widgetLayout = BlazeWidgetLayout.Presets.StoriesWidget.Row.circles,
             dataSource = dataSource,
             widgetId = "ads-stories-row-id",
-            widgetDelegate = this
+            widgetDelegate = this,
+            // Opt-in pre-roll ads for the Stories player (disabled by default).
+            // When enabled, if the first unread page is a configured ad page, that ad is played
+            // there as a pre-roll before the story content. Leave as `.base()` to keep pre-rolls off.
+            playbackConfiguration = BlazeStoriesPlaybackConfiguration.base().apply {
+                ads.enablePreroll = true
+            }
         )
     }
 

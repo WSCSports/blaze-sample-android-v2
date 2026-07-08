@@ -9,6 +9,7 @@ import com.blaze.blazesdk.style.shared.models.BlazeObjectXPosition
 import com.blaze.blazesdk.style.shared.models.BlazeObjectYPosition
 import com.blaze.blazesdk.style.shared.models.blazeDp
 import com.blaze.blazesdk.style.widgets.BlazeWidgetItemBadgeStyle
+import com.blaze.blazesdk.shared.models.BlazeExtraInfoKeyPreset
 import com.blaze.blazesdk.style.widgets.BlazeWidgetItemCustomMapping
 import com.blaze.blazesdk.style.widgets.BlazeWidgetItemImageStyle
 import com.blaze.blazesdk.style.widgets.BlazeWidgetItemImageStyle.BlazeImagePosition
@@ -256,7 +257,7 @@ class StoriesGridFragment : BaseWidgetFragment(R.layout.fragment_stories_grid) {
     // For more information see https://dev.wsc-sports.com/docs/android-blaze-widget-item-custom-mapping#/
     private fun setOverrideStylesByGameId(widgetLayout: BlazeWidgetLayout) {
         val layoutDeepCopy = widgetLayout.blazeDeepCopy() // we create a deep copy of the layout to avoid modifying the original layout
-        val mappingKey =  BlazeWidgetItemCustomMapping.BlazeKeysPresets.PLAYER_ID
+        val mappingKey =  BlazeExtraInfoKeyPreset.PLAYER_ID
         val mappingValue = "593109"
         binding.storiesGridWidgetView.updateOverrideStyles(
             perItemStyleOverrides = mapOf(

@@ -10,6 +10,7 @@ import com.blaze.blazesdk.style.shared.models.BlazeObjectXPosition
 import com.blaze.blazesdk.style.shared.models.BlazeObjectYPosition
 import com.blaze.blazesdk.style.shared.models.blazeDp
 import com.blaze.blazesdk.style.widgets.BlazeWidgetItemBadgeStyle
+import com.blaze.blazesdk.shared.models.BlazeExtraInfoKeyPreset
 import com.blaze.blazesdk.style.widgets.BlazeWidgetItemCustomMapping
 import com.blaze.blazesdk.style.widgets.BlazeWidgetItemImageGradientOverlayStyle.BlazeGradientPosition
 import com.blaze.blazesdk.style.widgets.BlazeWidgetItemImageStyle
@@ -217,7 +218,7 @@ class VideosRowFragment : BaseWidgetFragment(R.layout.fragment_videos_row) {
     // For more information see https://dev.wsc-sports.com/docs/android-blaze-widget-item-custom-mapping#/
     private fun setOverrideStylesByTeamId(widgetLayout: BlazeWidgetLayout) {
         val layoutDeepCopy = widgetLayout.blazeDeepCopy()
-        val mappingKey =  BlazeWidgetItemCustomMapping.BlazeKeysPresets.GAME_ID
+        val mappingKey =  BlazeExtraInfoKeyPreset.GAME_ID
         val mappingValue = "2445381"
         binding.videosRowWidgetView.updateOverrideStyles(
             perItemStyleOverrides = mapOf(

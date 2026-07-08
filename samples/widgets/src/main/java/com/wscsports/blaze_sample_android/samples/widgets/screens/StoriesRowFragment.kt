@@ -5,10 +5,12 @@ import android.util.TypedValue
 import com.blaze.blazesdk.data_source.BlazeDataSourceType
 import com.blaze.blazesdk.data_source.BlazeWidgetLabel
 import com.blaze.blazesdk.extentions.blazeDeepCopy
+import com.blaze.blazesdk.features.stories.models.configuration.BlazeStoriesPlaybackConfiguration
 import com.blaze.blazesdk.style.shared.models.BlazeObjectXPosition
 import com.blaze.blazesdk.style.shared.models.BlazeObjectYPosition
 import com.blaze.blazesdk.style.shared.models.blazeDp
 import com.blaze.blazesdk.style.widgets.BlazeWidgetItemBadgeStyle
+import com.blaze.blazesdk.shared.models.BlazeExtraInfoKeyPreset
 import com.blaze.blazesdk.style.widgets.BlazeWidgetItemCustomMapping
 import com.blaze.blazesdk.style.widgets.BlazeWidgetItemImageGradientOverlayStyle.BlazeGradientPosition
 import com.blaze.blazesdk.style.widgets.BlazeWidgetItemImageStyle
@@ -50,6 +52,12 @@ class StoriesRowFragment: BaseWidgetFragment(R.layout.fragment_stories_row) {
             widgetId = widgetType.name, // Or any unique identifier for the widget
             widgetDelegate = this,
             shouldOrderWidgetByReadStatus = true,
+            // Opt-in pre-roll ads for the Stories player (disabled by default).
+            // When enabled, if the first unread page is a configured ad page, that ad is played
+            // there as a pre-roll before the story content. Leave as `.base()` to keep pre-rolls off.
+            playbackConfiguration = BlazeStoriesPlaybackConfiguration.base().apply {
+                ads.enablePreroll = true
+            },
         )
     }
 
@@ -276,7 +284,7 @@ class StoriesRowFragment: BaseWidgetFragment(R.layout.fragment_stories_row) {
     // For more information see https://dev.wsc-sports.com/docs/android-blaze-widget-item-custom-mapping#/
     private fun setOverrideStylesByGameId(widgetLayout: BlazeWidgetLayout) {
         val layoutDeepCopy = widgetLayout.blazeDeepCopy() // we create a deep copy of the layout to avoid modifying the original layout
-        val mappingKey =  BlazeWidgetItemCustomMapping.BlazeKeysPresets.PLAYER_ID
+        val mappingKey =  BlazeExtraInfoKeyPreset.PLAYER_ID
         val mappingValue = "593109"
         binding.storiesRowWidgetView.updateOverrideStyles(
             perItemStyleOverrides = mapOf(

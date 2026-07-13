@@ -22,6 +22,9 @@ nav_version = "2.9.0"
 swiperefreshlayout = "1.2.0-alpha01"
 serializationJson = "1.7.3"
 pagingVersion = "3.3.5"
+coroutines = "1.9.0"
+room = "2.7.1"
+ksp = "2.0.21-1.0.28"
 blazeSDK = "1.20.0"
 
 [libraries]
@@ -51,6 +54,10 @@ swiperefreshlayout = { module = "androidx.swiperefreshlayout:swiperefreshlayout"
 kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "serializationJson" }
 androidx-paging-runtime = { group = "androidx.paging", name = "paging-runtime", version.ref = "pagingVersion" }
 androidx-paging-compose = { group = "androidx.paging", name = "paging-compose", version.ref = "pagingVersion" }
+kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines" }
+androidx-room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "room" }
+androidx-room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "room" }
+androidx-room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "room" }
 
 blazesdk = { group = "com.blaze", name = "blazesdk", version.ref = "blazeSDK" }
 blaze-gam = { group = "com.blaze", name = "gam-next-gen", version.ref = "blazeSDK" }
@@ -62,4 +69,5 @@ jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = 
 compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 android-library = { id = "com.android.library", version.ref = "agp" }
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 

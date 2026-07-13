@@ -46,6 +46,7 @@ android {
 
 dependencies {
     implementation(project(":core:ui"))
+    implementation(project(":core:data"))
     implementation(project(":samples:widgets"))
     implementation(project(":samples:globalsettings"))
     implementation(project(":samples:momentscontainer"))

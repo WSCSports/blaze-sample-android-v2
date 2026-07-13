@@ -40,6 +40,7 @@ dependencyResolutionManagement {
 rootProject.name = "blaze-sample-android-v2"
 include(":app")
 include(":core:ui")
+include(":core:data")
 include(":samples:widgets")
 include(":samples:globalsettings")
 include(":samples:momentscontainer")

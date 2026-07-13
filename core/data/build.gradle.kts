@@ -1,13 +1,14 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.jetbrains.kotlin.android)
+    alias(libs.plugins.ksp)
 }
 
 android {
     val compileSdkVersion = rootProject.extra["compileSdkVersion"] as Int
     val minSdkVersion = rootProject.extra["minSdkVersion"] as Int
 
-    namespace = "com.wscsports.blaze_sample_android.samples.widgets"
+    namespace = "com.wscsports.blaze_sample_android.core.data"
     compileSdk = compileSdkVersion
 
     defaultConfig {
@@ -33,31 +34,15 @@ android {
     kotlinOptions {
         jvmTarget = "11"
     }
-    buildFeatures {
-        viewBinding = true
-    }
 }
 
 dependencies {
 
-    implementation(project(":core:ui"))
-    implementation(project(":core:data"))
+    // Flow is part of this module's public API
+    api(libs.kotlinx.coroutines.core)
 
-    implementation(libs.androidx.core.ktx)
-    implementation(libs.androidx.appcompat)
-    implementation(libs.material)
-    implementation(libs.androidx.activity)
-    implementation(libs.androidx.constraintlayout)
-    implementation(libs.androidx.lifecycle.viewmodel.ktx)
-    implementation(libs.swiperefreshlayout)
-
-    // navigation
-    implementation(libs.androidx.navigation.fragment.ktx)
-    implementation(libs.androidx.navigation.ui.ktx)
-
-    //BlazeSDK
-    implementation(libs.blazesdk)
-
-    // fragments view binding delegate
-    implementation(libs.fragmentviewbindingdelegate.kt)
+    // Room
+    implementation(libs.androidx.room.runtime)
+    implementation(libs.androidx.room.ktx)
+    ksp(libs.androidx.room.compiler)
 }

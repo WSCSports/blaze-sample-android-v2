@@ -39,7 +39,8 @@ import com.wscsports.blaze_sample_android.core.ui.R as CoreUiR
  *
  * The moments widget is initialized with three tabs, where the "Your Picks" tab
  * is built from the locally persisted followed entities. Follow changes swap that
- * tab's data source right away and reload the tabs once the player is dismissed.
+ * tab's data source and refresh it in the background right away; the widget itself
+ * is rebuilt with a fresh configuration once the player is dismissed.
  */
 class MixedWidgetsFragment: Fragment(R.layout.fragment_mixed_widgets),
     BlazeWidgetDelegate by WidgetDelegateImpl() {
@@ -54,7 +55,9 @@ class MixedWidgetsFragment: Fragment(R.layout.fragment_mixed_widgets),
      * The SDK shares this instance: the container shallow-copies the tab item, so the
      * in-player content holder ends up referencing this very object. Follow changes are
      * applied by mutating its fields in place — never by replacing the instance — which
-     * makes an in-session non-active tabs reload fetch the fresh query.
+     * makes an in-session non-active tabs reload fetch the fresh query. A reload always
+     * refetches the data source captured at prefetch, so this mutation can only go away
+     * once the SDK offers a session-safe way to update a tab's data source in place.
      */
     private lateinit var yourPicksLiveDataSource: BlazeDataSourceType.Labels
     private lateinit var yourPicksTab: BlazeMomentsContainerTabItem
@@ -79,6 +82,7 @@ class MixedWidgetsFragment: Fragment(R.layout.fragment_mixed_widgets),
             isYourPicksTabActive = sourceId?.endsWith(YOUR_PICKS_CONTAINER_ID) == true
             if (!isYourPicksTabActive && hasPendingYourPicksReload) {
                 hasPendingYourPicksReload = false
+                // Swap for momentsTabsController.reloadTab(YOUR_PICKS_CONTAINER_ID) once public.
                 momentsTabsController.reloadNonActiveTabs()
             }
         }
@@ -92,7 +96,7 @@ class MixedWidgetsFragment: Fragment(R.layout.fragment_mixed_widgets),
     /**
      * Re-initializing the widget while the moments player is open would replace the
      * content under the user mid-playback, so follow changes made inside the player
-     * (which runs in its own activity, pausing this fragment) are applied here,
+     * (which runs in its own activity, stopping this fragment) are applied here,
      * once the user comes back.
      */
     override fun onResume() {
@@ -127,7 +131,7 @@ class MixedWidgetsFragment: Fragment(R.layout.fragment_mixed_widgets),
      * a tab that loaded empty, so a new [BlazeMomentsContainerTabItem] is created each
      * time to re-add it once content exists.
      *
-     * Changes made inside the player (fragment paused) are applied twofold: non-active
+     * Changes made inside the player (fragment stopped) are applied twofold: non-active
      * tabs reload right away against the in-place-mutated [yourPicksLiveDataSource]
      * (active playback stays untouched), and the full re-init is deferred to [onResume]
      * to cover the active tab and an empty-removed tab.
@@ -156,9 +160,10 @@ class MixedWidgetsFragment: Fragment(R.layout.fragment_mixed_widgets),
                     }
                     // Follow changed while watching another tab -> "Your Picks" refetches in the
                     // background (active playback untouched); full re-init still runs on return.
-                    // TODO: use a targeted controller.reloadTab(YOUR_PICKS_CONTAINER_ID) once the
-                    //  SDK exposes it — reloadNonActiveTabs also refetches the other tabs.
                     !isYourPicksTabActive -> {
+                        // Swap for the targeted reload below once BlazeMomentsWidgetTabsController
+                        // exposes it publicly — reloadNonActiveTabs also refetches the other tabs:
+                        // momentsTabsController.reloadTab(YOUR_PICKS_CONTAINER_ID)
                         momentsTabsController.reloadNonActiveTabs()
                         hasPendingWidgetReinit = true
                     }

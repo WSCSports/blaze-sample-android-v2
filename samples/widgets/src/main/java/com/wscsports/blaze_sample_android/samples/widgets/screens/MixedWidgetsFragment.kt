@@ -51,14 +51,6 @@ class MixedWidgetsFragment: Fragment(R.layout.fragment_mixed_widgets),
 
     private val momentsTabsController = BlazeMomentsWidgetTabsController()
 
-    /**
-     * The SDK shares this instance: the container shallow-copies the tab item, so the
-     * in-player content holder ends up referencing this very object. Follow changes are
-     * applied by mutating its fields in place — never by replacing the instance — which
-     * makes an in-session non-active tabs reload fetch the fresh query. A reload always
-     * refetches the data source captured at prefetch, so this mutation can only go away
-     * once the SDK offers a session-safe way to update a tab's data source in place.
-     */
     private lateinit var yourPicksLiveDataSource: BlazeDataSourceType.Labels
     private lateinit var yourPicksTab: BlazeMomentsContainerTabItem
 
@@ -82,7 +74,6 @@ class MixedWidgetsFragment: Fragment(R.layout.fragment_mixed_widgets),
             isYourPicksTabActive = sourceId?.endsWith(YOUR_PICKS_CONTAINER_ID) == true
             if (!isYourPicksTabActive && hasPendingYourPicksReload) {
                 hasPendingYourPicksReload = false
-                // Swap for momentsTabsController.reloadTab(YOUR_PICKS_CONTAINER_ID) once public.
                 momentsTabsController.reloadNonActiveTabs()
             }
         }
@@ -161,9 +152,6 @@ class MixedWidgetsFragment: Fragment(R.layout.fragment_mixed_widgets),
                     // Follow changed while watching another tab -> "Your Picks" refetches in the
                     // background (active playback untouched); full re-init still runs on return.
                     !isYourPicksTabActive -> {
-                        // Swap for the targeted reload below once BlazeMomentsWidgetTabsController
-                        // exposes it publicly — reloadNonActiveTabs also refetches the other tabs:
-                        // momentsTabsController.reloadTab(YOUR_PICKS_CONTAINER_ID)
                         momentsTabsController.reloadNonActiveTabs()
                         hasPendingWidgetReinit = true
                     }

@@ -207,14 +207,6 @@ private class MomentsFollowTabsWidgetState(
 
     val momentsTabsController = BlazeMomentsWidgetTabsController()
 
-    /**
-     * The SDK shares this instance: the container shallow-copies the tab item, so the
-     * in-player content holder ends up referencing this very object. Follow changes are
-     * applied by mutating its fields in place — never by replacing the instance — which
-     * makes an in-session non-active tabs reload fetch the fresh query. A reload always
-     * refetches the data source captured at prefetch, so this mutation can only go away
-     * once the SDK offers a session-safe way to update a tab's data source in place.
-     */
     private val yourPicksLiveDataSource: BlazeDataSourceType.Labels = initialYourPicksDataSource
 
     var yourPicksTab by mutableStateOf(makeYourPicksTab(initialYourPicksDataSource))
@@ -238,7 +230,6 @@ private class MomentsFollowTabsWidgetState(
             isYourPicksTabActive = sourceId?.endsWith(YOUR_PICKS_CONTAINER_ID) == true
             if (!isYourPicksTabActive && hasPendingYourPicksReload) {
                 hasPendingYourPicksReload = false
-                // Swap for momentsTabsController.reloadTab(YOUR_PICKS_CONTAINER_ID) once public.
                 momentsTabsController.reloadNonActiveTabs()
             }
         }
@@ -254,9 +245,6 @@ private class MomentsFollowTabsWidgetState(
             // Follow changed while watching another tab -> "Your Picks" refetches in the
             // background (active playback untouched); full recreation still runs on return.
             !isYourPicksTabActive -> {
-                // Swap for the targeted reload below once BlazeMomentsWidgetTabsController
-                // exposes it publicly — reloadNonActiveTabs also refetches the other tabs:
-                // momentsTabsController.reloadTab(YOUR_PICKS_CONTAINER_ID)
                 momentsTabsController.reloadNonActiveTabs()
                 hasPendingWidgetReinit = true
             }

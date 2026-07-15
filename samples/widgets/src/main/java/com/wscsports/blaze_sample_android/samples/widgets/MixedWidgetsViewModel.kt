@@ -8,7 +8,7 @@ import com.blaze.blazesdk.data_source.BlazeDataSourceType
 import com.blaze.blazesdk.data_source.BlazeOrderType
 import com.blaze.blazesdk.data_source.BlazeWidgetLabel
 import com.wscsports.blaze_sample_android.core.Constants.MOMENTS_CONTAINER_TABS_1_DEFAULT_LABEL
-import com.wscsports.blaze_sample_android.core.data.FollowsRepository
+import com.wscsports.blaze_sample_android.core.data.FollowRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
@@ -17,7 +17,7 @@ import kotlinx.coroutines.flow.map
  * out of the locally persisted followed entities.
  */
 class MixedWidgetsViewModel(
-    private val followsRepository: FollowsRepository
+    private val followRepository: FollowRepository
 ) : ViewModel() {
 
     /**
@@ -30,7 +30,7 @@ class MixedWidgetsViewModel(
      * state, as the fragment initializes the widget on it.
      */
     val yourPicksDataSource: Flow<BlazeDataSourceType.Labels> =
-        followsRepository.followedEntityIds.map { followedEntityIds ->
+        followRepository.followedEntityIds.map { followedEntityIds ->
             val labels = followedEntityIds + MOMENTS_CONTAINER_TABS_1_DEFAULT_LABEL
             BlazeDataSourceType.Labels(
                 blazeWidgetLabel = BlazeWidgetLabel.atLeastOneOf(*labels.toTypedArray()),
@@ -43,7 +43,7 @@ class MixedWidgetsViewModel(
         val Factory = viewModelFactory {
             initializer {
                 val application = checkNotNull(this[APPLICATION_KEY])
-                MixedWidgetsViewModel(FollowsRepository.getInstance(application))
+                MixedWidgetsViewModel(FollowRepository.getInstance(application))
             }
         }
     }

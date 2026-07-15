@@ -4,7 +4,7 @@ import android.app.Application
 import android.util.Log
 import com.blaze.blazesdk.prefetch.models.BlazeCachingLevel
 import com.blaze.blazesdk.shared.BlazeSDK
-import com.wscsports.blaze_sample_android.core.data.FollowsRepository
+import com.wscsports.blaze_sample_android.core.data.FollowRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
@@ -41,8 +41,8 @@ class Application : Application() {
 
     /** Starts syncing follows once the SDK is ready. Call only after a successful [BlazeSDK.init]. */
     private fun syncFollowedEntities() {
-        BlazeFollowsSynchronizer(
-            followsRepository = FollowsRepository.getInstance(this),
+        BlazeFollowSynchronizer(
+            followRepository = FollowRepository.getInstance(this),
             scope = applicationScope
         ).start()
     }

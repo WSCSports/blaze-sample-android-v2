@@ -11,7 +11,7 @@ import kotlinx.coroutines.flow.distinctUntilChanged
  * The API intentionally operates on plain entity ids to keep consumers
  * decoupled from the underlying storage.
  */
-interface FollowsRepository {
+interface FollowRepository {
 
     /**
      * Emits the currently followed entity ids and every subsequent change,
@@ -25,20 +25,20 @@ interface FollowsRepository {
     companion object {
 
         @Volatile
-        private var instance: FollowsRepository? = null
+        private var instance: FollowRepository? = null
 
-        fun getInstance(context: Context): FollowsRepository =
+        fun getInstance(context: Context): FollowRepository =
             instance ?: synchronized(this) {
-                instance ?: RoomFollowsRepository(
+                instance ?: RoomFollowRepository(
                     dao = SampleDatabase.getInstance(context).followedEntityDao()
                 ).also { instance = it }
             }
     }
 }
 
-internal class RoomFollowsRepository(
+internal class RoomFollowRepository(
     private val dao: FollowedEntityDao
-) : FollowsRepository {
+) : FollowRepository {
 
     override val followedEntityIds: Flow<List<String>> =
         dao.observeEntityIds()

@@ -71,6 +71,8 @@ fun WidgetsFeedScreen(
             widgetLayout = BlazeWidgetLayout.Presets.StoriesWidget.Row.circles,
             playerStyle = BlazeStoryPlayerStyle.base(),
             dataSourceType = BlazeDataSourceType.Labels(BlazeWidgetLabel.singleLabel(STORIES_WIDGET_DEFAULT_LABEL)),
+            // If a widget with this identifier exists in the CMS, its layout (UI) and data source are derived from there.
+            widgetRemoteIdentifier = "<ID_FROM_CMS>",
             widgetDelegate = composeWidgetDelegate
         )
     }
@@ -81,6 +83,8 @@ fun WidgetsFeedScreen(
             widgetLayout = BlazeWidgetLayout.Presets.StoriesWidget.Grid.twoColumnsVerticalRectangles,
             playerStyle = BlazeStoryPlayerStyle.base(),
             dataSourceType = BlazeDataSourceType.Labels(BlazeWidgetLabel.singleLabel(STORIES_WIDGET_DEFAULT_LABEL)),
+            // If a widget with this identifier exists in the CMS, its layout (UI) and data source are derived from there.
+            widgetRemoteIdentifier = "<ID_FROM_CMS>",
             widgetDelegate = composeWidgetDelegate
         )
     }

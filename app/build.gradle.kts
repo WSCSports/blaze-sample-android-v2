@@ -46,12 +46,12 @@ android {
 
 dependencies {
     implementation(project(":core:ui"))
-    implementation(project(":core:data"))
     implementation(project(":samples:widgets"))
     implementation(project(":samples:globalsettings"))
     implementation(project(":samples:momentscontainer"))
     implementation(project(":samples:entrypoint"))
     implementation(project(":samples:playerstyle"))
+    implementation(project(":samples:follow"))
     implementation(project(":samples:ads"))
     implementation(project(":samples:compose"))
     implementation(project(":samples:inlinevideos"))

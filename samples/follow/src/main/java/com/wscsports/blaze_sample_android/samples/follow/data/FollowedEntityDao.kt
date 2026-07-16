@@ -1,4 +1,4 @@
-package com.wscsports.blaze_sample_android.core.data
+package com.wscsports.blaze_sample_android.samples.follow.data
 
 import androidx.room.Dao
 import androidx.room.Query

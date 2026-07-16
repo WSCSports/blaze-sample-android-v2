@@ -16,5 +16,6 @@ enum class SampleItem(
     ADS(string.ads_title, string.ads_subtitle, drawable.ic_ads, "ads.AdsSampleActivity"),
     COMPOSE(string.compose_title, string.compose_subtitle, drawable.ic_compose, "compose.ComposeActivity"),
     INLINE_VIDEOS(string.inline_videos_title, string.inline_videos_subtitle, drawable.ic_inline_videos, "inlinevideos.InlineVideosActivity"),
-    SEARCH(string.search_title, string.search_subtitle, drawable.ic_search, "search.SearchSampleActivity");
+    SEARCH(string.search_title, string.search_subtitle, drawable.ic_search, "search.SearchSampleActivity"),
+    FOLLOW(string.follow_title, string.follow_subtitle, drawable.ic_moments_container, "follow.FollowActivity");
 }

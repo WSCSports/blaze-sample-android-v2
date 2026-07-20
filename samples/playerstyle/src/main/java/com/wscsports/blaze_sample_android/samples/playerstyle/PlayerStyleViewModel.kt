@@ -5,10 +5,12 @@ import com.blaze.blazesdk.data_source.BlazeDataSourceType
 import com.blaze.blazesdk.data_source.BlazeWidgetLabel
 import com.blaze.blazesdk.style.players.moments.BlazeMomentsPlayerStyle
 import com.blaze.blazesdk.style.players.stories.BlazeStoryPlayerStyle
+import com.blaze.blazesdk.style.players.videos.BlazeVideosPlayerStyle
 import com.blaze.blazesdk.style.widgets.BlazeWidgetLayout
 import androidx.core.graphics.toColorInt
 import com.wscsports.blaze_sample_android.core.Constants.MOMENTS_WIDGET_DEFAULT_LABEL
 import com.wscsports.blaze_sample_android.core.Constants.STORIES_WIDGET_DEFAULT_LABEL
+import com.wscsports.blaze_sample_android.core.Constants.VIDEOS_WIDGET_DEFAULT_LABEL
 
 class PlayerStyleViewModel: ViewModel() {
 
@@ -18,11 +20,17 @@ class PlayerStyleViewModel: ViewModel() {
     val momentsDataSource: BlazeDataSourceType
         get() = BlazeDataSourceType.Labels(BlazeWidgetLabel.singleLabel(MOMENTS_WIDGET_DEFAULT_LABEL))
 
+    val videosDataSource: BlazeDataSourceType
+        get() = BlazeDataSourceType.Labels(BlazeWidgetLabel.singleLabel(VIDEOS_WIDGET_DEFAULT_LABEL))
+
     val storiesWidgetLayout: BlazeWidgetLayout
         get() = BlazeWidgetLayout.Presets.StoriesWidget.Row.circles
 
     val momentsWidgetLayout: BlazeWidgetLayout
         get() = BlazeWidgetLayout.Presets.MomentsWidget.Row.verticalAnimatedThumbnailsRectangles
+
+    val videosWidgetLayout: BlazeWidgetLayout
+        get() = BlazeWidgetLayout.Presets.VideosWidget.Row.horizontalRectangles
 
     val defaultStoryPlayerStyle: BlazeStoryPlayerStyle
         get() = BlazeStoryPlayerStyle.base()
@@ -30,9 +38,14 @@ class PlayerStyleViewModel: ViewModel() {
     val defaultMomentPlayerStyle: BlazeMomentsPlayerStyle
         get() = BlazeMomentsPlayerStyle.base()
 
+    val defaultVideosPlayerStyle: BlazeVideosPlayerStyle
+        get() = BlazeVideosPlayerStyle.base()
+
     val customStoryPlayerStyle = defaultStoryPlayerStyle.applyCustomStoryPlayerParams()
-    
+
     val customMomentPlayerStyle = defaultMomentPlayerStyle.applyCustomMomentsPlayerParams()
+
+    val customVideosPlayerStyle = defaultVideosPlayerStyle.applyCustomVideosPlayerParams()
 
     companion object {
         const val HEADER_TEXT_SIZE = 22f

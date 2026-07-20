@@ -4,10 +4,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.blaze.blazesdk.style.shared.models.blazeDp
 import com.blaze.blazesdk.style.widgets.BlazeWidgetLayout
-import com.wscsports.blaze_sample_android.core.Constants.MOMENTS_WIDGET_DEFAULT_LABEL
-import com.wscsports.blaze_sample_android.core.Constants.STORIES_WIDGET_DEFAULT_LABEL
-import com.wscsports.blaze_sample_android.core.Constants.VIDEOS_WIDGET_DEFAULT_LABEL
 import com.wscsports.blaze_sample_android.samples.widgets.edit.EditMenuItem
+import com.wscsports.blaze_sample_android.samples.widgets.edit.WidgetContentType
 import com.wscsports.blaze_sample_android.samples.widgets.edit.WidgetDataState
 import com.wscsports.blaze_sample_android.samples.widgets.edit.WidgetLayoutStyleState
 import kotlinx.coroutines.delay
@@ -114,24 +112,26 @@ class WidgetsViewModel: ViewModel() {
 
     fun setCurrWidgetTypeAndInitLabelIfNeeded(widgetType: WidgetScreenType) {
         _currWidgetType.update { widgetType }
+        // Screens without a content type build their own data sources and never open the edit
+        // sheet, so there is no data state to initialize for them.
+        val contentType = widgetType.contentType() ?: return
         _widgetDataState.update { prevState ->
-            prevState
-                ?: WidgetDataState(
-                    labelName = widgetType.initDataSourceLabel()
-                )
+            prevState ?: WidgetDataState(contentType = contentType)
         }
     }
 
-    private fun WidgetScreenType.initDataSourceLabel(): String {
+    // Maps each widget screen to the content type its data source examples should use,
+    // or null for screens that build their own data sources and never open the edit sheet.
+    private fun WidgetScreenType.contentType(): WidgetContentType? {
         return when (this) {
-            WidgetScreenType.STORIES_ROW -> STORIES_WIDGET_DEFAULT_LABEL
-            WidgetScreenType.STORIES_GRID -> STORIES_WIDGET_DEFAULT_LABEL
-            WidgetScreenType.MOMENTS_GRID -> MOMENTS_WIDGET_DEFAULT_LABEL
-            WidgetScreenType.MOMENTS_ROW -> MOMENTS_WIDGET_DEFAULT_LABEL
-            WidgetScreenType.VIDEOS_ROW -> VIDEOS_WIDGET_DEFAULT_LABEL
-            WidgetScreenType.VIDEOS_GRID -> VIDEOS_WIDGET_DEFAULT_LABEL
-            WidgetScreenType.MIXED_WIDGETS -> "" // Not needed for mixed widgets
-            WidgetScreenType.METHODS_DELEGATES -> "" // Not needed, fragment handles its own data source
+            WidgetScreenType.STORIES_ROW -> WidgetContentType.STORIES
+            WidgetScreenType.STORIES_GRID -> WidgetContentType.STORIES
+            WidgetScreenType.MOMENTS_GRID -> WidgetContentType.MOMENTS
+            WidgetScreenType.MOMENTS_ROW -> WidgetContentType.MOMENTS
+            WidgetScreenType.VIDEOS_ROW -> WidgetContentType.VIDEOS
+            WidgetScreenType.VIDEOS_GRID -> WidgetContentType.VIDEOS
+            WidgetScreenType.MIXED_WIDGETS -> null
+            WidgetScreenType.METHODS_DELEGATES -> null
         }
     }
 

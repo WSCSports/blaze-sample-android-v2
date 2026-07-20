@@ -11,7 +11,7 @@
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/follow_tabs_fragment_container"
-        android:name="com.wscsports.blaze_sample_android.samples.follow.FollowTabsFragment"
+        android:name="com.wscsports.blaze_sample_android.samples.follow.views.FollowTabsFragment"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1" />

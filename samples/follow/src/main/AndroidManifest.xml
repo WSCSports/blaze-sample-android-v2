@@ -5,10 +5,10 @@
             android:name=".FollowActivity"
             android:exported="false" />
         <activity
-            android:name=".FollowTabsViewActivity"
+            android:name=".views.FollowTabsViewActivity"
             android:exported="false" />
         <activity
-            android:name=".FollowTabsComposeActivity"
+            android:name=".compose.FollowTabsComposeActivity"
             android:exported="false" />
     </application>
 </manifest>

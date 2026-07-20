@@ -6,6 +6,8 @@ import androidx.appcompat.app.AppCompatActivity
 import com.wscsports.blaze_sample_android.core.ui.R as CoreUiR
 import com.wscsports.blaze_sample_android.core.ui.applySafeAreaPadding
 import com.wscsports.blaze_sample_android.core.ui.viewBinding
+import com.wscsports.blaze_sample_android.samples.follow.compose.FollowTabsComposeActivity
+import com.wscsports.blaze_sample_android.samples.follow.views.FollowTabsViewActivity
 import com.wscsports.blaze_sample_android.samples.follow.databinding.ActivityFollowBinding
 
 /**

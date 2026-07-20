@@ -1,4 +1,4 @@
-package com.wscsports.blaze_sample_android.samples.follow
+package com.wscsports.blaze_sample_android.samples.follow.views
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity

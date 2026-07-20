@@ -1,4 +1,4 @@
-package com.wscsports.blaze_sample_android.samples.follow
+package com.wscsports.blaze_sample_android.samples.follow.views
 
 import android.os.Bundle
 import android.view.View
@@ -16,6 +16,11 @@ import com.blaze.blazesdk.features.moments.widgets.tabs.BlazeMomentsWidgetTabsCo
 import com.blaze.blazesdk.style.widgets.BlazeWidgetLayout
 import com.wscsports.blaze_sample_android.core.WidgetDelegateImpl
 import com.wscsports.blaze_sample_android.core.ui.R as CoreUiR
+import com.wscsports.blaze_sample_android.samples.follow.R
+import com.wscsports.blaze_sample_android.samples.follow.FollowViewModel
+import com.wscsports.blaze_sample_android.samples.follow.makeMomentsFollowTabsConfiguration
+import com.wscsports.blaze_sample_android.samples.follow.makeYourPicksTab
+import com.wscsports.blaze_sample_android.samples.follow.yourPicksSourceId
 import com.wscsports.blaze_sample_android.samples.follow.databinding.FragmentFollowTabsBinding
 import com.zhuinden.fragmentviewbindingdelegatekt.viewBinding
 import kotlinx.coroutines.flow.collectIndexed

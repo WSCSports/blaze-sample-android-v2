@@ -1,4 +1,4 @@
-package com.wscsports.blaze_sample_android.samples.follow
+package com.wscsports.blaze_sample_android.samples.follow.compose
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -33,6 +33,10 @@ import com.blaze.blazesdk.features.moments.widgets.compose.row.BlazeComposeMomen
 import com.blaze.blazesdk.features.moments.widgets.tabs.BlazeMomentsWidgetTabsController
 import com.blaze.blazesdk.style.widgets.BlazeWidgetLayout
 import com.wscsports.blaze_sample_android.core.WidgetDelegateImpl
+import com.wscsports.blaze_sample_android.samples.follow.FollowViewModel
+import com.wscsports.blaze_sample_android.samples.follow.makeMomentsFollowTabsConfiguration
+import com.wscsports.blaze_sample_android.samples.follow.makeYourPicksTab
+import com.wscsports.blaze_sample_android.samples.follow.yourPicksSourceId
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collectIndexed
 import com.wscsports.blaze_sample_android.core.ui.R as CoreUiR

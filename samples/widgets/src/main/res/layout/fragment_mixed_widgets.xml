@@ -45,6 +45,22 @@
                 android:layout_height="300dp"
                 android:layout_marginBottom="16dp" />
 
+            <!-- Live Video Row Widget -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:text="Live Video Row Widget"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="8dp" />
+
+            <com.blaze.blazesdk.features.videos.widgets.row.BlazeVideosWidgetRowView
+                android:id="@+id/live_video_row_widget_view"
+                android:layout_width="match_parent"
+                android:layout_height="240dp"
+                android:layout_marginBottom="16dp" />
+
             <!-- Stories Grid Widget -->
             <TextView
                 android:layout_width="wrap_content"

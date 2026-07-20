@@ -4,9 +4,11 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import com.blaze.blazesdk.data_source.BlazeAdvancedOrderType
 import com.blaze.blazesdk.data_source.BlazeDataSourceType
 import com.blaze.blazesdk.data_source.BlazeWidgetLabel
 import com.blaze.blazesdk.delegates.BlazeWidgetDelegate
+import com.wscsports.blaze_sample_android.core.Constants.LIVE_VIDEOS_WIDGET_DEFAULT_LABEL
 import com.wscsports.blaze_sample_android.core.Constants.MOMENTS_WIDGET_DEFAULT_LABEL
 import com.wscsports.blaze_sample_android.core.Constants.STORIES_WIDGET_DEFAULT_LABEL
 import com.wscsports.blaze_sample_android.core.WidgetDelegateImpl
@@ -17,7 +19,7 @@ import com.zhuinden.fragmentviewbindingdelegatekt.viewBinding
 
 /**
  * MixedWidgetsFragment is a Fragment that displays a mix feed of Blaze widgets:
- * Stories-row, Moments-row, and Stories-grid.
+ * Stories-row, Moments-row, Live-video-row, and Stories-grid.
  * It manages reload widgets data with pull-to-refresh [SwipeRefreshLayout].
  */
 class MixedWidgetsFragment: Fragment(R.layout.fragment_mixed_widgets),
@@ -34,6 +36,7 @@ class MixedWidgetsFragment: Fragment(R.layout.fragment_mixed_widgets),
     private fun initWidgets() {
         initStoriesRowWidget()
         initMomentsRowWidget()
+        initLiveVideoRowWidget()
         initStoriesGridWidget()
     }
 
@@ -57,6 +60,20 @@ class MixedWidgetsFragment: Fragment(R.layout.fragment_mixed_widgets),
             widgetLayout = viewModel.momentsRowBaseLayout,
             dataSource = dataSource,
             widgetId = "mixed-widgets-moments-row-id",
+            widgetDelegate = this
+        )
+    }
+
+    private fun initLiveVideoRowWidget() {
+        val dataSource = BlazeDataSourceType.Labels(
+            blazeWidgetLabel = BlazeWidgetLabel.singleLabel(LIVE_VIDEOS_WIDGET_DEFAULT_LABEL),
+            advancedOrderType = BlazeAdvancedOrderType.LiveFirst,
+        )
+        binding.liveVideoRowWidgetView.initWidget(
+            widgetLayout = viewModel.liveVideoRowBaseLayout,
+            dataSource = dataSource,
+            videosFilterParams = viewModel.liveVideoFilterParams,
+            widgetId = "mixed-widgets-live-video-row-id",
             widgetDelegate = this
         )
     }
@@ -85,6 +102,7 @@ class MixedWidgetsFragment: Fragment(R.layout.fragment_mixed_widgets),
         with(binding) {
             storiesRowWidgetView.reloadData(isSilentRefresh = false)
             momentsRowWidgetView.reloadData(isSilentRefresh = false)
+            liveVideoRowWidgetView.reloadData(isSilentRefresh = false)
             storiesGridWidgetView.reloadData(isSilentRefresh = false)
         }
     }

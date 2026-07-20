@@ -7,6 +7,7 @@ object Constants {
     const val MOMENTS_CONTAINER_TABS_1_DEFAULT_LABEL = "moments-main"
     const val MOMENTS_CONTAINER_TABS_2_DEFAULT_LABEL = "moments-main-2"
     const val VIDEOS_WIDGET_DEFAULT_LABEL = "video-long-form"
+    const val LIVE_VIDEOS_WIDGET_DEFAULT_LABEL = "videos-live"
     const val DATA_SOURCE_NO_CONTENT_LABEL = "fake_label_with_no_content"
 
     // Sample content IDs used by the "IDs" data source example, per content type.

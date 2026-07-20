@@ -86,6 +86,7 @@ dependencies {
 **What it demonstrates**:
 - Implementation of various widget types (Stories, Moments, Videos)
 - Row and Grid layout options
+- Live video filtering (Videos widget filtered to live/upcoming/ended stream content)
 - Mixed widgets (multiple widgets on the same screen)
 - Runtime editing capabilities:
   - Data source editing (label names, order types)
@@ -94,7 +95,7 @@ dependencies {
 
 **Key Features**:
 - Custom appearance settings
-- Status indicators
+- Status indicators, including per-stream-state (live/upcoming/ended) styling
 - Badge management
 - Item style overrides
 

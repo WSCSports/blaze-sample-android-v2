@@ -25,18 +25,14 @@ import androidx.lifecycle.compose.LifecycleResumeEffect
 import androidx.lifecycle.compose.LocalLifecycleOwner
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.blaze.blazesdk.data_source.BlazeDataSourceType
-import com.blaze.blazesdk.delegates.BlazePlayerContainerTabsDelegate
 import com.blaze.blazesdk.delegates.BlazeWidgetDelegate
-import com.blaze.blazesdk.delegates.models.BlazePlayerType
 import com.blaze.blazesdk.features.moments.widgets.compose.BlazeComposeWidgetMomentsStateHandler
 import com.blaze.blazesdk.features.moments.widgets.compose.row.BlazeComposeMomentsWidgetRowView
-import com.blaze.blazesdk.features.moments.widgets.tabs.BlazeMomentsWidgetTabsController
 import com.blaze.blazesdk.style.widgets.BlazeWidgetLayout
 import com.wscsports.blaze_sample_android.core.WidgetDelegateImpl
 import com.wscsports.blaze_sample_android.samples.follow.FollowViewModel
+import com.wscsports.blaze_sample_android.samples.follow.YourPicksRefreshCoordinator
 import com.wscsports.blaze_sample_android.samples.follow.makeMomentsFollowTabsConfiguration
-import com.wscsports.blaze_sample_android.samples.follow.makeYourPicksTab
-import com.wscsports.blaze_sample_android.samples.follow.yourPicksSourceId
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collectIndexed
 import com.wscsports.blaze_sample_android.core.ui.R as CoreUiR
@@ -69,12 +65,9 @@ fun FollowTabsScreen(
 
 /**
  * The tabs-backed moments widget: "Trending" and "For you" use fixed labels, while
- * "Your Picks" is personalized from the followed entities.
- *
- * The widget appears on the first data source emission and is fully recreated (fresh
- * state handler and tab items, driven by [MomentsFollowTabsWidgetState.widgetGeneration])
- * on every follow change — the SDK removes a tab that loaded empty, so fresh tab items
- * are needed to re-add it once content exists.
+ * "Your Picks" is personalized from the followed entities. The follow-change
+ * choreography lives in [YourPicksRefreshCoordinator]; this composable rebuilds the
+ * widget whenever the coordinator bumps [MomentsFollowTabsWidgetState.widgetGeneration].
  *
  * Deliberately NOT a lifecycle-gated collection: follow changes are emitted while the
  * moments player (its own activity) covers this screen, which is exactly when the
@@ -94,9 +87,9 @@ private fun MomentsFollowTabsWidget(
     LaunchedEffect(Unit) {
         yourPicksDataSource.collectIndexed { index, dataSource ->
             if (index == 0) {
-                tabsState = MomentsFollowTabsWidgetState(dataSource)
+                tabsState = MomentsFollowTabsWidgetState(CONTAINER_SOURCE_ID, dataSource)
             } else {
-                tabsState?.onYourPicksDataSourceChanged(
+                tabsState?.coordinator?.onYourPicksChanged(
                     dataSource = dataSource,
                     isResumed = lifecycle.currentState.isAtLeast(Lifecycle.State.RESUMED)
                 )
@@ -110,7 +103,7 @@ private fun MomentsFollowTabsWidget(
      * here, once the user comes back.
      */
     LifecycleResumeEffect(tabsState) {
-        tabsState?.onResumed()
+        tabsState?.coordinator?.onResumed()
         onPauseOrDispose { }
     }
 
@@ -122,9 +115,9 @@ private fun MomentsFollowTabsWidget(
                     widgetLayout = BlazeWidgetLayout.Presets.MomentsWidget.Row.verticalAnimatedThumbnailsRectangles,
                     tabsConfiguration = makeMomentsFollowTabsConfiguration(
                         containerSourceId = CONTAINER_SOURCE_ID,
-                        yourPicksTab = state.yourPicksTab,
-                        containerTabsDelegate = state.containerTabsDelegate,
-                        controller = state.momentsTabsController,
+                        yourPicksTab = state.coordinator.buildYourPicksTab(),
+                        containerTabsDelegate = state.coordinator.containerTabsDelegate,
+                        controller = state.coordinator.tabsController,
                         accentColor = accentColor
                     ),
                     widgetDelegate = widgetDelegate
@@ -139,89 +132,24 @@ private fun MomentsFollowTabsWidget(
 }
 
 /**
- * Owns the in-session follow-refresh behavior, mirroring [FollowTabsFragment]
- * so both variants stay aligned:
- * - a follow change while the widget is visible recreates it right away,
- * - a change made inside the player reloads the non-active tabs in the background
- *   (active playback stays untouched) and defers the full recreation to the return,
- * - a change made while watching "Your Picks" itself is applied the moment the user
- *   switches to another tab, so returning to it in-session already shows fresh content.
+ * Holds the one piece of state the composition observes — [widgetGeneration], the
+ * recomposition trigger — and the shared [YourPicksRefreshCoordinator], whose
+ * `rebuildWidget` hook bumps that counter. Everything else lives in the coordinator.
  *
- * Honors the [Stable] contract: the public mutable properties are snapshot-backed,
- * so composition is notified of every change.
+ * [Stable] is honored: the only public mutable property is snapshot-backed.
  */
 @Stable
 private class MomentsFollowTabsWidgetState(
-    initialYourPicksDataSource: BlazeDataSourceType.Labels,
+    containerSourceId: String,
+    initialDataSource: BlazeDataSourceType.Labels,
 ) {
 
-    /** Bumped to force a full widget recreation — the Compose analog of re-calling initWidget. */
     var widgetGeneration by mutableIntStateOf(0)
         private set
 
-    val momentsTabsController = BlazeMomentsWidgetTabsController()
-
-    private val yourPicksLiveDataSource: BlazeDataSourceType.Labels = initialYourPicksDataSource
-
-    var yourPicksTab by mutableStateOf(makeYourPicksTab(initialYourPicksDataSource))
-        private set
-
-    private var hasPendingWidgetReinit = false
-    private var hasPendingYourPicksReload = false
-    private var isYourPicksTabActive = false
-
-    /**
-     * Tracks whether "Your Picks" is the tab the user is currently watching — the active
-     * tab must never be reloaded mid-playback.
-     */
-    val containerTabsDelegate = object : BlazePlayerContainerTabsDelegate {
-
-        override fun onPlayerDidAppear(playerType: BlazePlayerType, sourceId: String?) {
-            isYourPicksTabActive = sourceId == yourPicksSourceId(CONTAINER_SOURCE_ID)
-        }
-
-        override fun onTabSelected(playerType: BlazePlayerType, sourceId: String?, tabIndex: Int) {
-            isYourPicksTabActive = sourceId == yourPicksSourceId(CONTAINER_SOURCE_ID)
-            if (!isYourPicksTabActive && hasPendingYourPicksReload) {
-                hasPendingYourPicksReload = false
-                momentsTabsController.reloadNonActiveTabs()
-            }
-        }
-    }
-
-    fun onYourPicksDataSourceChanged(dataSource: BlazeDataSourceType.Labels, isResumed: Boolean) {
-        yourPicksLiveDataSource.blazeWidgetLabel = dataSource.blazeWidgetLabel
-        yourPicksLiveDataSource.labelsPriority = dataSource.labelsPriority
-        yourPicksTab = makeYourPicksTab(yourPicksLiveDataSource)
-        when {
-            // Widget visible, no player on top -> rebuild it with the fresh tabs right away.
-            isResumed -> recreateWidget()
-            // Follow changed while watching another tab -> "Your Picks" refetches in the
-            // background (active playback untouched); full recreation still runs on return.
-            !isYourPicksTabActive -> {
-                momentsTabsController.reloadNonActiveTabs()
-                hasPendingWidgetReinit = true
-            }
-            // Follow changed on "Your Picks" itself -> it can't be reloaded while watched;
-            // it reloads as soon as the user switches away (see onTabSelected) and the
-            // recreation on return keeps the guarantee if they never switch.
-            else -> {
-                hasPendingYourPicksReload = true
-                hasPendingWidgetReinit = true
-            }
-        }
-    }
-
-    fun onResumed() {
-        if (hasPendingWidgetReinit) {
-            hasPendingWidgetReinit = false
-            recreateWidget()
-        }
-    }
-
-    private fun recreateWidget() {
-        // A full recreation rebuilds every tab fresh, so no in-session reload is owed anymore.
-        hasPendingYourPicksReload = false
-        widgetGeneration++
-    }
+    val coordinator = YourPicksRefreshCoordinator(
+        containerSourceId = containerSourceId,
+        initialDataSource = initialDataSource,
+        rebuildWidget = { widgetGeneration++ },
+    )
 }

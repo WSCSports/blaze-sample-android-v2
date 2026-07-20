@@ -7,23 +7,18 @@ import com.blaze.blazesdk.features.moments.container.tabs.models.BlazeMomentsCon
 import com.blaze.blazesdk.features.moments.widgets.tabs.BlazeMomentsWidgetTabsController
 
 /**
- * Framework-agnostic coordinator for the "Your Picks" refresh behavior, shared by the
- * View ([com.wscsports.blaze_sample_android.samples.follow.views.FollowTabsFragment])
+ * Refreshes the personalized "Your Picks" tab when the followed entities change, shared by
+ * the View ([com.wscsports.blaze_sample_android.samples.follow.views.FollowTabsFragment])
  * and Compose ([com.wscsports.blaze_sample_android.samples.follow.compose.FollowTabsScreen])
- * variants so the choreography lives in one place.
+ * variants so the behavior lives in one place. A follow change is applied depending on where
+ * the user is:
+ * - widget on screen -> rebuild it with the updated tabs right away;
+ * - in the player on another tab -> refresh "Your Picks" in the background;
+ * - in the player watching "Your Picks" -> apply it once the user switches away (so playback
+ *   isn't interrupted), and rebuild on return.
  *
- * The SDK only re-evaluates the tab set on a full widget (re)build, so a follow change
- * is applied depending on where the user is:
- * - widget visible, no player on top -> rebuild it with the fresh tabs right away;
- * - inside the player, watching another tab -> reload the non-active tabs against the
- *   in-place-mutated data source (active playback stays untouched) and defer the full
- *   rebuild to the return;
- * - inside the player, watching "Your Picks" itself -> it can't be reloaded while
- *   watched, so apply it the moment the user switches away, with the rebuild on return
- *   as the backstop.
- *
- * [rebuildWidget] is the only framework-specific hook: the View variant re-calls
- * `initWidget`, the Compose variant bumps a recomposition trigger.
+ * [rebuildWidget] is the only framework-specific hook: the View variant re-calls initWidget,
+ * the Compose variant triggers recomposition.
  */
 internal class YourPicksRefreshCoordinator(
     containerSourceId: String,
@@ -34,44 +29,52 @@ internal class YourPicksRefreshCoordinator(
     val tabsController = BlazeMomentsWidgetTabsController()
 
     private val yourPicksSourceId = yourPicksSourceId(containerSourceId)
-    private val yourPicksLiveDataSource: BlazeDataSourceType.Labels = initialDataSource
+
+    /** The latest "Your Picks" data source; used to rebuild the widget. */
+    private var latestDataSource: BlazeDataSourceType.Labels = initialDataSource
+
+    /** The data source the open player is showing; updated in place for an in-session refresh. */
+    private var containerDataSource: BlazeDataSourceType.Labels = initialDataSource
 
     private var hasPendingWidgetReinit = false
     private var hasPendingYourPicksReload = false
     private var isYourPicksTabActive = false
 
     /**
-     * Tracks whether "Your Picks" is the tab the user is currently watching — the active
-     * tab must never be reloaded mid-playback.
+     * Tracks the tab the user is currently watching, so the active tab is never reloaded
+     * mid-playback, and refreshes "Your Picks" the moment the user leaves it if a change was
+     * made while it was active.
      */
     val containerTabsDelegate = object : BlazePlayerContainerTabsDelegate {
-
-        override fun onPlayerDidAppear(playerType: BlazePlayerType, sourceId: String?) {
-            isYourPicksTabActive = sourceId == yourPicksSourceId
-        }
-
         override fun onTabSelected(playerType: BlazePlayerType, sourceId: String?, tabIndex: Int) {
             isYourPicksTabActive = sourceId == yourPicksSourceId
             if (!isYourPicksTabActive && hasPendingYourPicksReload) {
                 hasPendingYourPicksReload = false
-                tabsController.reloadNonActiveTabs()
+                reloadYourPicks()
             }
         }
     }
 
-    /** The current "Your Picks" tab, always wrapping the up-to-date data source. */
-    fun buildYourPicksTab(): BlazeMomentsContainerTabItem = makeYourPicksTab(yourPicksLiveDataSource)
+    /** A fresh instance per rebuild, so the widget reloads with the current query. */
+    fun buildYourPicksTab(): BlazeMomentsContainerTabItem {
+        containerDataSource = latestDataSource.copy()
+        return makeYourPicksTab(containerDataSource)
+    }
 
     /** Call on every follow change after the first data source emission. */
     fun onYourPicksChanged(dataSource: BlazeDataSourceType.Labels, isResumed: Boolean) {
-        yourPicksLiveDataSource.blazeWidgetLabel = dataSource.blazeWidgetLabel
-        yourPicksLiveDataSource.labelsPriority = dataSource.labelsPriority
+        latestDataSource = dataSource
         when {
-            isResumed -> rebuildNow()
+            // Widget on screen, no player on top -> rebuild it with the fresh tabs right away.
+            isResumed -> rebuildWidget()
+            // In the player watching another tab -> refresh "Your Picks" in the background now,
+            // and rebuild on return so a tab removed while empty comes back.
             !isYourPicksTabActive -> {
-                tabsController.reloadNonActiveTabs()
+                reloadYourPicks()
                 hasPendingWidgetReinit = true
             }
+            // In the player watching "Your Picks" -> apply it when the user switches away
+            // (see the delegate), with the rebuild on return as the backstop.
             else -> {
                 hasPendingYourPicksReload = true
                 hasPendingWidgetReinit = true
@@ -79,17 +82,19 @@ internal class YourPicksRefreshCoordinator(
         }
     }
 
-    /** Call from `onResume()` / `LifecycleResumeEffect` to apply a change deferred while the player was open. */
+    /** Call from `onResume()` / `LifecycleResumeEffect` to apply a change made while the player was open. */
     fun onResumed() {
         if (hasPendingWidgetReinit) {
             hasPendingWidgetReinit = false
-            rebuildNow()
+            rebuildWidget()
         }
     }
 
-    private fun rebuildNow() {
-        // A full rebuild recreates every tab fresh, so no in-session reload is owed anymore.
-        hasPendingYourPicksReload = false
-        rebuildWidget()
+    private fun reloadYourPicks() {
+        // Apply the latest query to the shown data source, then refresh the non-active tabs.
+        // Keep these fields in sync with the "Your Picks" data source built in FollowViewModel.
+        containerDataSource.blazeWidgetLabel = latestDataSource.blazeWidgetLabel
+        containerDataSource.labelsPriority = latestDataSource.labelsPriority
+        tabsController.reloadNonActiveTabs()
     }
 }

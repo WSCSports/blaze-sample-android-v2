@@ -101,6 +101,41 @@
                 android:layout_height="300dp"
                 android:layout_marginTop="16dp" />
 
+            <!-- Default Video Player -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginHorizontal="16dp"
+                android:text="Default Video Player"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:textColor="@color/text_color_header" />
+
+            <com.blaze.blazesdk.features.videos.widgets.row.BlazeVideosWidgetRowView
+                android:id="@+id/default_videos_row_widget_view"
+                android:layout_width="match_parent"
+                android:layout_height="240dp"
+                android:layout_marginTop="16dp" />
+
+            <!-- Custom Video Player -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginHorizontal="16dp"
+                android:text="Custom Video Player"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:textColor="@color/text_color_header" />
+
+            <com.blaze.blazesdk.features.videos.widgets.row.BlazeVideosWidgetRowView
+                android:id="@+id/custom_videos_row_widget_view"
+                android:layout_width="match_parent"
+                android:layout_height="240dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp" />
+
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 </LinearLayout>

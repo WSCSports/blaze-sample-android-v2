@@ -15,6 +15,7 @@ import com.blaze.blazesdk.style.widgets.BlazeWidgetItemStatusIndicatorStyle
 import com.blaze.blazesdk.style.widgets.BlazeWidgetItemStyleOverrides
 import com.blaze.blazesdk.style.widgets.BlazeWidgetItemTitleStyle
 import com.blaze.blazesdk.style.widgets.BlazeWidgetLayout
+import com.wscsports.blaze_sample_android.core.Constants.LIVE_VIDEOS_WIDGET_DEFAULT_LABEL
 import com.wscsports.blaze_sample_android.samples.widgets.R
 import com.wscsports.blaze_sample_android.samples.widgets.WidgetScreenType
 import com.wscsports.blaze_sample_android.samples.widgets.WidgetsViewModel
@@ -44,7 +45,7 @@ class LiveVideoRowFragment : BaseWidgetFragment(R.layout.fragment_live_video_row
         // advancedOrderType takes priority over orderType, surfacing live streams ahead of
         // upcoming/ended/VOD content regardless of the base order type.
         val dataSource = BlazeDataSourceType.Labels(
-            blazeWidgetLabel = BlazeWidgetLabel.singleLabel(dataState.labelName),
+            blazeWidgetLabel = BlazeWidgetLabel.singleLabel(LIVE_VIDEOS_WIDGET_DEFAULT_LABEL),
             orderType = dataState.orderType,
             advancedOrderType = BlazeAdvancedOrderType.LiveFirst,
         )
@@ -75,7 +76,7 @@ class LiveVideoRowFragment : BaseWidgetFragment(R.layout.fragment_live_video_row
 
     override fun onNewDatasourceState(dataState: WidgetDataState) {
         val dataSource = BlazeDataSourceType.Labels(
-            blazeWidgetLabel = BlazeWidgetLabel.singleLabel(dataState.labelName),
+            blazeWidgetLabel = BlazeWidgetLabel.singleLabel(LIVE_VIDEOS_WIDGET_DEFAULT_LABEL),
             orderType = dataState.orderType,
             advancedOrderType = BlazeAdvancedOrderType.LiveFirst,
         )

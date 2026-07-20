@@ -3,6 +3,7 @@ package com.wscsports.blaze_sample_android.samples.widgets.screens
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
 import com.blaze.blazesdk.data_source.BlazeDataSourceType
@@ -65,6 +66,11 @@ class MethodsDelegatesFragment : Fragment(R.layout.fragment_methods_delegates),
      * - widgetId: The ID of the widget
      * - contentIndex: The zero-based index of the clicked item
      * - contentId: The unique content ID of the clicked item
+     * - extraInfo: Additional key-value metadata associated with the clicked item
+     * - contentThumbnailUrl: The URL of the clicked item's main thumbnail (matching the thumbnail
+     *   rendered by the widget), or null when the item has no thumbnail. Available for stories,
+     *   moments, and videos widgets. Useful when the app handles the click itself - e.g. showing a
+     *   paywall or preview screen with the item's thumbnail before playback.
      *
      * Return [BlazeWidgetItemClickHandlerState.SDK_SHOULD_HANDLE] to let the SDK handle the click,
      * or [BlazeWidgetItemClickHandlerState.HANDLED_BY_APP] to handle it yourself.
@@ -90,9 +96,17 @@ class MethodsDelegatesFragment : Fragment(R.layout.fragment_methods_delegates),
      *
      * This handler intercepts widget item clicks and manually triggers playback
      * using the content ID from the click params.
+     *
+     * It also demonstrates consuming [BlazeWidgetItemClickParams.contentThumbnailUrl]: the app can
+     * render the clicked item's thumbnail directly (e.g. on a paywall / preview screen) without
+     * maintaining its own contentId -> thumbnail mapping.
      */
     private fun handleWidgetItemClick(params: BlazeWidgetItemClickParams): BlazeWidgetItemClickHandlerState {
-        // Use a small delay to mock app doing some background work
+        // A real app would load `params.contentThumbnailUrl` into an ImageView on its paywall /
+        // preview screen. Here we just log it and mock some background work before playback.
+        Log.d("MethodsDelegates", "Presenting paywall with thumbnail: ${params.contentThumbnailUrl ?: "none"}")
+
+        // Use a small delay to mock app doing some background work (e.g. subscription check).
         Handler(Looper.getMainLooper()).postDelayed({
             // Play from the clicked item's content ID
             binding.storiesWidgetView.play(

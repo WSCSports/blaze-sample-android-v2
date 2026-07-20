@@ -4,6 +4,8 @@ import android.graphics.Color
 import android.widget.ImageView
 import androidx.core.graphics.toColorInt
 import com.blaze.blazesdk.follow.models.BlazeFollowEntityType
+import com.blaze.blazesdk.style.players.BlazeCaptionsXPosition
+import com.blaze.blazesdk.style.players.BlazeCaptionsYPosition
 import com.blaze.blazesdk.style.players.BlazeFirstTimeSlideInstructionStyle
 import com.blaze.blazesdk.style.players.BlazeFirstTimeSlideTextStyle
 import com.blaze.blazesdk.style.players.BlazePlayerButtonCustomImageStates
@@ -96,6 +98,14 @@ fun BlazeMomentsPlayerStyle.applyCustomMomentsPlayerParams(): BlazeMomentsPlayer
 
         /** Player seek bar appearance */
         seekBar.applySeekBarStyle()
+
+        /** Captions text appearance and positioning */
+        captions.apply {
+            textSize = 16f
+            fontResId = R.font.roboto_medium
+            positioning.xPosition = BlazeCaptionsXPosition.Center
+            positioning.yPosition = BlazeCaptionsYPosition.Bottom
+        }
 
         /** First time slide appearance */
         firstTimeSlide.applyFirstTimeSlideStyle()

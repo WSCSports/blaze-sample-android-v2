@@ -2,13 +2,12 @@ package com.wscsports.blaze_sample_android.samples.widgets.screens
 
 import android.graphics.Color
 import androidx.core.graphics.toColorInt
-import com.blaze.blazesdk.data_source.BlazeDataSourceType
-import com.blaze.blazesdk.data_source.BlazeWidgetLabel
 import com.blaze.blazesdk.extentions.blazeDeepCopy
 import com.blaze.blazesdk.style.shared.models.BlazeObjectXPosition
 import com.blaze.blazesdk.style.shared.models.BlazeObjectYPosition
 import com.blaze.blazesdk.style.shared.models.blazeDp
 import com.blaze.blazesdk.style.widgets.BlazeWidgetItemBadgeStyle
+import com.blaze.blazesdk.shared.models.BlazeExtraInfoKeyPreset
 import com.blaze.blazesdk.style.widgets.BlazeWidgetItemCustomMapping
 import com.blaze.blazesdk.style.widgets.BlazeWidgetItemImageGradientOverlayStyle
 import com.blaze.blazesdk.style.widgets.BlazeWidgetItemImageGradientOverlayStyle.BlazeGradientPosition
@@ -40,11 +39,9 @@ class MomentsRowFragment : BaseWidgetFragment(R.layout.fragment_moments_row) {
         // The custom layout can also be set during initialization, rather than using updateWidgetLayout.
         // In this case, we are setting the layout to some default preset.
         val widgetLayout = viewModel.getWidgetLayoutBasePreset()
-        val dataState = viewModel.getCurrWidgetDataState()
-        val dataSource = BlazeDataSourceType.Labels(
-            blazeWidgetLabel = BlazeWidgetLabel.singleLabel(dataState.labelName),
-            orderType = dataState.orderType,
-        )
+        // The data source is built from the state selected in the "Edit data source"
+        // bottom sheet - see WidgetDataState.toDataSource() for all the examples.
+        val dataSource = viewModel.getCurrWidgetDataState().toDataSource()
         binding.momentsRowWidgetView.initWidget(
             widgetLayout = widgetLayout,
             dataSource = dataSource,
@@ -70,11 +67,7 @@ class MomentsRowFragment : BaseWidgetFragment(R.layout.fragment_moments_row) {
     }
 
     override fun onNewDatasourceState(dataState: WidgetDataState) {
-        val dataSource = BlazeDataSourceType.Labels(
-            blazeWidgetLabel = BlazeWidgetLabel.singleLabel(dataState.labelName),
-            orderType = dataState.orderType,
-        )
-        binding.momentsRowWidgetView.updateDataSource(dataSource, false)
+        binding.momentsRowWidgetView.updateDataSource(dataState.toDataSource(), false)
     }
 
     // for more information see https://dev.wsc-sports.com/docs/android-blaze-widget-item-image-style
@@ -253,7 +246,7 @@ class MomentsRowFragment : BaseWidgetFragment(R.layout.fragment_moments_row) {
     // For more information see https://dev.wsc-sports.com/docs/android-blaze-widget-item-custom-mapping#/
     private fun setOverrideStylesByTeamId(widgetLayout: BlazeWidgetLayout) {
         val layoutDeepCopy = widgetLayout.blazeDeepCopy()
-        val mappingKey =  BlazeWidgetItemCustomMapping.BlazeKeysPresets.TEAM_ID
+        val mappingKey =  BlazeExtraInfoKeyPreset.TEAM_ID
         val mappingValue = "185"
         binding.momentsRowWidgetView.updateOverrideStyles(
             perItemStyleOverrides = mapOf(

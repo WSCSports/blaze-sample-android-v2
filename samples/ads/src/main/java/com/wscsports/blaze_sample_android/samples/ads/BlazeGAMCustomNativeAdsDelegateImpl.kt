@@ -3,9 +3,9 @@ package com.wscsports.blaze_sample_android.samples.ads
 import android.os.Bundle
 import android.util.Log
 import com.blaze.blazesdk.ads.custom_native.BlazeGoogleCustomNativeAdsHandler
-import com.blaze.gam.custom_native.BlazeCustomNativeAdData
-import com.blaze.gam.custom_native.BlazeGAMCustomNativeAdsDelegate
-import com.blaze.gam.custom_native.BlazeGamCustomNativeAdRequestInformation
+import com.blaze.gam.nextgen.custom_native.BlazeCustomNativeAdData
+import com.blaze.gam.nextgen.custom_native.BlazeGAMCustomNativeAdsDelegate
+import com.blaze.gam.nextgen.custom_native.BlazeGamCustomNativeAdRequestInformation
 
 /**
  * Implementation of the [BlazeGAMCustomNativeAdsDelegate] interface.

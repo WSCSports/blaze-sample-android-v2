@@ -1,9 +1,14 @@
 package com.wscsports.blaze_sample_android.samples.widgets
 
+import androidx.core.graphics.toColorInt
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.blaze.blazesdk.features.shared.models.ui_shared.BlazeLiveStreamStatus
+import com.blaze.blazesdk.features.videos.models.ui.BlazeVideoContentType
+import com.blaze.blazesdk.features.videos.models.ui.BlazeVideosFilterParams
 import com.blaze.blazesdk.style.shared.models.blazeDp
 import com.blaze.blazesdk.style.widgets.BlazeWidgetLayout
+import com.wscsports.blaze_sample_android.core.Constants.LIVE_VIDEOS_WIDGET_DEFAULT_LABEL
 import com.wscsports.blaze_sample_android.core.Constants.MOMENTS_WIDGET_DEFAULT_LABEL
 import com.wscsports.blaze_sample_android.core.Constants.STORIES_WIDGET_DEFAULT_LABEL
 import com.wscsports.blaze_sample_android.core.Constants.VIDEOS_WIDGET_DEFAULT_LABEL
@@ -66,6 +71,24 @@ class WidgetsViewModel: ViewModel() {
 
     val videosGridBaseLayout: BlazeWidgetLayout
         get() = BlazeWidgetLayout.Presets.VideosWidget.Grid.twoColumnsHorizontalRectangles
+
+    val liveVideoRowBaseLayout: BlazeWidgetLayout
+        get() = BlazeWidgetLayout.Presets.VideosWidget.Row.horizontalRectangles.apply {
+            maxDisplayItemsCount = null
+            widgetItemStyle.statusIndicator.apply {
+                isVisible = true
+                unreadState.backgroundColor = "#E5FF00".toColorInt()
+                unreadState.textStyle.textColor = "#000000".toColorInt()
+            }
+        }
+
+    // Requests stream content, across all stream states, so the Live Video widget's
+    // demo data always has live/upcoming/ended items to show.
+    val liveVideoFilterParams: BlazeVideosFilterParams
+        get() = BlazeVideosFilterParams.base().apply {
+            contentTypes = listOf(BlazeVideoContentType.STREAM)
+            streamStates = listOf(BlazeLiveStreamStatus.LIVE, BlazeLiveStreamStatus.UPCOMING, BlazeLiveStreamStatus.ENDED)
+        }
 
     private val _currWidgetType = MutableStateFlow<WidgetScreenType?>(null)
     val currWidgetType = _currWidgetType.asStateFlow()
@@ -130,6 +153,7 @@ class WidgetsViewModel: ViewModel() {
             WidgetScreenType.MOMENTS_ROW -> MOMENTS_WIDGET_DEFAULT_LABEL
             WidgetScreenType.VIDEOS_ROW -> VIDEOS_WIDGET_DEFAULT_LABEL
             WidgetScreenType.VIDEOS_GRID -> VIDEOS_WIDGET_DEFAULT_LABEL
+            WidgetScreenType.LIVE_VIDEO_ROW -> LIVE_VIDEOS_WIDGET_DEFAULT_LABEL
             WidgetScreenType.MIXED_WIDGETS -> "" // Not needed for mixed widgets
             WidgetScreenType.METHODS_DELEGATES -> "" // Not needed, fragment handles its own data source
         }
@@ -142,6 +166,7 @@ class WidgetsViewModel: ViewModel() {
         WidgetScreenType.MOMENTS_GRID -> momentsGridBaseLayout
         WidgetScreenType.VIDEOS_ROW -> videosRowBaseLayout
         WidgetScreenType.VIDEOS_GRID -> videosGridBaseLayout
+        WidgetScreenType.LIVE_VIDEO_ROW -> liveVideoRowBaseLayout
         else -> throw IllegalStateException("Widget type is not set")
     }
 

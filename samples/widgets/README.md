@@ -14,6 +14,8 @@ The module supports several widget types, each representing a different layout o
 - **Stories (Row/Grid)**
 - **Moments (Row/Grid)**
 - **Videos (Row/Grid)**
+- **Live videos row**: a Videos widget filtered to live/upcoming/ended stream content via `videosFilterParams`, with a customization example for the per-stream-state status indicator (distinct colors for the LIVE/UPCOMING/ENDED badge). Its data source always sorts with `advancedOrderType = BlazeAdvancedOrderType.LiveFirst`, so live streams surface ahead of upcoming/ended/VOD content regardless of the base order type.
+  - Note: unlike iOS, there is currently no public API to customize the full-screen player's own status indicator on Android (`BlazeVideosPlayerStyle.statusIndicator` is internal) - only the widget-cell badge is customizable here.
 - **Mixed Widgets** (a feed with multiple widgets on the same screen with refresh data source loading capabilities)
 
 ## Editing Options

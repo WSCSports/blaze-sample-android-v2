@@ -36,6 +36,11 @@ enum class WidgetScreenType(
         description = "This represents a Blaze widget view for videos with a grid layout on a horizontal axis",
         navDestinationId = R.id.action_navigation_widget_list_to_videosGridFragment
     ),
+    LIVE_VIDEO_ROW(
+        title = "Live videos",
+        description = "A Blaze live videos widget",
+        navDestinationId = R.id.action_navigation_widget_list_to_liveVideoRowFragment
+    ),
     MIXED_WIDGETS(
         title = "Widgets feed demo",
         description = "This represents a feed with multiple widgets on the same screen with refresh functionality",

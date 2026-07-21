@@ -13,11 +13,12 @@ import com.wscsports.blaze_sample_android.core.ui.viewBinding
 import com.wscsports.blaze_sample_android.samples.playerstyle.databinding.ActivityPlayerStyleBinding
 
 /**
- * This activity demonstrates how to use Blaze widgets to display stories and moments with
+ * This activity demonstrates how to use Blaze widgets to display stories, moments and videos with
  * different player styles, default style and custom style.
  * For more information, see:
  * https://dev.wsc-sports.com/docs/android-story-player-customizations#/
  * https://dev.wsc-sports.com/docs/android-moments-player-customizations#/.
+ * https://dev.wsc-sports.com/docs/android-blazevideosplayerstyle#/.
  */
 class PlayerStyleActivity : AppCompatActivity(),
     BlazeWidgetDelegate by WidgetDelegateImpl() {
@@ -44,6 +45,8 @@ class PlayerStyleActivity : AppCompatActivity(),
         initCustomStoriesRowWidget()
         initDefaultMomentsRowWidget()
         initCustomMomentsRowWidget()
+        initDefaultVideosRowWidget()
+        initCustomVideosRowWidget()
     }
 
     private fun initDefaultStoriesRowWidget() {
@@ -91,4 +94,23 @@ class PlayerStyleActivity : AppCompatActivity(),
         )
     }
 
+    private fun initDefaultVideosRowWidget() {
+        binding.defaultVideosRowWidgetView.initWidget(
+            widgetLayout = viewModel.videosWidgetLayout,
+            playerStyle = viewModel.defaultVideosPlayerStyle,
+            dataSource = viewModel.videosDataSource,
+            widgetId = "default-videos-row-id",
+            widgetDelegate = this
+        )
+    }
+
+    private fun initCustomVideosRowWidget() {
+        binding.customVideosRowWidgetView.initWidget(
+            widgetLayout = viewModel.videosWidgetLayout,
+            playerStyle = viewModel.customVideosPlayerStyle,
+            dataSource = viewModel.videosDataSource,
+            widgetId = "custom-videos-row-id",
+            widgetDelegate = this
+        )
+    }
 }

@@ -40,36 +40,25 @@
                 app:layout_constraintTop_toTopOf="parent"/>
 
             <TextView
-                android:id="@+id/labelTextView"
+                android:id="@+id/dataSourceTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="Label"
+                android:text="Data source example"
                 android:textSize="14sp"
                 android:textStyle="bold"
                 android:textColor="@color/text_color_primary"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/editSourceDataTitleTextView"/>
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/labelTextInputLayout"
+            <RadioGroup
+                android:id="@+id/dataSourceRadioGroup"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                app:layout_constraintTop_toBottomOf="@+id/labelTextView"
+                android:layout_marginTop="8dp"
+                app:layout_constraintTop_toBottomOf="@+id/dataSourceTextView"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/labelEditText"
-                    android:layout_width="match_parent"
-                    android:layout_height="42dp"
-                    android:paddingVertical="0dp"
-                    android:paddingHorizontal="8dp"
-                    android:maxLines="1"
-                    android:hint="Label expression" />
-
-            </com.google.android.material.textfield.TextInputLayout>
+                app:layout_constraintEnd_toEndOf="parent"/>
 
             <View
                 android:id="@+id/divider_label"
@@ -77,7 +66,7 @@
                 android:layout_height="1dp"
                 android:layout_marginTop="24dp"
                 android:background="@color/divider_color"
-                app:layout_constraintTop_toBottomOf="@+id/labelTextInputLayout"
+                app:layout_constraintTop_toBottomOf="@+id/dataSourceRadioGroup"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"/>
 
@@ -86,11 +75,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="Order type"
+                android:text="Order type (Labels and IDs only)"
                 android:textSize="14sp"
                 android:textStyle="bold"
                 android:textColor="@color/text_color_primary"
-                app:layout_constraintStart_toStartOf="@id/labelTextInputLayout"
+                app:layout_constraintStart_toStartOf="@id/dataSourceRadioGroup"
                 app:layout_constraintTop_toBottomOf="@id/divider_label"/>
 
             <FrameLayout

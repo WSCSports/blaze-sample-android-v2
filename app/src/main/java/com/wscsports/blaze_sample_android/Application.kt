@@ -4,6 +4,8 @@ import android.app.Application
 import android.util.Log
 import com.blaze.blazesdk.prefetch.models.BlazeCachingLevel
 import com.blaze.blazesdk.shared.BlazeSDK
+import com.wscsports.blaze_sample_android.samples.follow.BlazeFollowSynchronizer
+import com.wscsports.blaze_sample_android.samples.follow.data.FollowRepository
 
 /** Use the [Application] class to initialize the BlazeSDK.
  * Note - you won't be able to use BlazeSDK before calling BlazeSDK.init
@@ -12,6 +14,8 @@ class Application : Application() {
 
     override fun onCreate() {
         super.onCreate()
+
+        FollowRepository.initialize(this)
 
         BlazeSDK.init(
             // Add your own API key in local.properties file as BLAZE_API_KEY=YOUR_API_KEY
@@ -22,14 +26,14 @@ class Application : Application() {
             playerEntryPointDelegate = Delegates.playerEntryPointDelegate,
             completionBlock = {
                 Log.d("Application", "BlazeSDK.init success completionBlock..")
+                BlazeFollowSynchronizer.start()
             },
             errorBlock = { error ->
                 Log.e("Application", "BlazeSDK.init errorBlock -> , Init Error = $error")
             },
             externalUserId = null,
             geoLocation = null,
-            forceLayoutDirection = null
+            forceLayoutDirection = null,
         )
     }
-
 }

@@ -18,4 +18,6 @@
     <string name="compose_view_title">Inline Videos - Compose</string>
     <string name="search_title">Search</string>
     <string name="search_subtitle">Search screen with suggestions and results</string>
+    <string name="follow_title">Follow Entities</string>
+    <string name="follow_subtitle">Personalized Moments Follow Tabs widget example</string>
 </resources>

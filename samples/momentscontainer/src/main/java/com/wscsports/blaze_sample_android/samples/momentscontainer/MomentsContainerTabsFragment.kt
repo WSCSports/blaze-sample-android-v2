@@ -74,6 +74,7 @@ class MomentsContainerTabsFragment : Fragment(R.layout.fragment_moments_containe
             playerStyle = viewModel.momentsPlayerStyle,
             tabsStyle = BlazePlayerTabsStyle.base().apply {
                 isTabTitleVisibleWhenSingleTab = false // In case of a single tab - tab title is not visible
+                isTabVisibleWhenEmpty = true // Controls tabs visibility for empty tabs
             },
             storeOwner = this,
             lifecycleOwner = this

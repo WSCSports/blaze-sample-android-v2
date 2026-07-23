@@ -25,7 +25,7 @@ serializationJson = "1.7.3"
 pagingVersion = "3.3.5"
 room = "2.7.1"
 ksp = "2.0.21-1.0.28"
-blazeSDK = "1.20.3"
+blazeSDK = "1.20.4"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }

@@ -74,12 +74,15 @@ class GlobalSettingsActivity : AppCompatActivity() {
 
     /**
      * Set external user id for BlazeSDK.
+     * The SDK supports exactly two states: `null` (no user) or a non-empty string.
+     * Submitting an empty/whitespace-only value clears the external user id.
      * More information about external user id can be found in the documentation
      * https://dev.wsc-sports.com/docs/android-methods-and-parameters#/external-user
      */
     private fun setExternalUserIdFromInput() {
-        binding.externalUserIdEditText.text?.toString()?.let { externalUserId ->
-            BlazeSDK.setExternalUserId(externalUserId) { result ->
+        binding.externalUserIdEditText.text?.toString()?.let { rawUserId ->
+            val trimmedUserId = rawUserId.trim().takeIf { it.isNotEmpty() }
+            BlazeSDK.setExternalUserId(trimmedUserId) { result ->
                 result.doOnSuccess {
                     Log.d("GlobalSettingsActivity", "setExternalUserIdFromInput: doOnSuccess")
                 }

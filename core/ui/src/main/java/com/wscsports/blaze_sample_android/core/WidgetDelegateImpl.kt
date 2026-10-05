@@ -3,6 +3,7 @@ package com.wscsports.blaze_sample_android.core
 import android.util.Log
 import com.blaze.blazesdk.delegates.BlazeWidgetDelegate
 import com.blaze.blazesdk.delegates.models.BlazeCTAActionType
+import com.blaze.blazesdk.delegates.models.BlazeInteractionLinkHandleType
 import com.blaze.blazesdk.delegates.models.BlazePlayerType
 import com.blaze.blazesdk.features.shared.models.ui_shared.BlazeLinkActionHandleType
 import com.blaze.blazesdk.shared.results.BlazeResult
@@ -51,6 +52,19 @@ class WidgetDelegateImpl : BlazeWidgetDelegate {
     ): BlazeLinkActionHandleType {
         Log.d(TAG, "onTriggerPlayerBodyTextLink - playerType - $playerType, sourceId - $sourceId, actionParam - $actionParam")
         return BlazeLinkActionHandleType.DEEPLINK
+    }
+
+    // Called when an Engagement Layer asks to open a link.
+    // Return DEEPLINK (default) to open externally, WEB for the SDK's in-app web view, or HANDLED if the app handled it.
+    override fun onTriggerInteractionLink(
+        playerType: BlazePlayerType,
+        sourceId: String?,
+        interactionId: String,
+        interactionType: String,
+        url: String
+    ): BlazeInteractionLinkHandleType {
+        Log.d(TAG, "onTriggerInteractionLink - playerType - $playerType, sourceId - $sourceId, interactionId - $interactionId, interactionType - $interactionType, url - $url")
+        return BlazeInteractionLinkHandleType.DEEPLINK
     }
 
     override fun onItemClicked(

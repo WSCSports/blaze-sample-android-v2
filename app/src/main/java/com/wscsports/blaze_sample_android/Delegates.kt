@@ -5,6 +5,7 @@ import com.blaze.blazesdk.analytics.models.BlazeAnalyticsEvent
 import com.blaze.blazesdk.delegates.BlazePlayerEntryPointDelegate
 import com.blaze.blazesdk.delegates.BlazeSDKDelegate
 import com.blaze.blazesdk.delegates.models.BlazeCTAActionType
+import com.blaze.blazesdk.delegates.models.BlazeInteractionLinkHandleType
 import com.blaze.blazesdk.delegates.models.BlazePlayerType
 import com.blaze.blazesdk.features.shared.models.ui_shared.BlazeLinkActionHandleType
 import com.blaze.blazesdk.shared.results.BlazeResult
@@ -76,6 +77,19 @@ object Delegates {
         ): BlazeLinkActionHandleType {
             Log.d("BlazePlayerEntryPointDelegate", "onTriggerPlayerBodyTextLink - playerType - $playerType, sourceId - $sourceId, actionParam - $actionParam")
             return BlazeLinkActionHandleType.DEEPLINK
+        }
+
+        // Called when an Engagement Layer asks to open a link.
+        // Return DEEPLINK (default) to open externally, WEB for the SDK's in-app web view, or HANDLED if the app handled it.
+        override fun onTriggerInteractionLink(
+            playerType: BlazePlayerType,
+            sourceId: String?,
+            interactionId: String,
+            interactionType: String,
+            url: String
+        ): BlazeInteractionLinkHandleType {
+            Log.d("BlazePlayerEntryPointDelegate", "onTriggerInteractionLink - playerType - $playerType, sourceId - $sourceId, interactionId - $interactionId, interactionType - $interactionType, url - $url")
+            return BlazeInteractionLinkHandleType.DEEPLINK
         }
 
     }

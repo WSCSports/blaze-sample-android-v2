@@ -36,7 +36,7 @@ import kotlinx.coroutines.launch
 class WidgetsViewModel: ViewModel() {
 
     val storiesRowBaseLayout: BlazeWidgetLayout
-        get() = BlazeWidgetLayout.Presets.StoriesWidget.Row.circles
+        get() = BlazeWidgetLayout.Presets.StoriesWidget.Row.animatedThumbnailsCircles
 
     val storiesGridBaseLayout: BlazeWidgetLayout
         get() = BlazeWidgetLayout.Presets.StoriesWidget.Grid.twoColumnsVerticalRectangles
@@ -64,7 +64,7 @@ class WidgetsViewModel: ViewModel() {
         }
 
     val videosRowBaseLayout: BlazeWidgetLayout
-        get() = BlazeWidgetLayout.Presets.VideosWidget.Row.horizontalRectangles
+        get() = BlazeWidgetLayout.Presets.VideosWidget.Row.horizontalAnimatedThumbnailsRectangles
 
     val videosGridBaseLayout: BlazeWidgetLayout
         get() = BlazeWidgetLayout.Presets.VideosWidget.Grid.twoColumnsHorizontalRectangles

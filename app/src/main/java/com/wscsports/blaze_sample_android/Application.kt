@@ -32,6 +32,8 @@ class Application : Application() {
                 Log.e("Application", "BlazeSDK.init errorBlock -> , Init Error = $error")
             },
             externalUserId = null,
+            // Viewer token for content entitlements. It isn't persisted, so pass the signed-in viewer's token on every launch.
+            externalUserToken = null,
             geoLocation = null,
             forceLayoutDirection = null,
         )

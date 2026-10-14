@@ -35,12 +35,14 @@ import kotlinx.coroutines.launch
  */
 class WidgetsViewModel: ViewModel() {
 
+    // The animated (GIF) thumbnails version of circles; the "Animated thumbnails" option turns its GIFs on and off
     val storiesRowBaseLayout: BlazeWidgetLayout
-        get() = BlazeWidgetLayout.Presets.StoriesWidget.Row.circles
+        get() = BlazeWidgetLayout.Presets.StoriesWidget.Row.animatedThumbnailsCircles
 
     val storiesGridBaseLayout: BlazeWidgetLayout
         get() = BlazeWidgetLayout.Presets.StoriesWidget.Grid.twoColumnsVerticalRectangles
 
+    // Animated (GIF) thumbnails preset; the "Animated thumbnails" option turns its GIFs on and off
     val momentsRowBaseLayout: BlazeWidgetLayout
         get() = BlazeWidgetLayout.Presets.MomentsWidget.Row.verticalAnimatedThumbnailsRectangles.apply {
             horizontalItemsSpacing = 0.blazeDp
@@ -63,8 +65,9 @@ class WidgetsViewModel: ViewModel() {
             }
         }
 
+    // The animated (GIF) thumbnails version of horizontalRectangles; the "Animated thumbnails" option turns its GIFs on and off
     val videosRowBaseLayout: BlazeWidgetLayout
-        get() = BlazeWidgetLayout.Presets.VideosWidget.Row.horizontalRectangles
+        get() = BlazeWidgetLayout.Presets.VideosWidget.Row.horizontalAnimatedThumbnailsRectangles
 
     val videosGridBaseLayout: BlazeWidgetLayout
         get() = BlazeWidgetLayout.Presets.VideosWidget.Grid.twoColumnsHorizontalRectangles
@@ -159,6 +162,10 @@ class WidgetsViewModel: ViewModel() {
             WidgetScreenType.METHODS_DELEGATES -> null
         }
     }
+
+    // Grid widgets don't play animated thumbnails, so only these rows use an animated preset
+    val hasAnimatedThumbnailsPreset: Boolean
+        get() = _currWidgetType.value in listOf(WidgetScreenType.STORIES_ROW, WidgetScreenType.MOMENTS_ROW, WidgetScreenType.VIDEOS_ROW)
 
     fun getWidgetLayoutBasePreset(): BlazeWidgetLayout = when (_currWidgetType.value) {
         WidgetScreenType.STORIES_ROW -> storiesRowBaseLayout

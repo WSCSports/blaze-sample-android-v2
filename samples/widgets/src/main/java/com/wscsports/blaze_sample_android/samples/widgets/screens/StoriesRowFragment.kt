@@ -64,6 +64,7 @@ class StoriesRowFragment: BaseWidgetFragment(R.layout.fragment_stories_row) {
             if (styleState.isCustomStatusIndicator) widgetItemStyle.statusIndicator.setMyCustomStatusIndicatorStyle()
             if (styleState.isCustomTitle) widgetItemStyle.title.setMyCustomTitleStyle()
             if (styleState.isCustomBadge) widgetItemStyle.badge.setMyCustomBadgeStyle()
+            widgetItemStyle.image.animatedThumbnail.isEnabled = styleState.isAnimatedThumbnails
         }
         binding.storiesRowWidgetView.updateWidgetLayout(newWidgetLayout)
         if (styleState.isCustomItemStyleOverrides) {

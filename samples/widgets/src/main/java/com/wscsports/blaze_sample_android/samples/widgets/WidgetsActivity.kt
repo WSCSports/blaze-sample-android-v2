@@ -103,6 +103,7 @@ class WidgetsActivity : AppCompatActivity() {
         if (styleState.isCustomTitle) addCustomizationAppliedChip("Title")
         if (styleState.isCustomBadge) addCustomizationAppliedChip("Badge")
         if (styleState.isCustomItemStyleOverrides) addCustomizationAppliedChip("Item Override")
+        if (styleState.isAnimatedThumbnails) addCustomizationAppliedChip("Animated Thumbnails")
     }
 
     private fun addCustomizationAppliedChip(text: String) {

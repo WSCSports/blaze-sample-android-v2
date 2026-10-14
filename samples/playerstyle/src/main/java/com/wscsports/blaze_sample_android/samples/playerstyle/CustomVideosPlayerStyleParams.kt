@@ -137,6 +137,13 @@ fun BlazeVideosPlayerButtonsStyle.applyCustomVideosButtonsStyle(): BlazeVideosPl
         captions.apply {
             isVisible = true
         }
+        /**
+         * Live catchup button appearance: opens the recap story on a live stream that has one. Visible by default.
+         * Live catchup has to be activated for your account: please contact WSC support or your DM.
+         */
+        liveCatchup.apply {
+            isVisible = true
+        }
     }
 }
 

@@ -4,6 +4,7 @@ import android.app.Application
 import android.util.Log
 import com.blaze.blazesdk.prefetch.models.BlazeCachingLevel
 import com.blaze.blazesdk.shared.BlazeSDK
+import com.wscsports.blaze_sample_android.core.ContentRestrictionHandler
 import com.wscsports.blaze_sample_android.samples.follow.BlazeFollowSynchronizer
 import com.wscsports.blaze_sample_android.samples.follow.data.FollowRepository
 
@@ -16,6 +17,7 @@ class Application : Application() {
         super.onCreate()
 
         FollowRepository.initialize(this)
+        ContentRestrictionHandler.init(this)
 
         BlazeSDK.init(
             // Add your own API key in local.properties file as BLAZE_API_KEY=YOUR_API_KEY

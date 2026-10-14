@@ -40,4 +40,13 @@
         <item name="android:textColorHint">@color/text_color_hint</item>
     </style>
 
+    <!-- Paywall: translucent, so its dialog shows over the SDK's player activity -->
+    <style name="Theme.Blazesampleandroid.Paywall">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <item name="android:windowAnimationStyle">@null</item>
+    </style>
+
 </resources>

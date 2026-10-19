@@ -7,6 +7,7 @@ import com.blaze.blazesdk.features.moments.container.tabs.models.BlazeMomentsCon
 import com.blaze.blazesdk.features.moments.widgets.tabs.BlazeMomentsWidgetTabsConfiguration
 import com.blaze.blazesdk.features.moments.widgets.tabs.BlazeMomentsWidgetTabsController
 import com.blaze.blazesdk.follow.models.BlazeFollowEntityType
+import com.blaze.blazesdk.style.players.moments.BlazeMomentsPlayerFollowEntityChipStyle.BlazeMomentsPlayerFollowEntityIconSource
 import com.blaze.blazesdk.style.players.moments.BlazeMomentsPlayerStyle
 import com.wscsports.blaze_sample_android.core.Constants.MOMENTS_CONTAINER_TABS_1_DEFAULT_LABEL
 import com.wscsports.blaze_sample_android.core.Constants.MOMENTS_CONTAINER_TABS_2_DEFAULT_LABEL
@@ -61,6 +62,7 @@ internal fun makeMomentsFollowTabsConfiguration(
  * Shows the follow button in the moments player. The entity offered to follow
  * is resolved in a fallback order: player -> team -> property.
  * The followed state is highlighted so it clearly stands out from the unfollowed one.
+ * The follow chip shows a star: outlined while unfollowed, filled once followed.
  */
 private fun makeFollowMomentsPlayerStyle(accentColor: Int): BlazeMomentsPlayerStyle =
     BlazeMomentsPlayerStyle.base().apply {
@@ -75,4 +77,7 @@ private fun makeFollowMomentsPlayerStyle(accentColor: Int): BlazeMomentsPlayerSt
         followEntity.followState.avatar.borderColor = accentColor
         followEntity.followState.chip.backgroundColor = accentColor
         followEntity.followState.chip.iconColor = android.graphics.Color.BLACK
+        // Each chip state has its own icon source, so set both to keep the star consistent.
+        followEntity.unfollowState.chip.iconSource = BlazeMomentsPlayerFollowEntityIconSource.STAR
+        followEntity.followState.chip.iconSource = BlazeMomentsPlayerFollowEntityIconSource.STAR
     }

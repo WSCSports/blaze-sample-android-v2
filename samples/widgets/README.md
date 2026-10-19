@@ -34,6 +34,7 @@ The widgets module provides robust runtime editing capabilities, allowing users 
   - **Title**: Toggle custom title display.
   - **Badge**: Enable or disable badges on items.
   - **Item Style Overrides**: Apply advanced style overrides to individual items.
+  - **Static Thumbnails** (Stories, Moments and Videos rows): These rows use the animated presets (e.g. `StoriesWidget.Row.animatedThumbnailsCircles`), so their GIF thumbnails play one at a time by default. This option turns them off with `widgetItemStyle.image.animatedThumbnail.isEnabled = false`. Items without a GIF keep their static thumbnail.
 - **Workflow**: These options are presented as checkboxes in the layout style edit bottom sheet. When applied, the widget UI updates in real time to reflect the selected customizations, demonstrating the flexibility of the Blaze SDK's styling system.
 
 ## Usage

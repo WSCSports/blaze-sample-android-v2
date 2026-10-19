@@ -22,10 +22,15 @@ class PaywallActivity : Activity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val reason = intent.getStringExtra(EXTRA_REASON)
-            ?.let { BlazeContentRestrictionReason.valueOf(it) }
-            ?: BlazeContentRestrictionReason.UNKNOWN
-        showPaywall(reason)
+        showPaywall(reasonFrom(intent))
+    }
+
+    // singleTop: another restriction can arrive while the paywall is open, possibly with a different reason.
+    override fun onNewIntent(intent: Intent) {
+        super.onNewIntent(intent)
+        setIntent(intent)
+        dialog?.dismiss()
+        showPaywall(reasonFrom(intent))
     }
 
     override fun onDestroy() {
@@ -60,6 +65,11 @@ class PaywallActivity : Activity() {
 
         dialog = builder.show()
     }
+
+    private fun reasonFrom(intent: Intent): BlazeContentRestrictionReason =
+        intent.getStringExtra(EXTRA_REASON)
+            ?.let { BlazeContentRestrictionReason.valueOf(it) }
+            ?: BlazeContentRestrictionReason.UNKNOWN
 
     private fun titleFor(reason: BlazeContentRestrictionReason): String = when (reason) {
         BlazeContentRestrictionReason.SUBSCRIPTION_REQUIRED -> "Subscribe to watch"

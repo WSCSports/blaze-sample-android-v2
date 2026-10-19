@@ -18,11 +18,22 @@ object ContentRestrictionHandler {
     }
 
     fun onContentRestricted(reason: BlazeContentRestrictionReason): BlazeContentRestrictionHandleType {
+        // The sample has a paywall only for the reasons a viewer token can solve; the rest is left to the SDK.
+        if (!canWatchWithViewerToken(reason)) return BlazeContentRestrictionHandleType.SDK_SHOULD_HANDLE
+
         // Started from the application context, so it needs a task flag; it still opens on top of the player.
         appContext.startActivity(
             PaywallActivity.newIntent(appContext, reason).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
         )
         // The app shows its own paywall.
         return BlazeContentRestrictionHandleType.HANDLED_BY_APP
+    }
+
+    private fun canWatchWithViewerToken(reason: BlazeContentRestrictionReason): Boolean = when (reason) {
+        BlazeContentRestrictionReason.SUBSCRIPTION_REQUIRED,
+        BlazeContentRestrictionReason.EXTERNAL_USER_TOKEN_MISSING,
+        BlazeContentRestrictionReason.EXTERNAL_USER_TOKEN_INVALID,
+        BlazeContentRestrictionReason.EXTERNAL_USER_TOKEN_EXPIRED -> true
+        else -> false
     }
 }

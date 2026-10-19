@@ -168,7 +168,7 @@ dependencies {
 - SDK-wide configuration options
 - Global behavior settings
 - Centralized customization
-- Setting the viewer token for content entitlements, with a sample paywall (`ContentRestrictionHandler` and `PaywallActivity` in `core/ui`) shown when the viewer isn't allowed to watch an item
+- Setting the viewer token for content entitlements, with a sample paywall (`ContentRestrictionHandler` and `PaywallActivity` in `core/ui`) for the items a viewer token can unlock. Other refusals are left to the SDK
 
 ## Troubleshooting
 

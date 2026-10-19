@@ -50,6 +50,11 @@ class WidgetsViewModel: ViewModel() {
                 margins.top = 16.blazeDp
                 margins.end = 8.blazeDp
             }
+            // Title margins are measured from the item, not the thumbnail. The thumbnail renders
+            // at 178dp: the 188dp image minus its 2dp start margin (preset) and 8dp end margin.
+            // The item is 350dp (widget height in fragment_moments_row.xml) × 9/16 ≈ 197dp, so
+            // 27dp = 8dp inside the thumbnail + the 19dp the item is wider than it.
+            widgetItemStyle.title.margins.end = 27.blazeDp
         }
 
     val momentsGridBaseLayout: BlazeWidgetLayout

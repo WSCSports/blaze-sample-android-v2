@@ -63,7 +63,7 @@ class VideosRowFragment : BaseWidgetFragment(R.layout.fragment_videos_row) {
             if (styleState.isCustomStatusIndicator) widgetItemStyle.statusIndicator.setMyCustomStatusIndicatorStyle()
             if (styleState.isCustomTitle) widgetItemStyle.title.setMyCustomTitleStyle()
             if (styleState.isCustomBadge) widgetItemStyle.badge.setMyCustomBadgeStyle()
-            widgetItemStyle.image.animatedThumbnail.isEnabled = styleState.isAnimatedThumbnails
+            if (styleState.isStaticThumbnails) widgetItemStyle.image.animatedThumbnail.isEnabled = false
         }
         binding.videosRowWidgetView.updateWidgetLayout(newWidgetLayout)
         if (styleState.isCustomItemStyleOverrides) {

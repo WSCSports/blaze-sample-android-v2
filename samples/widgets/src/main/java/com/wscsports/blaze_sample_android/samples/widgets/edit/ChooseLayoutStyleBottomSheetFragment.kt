@@ -29,8 +29,8 @@ class ChooseLayoutStyleBottomSheetFragment: BottomSheetDialogFragment(R.layout.w
             isCustomTitleCheckBox.isChecked = styleState.isCustomTitle
             isCustomBadgeCheckBox.isChecked = styleState.isCustomBadge
             isCustomItemStyleOverridesCheckBox.isChecked = styleState.isCustomItemStyleOverrides
-            isAnimatedThumbnailsCheckBox.isChecked = styleState.isAnimatedThumbnails
-            isAnimatedThumbnailsCheckBox.isVisible = viewModel.hasAnimatedThumbnailsPreset
+            isStaticThumbnailsCheckBox.isChecked = styleState.isStaticThumbnails
+            isStaticThumbnailsCheckBox.isVisible = viewModel.hasAnimatedThumbnailsPreset
         }
     }
 
@@ -49,7 +49,7 @@ class ChooseLayoutStyleBottomSheetFragment: BottomSheetDialogFragment(R.layout.w
                 isCustomTitle = isCustomTitleCheckBox.isChecked,
                 isCustomBadge = isCustomBadgeCheckBox.isChecked,
                 isCustomItemStyleOverrides = isCustomItemStyleOverridesCheckBox.isChecked,
-                isAnimatedThumbnails = isAnimatedThumbnailsCheckBox.isChecked
+                isStaticThumbnails = isStaticThumbnailsCheckBox.isChecked
             )
             viewModel.setWidgetLayoutStyleState(state)
         }

@@ -6,9 +6,9 @@ data class WidgetLayoutStyleState(
     val isCustomTitle: Boolean = false,
     val isCustomBadge: Boolean = false,
     val isCustomItemStyleOverrides: Boolean = false,
-    val isAnimatedThumbnails: Boolean = false,
+    val isStaticThumbnails: Boolean = false,
 ) {
     fun isNotEmpty(): Boolean {
-        return isCustomAppearance || isCustomStatusIndicator || isCustomTitle || isCustomBadge || isCustomItemStyleOverrides || isAnimatedThumbnails
+        return isCustomAppearance || isCustomStatusIndicator || isCustomTitle || isCustomBadge || isCustomItemStyleOverrides || isStaticThumbnails
     }
 }

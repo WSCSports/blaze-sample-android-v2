@@ -165,7 +165,10 @@ class WidgetsViewModel: ViewModel() {
 
     // Grid widgets don't play animated thumbnails, so only these rows use an animated preset
     val hasAnimatedThumbnailsPreset: Boolean
-        get() = _currWidgetType.value in listOf(WidgetScreenType.STORIES_ROW, WidgetScreenType.MOMENTS_ROW, WidgetScreenType.VIDEOS_ROW)
+        get() = when (_currWidgetType.value) {
+            WidgetScreenType.STORIES_ROW, WidgetScreenType.MOMENTS_ROW, WidgetScreenType.VIDEOS_ROW -> true
+            else -> false
+        }
 
     fun getWidgetLayoutBasePreset(): BlazeWidgetLayout = when (_currWidgetType.value) {
         WidgetScreenType.STORIES_ROW -> storiesRowBaseLayout

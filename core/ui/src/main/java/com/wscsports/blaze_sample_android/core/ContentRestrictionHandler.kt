@@ -18,7 +18,8 @@ object ContentRestrictionHandler {
     }
 
     fun onContentRestricted(reason: BlazeContentRestrictionReason): BlazeContentRestrictionHandleType {
-        // The sample has a paywall only for the reasons a viewer token can solve; the rest is left to the SDK.
+        // Paywall only for the reasons a viewer token can solve; your app can handle the others its own way too
+        // (e.g. GEO_BLOCKED, VPN_BLOCKED, etc.).
         if (!canWatchWithViewerToken(reason)) return BlazeContentRestrictionHandleType.SDK_SHOULD_HANDLE
 
         // Started from the application context, so it needs a task flag; it still opens on top of the player.

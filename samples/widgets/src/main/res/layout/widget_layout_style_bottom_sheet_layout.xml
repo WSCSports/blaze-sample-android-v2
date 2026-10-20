@@ -102,7 +102,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Subtitle"
-                android:visibility="gone"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/is_custom_badge_check_box"
                 />
@@ -112,10 +111,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Description"
-                android:visibility="gone"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/is_subtitle_check_box"
                 />
+
+            <androidx.constraintlayout.widget.Group
+                android:id="@+id/subtitle_and_description_group"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                app:constraint_referenced_ids="is_subtitle_check_box,is_description_check_box" />
 
             <View
                 android:id="@+id/divider_customizations"

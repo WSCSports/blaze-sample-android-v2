@@ -51,4 +51,7 @@ enum class WidgetScreenType(
         description = "Demonstrates the different variations of the play() method for manually triggering widget playback",
         navDestinationId = R.id.action_navigation_widget_list_to_methodsDelegatesFragment
     );
+
+    val supportsSubtitleAndDescription: Boolean
+        get() = this == MOMENTS_ROW || this == MOMENTS_GRID
 }

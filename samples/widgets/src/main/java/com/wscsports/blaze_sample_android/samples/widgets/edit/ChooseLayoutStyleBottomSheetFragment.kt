@@ -6,7 +6,6 @@ import androidx.fragment.app.activityViewModels
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.wscsports.blaze_sample_android.core.ui.showView
 import com.wscsports.blaze_sample_android.samples.widgets.R
-import com.wscsports.blaze_sample_android.samples.widgets.WidgetScreenType
 import com.wscsports.blaze_sample_android.samples.widgets.databinding.WidgetLayoutStyleBottomSheetLayoutBinding
 import com.wscsports.blaze_sample_android.samples.widgets.WidgetsViewModel
 import com.zhuinden.fragmentviewbindingdelegatekt.viewBinding
@@ -24,19 +23,14 @@ class ChooseLayoutStyleBottomSheetFragment: BottomSheetDialogFragment(R.layout.w
 
     private fun initializeUI() {
         val styleState = viewModel.widgetStyleState.value
-        // Only Moments widgets show a subtitle and description.
-        val showsSubtitleAndDescription = viewModel.currWidgetType.value in listOf(
-            WidgetScreenType.MOMENTS_ROW,
-            WidgetScreenType.MOMENTS_GRID
-        )
+        val showsSubtitleAndDescription = viewModel.currWidgetType.value?.supportsSubtitleAndDescription == true
         binding.apply {
             isCustomImageCheckBox.isChecked = styleState.isCustomAppearance
             isCustomIndicatorCheckBox.isChecked = styleState.isCustomStatusIndicator
             isCustomTitleCheckBox.isChecked = styleState.isCustomTitle
             isCustomBadgeCheckBox.isChecked = styleState.isCustomBadge
-            isSubtitleCheckBox.showView(showsSubtitleAndDescription)
+            subtitleAndDescriptionGroup.showView(showsSubtitleAndDescription)
             isSubtitleCheckBox.isChecked = styleState.isSubtitleVisible
-            isDescriptionCheckBox.showView(showsSubtitleAndDescription)
             isDescriptionCheckBox.isChecked = styleState.isDescriptionVisible
             isCustomItemStyleOverridesCheckBox.isChecked = styleState.isCustomItemStyleOverrides
         }

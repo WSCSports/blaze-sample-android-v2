@@ -8,9 +8,10 @@ data class WidgetLayoutStyleState(
     val isSubtitleVisible: Boolean = false,
     val isDescriptionVisible: Boolean = false,
     val isCustomItemStyleOverrides: Boolean = false,
+    val isStaticThumbnails: Boolean = false,
 ) {
     fun isNotEmpty(): Boolean {
         return isCustomAppearance || isCustomStatusIndicator || isCustomTitle || isCustomBadge ||
-            isSubtitleVisible || isDescriptionVisible || isCustomItemStyleOverrides
+            isSubtitleVisible || isDescriptionVisible || isCustomItemStyleOverrides || isStaticThumbnails
     }
 }

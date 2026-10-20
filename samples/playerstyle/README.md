@@ -51,6 +51,7 @@ The module demonstrates two approaches for each widget type:
 - **Background Color**: Set a custom background color for the player.
 - **Player Buttons**: Configure exit, share, mute, like, play/pause, and captions buttons (visibility, color, size, images).
 - **Live Catchup Button**: `buttons.liveCatchup` opens the recap story on a live stream that has one. It is visible by default, but live catchup itself and the "Still time to catch up" popup have to be activated for your account: please contact WSC support or your DM.
+- **Audio Track Button**: `buttons.audio` lets viewers switch between the audio tracks of a live stream, such as different commentary feeds. It is visible by default and shows only in the full-screen player, on a live stream with more than one audio track.
 - **CTA Button**: Customize corner radius, text size, size, and icon.
 - **Seek Bar**: Customize appearance for playing and paused states (colors, size, thumb, corner radius).
 - **Captions**: Customize text size and on-screen positioning.

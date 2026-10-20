@@ -105,6 +105,7 @@ class WidgetsActivity : AppCompatActivity() {
         if (styleState.isSubtitleVisible) addCustomizationAppliedChip("Subtitle")
         if (styleState.isDescriptionVisible) addCustomizationAppliedChip("Description")
         if (styleState.isCustomItemStyleOverrides) addCustomizationAppliedChip("Item Override")
+        if (styleState.isStaticThumbnails) addCustomizationAppliedChip("Static Thumbnails")
     }
 
     private fun addCustomizationAppliedChip(text: String) {

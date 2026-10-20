@@ -61,6 +61,7 @@ class MomentsRowFragment : BaseWidgetFragment(R.layout.fragment_moments_row) {
             if (styleState.isCustomBadge) widgetItemStyle.badge.setMyCustomBadgeStyle()
             if (styleState.isSubtitleVisible) widgetItemStyle.subtitle.setMySubtitleStyle()
             if (styleState.isDescriptionVisible) widgetItemStyle.description.setMyDescriptionStyle()
+            if (styleState.isStaticThumbnails) widgetItemStyle.image.animatedThumbnail.isEnabled = false
         }
         binding.momentsRowWidgetView.updateWidgetLayout(newWidgetLayout)
         if (styleState.isCustomItemStyleOverrides) {

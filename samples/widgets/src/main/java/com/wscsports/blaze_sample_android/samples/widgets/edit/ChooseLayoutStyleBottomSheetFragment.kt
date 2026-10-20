@@ -2,6 +2,7 @@ package com.wscsports.blaze_sample_android.samples.widgets.edit
 
 import android.os.Bundle
 import android.view.View
+import androidx.core.view.isVisible
 import androidx.fragment.app.activityViewModels
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.wscsports.blaze_sample_android.core.ui.showView
@@ -33,6 +34,8 @@ class ChooseLayoutStyleBottomSheetFragment: BottomSheetDialogFragment(R.layout.w
             isSubtitleCheckBox.isChecked = styleState.isSubtitleVisible
             isDescriptionCheckBox.isChecked = styleState.isDescriptionVisible
             isCustomItemStyleOverridesCheckBox.isChecked = styleState.isCustomItemStyleOverrides
+            isStaticThumbnailsCheckBox.isChecked = styleState.isStaticThumbnails
+            isStaticThumbnailsCheckBox.isVisible = viewModel.hasAnimatedThumbnailsPreset
         }
     }
 
@@ -52,7 +55,8 @@ class ChooseLayoutStyleBottomSheetFragment: BottomSheetDialogFragment(R.layout.w
                 isCustomBadge = isCustomBadgeCheckBox.isChecked,
                 isSubtitleVisible = isSubtitleCheckBox.isChecked,
                 isDescriptionVisible = isDescriptionCheckBox.isChecked,
-                isCustomItemStyleOverrides = isCustomItemStyleOverridesCheckBox.isChecked
+                isCustomItemStyleOverrides = isCustomItemStyleOverridesCheckBox.isChecked,
+                isStaticThumbnails = isStaticThumbnailsCheckBox.isChecked
             )
             viewModel.setWidgetLayoutStyleState(state)
         }

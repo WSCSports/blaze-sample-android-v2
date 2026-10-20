@@ -144,6 +144,18 @@ fun BlazeVideosPlayerButtonsStyle.applyCustomVideosButtonsStyle(): BlazeVideosPl
         liveCatchup.apply {
             isVisible = true
         }
+        /**
+         * Audio track button appearance: lets viewers switch between the audio tracks of a live stream,
+         * such as different commentary feeds. Visible by default. It shows only in the full-screen player,
+         * on a live stream with more than one audio track.
+         */
+        audio.apply {
+            isVisible = true
+            color = Color.WHITE
+            width = 48.blazeDp
+            height = 48.blazeDp
+            scaleType = ImageView.ScaleType.CENTER
+        }
     }
 }
 

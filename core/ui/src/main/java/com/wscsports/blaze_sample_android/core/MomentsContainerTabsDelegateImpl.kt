@@ -6,6 +6,9 @@ import com.blaze.blazesdk.delegates.models.BlazeCTAActionType
 import com.blaze.blazesdk.delegates.models.BlazeInteractionLinkHandleType
 import com.blaze.blazesdk.delegates.models.BlazePlayerEvent
 import com.blaze.blazesdk.delegates.models.BlazePlayerType
+import com.blaze.blazesdk.delegates.models.BlazeRestrictedContentParams
+import com.blaze.blazesdk.entitlements.models.BlazeContentRestrictionHandleType
+import com.blaze.blazesdk.entitlements.models.BlazeContentRestrictionReason
 import com.blaze.blazesdk.features.shared.models.ui_shared.BlazeLinkActionHandleType
 import com.blaze.blazesdk.shared.results.BlazeResult
 
@@ -79,6 +82,18 @@ class MomentsContainerTabsDelegateImpl : BlazePlayerContainerTabsDelegate {
     ): BlazeInteractionLinkHandleType {
         Log.d(TAG, "onTriggerInteractionLink: playerType=$playerType, sourceId=$sourceId, interactionId=$interactionId, interactionType=$interactionType, url=$url")
         return BlazeInteractionLinkHandleType.DEEPLINK
+    }
+
+    // Called when the viewer isn't allowed to play an item.
+    // The sample shows its own paywall, see ContentRestrictionHandler.
+    override fun onContentRestricted(
+        playerType: BlazePlayerType,
+        sourceId: String?,
+        reason: BlazeContentRestrictionReason,
+        contentParams: BlazeRestrictedContentParams
+    ): BlazeContentRestrictionHandleType {
+        Log.d(TAG, "onContentRestricted: playerType=$playerType, sourceId=$sourceId, reason=$reason, contentParams=$contentParams")
+        return ContentRestrictionHandler.onContentRestricted(reason)
     }
 
     override fun onTabSelected(

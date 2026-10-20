@@ -23,6 +23,7 @@ This module demonstrates the Follow Entities feature end to end: a follow button
 
 ### FollowTabsConfiguration
 - Shared builder for the three-tab moments widget configuration (**Trending**, **For you**, **Your Picks**) and the moments player style with the follow button. Keeps the tab setup identical across both variants.
+- The follow chip uses the star icon (`iconSource = STAR`): an outlined star while unfollowed and a filled star once followed. Each chip state has its own `iconSource`, so it's set on both `followEntity.unfollowState.chip` and `followEntity.followState.chip`. `DEFAULT` keeps the `+` and the checkmark.
 
 ### Native View variant (`views/` package)
 

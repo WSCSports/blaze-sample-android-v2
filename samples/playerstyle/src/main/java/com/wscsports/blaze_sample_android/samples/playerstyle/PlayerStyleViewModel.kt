@@ -32,6 +32,12 @@ class PlayerStyleViewModel: ViewModel() {
     val videosWidgetLayout: BlazeWidgetLayout
         get() = BlazeWidgetLayout.Presets.VideosWidget.Row.horizontalRectangles
 
+    val customMomentsWidgetLayout: BlazeWidgetLayout
+        get() = momentsWidgetLayout.applyCustomMomentsWidgetParams()
+
+    val customVideosWidgetLayout: BlazeWidgetLayout
+        get() = videosWidgetLayout.applyCustomVideosWidgetParams()
+
     val defaultStoryPlayerStyle: BlazeStoryPlayerStyle
         get() = BlazeStoryPlayerStyle.base()
 

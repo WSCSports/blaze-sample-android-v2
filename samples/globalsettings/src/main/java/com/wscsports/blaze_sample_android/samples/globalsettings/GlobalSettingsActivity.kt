@@ -3,6 +3,7 @@ package com.wscsports.blaze_sample_android.samples.globalsettings
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import com.blaze.blazesdk.entitlements.models.BlazeFetchedContentPolicy
 import com.blaze.blazesdk.shared.BlazeSDK
 import com.blaze.blazesdk.shared.results.doOnFailure
 import com.blaze.blazesdk.shared.results.doOnSuccess
@@ -66,6 +67,9 @@ class GlobalSettingsActivity : AppCompatActivity() {
             geoLocationButton.setOnClickListener {
                 setGeoRestrictionFromInput()
             }
+            externalUserTokenButton.setOnClickListener {
+                setExternalUserTokenFromInput()
+            }
             switchDoNotTrackUser.setOnCheckedChangeListener { _, isChecked ->
                 BlazeSDK.setDoNotTrack(isChecked)
             }
@@ -110,6 +114,22 @@ class GlobalSettingsActivity : AppCompatActivity() {
                         "setGeoRestrictionFromInput: doOnFailure: message = $message, cause = $cause"
                     )
                 }
+            }
+        }
+    }
+
+    /**
+     * Set the viewer token used for content entitlements. Leave the field empty to clear it.
+     */
+    private fun setExternalUserTokenFromInput() {
+        val token = binding.externalUserTokenEditText.text?.toString()
+        // A different viewer: Evict drops the content fetched for the previous one and fetches it again.
+        BlazeSDK.setExternalUserToken(token, BlazeFetchedContentPolicy.Evict) { result ->
+            result.doOnSuccess {
+                Log.d("GlobalSettingsActivity", "setExternalUserTokenFromInput: doOnSuccess")
+            }
+            result.doOnFailure { message, cause ->
+                Log.e("GlobalSettingsActivity", "setExternalUserTokenFromInput: doOnFailure: message = $message, cause = $cause")
             }
         }
     }

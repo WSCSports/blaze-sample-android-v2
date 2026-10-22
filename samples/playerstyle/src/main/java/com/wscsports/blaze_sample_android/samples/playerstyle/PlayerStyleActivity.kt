@@ -81,7 +81,7 @@ class PlayerStyleActivity : AppCompatActivity(),
 
     private fun initCustomMomentsRowWidget() {
         binding.customMomentsRowWidgetView.initWidget(
-            widgetLayout =  viewModel.momentsWidgetLayout,
+            widgetLayout = viewModel.customMomentsWidgetLayout,
             playerStyle = viewModel.customMomentPlayerStyle,
             dataSource = viewModel.momentsDataSource,
             widgetId = "custom-moments-row-id",
@@ -106,7 +106,7 @@ class PlayerStyleActivity : AppCompatActivity(),
 
     private fun initCustomVideosRowWidget() {
         binding.customVideosRowWidgetView.initWidget(
-            widgetLayout = viewModel.videosWidgetLayout,
+            widgetLayout = viewModel.customVideosWidgetLayout,
             playerStyle = viewModel.customVideosPlayerStyle,
             dataSource = viewModel.videosDataSource,
             widgetId = "custom-videos-row-id",

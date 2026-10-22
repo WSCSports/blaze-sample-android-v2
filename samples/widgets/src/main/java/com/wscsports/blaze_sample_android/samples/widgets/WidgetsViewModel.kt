@@ -35,12 +35,14 @@ import kotlinx.coroutines.launch
  */
 class WidgetsViewModel: ViewModel() {
 
+    // The animated (GIF) thumbnails version of circles; the "Static thumbnails" option turns its GIFs off
     val storiesRowBaseLayout: BlazeWidgetLayout
-        get() = BlazeWidgetLayout.Presets.StoriesWidget.Row.circles
+        get() = BlazeWidgetLayout.Presets.StoriesWidget.Row.animatedThumbnailsCircles
 
     val storiesGridBaseLayout: BlazeWidgetLayout
         get() = BlazeWidgetLayout.Presets.StoriesWidget.Grid.twoColumnsVerticalRectangles
 
+    // Animated (GIF) thumbnails preset; the "Static thumbnails" option turns its GIFs off
     val momentsRowBaseLayout: BlazeWidgetLayout
         get() = BlazeWidgetLayout.Presets.MomentsWidget.Row.verticalAnimatedThumbnailsRectangles.apply {
             horizontalItemsSpacing = 0.blazeDp
@@ -50,6 +52,11 @@ class WidgetsViewModel: ViewModel() {
                 margins.top = 16.blazeDp
                 margins.end = 8.blazeDp
             }
+            // Title margins are measured from the item, not the thumbnail. The thumbnail renders
+            // at 178dp: the 188dp image minus its 2dp start margin (preset) and 8dp end margin.
+            // The item is 350dp (widget height in fragment_moments_row.xml) × 9/16 ≈ 197dp, so
+            // 27dp = 8dp inside the thumbnail + the 19dp the item is wider than it.
+            widgetItemStyle.title.margins.end = 27.blazeDp
         }
 
     val momentsGridBaseLayout: BlazeWidgetLayout
@@ -63,8 +70,9 @@ class WidgetsViewModel: ViewModel() {
             }
         }
 
+    // The animated (GIF) thumbnails version of horizontalRectangles; the "Static thumbnails" option turns its GIFs off
     val videosRowBaseLayout: BlazeWidgetLayout
-        get() = BlazeWidgetLayout.Presets.VideosWidget.Row.horizontalRectangles
+        get() = BlazeWidgetLayout.Presets.VideosWidget.Row.horizontalAnimatedThumbnailsRectangles
 
     val videosGridBaseLayout: BlazeWidgetLayout
         get() = BlazeWidgetLayout.Presets.VideosWidget.Grid.twoColumnsHorizontalRectangles
@@ -159,6 +167,13 @@ class WidgetsViewModel: ViewModel() {
             WidgetScreenType.METHODS_DELEGATES -> null
         }
     }
+
+    // Grid widgets don't play animated thumbnails, so only these rows use an animated preset
+    val hasAnimatedThumbnailsPreset: Boolean
+        get() = when (_currWidgetType.value) {
+            WidgetScreenType.STORIES_ROW, WidgetScreenType.MOMENTS_ROW, WidgetScreenType.VIDEOS_ROW -> true
+            else -> false
+        }
 
     fun getWidgetLayoutBasePreset(): BlazeWidgetLayout = when (_currWidgetType.value) {
         WidgetScreenType.STORIES_ROW -> storiesRowBaseLayout

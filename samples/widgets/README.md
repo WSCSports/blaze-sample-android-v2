@@ -33,8 +33,15 @@ The widgets module provides robust runtime editing capabilities, allowing users 
   - **Status Indicator**: Show or hide custom status indicators on items.
   - **Title**: Toggle custom title display.
   - **Badge**: Enable or disable badges on items.
+  - **Subtitle** and **Description** (Moments Row and Moments Grid only): Show each moment's subtitle and description under its title.
   - **Item Style Overrides**: Apply advanced style overrides to individual items.
+  - **Static Thumbnails** (Stories, Moments and Videos rows): These rows use the animated presets (e.g. `StoriesWidget.Row.animatedThumbnailsCircles`), so their GIF thumbnails play one at a time by default. This option turns them off with `widgetItemStyle.image.animatedThumbnail.isEnabled = false`. Items without a GIF keep their static thumbnail.
 - **Workflow**: These options are presented as checkboxes in the layout style edit bottom sheet. When applied, the widget UI updates in real time to reflect the selected customizations, demonstrating the flexibility of the Blaze SDK's styling system.
+
+### Subtitle and Description
+- "Subtitle" turns on `widgetItemStyle.subtitle` and "Description" turns on `widgetItemStyle.description`. Both are hidden by default.
+- The title, subtitle, and description form one text block in that order, placed with the title's `position` and `margins`, so the subtitle and description have no position of their own. With the subtitle hidden, the description sits right under the title. `topSpacing` sets the space above each line.
+- Only Moments widgets show these lines, so the options are not offered on Stories and Videos screens.
 
 ## Usage
 

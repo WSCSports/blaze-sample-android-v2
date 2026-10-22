@@ -3,8 +3,12 @@ package com.wscsports.blaze_sample_android.core
 import android.util.Log
 import com.blaze.blazesdk.delegates.BlazePlayerContainerTabsDelegate
 import com.blaze.blazesdk.delegates.models.BlazeCTAActionType
+import com.blaze.blazesdk.delegates.models.BlazeInteractionLinkHandleType
 import com.blaze.blazesdk.delegates.models.BlazePlayerEvent
 import com.blaze.blazesdk.delegates.models.BlazePlayerType
+import com.blaze.blazesdk.delegates.models.BlazeRestrictedContentParams
+import com.blaze.blazesdk.entitlements.models.BlazeContentRestrictionHandleType
+import com.blaze.blazesdk.entitlements.models.BlazeContentRestrictionReason
 import com.blaze.blazesdk.features.shared.models.ui_shared.BlazeLinkActionHandleType
 import com.blaze.blazesdk.shared.results.BlazeResult
 
@@ -65,6 +69,31 @@ class MomentsContainerTabsDelegateImpl : BlazePlayerContainerTabsDelegate {
     ): BlazeLinkActionHandleType {
         Log.d(TAG, "onTriggerPlayerBodyTextLink: playerType=$playerType, sourceId=$sourceId, actionParam=$actionParam")
         return super.onTriggerPlayerBodyTextLink(playerType, sourceId, actionParam)
+    }
+
+    // Called when an Engagement Layer asks to open a link.
+    // Return DEEPLINK (default) to open externally, WEB for the SDK's in-app web view, or HANDLED if the app handled it.
+    override fun onTriggerInteractionLink(
+        playerType: BlazePlayerType,
+        sourceId: String?,
+        interactionId: String,
+        interactionType: String,
+        url: String
+    ): BlazeInteractionLinkHandleType {
+        Log.d(TAG, "onTriggerInteractionLink: playerType=$playerType, sourceId=$sourceId, interactionId=$interactionId, interactionType=$interactionType, url=$url")
+        return BlazeInteractionLinkHandleType.DEEPLINK
+    }
+
+    // Called when the viewer isn't allowed to play an item.
+    // The sample shows its own paywall, see ContentRestrictionHandler.
+    override fun onContentRestricted(
+        playerType: BlazePlayerType,
+        sourceId: String?,
+        reason: BlazeContentRestrictionReason,
+        contentParams: BlazeRestrictedContentParams
+    ): BlazeContentRestrictionHandleType {
+        Log.d(TAG, "onContentRestricted: playerType=$playerType, sourceId=$sourceId, reason=$reason, contentParams=$contentParams")
+        return ContentRestrictionHandler.onContentRestricted(reason)
     }
 
     override fun onTabSelected(

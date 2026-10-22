@@ -2,8 +2,10 @@ package com.wscsports.blaze_sample_android.samples.widgets.edit
 
 import android.os.Bundle
 import android.view.View
+import androidx.core.view.isVisible
 import androidx.fragment.app.activityViewModels
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import com.wscsports.blaze_sample_android.core.ui.showView
 import com.wscsports.blaze_sample_android.samples.widgets.R
 import com.wscsports.blaze_sample_android.samples.widgets.databinding.WidgetLayoutStyleBottomSheetLayoutBinding
 import com.wscsports.blaze_sample_android.samples.widgets.WidgetsViewModel
@@ -22,12 +24,18 @@ class ChooseLayoutStyleBottomSheetFragment: BottomSheetDialogFragment(R.layout.w
 
     private fun initializeUI() {
         val styleState = viewModel.widgetStyleState.value
+        val showsSubtitleAndDescription = viewModel.currWidgetType.value?.supportsSubtitleAndDescription == true
         binding.apply {
             isCustomImageCheckBox.isChecked = styleState.isCustomAppearance
             isCustomIndicatorCheckBox.isChecked = styleState.isCustomStatusIndicator
             isCustomTitleCheckBox.isChecked = styleState.isCustomTitle
             isCustomBadgeCheckBox.isChecked = styleState.isCustomBadge
+            subtitleAndDescriptionGroup.showView(showsSubtitleAndDescription)
+            isSubtitleCheckBox.isChecked = styleState.isSubtitleVisible
+            isDescriptionCheckBox.isChecked = styleState.isDescriptionVisible
             isCustomItemStyleOverridesCheckBox.isChecked = styleState.isCustomItemStyleOverrides
+            isStaticThumbnailsCheckBox.isChecked = styleState.isStaticThumbnails
+            isStaticThumbnailsCheckBox.isVisible = viewModel.hasAnimatedThumbnailsPreset
         }
     }
 
@@ -45,7 +53,10 @@ class ChooseLayoutStyleBottomSheetFragment: BottomSheetDialogFragment(R.layout.w
                 isCustomStatusIndicator = isCustomIndicatorCheckBox.isChecked,
                 isCustomTitle = isCustomTitleCheckBox.isChecked,
                 isCustomBadge = isCustomBadgeCheckBox.isChecked,
-                isCustomItemStyleOverrides = isCustomItemStyleOverridesCheckBox.isChecked
+                isSubtitleVisible = isSubtitleCheckBox.isChecked,
+                isDescriptionVisible = isDescriptionCheckBox.isChecked,
+                isCustomItemStyleOverrides = isCustomItemStyleOverridesCheckBox.isChecked,
+                isStaticThumbnails = isStaticThumbnailsCheckBox.isChecked
             )
             viewModel.setWidgetLayoutStyleState(state)
         }

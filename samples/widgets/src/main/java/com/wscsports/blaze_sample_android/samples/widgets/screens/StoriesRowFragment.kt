@@ -54,7 +54,10 @@ class StoriesRowFragment: BaseWidgetFragment(R.layout.fragment_stories_row) {
         updateWidgetHeightParams(styleState)
         val newWidgetLayout = if (styleState.isCustomAppearance) {
             // example for setting different preset
-            BlazeWidgetLayout.Presets.StoriesWidget.Row.verticalRectangles
+            BlazeWidgetLayout.Presets.StoriesWidget.Row.verticalRectangles.apply {
+                // This preset has GIF thumbnails off; any row layout can turn them on
+                widgetItemStyle.image.animatedThumbnail.isEnabled = true
+            }
         } else {
             viewModel.getWidgetLayoutBasePreset()
         }
@@ -64,6 +67,7 @@ class StoriesRowFragment: BaseWidgetFragment(R.layout.fragment_stories_row) {
             if (styleState.isCustomStatusIndicator) widgetItemStyle.statusIndicator.setMyCustomStatusIndicatorStyle()
             if (styleState.isCustomTitle) widgetItemStyle.title.setMyCustomTitleStyle()
             if (styleState.isCustomBadge) widgetItemStyle.badge.setMyCustomBadgeStyle()
+            if (styleState.isStaticThumbnails) widgetItemStyle.image.animatedThumbnail.isEnabled = false
         }
         binding.storiesRowWidgetView.updateWidgetLayout(newWidgetLayout)
         if (styleState.isCustomItemStyleOverrides) {

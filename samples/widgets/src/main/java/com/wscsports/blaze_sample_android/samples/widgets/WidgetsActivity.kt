@@ -102,7 +102,10 @@ class WidgetsActivity : AppCompatActivity() {
         if (styleState.isCustomStatusIndicator) addCustomizationAppliedChip("Indicator")
         if (styleState.isCustomTitle) addCustomizationAppliedChip("Title")
         if (styleState.isCustomBadge) addCustomizationAppliedChip("Badge")
+        if (styleState.isSubtitleVisible) addCustomizationAppliedChip("Subtitle")
+        if (styleState.isDescriptionVisible) addCustomizationAppliedChip("Description")
         if (styleState.isCustomItemStyleOverrides) addCustomizationAppliedChip("Item Override")
+        if (styleState.isStaticThumbnails) addCustomizationAppliedChip("Static Thumbnails")
     }
 
     private fun addCustomizationAppliedChip(text: String) {

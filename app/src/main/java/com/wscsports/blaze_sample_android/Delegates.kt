@@ -5,9 +5,14 @@ import com.blaze.blazesdk.analytics.models.BlazeAnalyticsEvent
 import com.blaze.blazesdk.delegates.BlazePlayerEntryPointDelegate
 import com.blaze.blazesdk.delegates.BlazeSDKDelegate
 import com.blaze.blazesdk.delegates.models.BlazeCTAActionType
+import com.blaze.blazesdk.delegates.models.BlazeInteractionLinkHandleType
 import com.blaze.blazesdk.delegates.models.BlazePlayerType
+import com.blaze.blazesdk.delegates.models.BlazeRestrictedContentParams
+import com.blaze.blazesdk.entitlements.models.BlazeContentRestrictionHandleType
+import com.blaze.blazesdk.entitlements.models.BlazeContentRestrictionReason
 import com.blaze.blazesdk.features.shared.models.ui_shared.BlazeLinkActionHandleType
 import com.blaze.blazesdk.shared.results.BlazeResult
+import com.wscsports.blaze_sample_android.core.ContentRestrictionHandler
 
 /**
  * [Delegates] shows you how you can override and react to events throughout the SDK.
@@ -76,6 +81,31 @@ object Delegates {
         ): BlazeLinkActionHandleType {
             Log.d("BlazePlayerEntryPointDelegate", "onTriggerPlayerBodyTextLink - playerType - $playerType, sourceId - $sourceId, actionParam - $actionParam")
             return BlazeLinkActionHandleType.DEEPLINK
+        }
+
+        // Called when an Engagement Layer asks to open a link.
+        // Return DEEPLINK (default) to open externally, WEB for the SDK's in-app web view, or HANDLED if the app handled it.
+        override fun onTriggerInteractionLink(
+            playerType: BlazePlayerType,
+            sourceId: String?,
+            interactionId: String,
+            interactionType: String,
+            url: String
+        ): BlazeInteractionLinkHandleType {
+            Log.d("BlazePlayerEntryPointDelegate", "onTriggerInteractionLink - playerType - $playerType, sourceId - $sourceId, interactionId - $interactionId, interactionType - $interactionType, url - $url")
+            return BlazeInteractionLinkHandleType.DEEPLINK
+        }
+
+        // Called when the viewer isn't allowed to play an item.
+        // The sample shows its own paywall, see ContentRestrictionHandler.
+        override fun onContentRestricted(
+            playerType: BlazePlayerType,
+            sourceId: String?,
+            reason: BlazeContentRestrictionReason,
+            contentParams: BlazeRestrictedContentParams
+        ): BlazeContentRestrictionHandleType {
+            Log.d("BlazePlayerEntryPointDelegate", "onContentRestricted - playerType - $playerType, sourceId - $sourceId, reason - $reason, contentParams - $contentParams")
+            return ContentRestrictionHandler.onContentRestricted(reason)
         }
 
     }

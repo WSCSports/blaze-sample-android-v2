@@ -97,13 +97,38 @@
                 app:layout_constraintTop_toBottomOf="@id/is_custom_title_check_box"
                 />
 
+            <CheckBox
+                android:id="@+id/is_subtitle_check_box"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Subtitle"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/is_custom_badge_check_box"
+                />
+
+            <CheckBox
+                android:id="@+id/is_description_check_box"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Description"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/is_subtitle_check_box"
+                />
+
+            <androidx.constraintlayout.widget.Group
+                android:id="@+id/subtitle_and_description_group"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                app:constraint_referenced_ids="is_subtitle_check_box,is_description_check_box" />
+
             <View
                 android:id="@+id/divider_customizations"
                 android:layout_width="0dp"
                 android:layout_height="1dp"
                 android:layout_marginTop="8dp"
                 android:background="@color/divider_color"
-                app:layout_constraintTop_toBottomOf="@+id/is_custom_badge_check_box"
+                app:layout_constraintTop_toBottomOf="@+id/is_description_check_box"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"/>
 

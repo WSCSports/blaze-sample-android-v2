@@ -9,12 +9,14 @@ import com.blaze.blazesdk.style.shared.models.blazeDp
 import com.blaze.blazesdk.style.widgets.BlazeWidgetItemBadgeStyle
 import com.blaze.blazesdk.shared.models.BlazeExtraInfoKeyPreset
 import com.blaze.blazesdk.style.widgets.BlazeWidgetItemCustomMapping
+import com.blaze.blazesdk.style.widgets.BlazeWidgetItemDescriptionStyle
 import com.blaze.blazesdk.style.widgets.BlazeWidgetItemImageGradientOverlayStyle
 import com.blaze.blazesdk.style.widgets.BlazeWidgetItemImageGradientOverlayStyle.BlazeGradientPosition
 import com.blaze.blazesdk.style.widgets.BlazeWidgetItemImageStyle
 import com.blaze.blazesdk.style.widgets.BlazeWidgetItemImageStyle.BlazeImagePosition
 import com.blaze.blazesdk.style.widgets.BlazeWidgetItemStatusIndicatorStyle
 import com.blaze.blazesdk.style.widgets.BlazeWidgetItemStyleOverrides
+import com.blaze.blazesdk.style.widgets.BlazeWidgetItemSubtitleStyle
 import com.blaze.blazesdk.style.widgets.BlazeWidgetItemTitleStyle
 import com.blaze.blazesdk.style.widgets.BlazeWidgetLayout
 import com.wscsports.blaze_sample_android.samples.widgets.R
@@ -57,6 +59,8 @@ class MomentsRowFragment : BaseWidgetFragment(R.layout.fragment_moments_row) {
             if (styleState.isCustomStatusIndicator) widgetItemStyle.statusIndicator.setMyCustomStatusIndicatorStyle()
             if (styleState.isCustomTitle) widgetItemStyle.title.setMyCustomTitleStyle()
             if (styleState.isCustomBadge) widgetItemStyle.badge.setMyCustomBadgeStyle()
+            if (styleState.isSubtitleVisible) widgetItemStyle.subtitle.setMySubtitleStyle()
+            if (styleState.isDescriptionVisible) widgetItemStyle.description.setMyDescriptionStyle()
             if (styleState.isStaticThumbnails) widgetItemStyle.image.animatedThumbnail.isEnabled = false
         }
         binding.momentsRowWidgetView.updateWidgetLayout(newWidgetLayout)
@@ -170,6 +174,21 @@ class MomentsRowFragment : BaseWidgetFragment(R.layout.fragment_moments_row) {
         margins.apply {
             top = 12.blazeDp
         }
+    }
+
+    // for more information see https://dev.wsc-sports.com/docs/android-blaze-widget-item-subtitle-style
+    private fun BlazeWidgetItemSubtitleStyle.setMySubtitleStyle() {
+        // Hidden by default. Shown under the title as part of one text block placed with
+        // the title's position, so it has no position of its own.
+        isVisible = true
+        topSpacing = 4.blazeDp
+    }
+
+    // for more information see https://dev.wsc-sports.com/docs/android-blaze-widget-item-description-style
+    private fun BlazeWidgetItemDescriptionStyle.setMyDescriptionStyle() {
+        // Hidden by default. Shown under the subtitle, or under the title when the subtitle is hidden.
+        isVisible = true
+        topSpacing = 2.blazeDp
     }
 
     // for more information see https://dev.wsc-sports.com/docs/android-blaze-widget-item-badge-style

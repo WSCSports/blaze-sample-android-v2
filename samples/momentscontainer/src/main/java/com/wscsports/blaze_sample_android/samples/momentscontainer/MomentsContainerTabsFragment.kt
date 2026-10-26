@@ -36,7 +36,9 @@ class MomentsContainerTabsFragment : Fragment(R.layout.fragment_moments_containe
     private val momentsPlayerContainerTabs: BlazeMomentsPlayerContainerTabs by lazy {
         BlazeMomentsPlayerContainerTabs(
             containerSourceId = MOMENTS_CONTAINER_TABS_SOURCE_ID,
-            containerTabsDelegate = MomentsContainerTabsDelegateImpl(),
+            containerTabsDelegate = MomentsContainerTabsDelegateImpl(
+                onTabReselected = { tabIndex -> momentsPlayerContainerTabs.reloadTab(at = tabIndex) }
+            ),
             tabs = listOf(
                 BlazeMomentsContainerTabItem(
                     containerId = MOMENTS_CONTAINER_TABS_ID_1,

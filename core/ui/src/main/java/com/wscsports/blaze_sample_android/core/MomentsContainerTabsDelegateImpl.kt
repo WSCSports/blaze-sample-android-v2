@@ -12,7 +12,9 @@ import com.blaze.blazesdk.entitlements.models.BlazeContentRestrictionReason
 import com.blaze.blazesdk.features.shared.models.ui_shared.BlazeLinkActionHandleType
 import com.blaze.blazesdk.shared.results.BlazeResult
 
-class MomentsContainerTabsDelegateImpl : BlazePlayerContainerTabsDelegate {
+class MomentsContainerTabsDelegateImpl(
+    private val onTabReselected: ((tabIndex: Int) -> Unit)? = null
+) : BlazePlayerContainerTabsDelegate {
 
     companion object {
         private const val TAG = "MomentsContainerTabsDelegate"
@@ -103,6 +105,16 @@ class MomentsContainerTabsDelegateImpl : BlazePlayerContainerTabsDelegate {
     ) {
         Log.d(TAG, "onTabSelected: playerType=$playerType, sourceId=$sourceId, tabIndex=$tabIndex")
         super.onTabSelected(playerType, sourceId, tabIndex)
+    }
+
+    // Called only when the user taps the already-selected tab, not on swipes or programmatic selection.
+    override fun onTabReselected(
+        playerType: BlazePlayerType,
+        sourceId: String?,
+        tabIndex: Int
+    ) {
+        Log.d(TAG, "onTabReselected: playerType=$playerType, sourceId=$sourceId, tabIndex=$tabIndex")
+        onTabReselected?.invoke(tabIndex)
     }
 }
 

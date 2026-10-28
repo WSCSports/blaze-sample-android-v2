@@ -32,6 +32,13 @@ fun BlazeStoryPlayerStyle.applyCustomStoryPlayerParams(): BlazeStoryPlayerStyle 
             textSize = 12f
             fontResId = null
         }
+        /** Story subtitle appearance (shown under the story title when available) */
+        subtitle.apply {
+            isVisible = true
+            textColor = Color.LTGRAY
+            textSize = 12f
+            fontResId = null
+        }
         /** Story last update appearance */
         lastUpdate.apply {
             textColor = Color.WHITE

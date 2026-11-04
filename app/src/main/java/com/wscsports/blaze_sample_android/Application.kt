@@ -34,6 +34,8 @@ class Application : Application() {
                 Log.e("Application", "BlazeSDK.init errorBlock -> , Init Error = $error")
             },
             externalUserId = null,
+            // With no externalUserId, the previous session's user is restored. Pass false to start every launch anonymous.
+            restoreExternalUserId = true,
             // Viewer token for content entitlements. It isn't persisted, so pass the signed-in viewer's token on every launch.
             externalUserToken = null,
             geoLocation = null,

@@ -63,7 +63,7 @@ object BlazeFollowSynchronizer {
     private suspend fun seedSdkWithPersistedFollows() {
         val persistedEntityIds = FollowRepository.followedEntityIds.first()
         BlazeSDK.followEntitiesManager.insertFollowedEntities(
-            persistedEntityIds.map(::BlazeFollowEntity).toSet()
+            persistedEntityIds.map { BlazeFollowEntity(entityId = it, entityType = null) }.toSet()
         )
     }
 

@@ -77,22 +77,37 @@ class GlobalSettingsActivity : AppCompatActivity() {
     }
 
     /**
-     * Set external user id for BlazeSDK.
-     * The SDK supports exactly two states: `null` (no user) or a non-empty string.
-     * Submitting an empty/whitespace-only value clears the external user id.
+     * Set external user id for BlazeSDK. Leave the field empty to log the user out.
+     * The SDK keeps the external user id across app launches until logout is called.
      * More information about external user id can be found in the documentation
      * https://dev.wsc-sports.com/docs/android-methods-and-parameters#/external-user
      */
     private fun setExternalUserIdFromInput() {
-        binding.externalUserIdEditText.text?.toString()?.let { rawUserId ->
-            val trimmedUserId = rawUserId.trim().takeIf { it.isNotEmpty() }
-            BlazeSDK.setExternalUserId(trimmedUserId) { result ->
-                result.doOnSuccess {
-                    Log.d("GlobalSettingsActivity", "setExternalUserIdFromInput: doOnSuccess")
-                }
-                result.doOnFailure { message, cause ->
-                    Log.e("GlobalSettingsActivity", "setExternalUserIdFromInput: doOnFailure: message = $message, cause = $cause")
-                }
+        val userId = binding.externalUserIdEditText.text?.toString()?.trim().orEmpty()
+        if (userId.isEmpty()) {
+            logout()
+            return
+        }
+        BlazeSDK.setExternalUserId(userId) { result ->
+            result.doOnSuccess {
+                Log.d("GlobalSettingsActivity", "setExternalUserIdFromInput: doOnSuccess")
+            }
+            result.doOnFailure { message, cause ->
+                Log.e("GlobalSettingsActivity", "setExternalUserIdFromInput: doOnFailure: message = $message, cause = $cause")
+            }
+        }
+    }
+
+    /**
+     * Log out the current user. The SDK continues as an anonymous user.
+     */
+    private fun logout() {
+        BlazeSDK.logout { result ->
+            result.doOnSuccess {
+                Log.d("GlobalSettingsActivity", "logout: doOnSuccess")
+            }
+            result.doOnFailure { message, cause ->
+                Log.e("GlobalSettingsActivity", "logout: doOnFailure: message = $message, cause = $cause")
             }
         }
     }

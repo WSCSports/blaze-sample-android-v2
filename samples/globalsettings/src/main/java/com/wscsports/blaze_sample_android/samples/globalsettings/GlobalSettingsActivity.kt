@@ -64,6 +64,9 @@ class GlobalSettingsActivity : AppCompatActivity() {
             externalUserIdButton.setOnClickListener {
                 setExternalUserIdFromInput()
             }
+            logoutButton.setOnClickListener {
+                logout()
+            }
             geoLocationButton.setOnClickListener {
                 setGeoRestrictionFromInput()
             }
@@ -77,17 +80,13 @@ class GlobalSettingsActivity : AppCompatActivity() {
     }
 
     /**
-     * Set external user id for BlazeSDK. Leave the field empty to log the user out.
+     * Set external user id for BlazeSDK. A blank value fails with ErrorReason.INVALID_EXTERNAL_USER_ID.
      * The SDK keeps the external user id across app launches until logout is called.
      * More information about external user id can be found in the documentation
      * https://dev.wsc-sports.com/docs/android-methods-and-parameters#/external-user
      */
     private fun setExternalUserIdFromInput() {
         val userId = binding.externalUserIdEditText.text?.toString()?.trim().orEmpty()
-        if (userId.isEmpty()) {
-            logout()
-            return
-        }
         BlazeSDK.setExternalUserId(userId) { result ->
             result.doOnSuccess {
                 Log.d("GlobalSettingsActivity", "setExternalUserIdFromInput: doOnSuccess")
